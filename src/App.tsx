@@ -482,18 +482,42 @@ export default function App() {
               </div>
 
               {selectedAlphabetLetter && (
-                <div style={{ marginTop: '2rem' }}>
-                  <div style={{ fontSize: '1.05rem', fontWeight: 700, marginBottom: '1rem' }}>
-                    Álbumes con la letra {selectedAlphabetLetter}:
-                  </div>
+                <div style={{ marginTop: '1.5rem' }}>
                   {ALBUM_DATABASE[selectedAlphabetLetter] && ALBUM_DATABASE[selectedAlphabetLetter].length > 0 ? (
-                    <ul style={{ paddingLeft: '1.5rem', margin: '0', listStyleType: 'square', lineHeight: '1.8', color: '#000000' }}>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', marginTop: '1rem' }}>
                       {ALBUM_DATABASE[selectedAlphabetLetter].map((album, idx) => (
-                        <li key={idx}>
-                          <strong>{album.title}</strong> - {album.artist}
-                        </li>
+                        <div key={idx} style={{ width: '130px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+                          {/* Album cover placeholder */}
+                          <div style={{
+                            width: '130px',
+                            height: '130px',
+                            backgroundColor: '#fafafa',
+                            border: '2px solid #000000',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            position: 'relative',
+                            overflow: 'hidden',
+                            marginBottom: '0.75rem',
+                            userSelect: 'none'
+                          }}>
+                            {/* Stylized vinyl record SVG */}
+                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                              <circle cx="12" cy="12" r="10" />
+                              <circle cx="12" cy="12" r="3" />
+                            </svg>
+                          </div>
+                          {/* Title */}
+                          <div style={{ fontSize: '0.9rem', fontWeight: 700, lineHeight: '1.3', color: '#000000', wordBreak: 'break-word', width: '100%' }}>
+                            {album.title}
+                          </div>
+                          {/* Artist */}
+                          <div style={{ fontSize: '0.75rem', color: '#666666', marginTop: '0.25rem', width: '100%' }}>
+                            {album.artist}
+                          </div>
+                        </div>
                       ))}
-                    </ul>
+                    </div>
                   ) : (
                     <p style={{ fontStyle: 'italic', color: '#666666', marginTop: '0.5rem' }}>
                       No hay álbumes registrados bajo esta letra.
