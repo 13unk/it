@@ -376,7 +376,8 @@ export default function App() {
     { title: 'El prostíbulo 100 montaditos', details: 'Ficha técnica de producción: 1 cámara principal, 1 micrófono de corbata. Grabación secreta autorizada. Estado de edición: Terminado y subido.' },
     { title: 'Un día siendo esclavos', details: 'Ficha técnica de producción: Experimento sociológico extremo. Grabación multicámara en localización exterior. Estado de edición: Terminado y subido.' },
     { title: 'Comprobador de IA', details: 'Análisis de rendimiento de modelos de lenguaje e inteligencias artificiales generativas de última generación aplicada a flujos de trabajo.' },
-    { title: 'Un día trabajando en el Top Manta', details: 'Investigación periodística a pie de calle sobre el mercado de falsificaciones y distribución informal urbana. Audio directo.' }
+    { title: 'Un día trabajando en el Top Manta', details: 'Investigación periodística a pie de calle sobre el mercado de falsificaciones y distribución informal urbana. Audio directo.' },
+    { title: '100 Gitanos Dicen', details: 'Ficha técnica de producción: Formato de preguntas y respuestas en plató sobre cultura y opiniones populares. Estado de edición: Terminado y subido.' }
   ];
 
   // Listen to physical keyboard events when padlock is active
