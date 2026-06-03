@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Folder, Play, FileText } from 'lucide-react';
+import { Folder, Play, FileText, Gamepad2 } from 'lucide-react';
 
 interface Project {
   name: string;
@@ -891,7 +891,7 @@ export default function App() {
                 })}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
-                  <Folder size={48} strokeWidth={1.5} />
+                  <Gamepad2 size={48} strokeWidth={1.5} />
                 </div>
                 <span className="folder-name" style={{ fontSize: '0.9rem', fontWeight: 700, textAlign: 'center', lineHeight: '1.3' }}>
                   Adivina el artista por el outfit
@@ -907,7 +907,7 @@ export default function App() {
                 })}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
-                  <Folder size={48} strokeWidth={1.5} />
+                  <Gamepad2 size={48} strokeWidth={1.5} />
                 </div>
                 <span className="folder-name" style={{ fontSize: '0.9rem', fontWeight: 700, textAlign: 'center', lineHeight: '1.3' }}>
                   Adivina el artista por su nombre real
@@ -923,7 +923,7 @@ export default function App() {
                 })}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
-                  <Folder size={48} strokeWidth={1.5} />
+                  <Gamepad2 size={48} strokeWidth={1.5} />
                 </div>
                 <span className="folder-name" style={{ fontSize: '0.9rem', fontWeight: 700, textAlign: 'center', lineHeight: '1.3' }}>
                   ¿Esta barra es real o me la acabo de inventar?
@@ -939,7 +939,7 @@ export default function App() {
                 })}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
-                  <Folder size={48} strokeWidth={1.5} />
+                  <Gamepad2 size={48} strokeWidth={1.5} />
                 </div>
                 <span className="folder-name" style={{ fontSize: '0.9rem', fontWeight: 700, textAlign: 'center', lineHeight: '1.3' }}>
                   Adivina el álbum por la letra X de su portada
@@ -955,7 +955,7 @@ export default function App() {
                 })}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
-                  <Folder size={48} strokeWidth={1.5} />
+                  <Gamepad2 size={48} strokeWidth={1.5} />
                 </div>
                 <span className="folder-name" style={{ fontSize: '0.9rem', fontWeight: 700, textAlign: 'center', lineHeight: '1.3' }}>
                   Adivina la canción por sus stems
