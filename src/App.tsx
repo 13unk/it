@@ -14,6 +14,49 @@ interface Video {
   details: string;
 }
 
+interface Album {
+  title: string;
+  artist: string;
+}
+
+const ALBUM_DATABASE: Record<string, Album[]> = {
+  'A': [],
+  'B': [],
+  'C': [],
+  'D': [],
+  'E': [],
+  'F': [],
+  'G': [
+    { title: 'El Pluggg 3 Ova 1', artist: 'Yung Beef' }
+  ],
+  'H': [],
+  'I': [],
+  'J': [],
+  'K': [],
+  'L': [
+    { title: 'El Pluggg 3 Ova 1', artist: 'Yung Beef' }
+  ],
+  'M': [],
+  'N': [],
+  'Ñ': [],
+  'O': [],
+  'P': [
+    { title: 'El Pluggg 3 Ova 1', artist: 'Yung Beef' }
+  ],
+  'Q': [],
+  'R': [],
+  'S': [],
+  'T': [],
+  'U': [
+    { title: 'El Pluggg 3 Ova 1', artist: 'Yung Beef' }
+  ],
+  'V': [],
+  'W': [],
+  'X': [],
+  'Y': [],
+  'Z': []
+};
+
 type ActiveItem = {
   type: 'project' | 'video';
   name: string;
@@ -440,12 +483,22 @@ export default function App() {
 
               {selectedAlphabetLetter && (
                 <div style={{ marginTop: '2rem' }}>
-                  <div style={{ fontSize: '1.05rem', fontWeight: 700 }}>
+                  <div style={{ fontSize: '1.05rem', fontWeight: 700, marginBottom: '1rem' }}>
                     Álbumes con la letra {selectedAlphabetLetter}:
                   </div>
-                  <p style={{ fontStyle: 'italic', color: '#666666', marginTop: '0.5rem' }}>
-                    No hay álbumes registrados bajo esta letra.
-                  </p>
+                  {ALBUM_DATABASE[selectedAlphabetLetter] && ALBUM_DATABASE[selectedAlphabetLetter].length > 0 ? (
+                    <ul style={{ paddingLeft: '1.5rem', margin: '0', listStyleType: 'square', lineHeight: '1.8', color: '#000000' }}>
+                      {ALBUM_DATABASE[selectedAlphabetLetter].map((album, idx) => (
+                        <li key={idx}>
+                          <strong>{album.title}</strong> - {album.artist}
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p style={{ fontStyle: 'italic', color: '#666666', marginTop: '0.5rem' }}>
+                      No hay álbumes registrados bajo esta letra.
+                    </p>
+                  )}
                 </div>
               )}
             </div>
