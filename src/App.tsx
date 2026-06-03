@@ -1127,7 +1127,7 @@ export default function App() {
                 <div 
                   onMouseEnter={() => setHoveredTimelinePart({
                     title: 'Pausa publicitaria 1',
-                    desc: 'Breve espacio para publicidad y patrocinadores.',
+                    desc: "Con un sello de 'Gitano Owned Business' con los colores de la bandera gitana (parodia de la campaña americana que promueve comprar únicamente en Black Owned Businesses para redistribuir riqueza entre la comunidad), cuña publicitaria de una paradita del mercadillo que vende ropa.",
                     x: 0,
                     y: 0
                   })}
@@ -1169,7 +1169,7 @@ export default function App() {
                 <div 
                   onMouseEnter={() => setHoveredTimelinePart({
                     title: 'Pausa publicitaria 2',
-                    desc: 'Segundo espacio comercial y descanso.',
+                    desc: 'Igual que la anterior pero esta vez de una frutería del mercadillo.',
                     x: 0,
                     y: 0
                   })}
