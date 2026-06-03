@@ -57,6 +57,100 @@ const ALBUM_DATABASE: Record<string, Album[]> = {
   'Z': []
 };
 
+function AlbumCover({ title, artist }: { title: string; artist: string }) {
+  const [coverUrl, setCoverUrl] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    let active = true;
+    setLoading(true);
+    
+    const fetchCover = async () => {
+      try {
+        const query = encodeURIComponent(`release:"${title}" AND artist:"${artist}"`);
+        const searchRes = await fetch(`https://musicbrainz.org/ws/2/release/?query=${query}&fmt=json`);
+        if (!searchRes.ok) throw new Error('Search failed');
+        const data = await searchRes.json();
+        
+        if (data.releases && data.releases.length > 0) {
+          const mbid = data.releases[0].id;
+          const coverArchiveUrl = `https://coverartarchive.org/release/${mbid}/front-250`;
+          if (active) {
+            setCoverUrl(coverArchiveUrl);
+          }
+        }
+      } catch (err) {
+        console.error(err);
+      } finally {
+        if (active) setLoading(false);
+      }
+    };
+
+    fetchCover();
+    return () => {
+      active = false;
+    };
+  }, [title, artist]);
+
+  const placeholder = (
+    <div style={{
+      width: '130px',
+      height: '130px',
+      backgroundColor: '#fafafa',
+      border: '2px solid #000000',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      position: 'relative',
+      overflow: 'hidden',
+      marginBottom: '0.75rem',
+      userSelect: 'none'
+    }}>
+      <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <circle cx="12" cy="12" r="3" />
+      </svg>
+    </div>
+  );
+
+  if (loading) {
+    return (
+      <div style={{
+        width: '130px',
+        height: '130px',
+        backgroundColor: '#fafafa',
+        border: '2px solid #000000',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: '0.75rem'
+      }}>
+        <span style={{ fontSize: '0.8rem', color: '#666666', fontFamily: 'var(--font-heading)' }}>Buscando...</span>
+      </div>
+    );
+  }
+
+  if (!coverUrl) {
+    return placeholder;
+  }
+
+  return (
+    <div style={{ position: 'relative', width: '130px', height: '130px', marginBottom: '0.75rem' }}>
+      <img 
+        src={coverUrl} 
+        alt={title}
+        onError={() => setCoverUrl(null)}
+        style={{
+          width: '130px',
+          height: '130px',
+          objectFit: 'cover',
+          border: '2px solid #000000'
+        }}
+      />
+    </div>
+  );
+}
+
 type ActiveItem = {
   type: 'project' | 'video';
   name: string;
@@ -487,26 +581,7 @@ export default function App() {
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', marginTop: '1rem' }}>
                       {ALBUM_DATABASE[selectedAlphabetLetter].map((album, idx) => (
                         <div key={idx} style={{ width: '130px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-                          {/* Album cover placeholder */}
-                          <div style={{
-                            width: '130px',
-                            height: '130px',
-                            backgroundColor: '#fafafa',
-                            border: '2px solid #000000',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            position: 'relative',
-                            overflow: 'hidden',
-                            marginBottom: '0.75rem',
-                            userSelect: 'none'
-                          }}>
-                            {/* Stylized vinyl record SVG */}
-                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                              <circle cx="12" cy="12" r="10" />
-                              <circle cx="12" cy="12" r="3" />
-                            </svg>
-                          </div>
+                          <AlbumCover title={album.title} artist={album.artist} />
                           {/* Title */}
                           <div style={{ fontSize: '0.9rem', fontWeight: 700, lineHeight: '1.3', color: '#000000', wordBreak: 'break-word', width: '100%' }}>
                             {album.title}
