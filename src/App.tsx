@@ -20,26 +20,41 @@ interface Album {
 }
 
 const ALBUM_DATABASE: Record<string, Album[]> = {
-  'A': [],
-  'B': [],
+  'A': [
+    { title: 'Bien o Mal', artist: 'Trueno' }
+  ],
+  'B': [
+    { title: 'Bien o Mal', artist: 'Trueno' }
+  ],
   'C': [],
   'D': [],
-  'E': [],
+  'E': [
+    { title: 'Bien o Mal', artist: 'Trueno' }
+  ],
   'F': [],
   'G': [
     { title: 'El Pluggg 3 Ova 1', artist: 'Yung Beef' }
   ],
   'H': [],
-  'I': [],
+  'I': [
+    { title: 'Bien o Mal', artist: 'Trueno' }
+  ],
   'J': [],
   'K': [],
   'L': [
-    { title: 'El Pluggg 3 Ova 1', artist: 'Yung Beef' }
+    { title: 'El Pluggg 3 Ova 1', artist: 'Yung Beef' },
+    { title: 'Bien o Mal', artist: 'Trueno' }
   ],
-  'M': [],
-  'N': [],
+  'M': [
+    { title: 'Bien o Mal', artist: 'Trueno' }
+  ],
+  'N': [
+    { title: 'Bien o Mal', artist: 'Trueno' }
+  ],
   'Ñ': [],
-  'O': [],
+  'O': [
+    { title: 'Bien o Mal', artist: 'Trueno' }
+  ],
   'P': [
     { title: 'El Pluggg 3 Ova 1', artist: 'Yung Beef' }
   ],
