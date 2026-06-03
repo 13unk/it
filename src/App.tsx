@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Folder, Play, FileText, Gamepad2 } from 'lucide-react';
+import { Folder, Play, FileText, Gamepad2, Plus } from 'lucide-react';
 
 interface Project {
   name: string;
@@ -1038,22 +1038,7 @@ export default function App() {
             <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', marginTop: '2rem' }}>
               <div 
                 className="folder-card" 
-                style={{ width: '220px', padding: '1.5rem 1rem' }}
-                onClick={() => setActiveSubPage({
-                  name: 'Sponsors',
-                  details: '',
-                  parentName: activeItem.name
-                })}
-              >
-                <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
-                  <Folder size={48} strokeWidth={1.5} />
-                </div>
-                <span className="folder-name" style={{ fontSize: '1rem', fontWeight: 700 }}>Sponsors</span>
-              </div>
-
-              <div 
-                className="folder-card" 
-                style={{ width: '220px', padding: '1.5rem 1rem' }}
+                style={{ width: '100%', padding: '1.5rem 1rem' }}
                 onClick={() => setActiveSubPage({
                   name: 'Formatos',
                   details: '',
@@ -1064,6 +1049,21 @@ export default function App() {
                   <Folder size={48} strokeWidth={1.5} />
                 </div>
                 <span className="folder-name" style={{ fontSize: '1rem', fontWeight: 700 }}>Formatos</span>
+              </div>
+
+              <div 
+                className="folder-card" 
+                style={{ width: '220px', padding: '1.5rem 1rem' }}
+                onClick={() => setActiveSubPage({
+                  name: 'Sponsors',
+                  details: '',
+                  parentName: activeItem.name
+                })}
+              >
+                <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
+                  <Plus size={48} strokeWidth={1.5} />
+                </div>
+                <span className="folder-name" style={{ fontSize: '1rem', fontWeight: 700 }}>Sponsors</span>
               </div>
             </div>
           </main>
