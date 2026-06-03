@@ -727,6 +727,22 @@ export default function App() {
               <li>Tablero de Risk custom</li>
             </ul>
           </main>
+        ) : activeSubSubPage.name === 'Peluches' && activeSubSubPage.parentName === 'Plató' ? (
+          <main className="custom-page-content" style={{ border: 'none', background: 'transparent', padding: '2rem 0', textAlign: 'left' }}>
+            <FolderTree path={[parentType, activeItem!.name, activeSubPage!.name, activeSubSubPage.name]} onNavigate={handleNavigate} />
+            <hr style={{ border: 'none', borderTop: '1px solid #cccccc', margin: '1.5rem 0' }} />
+            <div style={{ color: '#000000', lineHeight: '1.6' }}>
+              <p style={{ fontStyle: 'italic', color: '#666666' }}>Esta carpeta está vacía.</p>
+            </div>
+          </main>
+        ) : activeSubSubPage.name === 'Tablero' && activeSubSubPage.parentName === 'Plató' ? (
+          <main className="custom-page-content" style={{ border: 'none', background: 'transparent', padding: '2rem 0', textAlign: 'left' }}>
+            <FolderTree path={[parentType, activeItem!.name, activeSubPage!.name, activeSubSubPage.name]} onNavigate={handleNavigate} />
+            <hr style={{ border: 'none', borderTop: '1px solid #cccccc', margin: '1.5rem 0' }} />
+            <div style={{ color: '#000000', lineHeight: '1.6' }}>
+              <p style={{ fontStyle: 'italic', color: '#666666' }}>Esta carpeta está vacía.</p>
+            </div>
+          </main>
         ) : (
           <main className="custom-page-content" style={{ border: 'none', background: 'transparent', padding: '2rem 0', textAlign: 'left' }}>
             <FolderTree path={[parentType, activeItem!.name, activeSubPage!.name, activeSubSubPage.name]} onNavigate={handleNavigate} />
