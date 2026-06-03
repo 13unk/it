@@ -23,20 +23,24 @@ const ALBUM_DATABASE: Record<string, Album[]> = {
   'A': [
     { title: 'Bien o Mal', artist: 'Trueno' },
     { title: 'Pegao en Youtube', artist: 'La Mafia del Amor' },
-    { title: 'La Vida Es Una', artist: 'Myke Towers' }
+    { title: 'La Vida Es Una', artist: 'Myke Towers' },
+    { title: 'Nadie Sabe Lo Que Va A Pasar Mañana', artist: 'Bad Bunny' }
   ],
   'B': [
     { title: 'Bien o Mal', artist: 'Trueno' },
-    { title: 'Pegao en Youtube', artist: 'La Mafia del Amor' }
+    { title: 'Pegao en Youtube', artist: 'La Mafia del Amor' },
+    { title: 'Nadie Sabe Lo Que Va A Pasar Mañana', artist: 'Bad Bunny' }
   ],
   'C': [],
   'D': [
-    { title: 'La Vida Es Una', artist: 'Myke Towers' }
+    { title: 'La Vida Es Una', artist: 'Myke Towers' },
+    { title: 'Nadie Sabe Lo Que Va A Pasar Mañana', artist: 'Bad Bunny' }
   ],
   'E': [
     { title: 'Bien o Mal', artist: 'Trueno' },
     { title: 'Pegao en Youtube', artist: 'La Mafia del Amor' },
-    { title: 'La Vida Es Una', artist: 'Myke Towers' }
+    { title: 'La Vida Es Una', artist: 'Myke Towers' },
+    { title: 'Nadie Sabe Lo Que Va A Pasar Mañana', artist: 'Bad Bunny' }
   ],
   'F': [],
   'G': [
@@ -50,7 +54,8 @@ const ALBUM_DATABASE: Record<string, Album[]> = {
   'I': [
     { title: 'Bien o Mal', artist: 'Trueno' },
     { title: 'Moonlight922', artist: 'Cruz Cafuné' },
-    { title: 'La Vida Es Una', artist: 'Myke Towers' }
+    { title: 'La Vida Es Una', artist: 'Myke Towers' },
+    { title: 'Nadie Sabe Lo Que Va A Pasar Mañana', artist: 'Bad Bunny' }
   ],
   'J': [],
   'K': [],
@@ -58,32 +63,44 @@ const ALBUM_DATABASE: Record<string, Album[]> = {
     { title: 'El Pluggg 3 Ova 1', artist: 'Yung Beef' },
     { title: 'Bien o Mal', artist: 'Trueno' },
     { title: 'Moonlight922', artist: 'Cruz Cafuné' },
-    { title: 'La Vida Es Una', artist: 'Myke Towers' }
+    { title: 'La Vida Es Una', artist: 'Myke Towers' },
+    { title: 'Nadie Sabe Lo Que Va A Pasar Mañana', artist: 'Bad Bunny' }
   ],
   'M': [
     { title: 'Bien o Mal', artist: 'Trueno' },
-    { title: 'Moonlight922', artist: 'Cruz Cafuné' }
+    { title: 'Moonlight922', artist: 'Cruz Cafuné' },
+    { title: 'Nadie Sabe Lo Que Va A Pasar Mañana', artist: 'Bad Bunny' }
   ],
   'N': [
     { title: 'Bien o Mal', artist: 'Trueno' },
     { title: 'Pegao en Youtube', artist: 'La Mafia del Amor' },
     { title: 'Moonlight922', artist: 'Cruz Cafuné' },
-    { title: 'La Vida Es Una', artist: 'Myke Towers' }
+    { title: 'La Vida Es Una', artist: 'Myke Towers' },
+    { title: 'Nadie Sabe Lo Que Va A Pasar Mañana', artist: 'Bad Bunny' }
   ],
-  'Ñ': [],
+  'Ñ': [
+    { title: 'Nadie Sabe Lo Que Va A Pasar Mañana', artist: 'Bad Bunny' }
+  ],
   'O': [
     { title: 'Bien o Mal', artist: 'Trueno' },
     { title: 'Pegao en Youtube', artist: 'La Mafia del Amor' },
-    { title: 'Moonlight922', artist: 'Cruz Cafuné' }
+    { title: 'Moonlight922', artist: 'Cruz Cafuné' },
+    { title: 'Nadie Sabe Lo Que Va A Pasar Mañana', artist: 'Bad Bunny' }
   ],
   'P': [
     { title: 'El Pluggg 3 Ova 1', artist: 'Yung Beef' },
-    { title: 'Pegao en Youtube', artist: 'La Mafia del Amor' }
+    { title: 'Pegao en Youtube', artist: 'La Mafia del Amor' },
+    { title: 'Nadie Sabe Lo Que Va A Pasar Mañana', artist: 'Bad Bunny' }
   ],
-  'Q': [],
-  'R': [],
+  'Q': [
+    { title: 'Nadie Sabe Lo Que Va A Pasar Mañana', artist: 'Bad Bunny' }
+  ],
+  'R': [
+    { title: 'Nadie Sabe Lo Que Va A Pasar Mañana', artist: 'Bad Bunny' }
+  ],
   'S': [
-    { title: 'La Vida Es Una', artist: 'Myke Towers' }
+    { title: 'La Vida Es Una', artist: 'Myke Towers' },
+    { title: 'Nadie Sabe Lo Que Va A Pasar Mañana', artist: 'Bad Bunny' }
   ],
   'T': [
     { title: 'Pegao en Youtube', artist: 'La Mafia del Amor' },
@@ -92,10 +109,12 @@ const ALBUM_DATABASE: Record<string, Album[]> = {
   'U': [
     { title: 'El Pluggg 3 Ova 1', artist: 'Yung Beef' },
     { title: 'Pegao en Youtube', artist: 'La Mafia del Amor' },
-    { title: 'La Vida Es Una', artist: 'Myke Towers' }
+    { title: 'La Vida Es Una', artist: 'Myke Towers' },
+    { title: 'Nadie Sabe Lo Que Va A Pasar Mañana', artist: 'Bad Bunny' }
   ],
   'V': [
-    { title: 'La Vida Es Una', artist: 'Myke Towers' }
+    { title: 'La Vida Es Una', artist: 'Myke Towers' },
+    { title: 'Nadie Sabe Lo Que Va A Pasar Mañana', artist: 'Bad Bunny' }
   ],
   'W': [],
   'X': [],
