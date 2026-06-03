@@ -22,17 +22,21 @@ interface Album {
 const ALBUM_DATABASE: Record<string, Album[]> = {
   'A': [
     { title: 'Bien o Mal', artist: 'Trueno' },
-    { title: 'Pegao en Youtube', artist: 'La Mafia del Amor' }
+    { title: 'Pegao en Youtube', artist: 'La Mafia del Amor' },
+    { title: 'La Vida Es Una', artist: 'Myke Towers' }
   ],
   'B': [
     { title: 'Bien o Mal', artist: 'Trueno' },
     { title: 'Pegao en Youtube', artist: 'La Mafia del Amor' }
   ],
   'C': [],
-  'D': [],
+  'D': [
+    { title: 'La Vida Es Una', artist: 'Myke Towers' }
+  ],
   'E': [
     { title: 'Bien o Mal', artist: 'Trueno' },
-    { title: 'Pegao en Youtube', artist: 'La Mafia del Amor' }
+    { title: 'Pegao en Youtube', artist: 'La Mafia del Amor' },
+    { title: 'La Vida Es Una', artist: 'Myke Towers' }
   ],
   'F': [],
   'G': [
@@ -45,14 +49,16 @@ const ALBUM_DATABASE: Record<string, Album[]> = {
   ],
   'I': [
     { title: 'Bien o Mal', artist: 'Trueno' },
-    { title: 'Moonlight922', artist: 'Cruz Cafuné' }
+    { title: 'Moonlight922', artist: 'Cruz Cafuné' },
+    { title: 'La Vida Es Una', artist: 'Myke Towers' }
   ],
   'J': [],
   'K': [],
   'L': [
     { title: 'El Pluggg 3 Ova 1', artist: 'Yung Beef' },
     { title: 'Bien o Mal', artist: 'Trueno' },
-    { title: 'Moonlight922', artist: 'Cruz Cafuné' }
+    { title: 'Moonlight922', artist: 'Cruz Cafuné' },
+    { title: 'La Vida Es Una', artist: 'Myke Towers' }
   ],
   'M': [
     { title: 'Bien o Mal', artist: 'Trueno' },
@@ -61,7 +67,8 @@ const ALBUM_DATABASE: Record<string, Album[]> = {
   'N': [
     { title: 'Bien o Mal', artist: 'Trueno' },
     { title: 'Pegao en Youtube', artist: 'La Mafia del Amor' },
-    { title: 'Moonlight922', artist: 'Cruz Cafuné' }
+    { title: 'Moonlight922', artist: 'Cruz Cafuné' },
+    { title: 'La Vida Es Una', artist: 'Myke Towers' }
   ],
   'Ñ': [],
   'O': [
@@ -75,16 +82,21 @@ const ALBUM_DATABASE: Record<string, Album[]> = {
   ],
   'Q': [],
   'R': [],
-  'S': [],
+  'S': [
+    { title: 'La Vida Es Una', artist: 'Myke Towers' }
+  ],
   'T': [
     { title: 'Pegao en Youtube', artist: 'La Mafia del Amor' },
     { title: 'Moonlight922', artist: 'Cruz Cafuné' }
   ],
   'U': [
     { title: 'El Pluggg 3 Ova 1', artist: 'Yung Beef' },
-    { title: 'Pegao en Youtube', artist: 'La Mafia del Amor' }
+    { title: 'Pegao en Youtube', artist: 'La Mafia del Amor' },
+    { title: 'La Vida Es Una', artist: 'Myke Towers' }
   ],
-  'V': [],
+  'V': [
+    { title: 'La Vida Es Una', artist: 'Myke Towers' }
+  ],
   'W': [],
   'X': [],
   'Y': [
