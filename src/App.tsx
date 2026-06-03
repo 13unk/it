@@ -113,11 +113,15 @@ export default function App() {
   const [isExample1Revealed, setIsExample1Revealed] = useState<boolean>(false);
   const [isExample2Revealed, setIsExample2Revealed] = useState<boolean>(false);
   const [isExample3Revealed, setIsExample3Revealed] = useState<boolean>(false);
+  const [isExample4Revealed, setIsExample4Revealed] = useState<boolean>(false);
+  const [isExample5Revealed, setIsExample5Revealed] = useState<boolean>(false);
 
   useEffect(() => {
     setIsExample1Revealed(false);
     setIsExample2Revealed(false);
     setIsExample3Revealed(false);
+    setIsExample4Revealed(false);
+    setIsExample5Revealed(false);
   }, [activeSubSubPage, activeSubPage, activeItem]);
 
   const handleNavigate = (depth: number) => {
@@ -400,6 +404,26 @@ export default function App() {
                     className={`spoiler-text ${isExample3Revealed ? 'revealed' : ''}`}
                   >
                     Prok
+                  </span>
+                </div>
+
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+                  <span>Pedro Navarro Utrera es</span>
+                  <span 
+                    onClick={() => setIsExample4Revealed(!isExample4Revealed)}
+                    className={`spoiler-text ${isExample4Revealed ? 'revealed' : ''}`}
+                  >
+                    Foyone
+                  </span>
+                </div>
+
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+                  <span>David Calvo Villa es</span>
+                  <span 
+                    onClick={() => setIsExample5Revealed(!isExample5Revealed)}
+                    className={`spoiler-text ${isExample5Revealed ? 'revealed' : ''}`}
+                  >
+                    El Jincho
                   </span>
                 </div>
               </div>
