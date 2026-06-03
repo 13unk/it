@@ -1017,6 +1017,36 @@ export default function App() {
               </div>
             </div>
           </main>
+        ) : activeItem.type === 'video' && activeItem.name === '100 Gitanos Dicen' ? (
+          <main className="custom-page-content" style={{ border: 'none', background: 'transparent', padding: '2rem 0', textAlign: 'left' }}>
+            <FolderTree path={[parentType, activeItem.name]} onNavigate={handleNavigate} />
+            <hr style={{ border: 'none', borderTop: '1px solid #cccccc', margin: '1.5rem 0' }} />
+            
+            <div style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '0.75rem', textTransform: 'uppercase' }}>
+              Sinopsis
+            </div>
+            <p className="custom-page-text" style={{ fontStyle: 'italic', color: '#000000', margin: '0 0 1.5rem 0', maxWidth: 'none' }}>
+              {activeItem.details}
+            </p>
+            
+            <hr style={{ border: 'none', borderTop: '1px solid #cccccc', margin: '1.5rem 0' }} />
+            
+            <div style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '0.75rem', textTransform: 'uppercase' }}>
+              Recolección de data
+            </div>
+            <p className="custom-page-text" style={{ fontStyle: 'italic', color: '#666666', margin: '0 0 1.5rem 0', maxWidth: 'none' }}>
+              Esta sección está vacía.
+            </p>
+            
+            <hr style={{ border: 'none', borderTop: '1px solid #cccccc', margin: '1.5rem 0' }} />
+            
+            <div style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '0.75rem', textTransform: 'uppercase' }}>
+              Estructura del vídeo
+            </div>
+            <p className="custom-page-text" style={{ fontStyle: 'italic', color: '#666666', margin: '0 0 1.5rem 0', maxWidth: 'none' }}>
+              Esta sección está vacía.
+            </p>
+          </main>
         ) : activeItem.type === 'project' && activeItem.name === 'BUNKER' ? (
           <main className="custom-page-content" style={{ border: 'none', background: 'transparent', padding: '2rem 0', textAlign: 'left' }}>
             <FolderTree path={[parentType, activeItem.name]} onNavigate={handleNavigate} />
