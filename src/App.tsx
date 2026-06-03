@@ -1261,6 +1261,7 @@ export default function App() {
             <ul style={{ paddingLeft: '1.5rem', margin: '0 0 1.5rem 0', listStyleType: 'square', lineHeight: '1.8', color: '#000000' }}>
               <li>Humor muy del estilo del S01E07 de Atlanta, el skit sobre el hombre negro que se siente transracial.</li>
               <li>Para la logística, cuando se grabe la recopilación de data en el mercadillo también se pueden pactar los spots publicitarios y grabarlos al momento.</li>
+              <li>Recopilar la data en el mercadillo da mucho juego porque se puede interactuar por ahí y que salgan cosas improvisadas.</li>
             </ul>
           </main>
         ) : activeItem.type === 'project' && activeItem.name === 'BUNKER' ? (
