@@ -1023,10 +1023,10 @@ export default function App() {
             
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', color: '#000000', margin: '0 0 2.5rem 0', maxWidth: 'none', lineHeight: '1.6' }}>
               <div style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '0.5rem' }}>
-                Lugar desde el que UNK gestiona todo.
+                Descripción
               </div>
               <p className="custom-page-text" style={{ maxWidth: 'none', margin: 0 }}>
-                Estética de bunker porque somos las personas que están detrás de una revista que genera polémica y controversia y estamos protegiéndonos y resguardándonos en un sitio seguro. Una pistola dentro de una caja de cristal, luces de emergencia, latas de sopa, NukeColas, un tablero de corcho con fotos unidas por hilos rojos, etc.
+                Lugar desde el que UNK gestiona todo. Estética de bunker porque somos las personas que están detrás de una revista que genera polémica y controversia y estamos protegiéndonos y resguardándonos en un sitio seguro. Una pistola dentro de una caja de cristal, luces de emergencia, latas de sopa, NukeColas, un tablero de corcho con fotos unidas por hilos rojos, etc.
               </p>
               <p className="custom-page-text" style={{ maxWidth: 'none', margin: 0 }}>
                 Estética de sótano acogedor tipo That 70s Show con cojines, un puff, humo, neverita, un tablero con sus fichas tiradas por la mesa, etc.
