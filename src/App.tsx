@@ -1234,6 +1234,24 @@ export default function App() {
                 </div>
               )}
             </div>
+
+            <hr style={{ border: 'none', borderTop: '1px solid #cccccc', margin: '1.5rem 0' }} />
+            
+            <div style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '0.75rem', textTransform: 'uppercase' }}>
+              Preguntas
+            </div>
+            <ul style={{ paddingLeft: '1.5rem', margin: '0 0 1.5rem 0', listStyleType: 'square', lineHeight: '1.8', color: '#000000' }}>
+              <li>Apellido típico de gitano</li>
+              <li>Coche típico de gitano</li>
+              <li>Marca de ropa</li>
+              <li>Cantante</li>
+              <li>Plan de domingo</li>
+              <li>Película</li>
+              <li>¿Qué regalar en una boda?</li>
+              <li>Marca de alcohol preferida</li>
+              <li>Nombre para un perro</li>
+              <li>En qué canal se ve el telediario</li>
+            </ul>
           </main>
         ) : activeItem.type === 'project' && activeItem.name === 'BUNKER' ? (
           <main className="custom-page-content" style={{ border: 'none', background: 'transparent', padding: '2rem 0', textAlign: 'left' }}>
