@@ -115,6 +115,7 @@ export default function App() {
   const [isExample3Revealed, setIsExample3Revealed] = useState<boolean>(false);
   const [isExample4Revealed, setIsExample4Revealed] = useState<boolean>(false);
   const [isExample5Revealed, setIsExample5Revealed] = useState<boolean>(false);
+  const [selectedAlphabetLetter, setSelectedAlphabetLetter] = useState<string | null>(null);
 
   useEffect(() => {
     setIsExample1Revealed(false);
@@ -122,6 +123,7 @@ export default function App() {
     setIsExample3Revealed(false);
     setIsExample4Revealed(false);
     setIsExample5Revealed(false);
+    setSelectedAlphabetLetter(null);
   }, [activeSubSubPage, activeSubPage, activeItem]);
 
   const handleNavigate = (depth: number) => {
@@ -409,6 +411,43 @@ export default function App() {
                 </svg>
                 <span>Ver en TikTok</span>
               </a>
+
+              <hr style={{ border: 'none', borderTop: '1px solid #cccccc', margin: '1.5rem 0' }} />
+
+              <div style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1.25rem' }}>
+                Abecedario
+              </div>
+
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem 0.75rem', fontSize: '1.1rem', fontFamily: 'var(--font-heading)' }}>
+                {['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'Ñ', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'].map((letter) => (
+                  <span 
+                    key={letter}
+                    onClick={() => setSelectedAlphabetLetter(letter === selectedAlphabetLetter ? null : letter)}
+                    style={{
+                      cursor: 'pointer',
+                      fontWeight: letter === selectedAlphabetLetter ? 700 : 400,
+                      textDecoration: letter === selectedAlphabetLetter ? 'underline' : 'none',
+                      color: letter === selectedAlphabetLetter ? '#000000' : '#888888',
+                      padding: '2px 6px',
+                      transition: 'color 0.2s'
+                    }}
+                    className="alphabet-letter"
+                  >
+                    {letter}
+                  </span>
+                ))}
+              </div>
+
+              {selectedAlphabetLetter && (
+                <div style={{ marginTop: '2rem' }}>
+                  <div style={{ fontSize: '1.05rem', fontWeight: 700 }}>
+                    Álbumes con la letra {selectedAlphabetLetter}:
+                  </div>
+                  <p style={{ fontStyle: 'italic', color: '#666666', marginTop: '0.5rem' }}>
+                    No hay álbumes registrados bajo esta letra.
+                  </p>
+                </div>
+              )}
             </div>
           </main>
         ) : (
