@@ -838,19 +838,7 @@ export default function App() {
           
           <hr style={{ border: 'none', borderTop: '1px solid #cccccc', margin: '1.5rem 0' }} />
           
-          {activeSubPage.parentName === 'BUNKER' && activeSubPage.name === 'Descripción' ? (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', color: '#000000', margin: '0 0 2.5rem 0', maxWidth: 'none', lineHeight: '1.6' }}>
-              <div style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '0.5rem' }}>
-                Lugar desde el que UNK gestiona todo.
-              </div>
-              <p className="custom-page-text" style={{ maxWidth: 'none', margin: 0 }}>
-                Estética de bunker porque somos las personas que están detrás de una revista que genera polémica y controversia y estamos protegiéndonos y resguardándonos en un sitio seguro. Una pistola dentro de una caja de cristal, luces de emergencia, latas de sopa, NukeColas, un tablero de corcho con fotos unidas por hilos rojos, etc.
-              </p>
-              <p className="custom-page-text" style={{ maxWidth: 'none', margin: 0 }}>
-                Estética de sótano acogedor tipo That 70s Show con cojines, un puff, humo, neverita, un tablero con sus fichas tiradas por la mesa, etc.
-              </p>
-            </div>
-          ) : activeSubPage.parentName === 'BUNKER' && activeSubPage.name === 'Sponsors' ? (
+          {activeSubPage.parentName === 'BUNKER' && activeSubPage.name === 'Sponsors' ? (
             <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', marginTop: '2rem' }}>
               <div 
                 className="folder-card" 
@@ -1033,22 +1021,21 @@ export default function App() {
             <FolderTree path={[parentType, activeItem.name]} onNavigate={handleNavigate} />
             <hr style={{ border: 'none', borderTop: '1px solid #cccccc', margin: '1.5rem 0' }} />
             
-            <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', marginTop: '2rem' }}>
-              <div 
-                className="folder-card" 
-                style={{ width: '220px', padding: '1.5rem 1rem' }}
-                onClick={() => setActiveSubPage({
-                  name: 'Descripción',
-                  details: '',
-                  parentName: activeItem.name
-                })}
-              >
-                <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
-                  <Folder size={48} strokeWidth={1.5} />
-                </div>
-                <span className="folder-name" style={{ fontSize: '1rem', fontWeight: 700 }}>Descripción</span>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', color: '#000000', margin: '0 0 2.5rem 0', maxWidth: 'none', lineHeight: '1.6' }}>
+              <div style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '0.5rem' }}>
+                Lugar desde el que UNK gestiona todo.
               </div>
-              
+              <p className="custom-page-text" style={{ maxWidth: 'none', margin: 0 }}>
+                Estética de bunker porque somos las personas que están detrás de una revista que genera polémica y controversia y estamos protegiéndonos y resguardándonos en un sitio seguro. Una pistola dentro de una caja de cristal, luces de emergencia, latas de sopa, NukeColas, un tablero de corcho con fotos unidas por hilos rojos, etc.
+              </p>
+              <p className="custom-page-text" style={{ maxWidth: 'none', margin: 0 }}>
+                Estética de sótano acogedor tipo That 70s Show con cojines, un puff, humo, neverita, un tablero con sus fichas tiradas por la mesa, etc.
+              </p>
+            </div>
+
+            <hr style={{ border: 'none', borderTop: '1px solid #cccccc', margin: '1.5rem 0' }} />
+            
+            <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', marginTop: '2rem' }}>
               <div 
                 className="folder-card" 
                 style={{ width: '220px', padding: '1.5rem 1rem' }}
