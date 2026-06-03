@@ -24,7 +24,8 @@ const ALBUM_DATABASE: Record<string, Album[]> = {
     { title: 'Bien o Mal', artist: 'Trueno' },
     { title: 'Pegao en Youtube', artist: 'La Mafia del Amor' },
     { title: 'La Vida Es Una', artist: 'Myke Towers' },
-    { title: 'Nadie Sabe Lo Que Va A Pasar Mañana', artist: 'Bad Bunny' }
+    { title: 'Nadie Sabe Lo Que Va A Pasar Mañana', artist: 'Bad Bunny' },
+    { title: 'OASIS', artist: 'Bad Bunny & J Balvin' }
   ],
   'B': [
     { title: 'Bien o Mal', artist: 'Trueno' },
@@ -55,7 +56,8 @@ const ALBUM_DATABASE: Record<string, Album[]> = {
     { title: 'Bien o Mal', artist: 'Trueno' },
     { title: 'Moonlight922', artist: 'Cruz Cafuné' },
     { title: 'La Vida Es Una', artist: 'Myke Towers' },
-    { title: 'Nadie Sabe Lo Que Va A Pasar Mañana', artist: 'Bad Bunny' }
+    { title: 'Nadie Sabe Lo Que Va A Pasar Mañana', artist: 'Bad Bunny' },
+    { title: 'OASIS', artist: 'Bad Bunny & J Balvin' }
   ],
   'J': [],
   'K': [],
@@ -85,7 +87,8 @@ const ALBUM_DATABASE: Record<string, Album[]> = {
     { title: 'Bien o Mal', artist: 'Trueno' },
     { title: 'Pegao en Youtube', artist: 'La Mafia del Amor' },
     { title: 'Moonlight922', artist: 'Cruz Cafuné' },
-    { title: 'Nadie Sabe Lo Que Va A Pasar Mañana', artist: 'Bad Bunny' }
+    { title: 'Nadie Sabe Lo Que Va A Pasar Mañana', artist: 'Bad Bunny' },
+    { title: 'OASIS', artist: 'Bad Bunny & J Balvin' }
   ],
   'P': [
     { title: 'El Pluggg 3 Ova 1', artist: 'Yung Beef' },
@@ -100,7 +103,8 @@ const ALBUM_DATABASE: Record<string, Album[]> = {
   ],
   'S': [
     { title: 'La Vida Es Una', artist: 'Myke Towers' },
-    { title: 'Nadie Sabe Lo Que Va A Pasar Mañana', artist: 'Bad Bunny' }
+    { title: 'Nadie Sabe Lo Que Va A Pasar Mañana', artist: 'Bad Bunny' },
+    { title: 'OASIS', artist: 'Bad Bunny & J Balvin' }
   ],
   'T': [
     { title: 'Pegao en Youtube', artist: 'La Mafia del Amor' },
