@@ -1036,18 +1036,20 @@ export default function App() {
             <div style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '0.75rem', textTransform: 'uppercase' }}>
               Recolección de data
             </div>
-            <p className="custom-page-text" style={{ fontStyle: 'italic', color: '#666666', margin: '0 0 1.5rem 0', maxWidth: 'none' }}>
-              Esta sección está vacía.
-            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', margin: '0 0 1.5rem 0', color: '#000000', lineHeight: '1.6' }}>
+              <p className="custom-page-text" style={{ maxWidth: 'none', margin: 0 }}>
+                <strong>Método 1: Pedir en stories</strong> (Necesito gitanos que contesten una encuesta rápida de menos de 3 minutos. Reacciona a la story y te la mando). Mandamos un link de un uso para que podamos hacer un seguimiento, no se dupliquen entradas ni puedan reenviar el mismo link, y es una encuesta con todas las preguntas de forma "anónima".
+              </p>
+              <p className="custom-page-text" style={{ maxWidth: 'none', margin: 0 }}>
+                <strong>Método 2: Ir a un mercadillo</strong> a recopilar las preguntas con trabajo de campo y eso sirve como fragmentos para el vídeo. Podemos sacar 10-20 y luego rellenar respuestas con el método 1 o si vamos cortos con IA.
+              </p>
+            </div>
             
             <hr style={{ border: 'none', borderTop: '1px solid #cccccc', margin: '1.5rem 0' }} />
             
             <div style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '0.75rem', textTransform: 'uppercase' }}>
               Estructura del vídeo
             </div>
-             <p className="custom-page-text" style={{ fontStyle: 'italic', color: '#666666', margin: '0 0 1rem 0', maxWidth: 'none' }}>
-              Pasa el ratón por encima de los segmentos de la barra para ver la estructura detallada del vídeo.
-            </p>
 
             <div style={{ position: 'relative', width: '100%', marginTop: '1rem', marginBottom: '2.5rem' }}>
               {/* Segmented Timeline Bar */}
