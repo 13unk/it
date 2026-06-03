@@ -333,6 +333,16 @@ export default function App() {
               <p style={{ fontStyle: 'italic' }}>Esta carpeta está vacía.</p>
             </div>
           </main>
+        ) : activeSubSubPage.name === '¿Esta barra es real o me la acabo de inventar?' ? (
+          <main className="custom-page-content" style={{ border: 'none', background: 'transparent', padding: '2rem 0', textAlign: 'left' }}>
+            <FolderTree path={[parentType, activeItem!.name, activeSubPage!.name, activeSubSubPage.name]} onNavigate={handleNavigate} />
+            
+            <hr style={{ border: 'none', borderTop: '1px solid #cccccc', margin: '1.5rem 0' }} />
+            
+            <div style={{ color: '#000000', lineHeight: '1.6' }}>
+              <p style={{ fontStyle: 'italic' }}>Esta carpeta está vacía.</p>
+            </div>
+          </main>
         ) : (
           <main className="custom-page-content" style={{ border: 'none', background: 'transparent', padding: '2rem 0', textAlign: 'left' }}>
             <FolderTree path={[parentType, activeItem!.name, activeSubPage!.name, activeSubSubPage.name]} onNavigate={handleNavigate} />
@@ -544,6 +554,22 @@ export default function App() {
                 </div>
                 <span className="folder-name" style={{ fontSize: '0.9rem', fontWeight: 700, textAlign: 'center', lineHeight: '1.3' }}>
                   Adivina el artista por su nombre real
+                </span>
+              </div>
+
+              <div 
+                className="folder-card" 
+                style={{ width: '220px', padding: '1.5rem 1rem' }}
+                onClick={() => setActiveSubSubPage({
+                  name: '¿Esta barra es real o me la acabo de inventar?',
+                  parentName: 'Formatos'
+                })}
+              >
+                <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
+                  <Folder size={48} strokeWidth={1.5} />
+                </div>
+                <span className="folder-name" style={{ fontSize: '0.9rem', fontWeight: 700, textAlign: 'center', lineHeight: '1.3' }}>
+                  ¿Esta barra es real o me la acabo de inventar?
                 </span>
               </div>
             </div>
