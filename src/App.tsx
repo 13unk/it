@@ -154,7 +154,8 @@ function AlbumCover({ title, artist }: { title: string; artist: string }) {
     
     const fetchCover = async () => {
       try {
-        const query = encodeURIComponent(`release:"${title}" AND artist:"${artist}"`);
+        const cleanArtist = artist.split(/\s*(?:&|and|y|\/|,)\s*/i)[0].trim();
+        const query = encodeURIComponent(`release:"${title}" AND artist:"${cleanArtist}"`);
         const searchRes = await fetch(`https://musicbrainz.org/ws/2/release/?query=${query}&fmt=json`);
         if (!searchRes.ok) throw new Error('Search failed');
         const data = await searchRes.json();
