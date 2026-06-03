@@ -379,7 +379,7 @@ export default function App() {
     { title: 'Un día siendo esclavos', details: 'Ficha técnica de producción: Experimento sociológico extremo. Grabación multicámara en localización exterior. Estado de edición: Terminado y subido.' },
     { title: 'Comprobador de IA', details: 'Análisis de rendimiento de modelos de lenguaje e inteligencias artificiales generativas de última generación aplicada a flujos de trabajo.' },
     { title: 'Un día trabajando en el Top Manta', details: 'Investigación periodística a pie de calle sobre el mercado de falsificaciones y distribución informal urbana. Audio directo.' },
-    { title: '100 Gitanos Dicen', details: 'En este concurso, el concursante debe dar una respuesta a cada categoría que se le pregunte, intentando acertar cuál es la respuesta más común que hemos recibido de los 100 gitanos a los que hemos encuestado. Para esta ocasión traemos de invitado al cantante y gitano, Rafalillo, a quien pondremos a prueba.' }
+    { title: '100 Gitanos Dicen', details: 'En este concurso, el concursante debe dar una respuesta a cada categoría que se le pregunte, intentando acertar cuál es la respuesta más común que hemos recibido de los 100 gitanos a los que hemos encuestado.\nPara esta ocasión traemos de invitado al cantante y gitano, Rafalillo, a quien pondremos contra las cuerdas.' }
   ];
 
   // Listen to physical keyboard events when padlock is active
@@ -1027,7 +1027,7 @@ export default function App() {
             <div style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '0.75rem', textTransform: 'uppercase' }}>
               Sinopsis
             </div>
-            <p className="custom-page-text" style={{ fontStyle: 'italic', color: '#000000', margin: '0 0 1.5rem 0', maxWidth: 'none' }}>
+            <p className="custom-page-text" style={{ fontStyle: 'italic', color: '#000000', margin: '0 0 1.5rem 0', maxWidth: 'none', whiteSpace: 'pre-line' }}>
               {activeItem.details}
             </p>
             
