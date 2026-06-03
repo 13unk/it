@@ -37,29 +37,37 @@ const ALBUM_DATABASE: Record<string, Album[]> = {
   'F': [],
   'G': [
     { title: 'El Pluggg 3 Ova 1', artist: 'Yung Beef' },
-    { title: 'Pegao en Youtube', artist: 'La Mafia del Amor' }
+    { title: 'Pegao en Youtube', artist: 'La Mafia del Amor' },
+    { title: 'Moonlight922', artist: 'Cruz Cafuné' }
   ],
-  'H': [],
+  'H': [
+    { title: 'Moonlight922', artist: 'Cruz Cafuné' }
+  ],
   'I': [
-    { title: 'Bien o Mal', artist: 'Trueno' }
+    { title: 'Bien o Mal', artist: 'Trueno' },
+    { title: 'Moonlight922', artist: 'Cruz Cafuné' }
   ],
   'J': [],
   'K': [],
   'L': [
     { title: 'El Pluggg 3 Ova 1', artist: 'Yung Beef' },
-    { title: 'Bien o Mal', artist: 'Trueno' }
+    { title: 'Bien o Mal', artist: 'Trueno' },
+    { title: 'Moonlight922', artist: 'Cruz Cafuné' }
   ],
   'M': [
-    { title: 'Bien o Mal', artist: 'Trueno' }
+    { title: 'Bien o Mal', artist: 'Trueno' },
+    { title: 'Moonlight922', artist: 'Cruz Cafuné' }
   ],
   'N': [
     { title: 'Bien o Mal', artist: 'Trueno' },
-    { title: 'Pegao en Youtube', artist: 'La Mafia del Amor' }
+    { title: 'Pegao en Youtube', artist: 'La Mafia del Amor' },
+    { title: 'Moonlight922', artist: 'Cruz Cafuné' }
   ],
   'Ñ': [],
   'O': [
     { title: 'Bien o Mal', artist: 'Trueno' },
-    { title: 'Pegao en Youtube', artist: 'La Mafia del Amor' }
+    { title: 'Pegao en Youtube', artist: 'La Mafia del Amor' },
+    { title: 'Moonlight922', artist: 'Cruz Cafuné' }
   ],
   'P': [
     { title: 'El Pluggg 3 Ova 1', artist: 'Yung Beef' },
@@ -69,7 +77,8 @@ const ALBUM_DATABASE: Record<string, Album[]> = {
   'R': [],
   'S': [],
   'T': [
-    { title: 'Pegao en Youtube', artist: 'La Mafia del Amor' }
+    { title: 'Pegao en Youtube', artist: 'La Mafia del Amor' },
+    { title: 'Moonlight922', artist: 'Cruz Cafuné' }
   ],
   'U': [
     { title: 'El Pluggg 3 Ova 1', artist: 'Yung Beef' },
@@ -81,7 +90,23 @@ const ALBUM_DATABASE: Record<string, Album[]> = {
   'Y': [
     { title: 'Pegao en Youtube', artist: 'La Mafia del Amor' }
   ],
-  'Z': []
+  'Z': [],
+  '0': [],
+  '1': [],
+  '2': [
+    { title: 'Moonlight922', artist: 'Cruz Cafuné' }
+  ],
+  '3': [
+    { title: 'El Pluggg 3 Ova 1', artist: 'Yung Beef' }
+  ],
+  '4': [],
+  '5': [],
+  '6': [],
+  '7': [],
+  '8': [],
+  '9': [
+    { title: 'Moonlight922', artist: 'Cruz Cafuné' }
+  ]
 };
 
 function AlbumCover({ title, artist }: { title: string; artist: string }) {
@@ -583,7 +608,7 @@ export default function App() {
               </div>
 
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem 0.75rem', fontSize: '1.1rem', fontFamily: 'var(--font-heading)' }}>
-                {['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'Ñ', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'].map((letter) => (
+                {['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'Ñ', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'].map((letter) => (
                   <span 
                     key={letter}
                     onClick={() => setSelectedAlphabetLetter(letter === selectedAlphabetLetter ? null : letter)}
