@@ -521,4 +521,10 @@ body {
   opacity: 0.6;
 }
 
+.tiktok-link:hover {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+
 
