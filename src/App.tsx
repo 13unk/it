@@ -21,19 +21,23 @@ interface Album {
 
 const ALBUM_DATABASE: Record<string, Album[]> = {
   'A': [
-    { title: 'Bien o Mal', artist: 'Trueno' }
+    { title: 'Bien o Mal', artist: 'Trueno' },
+    { title: 'Pegao en Youtube', artist: 'La Mafia del Amor' }
   ],
   'B': [
-    { title: 'Bien o Mal', artist: 'Trueno' }
+    { title: 'Bien o Mal', artist: 'Trueno' },
+    { title: 'Pegao en Youtube', artist: 'La Mafia del Amor' }
   ],
   'C': [],
   'D': [],
   'E': [
-    { title: 'Bien o Mal', artist: 'Trueno' }
+    { title: 'Bien o Mal', artist: 'Trueno' },
+    { title: 'Pegao en Youtube', artist: 'La Mafia del Amor' }
   ],
   'F': [],
   'G': [
-    { title: 'El Pluggg 3 Ova 1', artist: 'Yung Beef' }
+    { title: 'El Pluggg 3 Ova 1', artist: 'Yung Beef' },
+    { title: 'Pegao en Youtube', artist: 'La Mafia del Amor' }
   ],
   'H': [],
   'I': [
@@ -49,26 +53,34 @@ const ALBUM_DATABASE: Record<string, Album[]> = {
     { title: 'Bien o Mal', artist: 'Trueno' }
   ],
   'N': [
-    { title: 'Bien o Mal', artist: 'Trueno' }
+    { title: 'Bien o Mal', artist: 'Trueno' },
+    { title: 'Pegao en Youtube', artist: 'La Mafia del Amor' }
   ],
   'Ñ': [],
   'O': [
-    { title: 'Bien o Mal', artist: 'Trueno' }
+    { title: 'Bien o Mal', artist: 'Trueno' },
+    { title: 'Pegao en Youtube', artist: 'La Mafia del Amor' }
   ],
   'P': [
-    { title: 'El Pluggg 3 Ova 1', artist: 'Yung Beef' }
+    { title: 'El Pluggg 3 Ova 1', artist: 'Yung Beef' },
+    { title: 'Pegao en Youtube', artist: 'La Mafia del Amor' }
   ],
   'Q': [],
   'R': [],
   'S': [],
-  'T': [],
+  'T': [
+    { title: 'Pegao en Youtube', artist: 'La Mafia del Amor' }
+  ],
   'U': [
-    { title: 'El Pluggg 3 Ova 1', artist: 'Yung Beef' }
+    { title: 'El Pluggg 3 Ova 1', artist: 'Yung Beef' },
+    { title: 'Pegao en Youtube', artist: 'La Mafia del Amor' }
   ],
   'V': [],
   'W': [],
   'X': [],
-  'Y': [],
+  'Y': [
+    { title: 'Pegao en Youtube', artist: 'La Mafia del Amor' }
+  ],
   'Z': []
 };
 
