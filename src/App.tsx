@@ -110,6 +110,13 @@ export default function App() {
   const [codeSuccess, setCodeSuccess] = useState<boolean>(false);
   const [activeSubPage, setActiveSubPage] = useState<{ name: string; details: string; parentName: string } | null>(null);
   const [activeSubSubPage, setActiveSubSubPage] = useState<{ name: string; parentName: string } | null>(null);
+  const [isExample1Revealed, setIsExample1Revealed] = useState<boolean>(false);
+  const [isExample2Revealed, setIsExample2Revealed] = useState<boolean>(false);
+
+  useEffect(() => {
+    setIsExample1Revealed(false);
+    setIsExample2Revealed(false);
+  }, [activeSubSubPage, activeSubPage, activeItem]);
 
   const handleNavigate = (depth: number) => {
     if (depth === 0) {
@@ -349,7 +356,8 @@ export default function App() {
                   fontWeight: 700,
                   backgroundColor: '#ffffff',
                   transition: 'all 0.2s ease-in-out',
-                  cursor: 'pointer'
+                  cursor: 'pointer',
+                  marginBottom: '2rem'
                 }}
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -357,6 +365,32 @@ export default function App() {
                 </svg>
                 <span>Ver en TikTok</span>
               </a>
+
+              <div style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1rem' }}>
+                Ejemplos:
+              </div>
+
+              <div style={{ fontSize: '1rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+                  <span>Lorena Zamora es</span>
+                  <span 
+                    onClick={() => setIsExample1Revealed(!isExample1Revealed)}
+                    className={`spoiler-text ${isExample1Revealed ? 'revealed' : ''}`}
+                  >
+                    Lorna
+                  </span>
+                </div>
+
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+                  <span>Carlos Bruñas Zamorín es</span>
+                  <span 
+                    onClick={() => setIsExample2Revealed(!isExample2Revealed)}
+                    className={`spoiler-text ${isExample2Revealed ? 'revealed' : ''}`}
+                  >
+                    Cruz Cafuné
+                  </span>
+                </div>
+              </div>
             </div>
           </main>
         )}

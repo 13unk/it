@@ -526,5 +526,22 @@ body {
   color: #ffffff !important;
 }
 
+.spoiler-text {
+  filter: blur(5px);
+  cursor: pointer;
+  user-select: none;
+  transition: filter 0.3s ease;
+  background-color: transparent;
+  color: #000000;
+  display: inline-block;
+  padding: 0 4px;
+}
+
+.spoiler-text.revealed {
+  filter: blur(0);
+  user-select: text;
+}
+
+
 
 
