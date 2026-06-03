@@ -1252,6 +1252,16 @@ export default function App() {
               <li>Nombre para un perro</li>
               <li>En qué canal se ve el telediario</li>
             </ul>
+
+            <hr style={{ border: 'none', borderTop: '1px solid #cccccc', margin: '1.5rem 0' }} />
+            
+            <div style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '0.75rem', textTransform: 'uppercase' }}>
+              Anotaciones
+            </div>
+            <ul style={{ paddingLeft: '1.5rem', margin: '0 0 1.5rem 0', listStyleType: 'square', lineHeight: '1.8', color: '#000000' }}>
+              <li>Humor muy del estilo del S01E07 de Atlanta, el skit sobre el hombre negro que se siente transracial.</li>
+              <li>Para la logística, cuando se grabe la recopilación de data en el mercadillo también se pueden pactar los spots publicitarios y grabarlos al momento.</li>
+            </ul>
           </main>
         ) : activeItem.type === 'project' && activeItem.name === 'BUNKER' ? (
           <main className="custom-page-content" style={{ border: 'none', background: 'transparent', padding: '2rem 0', textAlign: 'left' }}>
