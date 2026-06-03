@@ -703,6 +703,30 @@ export default function App() {
               <p style={{ fontStyle: 'italic' }}>Esta carpeta está vacía.</p>
             </div>
           </main>
+        ) : activeSubSubPage.name === 'Apartado técnico' && activeSubSubPage.parentName === 'Plató' ? (
+          <main className="custom-page-content" style={{ border: 'none', background: 'transparent', padding: '2rem 0', textAlign: 'left' }}>
+            <FolderTree path={[parentType, activeItem!.name, activeSubPage!.name, activeSubSubPage.name]} onNavigate={handleNavigate} />
+            <hr style={{ border: 'none', borderTop: '1px solid #cccccc', margin: '1.5rem 0' }} />
+            <ul style={{ paddingLeft: '1.5rem', margin: '0 0 1.5rem 0', listStyleType: 'square', lineHeight: '1.8', color: '#000000' }}>
+              <li>Sony ZV-E10K</li>
+              <li>Sony A5000</li>
+              <li>2x Trípode</li>
+              <li>Rode NT1A</li>
+              <li>3x Pie de micro</li>
+              <li>PodTrak P4Next</li>
+              <li>2x Luz Softbox Neewer</li>
+            </ul>
+          </main>
+        ) : activeSubSubPage.name === 'Props' && activeSubSubPage.parentName === 'Plató' ? (
+          <main className="custom-page-content" style={{ border: 'none', background: 'transparent', padding: '2rem 0', textAlign: 'left' }}>
+            <FolderTree path={[parentType, activeItem!.name, activeSubPage!.name, activeSubSubPage.name]} onNavigate={handleNavigate} />
+            <hr style={{ border: 'none', borderTop: '1px solid #cccccc', margin: '1.5rem 0' }} />
+            <ul style={{ paddingLeft: '1.5rem', margin: '0 0 1.5rem 0', listStyleType: 'square', lineHeight: '1.8', color: '#000000' }}>
+              <li>Latas de sopa custom</li>
+              <li>Nukecolas custom</li>
+              <li>Tablero de Risk custom</li>
+            </ul>
+          </main>
         ) : (
           <main className="custom-page-content" style={{ border: 'none', background: 'transparent', padding: '2rem 0', textAlign: 'left' }}>
             <FolderTree path={[parentType, activeItem!.name, activeSubPage!.name, activeSubSubPage.name]} onNavigate={handleNavigate} />
@@ -841,7 +865,53 @@ export default function App() {
           
           <hr style={{ border: 'none', borderTop: '1px solid #cccccc', margin: '1.5rem 0' }} />
           
-          {activeSubPage.parentName === 'BUNKER' && activeSubPage.name === 'Sponsors' ? (
+          {activeSubPage.parentName === 'BUNKER' && activeSubPage.name === 'Plató' ? (
+            <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', marginTop: '2rem' }}>
+              <div 
+                className="folder-card" 
+                style={{ width: '220px', padding: '1.5rem 1rem' }}
+                onClick={() => setActiveSubSubPage({ name: 'Apartado técnico', parentName: 'Plató' })}
+              >
+                <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
+                  <Folder size={48} strokeWidth={1.5} />
+                </div>
+                <span className="folder-name" style={{ fontSize: '1rem', fontWeight: 700 }}>Apartado técnico</span>
+              </div>
+
+              <div 
+                className="folder-card" 
+                style={{ width: '220px', padding: '1.5rem 1rem' }}
+                onClick={() => setActiveSubSubPage({ name: 'Props', parentName: 'Plató' })}
+              >
+                <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
+                  <Folder size={48} strokeWidth={1.5} />
+                </div>
+                <span className="folder-name" style={{ fontSize: '1rem', fontWeight: 700 }}>Props</span>
+              </div>
+
+              <div 
+                className="folder-card" 
+                style={{ width: '220px', padding: '1.5rem 1rem' }}
+                onClick={() => setActiveSubSubPage({ name: 'Peluches', parentName: 'Plató' })}
+              >
+                <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
+                  <Folder size={48} strokeWidth={1.5} />
+                </div>
+                <span className="folder-name" style={{ fontSize: '1rem', fontWeight: 700 }}>Peluches</span>
+              </div>
+
+              <div 
+                className="folder-card" 
+                style={{ width: '220px', padding: '1.5rem 1rem' }}
+                onClick={() => setActiveSubSubPage({ name: 'Tablero', parentName: 'Plató' })}
+              >
+                <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
+                  <Folder size={48} strokeWidth={1.5} />
+                </div>
+                <span className="folder-name" style={{ fontSize: '1rem', fontWeight: 700 }}>Tablero</span>
+              </div>
+            </div>
+          ) : activeSubPage.parentName === 'BUNKER' && activeSubPage.name === 'Sponsors' ? (
             <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', marginTop: '2rem' }}>
               <div 
                 className="folder-card" 
@@ -1297,6 +1367,21 @@ export default function App() {
                   <Folder size={48} strokeWidth={1.5} />
                 </div>
                 <span className="folder-name" style={{ fontSize: '1rem', fontWeight: 700 }}>Formatos</span>
+              </div>
+
+              <div 
+                className="folder-card" 
+                style={{ width: '220px', padding: '1.5rem 1rem' }}
+                onClick={() => setActiveSubPage({
+                  name: 'Plató',
+                  details: '',
+                  parentName: activeItem.name
+                })}
+              >
+                <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
+                  <Folder size={48} strokeWidth={1.5} />
+                </div>
+                <span className="folder-name" style={{ fontSize: '1rem', fontWeight: 700 }}>Plató</span>
               </div>
 
               <div 
