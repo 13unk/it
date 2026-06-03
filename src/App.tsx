@@ -340,6 +340,15 @@ export default function App() {
             <hr style={{ border: 'none', borderTop: '1px solid #cccccc', margin: '1.5rem 0' }} />
             
             <div style={{ color: '#000000', lineHeight: '1.6' }}>
+              <div style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1rem' }}>
+                Descripción
+              </div>
+              <p style={{ fontSize: '1rem', color: '#000000', margin: '0 0 1.5rem 0', maxWidth: 'none', lineHeight: '1.6' }}>
+                Te dan la siguiente información de un artista musical: Nombre completo, nacionalidad y fecha de nacimiento. Con eso debes saber quién es.
+              </p>
+
+              <hr style={{ border: 'none', borderTop: '1px solid #cccccc', margin: '1.5rem 0' }} />
+
               <div style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1.25rem' }}>
                 Vídeo de referencia:
               </div>
@@ -377,7 +386,7 @@ export default function App() {
                 Estética
               </div>
               <p style={{ fontSize: '1rem', color: '#000000', margin: '0 0 1.5rem 0', maxWidth: 'none', lineHeight: '1.6' }}>
-                Ambientado como Papers Please mezclado con una cárcel. Es como que eres un agente penitenciario al que le llegan fichas de personas que han ingresado a la cárcel, y todos son artistas musicales y solo te dice el nombre, la nacionalidad y la fecha de nacimiento.
+                Ambientado como Papers Please mezclado con una cárcel. Es como que eres un agente penitenciario al que le llegan fichas de personas que han ingresado a la cárcel y debes adivinar de qué artista se trata.
               </p>
 
               <hr style={{ border: 'none', borderTop: '1px solid #cccccc', margin: '1.5rem 0' }} />
