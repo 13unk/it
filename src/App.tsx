@@ -1060,7 +1060,7 @@ export default function App() {
                 position: 'relative',
                 overflow: 'hidden'
               }}>
-                {/* 10% Segment */}
+                {/* 10% Segment: Introducción */}
                 <div 
                   onMouseEnter={() => setHoveredTimelinePart({
                     title: 'Introducción',
@@ -1074,18 +1074,39 @@ export default function App() {
                     width: '10%',
                     height: '100%',
                     borderRight: '2px solid #000000',
-                    backgroundColor: '#e6e6e6',
+                    backgroundColor: '#f0f0f0',
                     cursor: 'pointer',
                     transition: 'background-color 0.2s',
                   }}
                   className="timeline-part-hover"
                 />
 
-                {/* 20% Segment */}
+                {/* 10% Segment: Presentación */}
                 <div 
                   onMouseEnter={() => setHoveredTimelinePart({
                     title: 'Presentación',
                     desc: 'Se presenta al concursante y se muestra un poco de su música.',
+                    x: 0,
+                    y: 0
+                  })}
+                  onMouseMove={(e) => setHoveredTimelinePart(prev => prev ? { ...prev, x: e.clientX, y: e.clientY } : null)}
+                  onMouseLeave={() => setHoveredTimelinePart(null)}
+                  style={{
+                    width: '10%',
+                    height: '100%',
+                    borderRight: '2px solid #000000',
+                    backgroundColor: '#e0e0e0',
+                    cursor: 'pointer',
+                    transition: 'background-color 0.2s',
+                  }}
+                  className="timeline-part-hover"
+                />
+
+                {/* 20% Segment: Ronda 1 */}
+                <div 
+                  onMouseEnter={() => setHoveredTimelinePart({
+                    title: 'RONDA 1',
+                    desc: '5 preguntas donde puede acumular hasta 500 puntos.',
                     x: 0,
                     y: 0
                   })}
@@ -1102,12 +1123,88 @@ export default function App() {
                   className="timeline-part-hover"
                 />
 
-                {/* Remaining 70% */}
-                <div style={{
-                  width: '70%',
-                  height: '100%',
-                  backgroundColor: '#f5f5f5',
-                }} />
+                {/* 10% Segment: Pausa publicitaria 1 */}
+                <div 
+                  onMouseEnter={() => setHoveredTimelinePart({
+                    title: 'Pausa publicitaria 1',
+                    desc: 'Breve espacio para publicidad y patrocinadores.',
+                    x: 0,
+                    y: 0
+                  })}
+                  onMouseMove={(e) => setHoveredTimelinePart(prev => prev ? { ...prev, x: e.clientX, y: e.clientY } : null)}
+                  onMouseLeave={() => setHoveredTimelinePart(null)}
+                  style={{
+                    width: '10%',
+                    height: '100%',
+                    borderRight: '2px solid #000000',
+                    backgroundColor: '#b8b8b8',
+                    cursor: 'pointer',
+                    transition: 'background-color 0.2s',
+                  }}
+                  className="timeline-part-hover"
+                />
+
+                {/* 20% Segment: Ronda 2 */}
+                <div 
+                  onMouseEnter={() => setHoveredTimelinePart({
+                    title: 'RONDA 2',
+                    desc: 'Puntos x2. 5 preguntas, 1000 puntos en juego.',
+                    x: 0,
+                    y: 0
+                  })}
+                  onMouseMove={(e) => setHoveredTimelinePart(prev => prev ? { ...prev, x: e.clientX, y: e.clientY } : null)}
+                  onMouseLeave={() => setHoveredTimelinePart(null)}
+                  style={{
+                    width: '20%',
+                    height: '100%',
+                    borderRight: '2px solid #000000',
+                    backgroundColor: '#a8a8a8',
+                    cursor: 'pointer',
+                    transition: 'background-color 0.2s',
+                  }}
+                  className="timeline-part-hover"
+                />
+
+                {/* 10% Segment: Pausa publicitaria 2 */}
+                <div 
+                  onMouseEnter={() => setHoveredTimelinePart({
+                    title: 'Pausa publicitaria 2',
+                    desc: 'Segundo espacio comercial y descanso.',
+                    x: 0,
+                    y: 0
+                  })}
+                  onMouseMove={(e) => setHoveredTimelinePart(prev => prev ? { ...prev, x: e.clientX, y: e.clientY } : null)}
+                  onMouseLeave={() => setHoveredTimelinePart(null)}
+                  style={{
+                    width: '10%',
+                    height: '100%',
+                    borderRight: '2px solid #000000',
+                    backgroundColor: '#989898',
+                    cursor: 'pointer',
+                    transition: 'background-color 0.2s',
+                  }}
+                  className="timeline-part-hover"
+                />
+
+                {/* 20% Segment: Ronda Final */}
+                <div 
+                  onMouseEnter={() => setHoveredTimelinePart({
+                    title: 'RONDA FINAL',
+                    desc: 'Algún factor gambling o pregunta de oro.',
+                    x: 0,
+                    y: 0
+                  })}
+                  onMouseMove={(e) => setHoveredTimelinePart(prev => prev ? { ...prev, x: e.clientX, y: e.clientY } : null)}
+                  onMouseLeave={() => setHoveredTimelinePart(null)}
+                  style={{
+                    width: '20%',
+                    height: '100%',
+                    backgroundColor: '#888888',
+                    cursor: 'pointer',
+                    transition: 'background-color 0.2s',
+                  }}
+                  className="timeline-part-hover"
+                />
               </div>
 
               {/* Floating Tooltip following cursor */}
