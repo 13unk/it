@@ -112,10 +112,12 @@ export default function App() {
   const [activeSubSubPage, setActiveSubSubPage] = useState<{ name: string; parentName: string } | null>(null);
   const [isExample1Revealed, setIsExample1Revealed] = useState<boolean>(false);
   const [isExample2Revealed, setIsExample2Revealed] = useState<boolean>(false);
+  const [isExample3Revealed, setIsExample3Revealed] = useState<boolean>(false);
 
   useEffect(() => {
     setIsExample1Revealed(false);
     setIsExample2Revealed(false);
+    setIsExample3Revealed(false);
   }, [activeSubSubPage, activeSubPage, activeItem]);
 
   const handleNavigate = (depth: number) => {
@@ -388,6 +390,16 @@ export default function App() {
                     className={`spoiler-text ${isExample2Revealed ? 'revealed' : ''}`}
                   >
                     Cruz Cafuné
+                  </span>
+                </div>
+
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+                  <span>Adrián Pedrosa Hidalgo es</span>
+                  <span 
+                    onClick={() => setIsExample3Revealed(!isExample3Revealed)}
+                    className={`spoiler-text ${isExample3Revealed ? 'revealed' : ''}`}
+                  >
+                    Prok
                   </span>
                 </div>
               </div>
