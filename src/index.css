@@ -546,6 +546,10 @@ body {
   color: #000000 !important;
 }
 
+.timeline-part-hover:hover {
+  background-color: #000000 !important;
+}
+
 
 
 

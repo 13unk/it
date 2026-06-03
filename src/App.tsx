@@ -341,6 +341,7 @@ export default function App() {
   const [isExample4Revealed, setIsExample4Revealed] = useState<boolean>(false);
   const [isExample5Revealed, setIsExample5Revealed] = useState<boolean>(false);
   const [selectedAlphabetLetter, setSelectedAlphabetLetter] = useState<string | null>(null);
+  const [hoveredTimelinePart, setHoveredTimelinePart] = useState<{ title: string; desc: string; x: number; y: number } | null>(null);
 
   useEffect(() => {
     setIsExample1Revealed(false);
@@ -349,6 +350,7 @@ export default function App() {
     setIsExample4Revealed(false);
     setIsExample5Revealed(false);
     setSelectedAlphabetLetter(null);
+    setHoveredTimelinePart(null);
   }, [activeSubSubPage, activeSubPage, activeItem]);
 
   const handleNavigate = (depth: number) => {
@@ -1043,9 +1045,96 @@ export default function App() {
             <div style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '0.75rem', textTransform: 'uppercase' }}>
               Estructura del vídeo
             </div>
-            <p className="custom-page-text" style={{ fontStyle: 'italic', color: '#666666', margin: '0 0 1.5rem 0', maxWidth: 'none' }}>
-              Esta sección está vacía.
+             <p className="custom-page-text" style={{ fontStyle: 'italic', color: '#666666', margin: '0 0 1rem 0', maxWidth: 'none' }}>
+              Pasa el ratón por encima de los segmentos de la barra para ver la estructura detallada del vídeo.
             </p>
+
+            <div style={{ position: 'relative', width: '100%', marginTop: '1rem', marginBottom: '2.5rem' }}>
+              {/* Segmented Timeline Bar */}
+              <div style={{
+                width: '100%',
+                height: '35px',
+                border: '2px solid #000000',
+                display: 'flex',
+                backgroundColor: '#ffffff',
+                position: 'relative',
+                overflow: 'hidden'
+              }}>
+                {/* 10% Segment */}
+                <div 
+                  onMouseEnter={() => setHoveredTimelinePart({
+                    title: 'Introducción',
+                    desc: 'Se explican las normas del juego.',
+                    x: 0,
+                    y: 0
+                  })}
+                  onMouseMove={(e) => setHoveredTimelinePart(prev => prev ? { ...prev, x: e.clientX, y: e.clientY } : null)}
+                  onMouseLeave={() => setHoveredTimelinePart(null)}
+                  style={{
+                    width: '10%',
+                    height: '100%',
+                    borderRight: '2px solid #000000',
+                    backgroundColor: '#e6e6e6',
+                    cursor: 'pointer',
+                    transition: 'background-color 0.2s',
+                  }}
+                  className="timeline-part-hover"
+                />
+
+                {/* 20% Segment */}
+                <div 
+                  onMouseEnter={() => setHoveredTimelinePart({
+                    title: 'Presentación',
+                    desc: 'Se presenta al concursante y se muestra un poco de su música.',
+                    x: 0,
+                    y: 0
+                  })}
+                  onMouseMove={(e) => setHoveredTimelinePart(prev => prev ? { ...prev, x: e.clientX, y: e.clientY } : null)}
+                  onMouseLeave={() => setHoveredTimelinePart(null)}
+                  style={{
+                    width: '20%',
+                    height: '100%',
+                    borderRight: '2px solid #000000',
+                    backgroundColor: '#cccccc',
+                    cursor: 'pointer',
+                    transition: 'background-color 0.2s',
+                  }}
+                  className="timeline-part-hover"
+                />
+
+                {/* Remaining 70% */}
+                <div style={{
+                  width: '70%',
+                  height: '100%',
+                  backgroundColor: '#f5f5f5',
+                }} />
+              </div>
+
+              {/* Floating Tooltip following cursor */}
+              {hoveredTimelinePart && (
+                <div style={{
+                  position: 'fixed',
+                  left: hoveredTimelinePart.x + 15,
+                  top: hoveredTimelinePart.y + 15,
+                  backgroundColor: '#ffffff',
+                  border: '2px solid #000000',
+                  padding: '0.75rem 1rem',
+                  fontFamily: 'var(--font-heading)',
+                  fontSize: '0.85rem',
+                  lineHeight: '1.4',
+                  color: '#000000',
+                  zIndex: 9999,
+                  pointerEvents: 'none',
+                  boxShadow: '3px 3px 0px rgba(0,0,0,0.15)',
+                  maxWidth: '280px'
+                }}>
+                  <strong style={{ display: 'block', textTransform: 'uppercase', marginBottom: '0.25rem' }}>
+                    {hoveredTimelinePart.title}
+                  </strong>
+                  <span>{hoveredTimelinePart.desc}</span>
+                </div>
+              )}
+            </div>
           </main>
         ) : activeItem.type === 'project' && activeItem.name === 'BUNKER' ? (
           <main className="custom-page-content" style={{ border: 'none', background: 'transparent', padding: '2rem 0', textAlign: 'left' }}>
