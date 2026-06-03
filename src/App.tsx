@@ -362,8 +362,7 @@ export default function App() {
                   fontWeight: 700,
                   backgroundColor: '#ffffff',
                   transition: 'all 0.2s ease-in-out',
-                  cursor: 'pointer',
-                  marginBottom: '2rem'
+                  cursor: 'pointer'
                 }}
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -371,6 +370,17 @@ export default function App() {
                 </svg>
                 <span>Ver en TikTok</span>
               </a>
+
+              <hr style={{ border: 'none', borderTop: '1px solid #cccccc', margin: '1.5rem 0' }} />
+
+              <div style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1rem' }}>
+                Estética
+              </div>
+              <p style={{ fontSize: '1rem', color: '#000000', margin: '0 0 1.5rem 0', maxWidth: 'none', lineHeight: '1.6' }}>
+                Ambientado como Papers Please mezclado con una cárcel. Es como que eres un agente penitenciario al que le llegan fichas de personas que han ingresado a la cárcel, y todos son artistas musicales y solo te dice el nombre, la nacionalidad y la fecha de nacimiento.
+              </p>
+
+              <hr style={{ border: 'none', borderTop: '1px solid #cccccc', margin: '1.5rem 0' }} />
 
               <div style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1rem' }}>
                 Ejemplos:
