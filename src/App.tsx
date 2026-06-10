@@ -1503,12 +1503,23 @@ export default function App() {
             <FolderTree path={[parentType, activeItem.name]} onNavigate={handleNavigate} />
             <hr style={{ border: 'none', borderTop: '1px solid #cccccc', margin: '1.5rem 0' }} />
             
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', color: '#000000', margin: '0 0 2.5rem 0', maxWidth: 'none', lineHeight: '1.6' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', color: '#000000', margin: '0 0 1.5rem 0', maxWidth: 'none', lineHeight: '1.6' }}>
               <div style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '0.5rem' }}>
                 Descripción
               </div>
               <p className="custom-page-text" style={{ maxWidth: 'none', margin: 0, lineHeight: '1.6' }}>
                 {activeItem.details}
+              </p>
+            </div>
+
+            <hr style={{ border: 'none', borderTop: '1px solid #cccccc', margin: '1.5rem 0' }} />
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', color: '#000000', margin: '0 0 2.5rem 0', maxWidth: 'none', lineHeight: '1.6' }}>
+              <div style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '0.5rem' }}>
+                Estética
+              </div>
+              <p className="custom-page-text" style={{ maxWidth: 'none', margin: 0, lineHeight: '1.6' }}>
+                Guía turística, es un suplemento más de la revista UNK.
               </p>
             </div>
           </main>
