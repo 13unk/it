@@ -485,7 +485,8 @@ export default function App() {
                   fontWeight: 700,
                   backgroundColor: '#ffffff',
                   transition: 'all 0.2s ease-in-out',
-                  cursor: 'pointer'
+                  cursor: 'pointer',
+                  marginBottom: '2rem'
                 }}
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -493,6 +494,15 @@ export default function App() {
                 </svg>
                 <span>Ver en TikTok</span>
               </a>
+
+              <hr style={{ border: 'none', borderTop: '1px solid #cccccc', margin: '1.5rem 0' }} />
+
+              <div style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1rem' }}>
+                Barras inventadas:
+              </div>
+              <ul style={{ paddingLeft: '1.5rem', margin: '0 0 1.5rem 0', listStyleType: 'square', lineHeight: '1.8', color: '#000000' }}>
+                <li>Ese portero es Bonnie Blue, le entran todas</li>
+              </ul>
             </div>
           </main>
         ) : activeSubSubPage.name === 'Adivina el álbum por la letra X de su portada' ? (
