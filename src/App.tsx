@@ -362,7 +362,7 @@ export default function App() {
   };
 
   const realProjects: Project[] = [
-    { name: 'MAPA INTERACTIVO', description: 'Mapa interactivo de localizaciones.', category: 'Herramientas', details: 'Esta carpeta está vacía.', author: 'UNK' }
+    { name: 'MAPA INTERACTIVO', description: 'Mapa interactivo de localizaciones.', category: 'Herramientas', details: 'Mapa interactivo que incluya todos los lugares donde hemos grabado. Locales con los que hemos colaborado sea haciéndoles promos, grabando una entrevista en su local, etc. También si hacemos vídeos en lugares públicos, por ejemplo preguntando a transeúntes en las ramblas de Salou, Cambrils o donde sea, o preguntando a borrachos en la puerta de una discoteca.', author: 'UNK' }
   ];
 
   const projects: Project[] = [
@@ -1498,6 +1498,20 @@ export default function App() {
               <li>Recopilar la data en el mercadillo da mucho juego porque se puede interactuar por ahí y que salgan cosas improvisadas.</li>
             </ul>
           </main>
+        ) : activeItem.type === 'project' && activeItem.name === 'MAPA INTERACTIVO' ? (
+          <main className="custom-page-content" style={{ border: 'none', background: 'transparent', padding: '2rem 0', textAlign: 'left' }}>
+            <FolderTree path={[parentType, activeItem.name]} onNavigate={handleNavigate} />
+            <hr style={{ border: 'none', borderTop: '1px solid #cccccc', margin: '1.5rem 0' }} />
+            
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', color: '#000000', margin: '0 0 2.5rem 0', maxWidth: 'none', lineHeight: '1.6' }}>
+              <div style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '0.5rem' }}>
+                Descripción
+              </div>
+              <p className="custom-page-text" style={{ maxWidth: 'none', margin: 0, lineHeight: '1.6' }}>
+                {activeItem.details}
+              </p>
+            </div>
+          </main>
         ) : activeItem.type === 'project' && activeItem.name === 'PRANKS' ? (
           <main className="custom-page-content" style={{ border: 'none', background: 'transparent', padding: '2rem 0', textAlign: 'left' }}>
             <FolderTree path={[parentType, activeItem.name]} onNavigate={handleNavigate} />
@@ -1646,9 +1660,6 @@ export default function App() {
               className="folder-card"
               onClick={(e) => handleFolderClick(e, project)}
             >
-              <div className={`project-badge ${project.author.toLowerCase()}`}>
-                <span>{project.author}</span>
-              </div>
               <div className="folder-icon-wrapper">
                 <Folder size={64} strokeWidth={1.5} />
               </div>
