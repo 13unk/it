@@ -328,11 +328,6 @@ function FolderTree({
 
 export default function App() {
   const [activeItem, setActiveItem] = useState<ActiveItem>(null);
-  const [pendingItem, setPendingItem] = useState<ActiveItem>(null);
-  const [isPadlockActive, setIsPadlockActive] = useState<boolean>(false);
-  const [enteredCode, setEnteredCode] = useState<string>('');
-  const [codeError, setCodeError] = useState<boolean>(false);
-  const [codeSuccess, setCodeSuccess] = useState<boolean>(false);
   const [activeSubPage, setActiveSubPage] = useState<{ name: string; details: string; parentName: string } | null>(null);
   const [activeSubSubPage, setActiveSubSubPage] = useState<{ name: string; parentName: string } | null>(null);
   const [isExample1Revealed, setIsExample1Revealed] = useState<boolean>(false);
@@ -371,7 +366,8 @@ export default function App() {
     { name: 'SEEDTV', description: 'Plataforma de streaming y distribución de contenidos audiovisuales.', category: 'Media', details: 'Servidor de media activo. SEEDTV aloja las retransmisiones directas y el repositorio máster de contenidos para los socios del consorcio.', author: 'SEED' },
     { name: 'FURBOLÍSTICO', description: 'Portal y comunidad interactiva para el análisis de fútbol.', category: 'Deportes', details: 'Algoritmos predictivos listos. FURBOLÍSTICO realiza minería de datos avanzada sobre partidos, jugadores y rendimiento deportivo para generar informes analíticos.', author: 'UNK' },
     { name: 'SHOW', description: 'Show y eventos en vivo.', category: 'Entretenimiento', details: 'Planificación de la gira en desarrollo. Estructura de costes, contratos con recintos y logística integrada para los shows en vivo.', author: 'UNK' },
-    { name: 'SIDETALK', description: 'Canal de entrevistas callejeras y cultura urbana.', category: 'Media', details: 'Formato dinámico de entrevistas rápidas a pie de calle sobre actualidad y cultura pop.', author: 'UNK' }
+    { name: 'SIDETALK', description: 'Canal de entrevistas callejeras y cultura urbana.', category: 'Media', details: 'Formato dinámico de entrevistas rápidas a pie de calle sobre actualidad y cultura pop.', author: 'UNK' },
+    { name: 'PRANKS', description: 'Carpeta de proyectos de bromas y cámara oculta.', category: 'Entretenimiento', details: 'Esta carpeta está vacía.', author: 'UNK' }
   ];
 
   const videos: Video[] = [
@@ -382,130 +378,27 @@ export default function App() {
     { title: '100 Gitanos Dicen', details: 'En este concurso, el concursante debe dar una respuesta a cada categoría que se le pregunte, intentando acertar cuál es la respuesta más común que hemos recibido de los 100 gitanos a los que hemos encuestado.\nPara esta ocasión traemos de invitado al cantante y gitano, Rafalillo, a quien pondremos contra las cuerdas.' }
   ];
 
-  // Listen to physical keyboard events when padlock is active
-  useEffect(() => {
-    if (!isPadlockActive || codeSuccess || codeError) return;
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key >= '0' && e.key <= '9') {
-        handleKeyPress(e.key);
-      } else if (e.key === 'Backspace') {
-        handleBackspace();
-      } else if (e.key === 'Escape') {
-        setIsPadlockActive(false);
-        setPendingItem(null);
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isPadlockActive, enteredCode, codeError, codeSuccess, pendingItem]);
-
   const handleFolderClick = (e: React.MouseEvent, project: Project) => {
     e.preventDefault();
-    const item: ActiveItem = {
+    setActiveItem({
       type: 'project',
       name: project.name,
       description: project.description,
       details: project.details
-    };
-    setPendingItem(item);
-    setIsPadlockActive(true);
-    setEnteredCode('');
+    });
   };
 
   const handleVideoClick = (e: React.MouseEvent, video: Video) => {
     e.preventDefault();
-    const item: ActiveItem = {
+    setActiveItem({
       type: 'video',
       name: video.title,
       description: video.title,
       details: video.details
-    };
-    setPendingItem(item);
-    setIsPadlockActive(true);
-    setEnteredCode('');
+    });
   };
 
-  const handleKeyPress = (num: string) => {
-    if (enteredCode.length < 4 && !codeError && !codeSuccess) {
-      const newCode = enteredCode + num;
-      setEnteredCode(newCode);
 
-      if (newCode.length === 4) {
-        if (newCode === '0000') {
-          setCodeSuccess(true);
-          setTimeout(() => {
-            setIsPadlockActive(false);
-            setActiveItem(pendingItem);
-            setPendingItem(null);
-            setEnteredCode('');
-            setCodeSuccess(false);
-          }, 600);
-        } else {
-          setCodeError(true);
-          setTimeout(() => {
-            setEnteredCode('');
-            setCodeError(false);
-          }, 800);
-        }
-      }
-    }
-  };
-
-  const handleClear = () => {
-    if (!codeSuccess) setEnteredCode('');
-  };
-
-  const handleBackspace = () => {
-    if (!codeSuccess) setEnteredCode((prev) => prev.slice(0, -1));
-  };
-
-  // Render padlock screen if active
-  if (isPadlockActive) {
-    return (
-      <div className="padlock-overlay">
-        <div className={`padlock-container ${codeError ? 'shake' : ''}`}>
-          <div className="padlock-display">
-            {[0, 1, 2, 3].map((index) => (
-              <div 
-                key={index} 
-                className={`padlock-dot ${enteredCode.length > index ? 'filled' : ''} ${codeError ? 'error' : ''} ${codeSuccess ? 'success' : ''}`}
-              >
-                {enteredCode.length > index ? '*' : ''}
-              </div>
-            ))}
-          </div>
-
-          <div className="padlock-grid">
-            {['1', '2', '3', '4', '5', '6', '7', '8', '9'].map((num) => (
-              <button 
-                key={num} 
-                className="padlock-btn" 
-                onClick={() => handleKeyPress(num)}
-              >
-                {num}
-              </button>
-            ))}
-            <button className="padlock-btn action-btn" onClick={handleClear}>C</button>
-            <button className="padlock-btn" onClick={() => handleKeyPress('0')}>0</button>
-            <button className="padlock-btn action-btn" onClick={handleBackspace}>⌫</button>
-          </div>
-
-          <button 
-            className="back-btn" 
-            style={{ width: '100%', fontSize: '0.8rem', border: 'none', background: 'transparent' }} 
-            onClick={() => {
-              setIsPadlockActive(false);
-              setPendingItem(null);
-            }}
-          >
-            [ Cancelar ]
-          </button>
-        </div>
-      </div>
-    );
-  }
 
   // Render sub-subpage (bypasses padlock)
   if (activeSubSubPage) {
