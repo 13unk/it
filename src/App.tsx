@@ -1121,6 +1121,49 @@ export default function App() {
                 </span>
               </div>
             </div>
+          ) : activeSubPage.parentName === 'MAPA INTERACTIVO' && activeSubPage.name === 'Samöa Club' ? (
+            <div style={{ color: '#000000', lineHeight: '1.6' }}>
+              <div style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1.25rem' }}>
+                Vídeo de referencia:
+              </div>
+              
+              <a 
+                href="https://vm.tiktok.com/ZNRvXmESQ/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="tiktok-link"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.75rem',
+                  padding: '0.75rem 1.5rem',
+                  border: '2px solid #000000',
+                  color: '#000000',
+                  textDecoration: 'none',
+                  fontFamily: 'var(--font-heading)',
+                  fontSize: '1rem',
+                  fontWeight: 700,
+                  backgroundColor: '#ffffff',
+                  transition: 'all 0.2s ease-in-out',
+                  cursor: 'pointer',
+                  marginBottom: '2rem'
+                }}
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.02 1.59 4.23.86.03 1.73-.02 2.6.02.01 1.37-.02 2.73.01 4.1-.73-.06-1.46-.24-2.14-.52-.61-.26-1.16-.65-1.61-1.14-.04 2.61.02 5.23-.03 7.84-.04.99-.27 2-.72 2.91-.56.98-1.45 1.75-2.5 2.18-.89.37-1.85.53-2.8.48-1.57-.02-3.13-.6-4.27-1.68-1.12-1.07-1.78-2.61-1.79-4.17-.03-1.62.63-3.23 1.79-4.32 1.1-1.05 2.62-1.63 4.14-1.62.03 1.45-.02 2.9.02 4.35-.61-.05-1.24.11-1.75.46-.54.38-.87.99-.91 1.65-.05.81.33 1.63 1.01 2.06.66.42 1.51.48 2.22.15.65-.28 1.13-.89 1.25-1.58.07-.63.02-1.27.02-1.91 0-3.66.01-7.32.02-10.98.01-.17.02-.33.02-.5z" />
+                </svg>
+                <span>Ver en TikTok</span>
+              </a>
+
+              <hr style={{ border: 'none', borderTop: '1px solid #cccccc', margin: '1.5rem 0' }} />
+
+              <div style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1rem' }}>
+                Idea:
+              </div>
+              <p style={{ fontSize: '1rem', color: '#000000', margin: '0 0 1.5rem 0', maxWidth: 'none', lineHeight: '1.6' }}>
+                Combinarlo con un sketch en el que salen del Samöa unos empleados a meternos a patadas a dentro y ponernos a hacer ejercicio. Mientras hacemos ejercicio de fondo sale en primer plano el empleado y suelta su speech.
+              </p>
+            </div>
           ) : activeSubPage.parentName === 'PRANKS' && activeSubPage.name === '¿Qué lubricante te gusta más?' ? (
             <div style={{ color: '#000000', lineHeight: '1.6' }}>
               <div style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1.25rem' }}>
@@ -1521,6 +1564,29 @@ export default function App() {
               <p className="custom-page-text" style={{ maxWidth: 'none', margin: 0, lineHeight: '1.6' }}>
                 Guía turística, es un suplemento más de la revista UNK.
               </p>
+            </div>
+
+            <hr style={{ border: 'none', borderTop: '1px solid #cccccc', margin: '2rem 0' }} />
+
+            <div style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1rem', textTransform: 'uppercase' }}>
+              Ejemplos
+            </div>
+            
+            <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', marginTop: '1rem' }}>
+              <div 
+                className="folder-card" 
+                style={{ width: '220px', padding: '1.5rem 1rem' }}
+                onClick={() => setActiveSubPage({
+                  name: 'Samöa Club',
+                  details: '',
+                  parentName: activeItem.name
+                })}
+              >
+                <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
+                  <Folder size={48} strokeWidth={1.5} />
+                </div>
+                <span className="folder-name" style={{ fontSize: '1rem', fontWeight: 700 }}>Samöa Club</span>
+              </div>
             </div>
           </main>
         ) : activeItem.type === 'project' && activeItem.name === 'PRANKS' ? (
