@@ -823,7 +823,7 @@ export default function App() {
               <hr style={{ border: 'none', borderTop: '1px solid #cccccc', margin: '1.5rem 0' }} />
 
               <div style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1rem' }}>
-                Apuntes de diseño:
+                Apunte:
               </div>
               <p style={{ fontSize: '1rem', color: '#000000', margin: '0 0 1.5rem 0', maxWidth: 'none', lineHeight: '1.6' }}>
                 No hacerlo con torres. Decir algo con mejor narrativa, como <strong>squad</strong>, <strong>equipo</strong>, etc. Para ir formando con IA una imagen en la que lideras el equipo o algo similar.
