@@ -1140,6 +1140,39 @@ export default function App() {
                 <span>Ver en TikTok</span>
               </a>
             </div>
+          ) : activeSubPage.parentName === 'PRANKS' && activeSubPage.name === 'Requisitos para ser mi novia' ? (
+            <div style={{ color: '#000000', lineHeight: '1.6' }}>
+              <div style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1.25rem' }}>
+                Vídeo de referencia:
+              </div>
+              
+              <a 
+                href="https://www.tiktok.com/@turbotank.tv/video/7645413007593458957?_r=1&_t=ZN-972fEU9N7zS" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="tiktok-link"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.75rem',
+                  padding: '0.75rem 1.5rem',
+                  border: '2px solid #000000',
+                  color: '#000000',
+                  textDecoration: 'none',
+                  fontFamily: 'var(--font-heading)',
+                  fontSize: '1rem',
+                  fontWeight: 700,
+                  backgroundColor: '#ffffff',
+                  transition: 'all 0.2s ease-in-out',
+                  cursor: 'pointer'
+                }}
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.02 1.59 4.23.86.03 1.73-.02 2.6.02.01 1.37-.02 2.73.01 4.1-.73-.06-1.46-.24-2.14-.52-.61-.26-1.16-.65-1.61-1.14-.04 2.61.02 5.23-.03 7.84-.04.99-.27 2-.72 2.91-.56.98-1.45 1.75-2.5 2.18-.89.37-1.85.53-2.8.48-1.57-.02-3.13-.6-4.27-1.68-1.12-1.07-1.78-2.61-1.79-4.17-.03-1.62.63-3.23 1.79-4.32 1.1-1.05 2.62-1.63 4.14-1.62.03 1.45-.02 2.9.02 4.35-.61-.05-1.24.11-1.75.46-.54.38-.87.99-.91 1.65-.05.81.33 1.63 1.01 2.06.66.42 1.51.48 2.22.15.65-.28 1.13-.89 1.25-1.58.07-.63.02-1.27.02-1.91 0-3.66.01-7.32.02-10.98.01-.17.02-.33.02-.5z" />
+                </svg>
+                <span>Ver en TikTok</span>
+              </a>
+            </div>
           ) : (
             <div style={{ display: 'flex', justifyContent: 'flex-start', marginTop: '2rem' }}>
               <div 
@@ -1456,7 +1489,11 @@ export default function App() {
             <FolderTree path={[parentType, activeItem.name]} onNavigate={handleNavigate} />
             <hr style={{ border: 'none', borderTop: '1px solid #cccccc', margin: '1.5rem 0' }} />
             
-            <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', marginTop: '2rem' }}>
+            <div style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1rem', textTransform: 'uppercase' }}>
+              POVs
+            </div>
+            
+            <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', marginTop: '1rem', marginBottom: '2rem' }}>
               <div 
                 className="folder-card" 
                 style={{ width: '220px', padding: '1.5rem 1rem' }}
@@ -1471,7 +1508,29 @@ export default function App() {
                 </div>
                 <span className="folder-name" style={{ fontSize: '1rem', fontWeight: 700 }}>¿Qué lubricante te gusta más?</span>
               </div>
+
+              <div 
+                className="folder-card" 
+                style={{ width: '220px', padding: '1.5rem 1rem' }}
+                onClick={() => setActiveSubPage({
+                  name: 'Requisitos para ser mi novia',
+                  details: '',
+                  parentName: activeItem.name
+                })}
+              >
+                <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
+                  <Folder size={48} strokeWidth={1.5} />
+                </div>
+                <span className="folder-name" style={{ fontSize: '1rem', fontWeight: 700 }}>Requisitos para ser mi novia</span>
+              </div>
             </div>
+
+            <hr style={{ border: 'none', borderTop: '1px solid #cccccc', margin: '2rem 0' }} />
+
+            <div style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1rem', textTransform: 'uppercase' }}>
+              Pranks
+            </div>
+            <p style={{ fontStyle: 'italic', color: '#666666', margin: '1rem 0 0 0' }}>Esta sección está vacía.</p>
           </main>
         ) : activeItem.type === 'project' && activeItem.name === 'BUNKER' ? (
           <main className="custom-page-content" style={{ border: 'none', background: 'transparent', padding: '2rem 0', textAlign: 'left' }}>
