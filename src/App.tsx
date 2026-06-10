@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Folder, Play, FileText, Gamepad2, Plus } from 'lucide-react';
+import { Folder, Play, FileText, Gamepad2, Plus, Youtube } from 'lucide-react';
 
 interface Project {
   name: string;
@@ -360,6 +360,10 @@ export default function App() {
       setActiveSubSubPage(null);
     }
   };
+
+  const realProjects: Project[] = [
+    { name: 'MAPA INTERACTIVO', description: 'Mapa interactivo de localizaciones.', category: 'Herramientas', details: 'Esta carpeta está vacía.', author: 'UNK' }
+  ];
 
   const projects: Project[] = [
     { name: 'BUNKER', description: 'Sistema de almacenamiento seguro y gestión de recursos.', category: 'Infraestructura', details: 'El protocolo BUNKER centraliza toda la infraestructura de copias de seguridad de la red UNK. Cuenta con redundancia triple e inmunidad electromagnética.', author: 'UNK' },
@@ -1632,9 +1636,31 @@ export default function App() {
         <h1 className="logo-unk">/UNK/</h1>
       </header>
 
-      {/* Projects Section */}
+      {/* Real Projects Section */}
       <section className="section">
         <h2 className="section-title">PROYECTOS</h2>
+        <div className="folders-grid">
+          {realProjects.map((project) => (
+            <div
+              key={project.name}
+              className="folder-card"
+              onClick={(e) => handleFolderClick(e, project)}
+            >
+              <div className={`project-badge ${project.author.toLowerCase()}`}>
+                <span>{project.author}</span>
+              </div>
+              <div className="folder-icon-wrapper">
+                <Folder size={64} strokeWidth={1.5} />
+              </div>
+              <span className="folder-name">{project.name}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Formatos Section */}
+      <section className="section">
+        <h2 className="section-title">FORMATOS</h2>
         <div className="folders-grid">
           {projects.map((project) => (
             <div
@@ -1656,7 +1682,9 @@ export default function App() {
 
       {/* Videos Section */}
       <section className="section">
-        <h2 className="section-title">VÍDEOS</h2>
+        <h2 className="section-title" style={{ display: 'inline-flex', alignItems: 'center' }}>
+          <Youtube size={36} strokeWidth={1.5} />
+        </h2>
         <div className="videos-grid">
           {videos.map((video) => (
             <div
