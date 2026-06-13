@@ -326,6 +326,27 @@ function FolderTree({
   );
 }
 
+const realProjects: Project[] = [
+  { name: 'MAPA INTERACTIVO', description: 'Mapa interactivo de localizaciones.', category: 'Herramientas', details: 'Mapa interactivo que incluya todos los lugares donde hemos grabado. Locales con los que hemos colaborado sea haciéndoles promos, grabando una entrevista en su local, etc. También si hacemos vídeos en lugares públicos, por ejemplo preguntando a transeúntes en las ramblas de Salou, Cambrils o donde sea, o preguntando a borrachos en la puerta de una discoteca.', author: 'UNK' }
+];
+
+const projects: Project[] = [
+  { name: 'BUNKER', description: 'Sistema de almacenamiento seguro y gestión de recursos.', category: 'Infraestructura', details: 'El protocolo BUNKER centraliza toda la infraestructura de copias de seguridad de la red UNK. Cuenta con redundancia triple e inmunidad electromagnética.', author: 'UNK' },
+  { name: 'SEEDTV', description: 'Plataforma de streaming y distribución de contenidos audiovisuales.', category: 'Media', details: 'Servidor de media activo. SEEDTV aloja las retransmisiones directas y el repositorio máster de contenidos para los socios del consorcio.', author: 'SEED' },
+  { name: 'FURBOLÍSTICO', description: 'Portal y comunidad interactiva para el análisis de fútbol.', category: 'Deportes', details: 'Algoritmos predictivos listos. FURBOLÍSTICO realiza minería de datos avanzada sobre partidos, jugadores y rendimiento deportivo para generar informes analíticos.', author: 'UNK' },
+  { name: 'SHOW', description: 'Show y eventos en vivo.', category: 'Entretenimiento', details: 'Planificación de la gira en desarrollo. Estructura de costes, contratos con recintos y logística integrada para los shows en vivo.', author: 'UNK' },
+  { name: 'SIDETALK', description: 'Canal de entrevistas callejeras y cultura urbana.', category: 'Media', details: 'Formato dinámico de entrevistas rápidas a pie de calle sobre actualidad y cultura pop.', author: 'UNK' },
+  { name: 'PRANKS', description: 'Carpeta de proyectos de bromas y cámara oculta.', category: 'Entretenimiento', details: 'Esta carpeta está vacía.', author: 'UNK' }
+];
+
+const videos: Video[] = [
+  { title: 'El prostíbulo 100 montaditos', details: 'Ficha técnica de producción: 1 cámara principal, 1 micrófono de corbata. Grabación secreta autorizada. Estado de edición: Terminado y subido.' },
+  { title: 'Un día siendo esclavos', details: 'Ficha técnica de producción: Experimento sociológico extremo. Grabación multicámara en localización exterior. Estado de edición: Terminado y subido.' },
+  { title: 'Comprobador de IA', details: 'Análisis de rendimiento de modelos de lenguaje e inteligencias artificiales generativas de última generación aplicada a flujos de trabajo.' },
+  { title: 'Un día trabajando en el Top Manta', details: 'Investigación periodística a pie de calle sobre el mercado de falsificaciones y distribución informal urbana. Audio directo.' },
+  { title: '100 Gitanos Dicen', details: 'En este concurso, el concursante debe dar una respuesta a cada categoría que se le pregunte, intentando acertar cuál es la respuesta más común que hemos recibido de los 100 gitanos a los que hemos encuestado.\nPara esta ocasión traemos de invitado al cantante y gitano, Rafalillo, a quien pondremos contra las cuerdas.' }
+];
+
 export default function App() {
   const [activeItem, setActiveItem] = useState<ActiveItem>(null);
   const [activeSubPage, setActiveSubPage] = useState<{ name: string; details: string; parentName: string } | null>(null);
@@ -376,66 +397,119 @@ export default function App() {
     setHoveredTimelinePart(null);
   }, [activeSubSubPage, activeSubPage, activeItem]);
 
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      if (!hash || hash === '#' || hash === '#/') {
+        setActiveItem(null);
+        setActiveSubPage(null);
+        setActiveSubSubPage(null);
+        return;
+      }
+
+      const pathStr = hash.replace(/^#\/?/, '');
+      const parts = pathStr.split('/').map(decodeURIComponent).filter(Boolean);
+
+      if (parts.length >= 2) {
+        const type = parts[0];
+        const itemName = parts[1];
+
+        let foundItem: ActiveItem = null;
+        if (type === 'VÍDEOS') {
+          const video = videos.find(v => v.title === itemName);
+          if (video) {
+            foundItem = {
+              type: 'video',
+              name: video.title,
+              description: video.title,
+              details: video.details
+            };
+          }
+        } else {
+          const project = realProjects.find(p => p.name === itemName) || projects.find(p => p.name === itemName);
+          if (project) {
+            foundItem = {
+              type: 'project',
+              name: project.name,
+              description: project.description,
+              details: project.details
+            };
+          }
+        }
+
+        if (foundItem) {
+          setActiveItem(foundItem);
+
+          if (parts.length >= 3) {
+            const subPageName = parts[2];
+            setActiveSubPage({
+              name: subPageName,
+              details: '',
+              parentName: itemName
+            });
+
+            if (parts.length >= 4) {
+              const subSubPageName = parts[3];
+              setActiveSubSubPage({
+                name: subSubPageName,
+                parentName: subPageName
+              });
+            } else {
+              setActiveSubSubPage(null);
+            }
+          } else {
+            setActiveSubPage(null);
+            setActiveSubSubPage(null);
+          }
+        } else {
+          setActiveItem(null);
+          setActiveSubPage(null);
+          setActiveSubSubPage(null);
+        }
+      } else {
+        setActiveItem(null);
+        setActiveSubPage(null);
+        setActiveSubSubPage(null);
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    handleHashChange();
+
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, []);
+
   const handleNavigate = (depth: number) => {
+    const pType = activeItem?.type === 'video' ? 'VÍDEOS' : 'PROYECTOS';
     if (depth === 0) {
-      setActiveSubSubPage(null);
-      setActiveSubPage(null);
-      setActiveItem(null);
+      window.location.hash = '/';
     } else if (depth === 1) {
-      setActiveSubSubPage(null);
-      setActiveSubPage(null);
+      window.location.hash = `/${pType}/${encodeURIComponent(activeItem!.name)}`;
     } else if (depth === 2) {
-      setActiveSubSubPage(null);
+      window.location.hash = `/${pType}/${encodeURIComponent(activeItem!.name)}/${encodeURIComponent(activeSubPage!.name)}`;
     }
   };
 
-  const realProjects: Project[] = [
-    { name: 'MAPA INTERACTIVO', description: 'Mapa interactivo de localizaciones.', category: 'Herramientas', details: 'Mapa interactivo que incluya todos los lugares donde hemos grabado. Locales con los que hemos colaborado sea haciéndoles promos, grabando una entrevista en su local, etc. También si hacemos vídeos en lugares públicos, por ejemplo preguntando a transeúntes en las ramblas de Salou, Cambrils o donde sea, o preguntando a borrachos en la puerta de una discoteca.', author: 'UNK' }
-  ];
-
-  const projects: Project[] = [
-    { name: 'BUNKER', description: 'Sistema de almacenamiento seguro y gestión de recursos.', category: 'Infraestructura', details: 'El protocolo BUNKER centraliza toda la infraestructura de copias de seguridad de la red UNK. Cuenta con redundancia triple e inmunidad electromagnética.', author: 'UNK' },
-    { name: 'SEEDTV', description: 'Plataforma de streaming y distribución de contenidos audiovisuales.', category: 'Media', details: 'Servidor de media activo. SEEDTV aloja las retransmisiones directas y el repositorio máster de contenidos para los socios del consorcio.', author: 'SEED' },
-    { name: 'FURBOLÍSTICO', description: 'Portal y comunidad interactiva para el análisis de fútbol.', category: 'Deportes', details: 'Algoritmos predictivos listos. FURBOLÍSTICO realiza minería de datos avanzada sobre partidos, jugadores y rendimiento deportivo para generar informes analíticos.', author: 'UNK' },
-    { name: 'SHOW', description: 'Show y eventos en vivo.', category: 'Entretenimiento', details: 'Planificación de la gira en desarrollo. Estructura de costes, contratos con recintos y logística integrada para los shows en vivo.', author: 'UNK' },
-    { name: 'SIDETALK', description: 'Canal de entrevistas callejeras y cultura urbana.', category: 'Media', details: 'Formato dinámico de entrevistas rápidas a pie de calle sobre actualidad y cultura pop.', author: 'UNK' },
-    { name: 'PRANKS', description: 'Carpeta de proyectos de bromas y cámara oculta.', category: 'Entretenimiento', details: 'Esta carpeta está vacía.', author: 'UNK' }
-  ];
-
-  const videos: Video[] = [
-    { title: 'El prostíbulo 100 montaditos', details: 'Ficha técnica de producción: 1 cámara principal, 1 micrófono de corbata. Grabación secreta autorizada. Estado de edición: Terminado y subido.' },
-    { title: 'Un día siendo esclavos', details: 'Ficha técnica de producción: Experimento sociológico extremo. Grabación multicámara en localización exterior. Estado de edición: Terminado y subido.' },
-    { title: 'Comprobador de IA', details: 'Análisis de rendimiento de modelos de lenguaje e inteligencias artificiales generativas de última generación aplicada a flujos de trabajo.' },
-    { title: 'Un día trabajando en el Top Manta', details: 'Investigación periodística a pie de calle sobre el mercado de falsificaciones y distribución informal urbana. Audio directo.' },
-    { title: '100 Gitanos Dicen', details: 'En este concurso, el concursante debe dar una respuesta a cada categoría que se le pregunte, intentando acertar cuál es la respuesta más común que hemos recibido de los 100 gitanos a los que hemos encuestado.\nPara esta ocasión traemos de invitado al cantante y gitano, Rafalillo, a quien pondremos contra las cuerdas.' }
-  ];
-
   const handleFolderClick = (e: React.MouseEvent, project: Project) => {
     e.preventDefault();
-    setActiveItem({
-      type: 'project',
-      name: project.name,
-      description: project.description,
-      details: project.details
-    });
+    window.location.hash = `/PROYECTOS/${encodeURIComponent(project.name)}`;
   };
 
   const handleVideoClick = (e: React.MouseEvent, video: Video) => {
     e.preventDefault();
-    setActiveItem({
-      type: 'video',
-      name: video.title,
-      description: video.title,
-      details: video.details
-    });
+    window.location.hash = `/VÍDEOS/${encodeURIComponent(video.title)}`;
   };
 
 
 
+  let content = null;
+  const parentType = activeItem?.type === 'video' ? 'VÍDEOS' : 'PROYECTOS';
+
   // Render sub-subpage (bypasses padlock)
   if (activeSubSubPage) {
-    const parentType = activeItem?.type === 'video' ? 'VÍDEOS' : 'PROYECTOS';
-    return (
+    content = (
       <div className="custom-page-container">
         <header className="custom-page-header">
           <h1 className="logo-unk" style={{ fontSize: '3rem' }}>/UNK/</h1>
@@ -1083,7 +1157,9 @@ export default function App() {
           </main>
         )}
         
-        <button className="back-btn" onClick={() => setActiveSubSubPage(null)}>
+        <button className="back-btn" onClick={() => {
+          window.location.hash = `/${parentType}/${encodeURIComponent(activeItem!.name)}/${encodeURIComponent(activeSubPage!.name)}`;
+        }}>
           [ Volver ]
         </button>
       </div>
@@ -1091,9 +1167,8 @@ export default function App() {
   }
 
   // Render subpage (bypasses padlock)
-  if (activeSubPage) {
-    const parentType = activeItem?.type === 'video' ? 'VÍDEOS' : 'PROYECTOS';
-    return (
+  else if (activeSubPage) {
+    content = (
       <div className="custom-page-container">
         <header className="custom-page-header">
           <h1 className="logo-unk" style={{ fontSize: '3rem' }}>/UNK/</h1>
@@ -1109,7 +1184,7 @@ export default function App() {
               <div 
                 className="folder-card" 
                 style={{ width: '220px', padding: '1.5rem 1rem' }}
-                onClick={() => setActiveSubSubPage({ name: 'Apartado técnico', parentName: 'Plató' })}
+                onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem!.name)}/Plató/Apartado técnico`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <Folder size={48} strokeWidth={1.5} />
@@ -1120,7 +1195,7 @@ export default function App() {
               <div 
                 className="folder-card" 
                 style={{ width: '220px', padding: '1.5rem 1rem' }}
-                onClick={() => setActiveSubSubPage({ name: 'Props', parentName: 'Plató' })}
+                onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem!.name)}/Plató/Props`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <Folder size={48} strokeWidth={1.5} />
@@ -1131,7 +1206,7 @@ export default function App() {
               <div 
                 className="folder-card" 
                 style={{ width: '220px', padding: '1.5rem 1rem' }}
-                onClick={() => setActiveSubSubPage({ name: 'Peluches', parentName: 'Plató' })}
+                onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem!.name)}/Plató/Peluches`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <Folder size={48} strokeWidth={1.5} />
@@ -1142,7 +1217,7 @@ export default function App() {
               <div 
                 className="folder-card" 
                 style={{ width: '220px', padding: '1.5rem 1rem' }}
-                onClick={() => setActiveSubSubPage({ name: 'Tablero', parentName: 'Plató' })}
+                onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem!.name)}/Plató/Tablero`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <Folder size={48} strokeWidth={1.5} />
@@ -1155,10 +1230,7 @@ export default function App() {
               <div 
                 className="folder-card" 
                 style={{ width: '220px', padding: '1.5rem 1rem' }}
-                onClick={() => setActiveSubSubPage({
-                  name: 'Eneryeti',
-                  parentName: 'Sponsors'
-                })}
+                onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem!.name)}/Sponsors/Eneryeti`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <Folder size={48} strokeWidth={1.5} />
@@ -1169,10 +1241,7 @@ export default function App() {
               <div 
                 className="folder-card" 
                 style={{ width: '220px', padding: '1.5rem 1rem' }}
-                onClick={() => setActiveSubSubPage({
-                  name: 'Simyo',
-                  parentName: 'Sponsors'
-                })}
+                onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem!.name)}/Sponsors/Simyo`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <Folder size={48} strokeWidth={1.5} />
@@ -1185,10 +1254,7 @@ export default function App() {
               <div 
                 className="folder-card" 
                 style={{ width: '220px', padding: '1.5rem 1rem' }}
-                onClick={() => setActiveSubSubPage({
-                  name: 'Adivina el artista por el outfit',
-                  parentName: 'Formatos'
-                })}
+                onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina el artista por el outfit')}`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <Gamepad2 size={48} strokeWidth={1.5} />
@@ -1201,10 +1267,7 @@ export default function App() {
               <div 
                 className="folder-card" 
                 style={{ width: '220px', padding: '1.5rem 1rem' }}
-                onClick={() => setActiveSubSubPage({
-                  name: 'Adivina el artista por su nombre real',
-                  parentName: 'Formatos'
-                })}
+                onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina el artista por su nombre real')}`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <Gamepad2 size={48} strokeWidth={1.5} />
@@ -1213,14 +1276,11 @@ export default function App() {
                   Adivina el artista por su nombre real
                 </span>
               </div>
-
+ 
               <div 
                 className="folder-card" 
                 style={{ width: '220px', padding: '1.5rem 1rem' }}
-                onClick={() => setActiveSubSubPage({
-                  name: '¿Esta barra es real o me la acabo de inventar?',
-                  parentName: 'Formatos'
-                })}
+                onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('¿Esta barra es real o me la acabo de inventar?')}`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <Gamepad2 size={48} strokeWidth={1.5} />
@@ -1229,14 +1289,11 @@ export default function App() {
                   ¿Esta barra es real o me la acabo de inventar?
                 </span>
               </div>
-
+ 
               <div 
                 className="folder-card" 
                 style={{ width: '220px', padding: '1.5rem 1rem' }}
-                onClick={() => setActiveSubSubPage({
-                  name: 'Adivina el álbum por la letra X de su portada',
-                  parentName: 'Formatos'
-                })}
+                onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina el álbum por la letra X de su portada')}`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <Gamepad2 size={48} strokeWidth={1.5} />
@@ -1245,14 +1302,11 @@ export default function App() {
                   Adivina el álbum por la letra X de su portada
                 </span>
               </div>
-
+ 
               <div 
                 className="folder-card" 
                 style={{ width: '220px', padding: '1.5rem 1rem' }}
-                onClick={() => setActiveSubSubPage({
-                  name: 'Adivina la canción por sus stems',
-                  parentName: 'Formatos'
-                })}
+                onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina la canción por sus stems')}`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <Gamepad2 size={48} strokeWidth={1.5} />
@@ -1261,14 +1315,11 @@ export default function App() {
                   Adivina la canción por sus stems
                 </span>
               </div>
-
+ 
               <div 
                 className="folder-card" 
                 style={{ width: '220px', padding: '1.5rem 1rem' }}
-                onClick={() => setActiveSubSubPage({
-                  name: 'Adivina en X palabras o menos',
-                  parentName: 'Formatos'
-                })}
+                onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina en X palabras o menos')}`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <Gamepad2 size={48} strokeWidth={1.5} />
@@ -1277,14 +1328,11 @@ export default function App() {
                   Adivina en X palabras o menos
                 </span>
               </div>
-
+ 
               <div 
                 className="folder-card" 
                 style={{ width: '220px', padding: '1.5rem 1rem' }}
-                onClick={() => setActiveSubSubPage({
-                  name: 'Palabras encadenadas',
-                  parentName: 'Formatos'
-                })}
+                onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Palabras encadenadas')}`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <Gamepad2 size={48} strokeWidth={1.5} />
@@ -1293,14 +1341,11 @@ export default function App() {
                   Palabras encadenadas
                 </span>
               </div>
-
+ 
               <div 
                 className="folder-card" 
                 style={{ width: '220px', padding: '1.5rem 1rem' }}
-                onClick={() => setActiveSubSubPage({
-                  name: 'Torre',
-                  parentName: 'Formatos'
-                })}
+                onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Torre')}`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <Gamepad2 size={48} strokeWidth={1.5} />
@@ -1309,14 +1354,11 @@ export default function App() {
                   Torre
                 </span>
               </div>
-
+ 
               <div 
                 className="folder-card" 
                 style={{ width: '220px', padding: '1.5rem 1rem' }}
-                onClick={() => setActiveSubSubPage({
-                  name: 'Adivina mi canción',
-                  parentName: 'Formatos'
-                })}
+                onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina mi canción')}`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <Gamepad2 size={48} strokeWidth={1.5} />
@@ -1325,14 +1367,11 @@ export default function App() {
                   Adivina mi canción
                 </span>
               </div>
-
+ 
               <div 
                 className="folder-card" 
                 style={{ width: '220px', padding: '1.5rem 1rem' }}
-                onClick={() => setActiveSubSubPage({
-                  name: 'Adivina al cantante por su paquete',
-                  parentName: 'Formatos'
-                })}
+                onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina al cantante por su paquete')}`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <Gamepad2 size={48} strokeWidth={1.5} />
@@ -1341,14 +1380,11 @@ export default function App() {
                   Adivina al cantante por su paquete
                 </span>
               </div>
-
+ 
               <div 
                 className="folder-card" 
                 style={{ width: '220px', padding: '1.5rem 1rem' }}
-                onClick={() => setActiveSubSubPage({
-                  name: 'Adivina la canción narrada como una escritura antigua',
-                  parentName: 'Formatos'
-                })}
+                onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina la canción narrada como una escritura antigua')}`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <Gamepad2 size={48} strokeWidth={1.5} />
@@ -1483,7 +1519,10 @@ export default function App() {
           )}
         </main>
         
-        <button className="back-btn" onClick={() => setActiveSubPage(null)}>
+        <button className="back-btn" onClick={() => {
+          const pType = activeItem?.type === 'video' ? 'VÍDEOS' : 'PROYECTOS';
+          window.location.hash = `/${pType}/${encodeURIComponent(activeItem!.name)}`;
+        }}>
           [ Volver ]
         </button>
       </div>
@@ -1491,7 +1530,7 @@ export default function App() {
   }
 
   // Render individual custom page
-  if (activeItem) {
+  else if (activeItem) {
     const isSpecialVideo = activeItem.type === 'video' && activeItem.name === 'El prostíbulo 100 montaditos';
     const parentType = activeItem.type === 'video' ? 'VÍDEOS' : 'PROYECTOS';
 
@@ -1520,11 +1559,7 @@ export default function App() {
               <div 
                 className="folder-card" 
                 style={{ width: '220px', padding: '1.5rem 1rem' }}
-                onClick={() => setActiveSubPage({
-                  name: 'Producción',
-                  details: 'Detalles del plan de producción: 1 cámara principal, 1 micrófono de corbata. Grabación secreta autorizada. Estado de edición: Terminado y subido.',
-                  parentName: activeItem.name
-                })}
+                onClick={() => { window.location.hash = `/VÍDEOS/${encodeURIComponent(activeItem.name)}/Producción`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <Folder size={48} strokeWidth={1.5} />
@@ -1813,11 +1848,7 @@ export default function App() {
               <div 
                 className="folder-card" 
                 style={{ width: '220px', padding: '1.5rem 1rem' }}
-                onClick={() => setActiveSubPage({
-                  name: 'Samöa Club',
-                  details: '',
-                  parentName: activeItem.name
-                })}
+                onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem.name)}/Samöa Club`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <Folder size={48} strokeWidth={1.5} />
@@ -1885,11 +1916,7 @@ export default function App() {
               <div 
                 className="folder-card" 
                 style={{ width: '220px', padding: '1.5rem 1rem' }}
-                onClick={() => setActiveSubPage({
-                  name: '¿Qué lubricante te gusta más?',
-                  details: '',
-                  parentName: activeItem.name
-                })}
+                onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem.name)}/${encodeURIComponent('¿Qué lubricante te gusta más?')}`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <Folder size={48} strokeWidth={1.5} />
@@ -1900,11 +1927,7 @@ export default function App() {
               <div 
                 className="folder-card" 
                 style={{ width: '220px', padding: '1.5rem 1rem' }}
-                onClick={() => setActiveSubPage({
-                  name: 'Requisitos para ser mi novia',
-                  details: '',
-                  parentName: activeItem.name
-                })}
+                onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem.name)}/${encodeURIComponent('Requisitos para ser mi novia')}`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <Folder size={48} strokeWidth={1.5} />
@@ -1943,11 +1966,7 @@ export default function App() {
               <div 
                 className="folder-card" 
                 style={{ width: '100%', padding: '1.5rem 1rem' }}
-                onClick={() => setActiveSubPage({
-                  name: 'Formatos',
-                  details: '',
-                  parentName: activeItem.name
-                })}
+                onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem.name)}/Formatos`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <Folder size={48} strokeWidth={1.5} />
@@ -1958,11 +1977,7 @@ export default function App() {
               <div 
                 className="folder-card" 
                 style={{ width: '220px', padding: '1.5rem 1rem' }}
-                onClick={() => setActiveSubPage({
-                  name: 'Plató',
-                  details: '',
-                  parentName: activeItem.name
-                })}
+                onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem.name)}/Plató`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <Folder size={48} strokeWidth={1.5} />
@@ -1973,11 +1988,7 @@ export default function App() {
               <div 
                 className="folder-card" 
                 style={{ width: '220px', padding: '1.5rem 1rem' }}
-                onClick={() => setActiveSubPage({
-                  name: 'Sponsors',
-                  details: '',
-                  parentName: activeItem.name
-                })}
+                onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem.name)}/Sponsors`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <Plus size={48} strokeWidth={1.5} />
@@ -1996,15 +2007,16 @@ export default function App() {
           </main>
         )}
         
-        <button className="back-btn" onClick={() => setActiveItem(null)}>
+        <button className="back-btn" onClick={() => { window.location.hash = '/'; }}>
           [ Volver ]
         </button>
       </div>
     );
   }
 
-  return (
-    <div className="app-container">
+  else {
+    content = (
+      <div className="app-container">
       {/* Header */}
       <header className="header">
         <h1 className="logo-unk">/UNK/</h1>
@@ -2081,7 +2093,13 @@ export default function App() {
       <footer className="footer-text">
         <p>© UNK</p>
       </footer>
+      </div>
+    );
+  }
 
+  return (
+    <>
+      {content}
       {isSecretModalOpen && (
         <div style={{
           position: 'fixed',
@@ -2149,6 +2167,6 @@ export default function App() {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }
