@@ -1,6 +1,6 @@
 :root {
-  --font-heading: 'Courier New', Courier, monospace;
-  --font-body: 'Courier New', Courier, monospace;
+  --font-heading: 'Rubik', sans-serif;
+  --font-body: 'Rubik', sans-serif;
   
   --bg-primary: #ffffff;
   --bg-secondary: #fafafa;
@@ -40,26 +40,31 @@ body {
 .app-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 7rem 2rem 8rem 2rem;
+  padding: 2rem 2rem 8rem 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 /* Header */
-.header, .custom-page-header {
-  position: absolute;
-  top: 0;
-  left: 0;
+.global-header {
+  position: relative;
   width: 100%;
   background-color: #f0f0f0;
   border-bottom: 2px solid #000000;
   padding: 0.75rem 2rem;
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   box-sizing: border-box;
   z-index: 100;
+}
+
+.global-header-top {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
 }
 
 .logo-unk {
@@ -464,8 +469,17 @@ body {
 .custom-page-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 7rem 2rem 4rem 2rem;
+  padding: 2rem 2rem 4rem 2rem;
   text-align: center;
+}
+
+.global-breadcrumbs {
+  width: 100%;
+  margin: 1.5rem 0 0 0;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: flex-start;
+  box-sizing: border-box;
 }
 
 .custom-page-content {
@@ -554,6 +568,17 @@ body {
 
 .timeline-part-hover:hover {
   background-color: #000000 !important;
+}
+
+/* Hide redundant page-internal breadcrumbs and dividers */
+.custom-page-content > div:first-of-type,
+.custom-page-content > div:first-of-type + hr {
+  display: none !important;
+}
+
+/* Hide old local header elements to prevent duplicate UNK logo rendering */
+.custom-page-header, .app-container > .header {
+  display: none !important;
 }
 
 
