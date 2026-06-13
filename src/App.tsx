@@ -1254,7 +1254,7 @@ export default function App() {
           ) : activeSubPage.parentName === 'BUNKER' && activeSubPage.name === 'Formatos' ? (
             <div className="folders-grid" style={{ marginTop: '2rem' }}>
               <div 
-                className="folder-card" 
+                className="folder-card plain" 
                 onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina el artista por el outfit')}`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
@@ -1266,7 +1266,7 @@ export default function App() {
               </div>
               
               <div 
-                className="folder-card" 
+                className="folder-card plain" 
                 onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina el artista por su nombre real')}`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
@@ -1278,7 +1278,7 @@ export default function App() {
               </div>
  
               <div 
-                className="folder-card" 
+                className="folder-card plain" 
                 onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('¿Esta barra es real o me la acabo de inventar?')}`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
@@ -1290,7 +1290,7 @@ export default function App() {
               </div>
  
               <div 
-                className="folder-card" 
+                className="folder-card plain" 
                 onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina el álbum por la letra X de su portada')}`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
@@ -1302,7 +1302,7 @@ export default function App() {
               </div>
  
               <div 
-                className="folder-card" 
+                className="folder-card plain" 
                 onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina la canción por sus stems')}`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
@@ -1314,7 +1314,7 @@ export default function App() {
               </div>
  
               <div 
-                className="folder-card" 
+                className="folder-card plain" 
                 onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina en X palabras o menos')}`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
@@ -1326,7 +1326,7 @@ export default function App() {
               </div>
  
               <div 
-                className="folder-card" 
+                className="folder-card plain" 
                 onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Palabras encadenadas')}`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
@@ -1338,7 +1338,7 @@ export default function App() {
               </div>
  
               <div 
-                className="folder-card" 
+                className="folder-card plain" 
                 onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Torre')}`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
@@ -1350,7 +1350,7 @@ export default function App() {
               </div>
  
               <div 
-                className="folder-card" 
+                className="folder-card plain" 
                 onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina mi canción')}`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
@@ -1362,7 +1362,7 @@ export default function App() {
               </div>
  
               <div 
-                className="folder-card" 
+                className="folder-card plain" 
                 onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina al cantante por su paquete')}`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
@@ -1374,7 +1374,7 @@ export default function App() {
               </div>
  
               <div 
-                className="folder-card" 
+                className="folder-card plain" 
                 onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina la canción narrada como una escritura antigua')}`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>

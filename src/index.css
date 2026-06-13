@@ -133,6 +133,15 @@ body {
   position: relative;
 }
 
+.folder-card.plain {
+  border: none;
+  background-color: transparent;
+}
+
+.folder-card.plain:hover {
+  background-color: transparent;
+}
+
 .folder-card:hover {
   transform: translateY(-4px);
   background-color: #f5f5f5;
