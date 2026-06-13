@@ -802,6 +802,8 @@ export default function App() {
               </div>
               <p style={{ fontSize: '1rem', color: '#000000', margin: '0 0 1.5rem 0', maxWidth: 'none', lineHeight: '1.6' }}>
                 Leo la letra de canciones que son hits reversionadas en castellano antiguo.
+                <br />
+                Tirar de hits tanto de reggaeton como de pop.
               </p>
 
               <hr style={{ border: 'none', borderTop: '1px solid #cccccc', margin: '1.5rem 0' }} />
