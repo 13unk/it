@@ -341,7 +341,8 @@ export default function App() {
   const [isSecretModalOpen, setIsSecretModalOpen] = useState<boolean>(false);
   const bulletPressTimerRef = useRef<number | null>(null);
 
-  const startPress = () => {
+  const startPress = (e: React.PointerEvent) => {
+    e.preventDefault();
     if (bulletPressTimerRef.current) {
       window.clearTimeout(bulletPressTimerRef.current);
     }
@@ -781,18 +782,18 @@ export default function App() {
                 <img 
                   src="/bullet.png" 
                   alt="Balas" 
-                  onMouseDown={startPress}
-                  onMouseUp={endPress}
-                  onMouseLeave={endPress}
-                  onTouchStart={startPress}
-                  onTouchEnd={endPress}
+                  onPointerDown={startPress}
+                  onPointerUp={endPress}
+                  onPointerLeave={endPress}
+                  onPointerCancel={endPress}
                   onDragStart={(e) => e.preventDefault()}
                   style={{ 
                     height: '46px', 
                     width: 'auto', 
                     display: 'block',
-                    cursor: 'pointer',
-                    userSelect: 'none'
+                    cursor: 'default',
+                    userSelect: 'none',
+                    touchAction: 'none'
                   }} 
                 />
               </div>
