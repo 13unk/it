@@ -705,7 +705,7 @@ export default function App() {
               <hr style={{ border: 'none', borderTop: '1px solid #cccccc', margin: '1.5rem 0' }} />
 
               <div style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1.25rem' }}>
-                Vídeo de referencia:
+                Vídeo de referencia
               </div>
               
               <a 
@@ -739,11 +739,28 @@ export default function App() {
               <hr style={{ border: 'none', borderTop: '1px solid #cccccc', margin: '1.5rem 0' }} />
 
               <div style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1rem' }}>
-                Props:
+                Props
               </div>
               <p style={{ fontSize: '1rem', color: '#000000', margin: '0 0 1.5rem 0', maxWidth: 'none', lineHeight: '1.6' }}>
                 Usar un pergamino, una piedra tallada, pluma, algún sombrero antiguo... ir subiendo el nivel.
               </p>
+
+              <hr style={{ border: 'none', borderTop: '1px solid #cccccc', margin: '1.5rem 0' }} />
+
+              <div style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1rem' }}>
+                Balas
+              </div>
+              <div style={{ marginTop: '1rem' }}>
+                <img 
+                  src="/bullet.png" 
+                  alt="Balas" 
+                  style={{ 
+                    height: '46px', 
+                    width: 'auto', 
+                    display: 'block' 
+                  }} 
+                />
+              </div>
             </div>
           </main>
         ) : activeSubSubPage.name === 'Adivina al cantante por su paquete' ? (
