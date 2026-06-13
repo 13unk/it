@@ -168,13 +168,7 @@ body {
   color: var(--text-primary);
   margin-bottom: 0.35rem;
   text-align: center;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
   line-height: 1.3;
-  max-height: 2.6em;
 }
 
 .project-badge {
