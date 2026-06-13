@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Folder, Play, FileText, Gamepad2, Plus, Youtube } from 'lucide-react';
+import { Folder, Play, FileText, Plus, Youtube } from 'lucide-react';
 
 interface Project {
   name: string;
@@ -1252,14 +1252,13 @@ export default function App() {
               </div>
             </div>
           ) : activeSubPage.parentName === 'BUNKER' && activeSubPage.name === 'Formatos' ? (
-            <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', marginTop: '2rem' }}>
+            <div className="folders-grid" style={{ marginTop: '2rem' }}>
               <div 
                 className="folder-card" 
-                style={{ width: '220px', padding: '1.5rem 1rem' }}
                 onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina el artista por el outfit')}`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
-                  <Gamepad2 size={48} strokeWidth={1.5} />
+                  <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
                 </div>
                 <span className="folder-name" style={{ fontSize: '0.9rem', fontWeight: 700, textAlign: 'center', lineHeight: '1.3' }}>
                   Adivina el artista por el outfit
@@ -1268,11 +1267,10 @@ export default function App() {
               
               <div 
                 className="folder-card" 
-                style={{ width: '220px', padding: '1.5rem 1rem' }}
                 onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina el artista por su nombre real')}`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
-                  <Gamepad2 size={48} strokeWidth={1.5} />
+                  <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
                 </div>
                 <span className="folder-name" style={{ fontSize: '0.9rem', fontWeight: 700, textAlign: 'center', lineHeight: '1.3' }}>
                   Adivina el artista por su nombre real
@@ -1281,11 +1279,10 @@ export default function App() {
  
               <div 
                 className="folder-card" 
-                style={{ width: '220px', padding: '1.5rem 1rem' }}
                 onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('¿Esta barra es real o me la acabo de inventar?')}`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
-                  <Gamepad2 size={48} strokeWidth={1.5} />
+                  <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
                 </div>
                 <span className="folder-name" style={{ fontSize: '0.9rem', fontWeight: 700, textAlign: 'center', lineHeight: '1.3' }}>
                   ¿Esta barra es real o me la acabo de inventar?
@@ -1294,11 +1291,10 @@ export default function App() {
  
               <div 
                 className="folder-card" 
-                style={{ width: '220px', padding: '1.5rem 1rem' }}
                 onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina el álbum por la letra X de su portada')}`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
-                  <Gamepad2 size={48} strokeWidth={1.5} />
+                  <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
                 </div>
                 <span className="folder-name" style={{ fontSize: '0.9rem', fontWeight: 700, textAlign: 'center', lineHeight: '1.3' }}>
                   Adivina el álbum por la letra X de su portada
@@ -1307,11 +1303,10 @@ export default function App() {
  
               <div 
                 className="folder-card" 
-                style={{ width: '220px', padding: '1.5rem 1rem' }}
                 onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina la canción por sus stems')}`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
-                  <Gamepad2 size={48} strokeWidth={1.5} />
+                  <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
                 </div>
                 <span className="folder-name" style={{ fontSize: '0.9rem', fontWeight: 700, textAlign: 'center', lineHeight: '1.3' }}>
                   Adivina la canción por sus stems
@@ -1320,11 +1315,10 @@ export default function App() {
  
               <div 
                 className="folder-card" 
-                style={{ width: '220px', padding: '1.5rem 1rem' }}
                 onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina en X palabras o menos')}`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
-                  <Gamepad2 size={48} strokeWidth={1.5} />
+                  <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
                 </div>
                 <span className="folder-name" style={{ fontSize: '0.9rem', fontWeight: 700, textAlign: 'center', lineHeight: '1.3' }}>
                   Adivina en X palabras o menos
@@ -1333,11 +1327,10 @@ export default function App() {
  
               <div 
                 className="folder-card" 
-                style={{ width: '220px', padding: '1.5rem 1rem' }}
                 onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Palabras encadenadas')}`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
-                  <Gamepad2 size={48} strokeWidth={1.5} />
+                  <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
                 </div>
                 <span className="folder-name" style={{ fontSize: '0.9rem', fontWeight: 700, textAlign: 'center', lineHeight: '1.3' }}>
                   Palabras encadenadas
@@ -1346,11 +1339,10 @@ export default function App() {
  
               <div 
                 className="folder-card" 
-                style={{ width: '220px', padding: '1.5rem 1rem' }}
                 onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Torre')}`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
-                  <Gamepad2 size={48} strokeWidth={1.5} />
+                  <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
                 </div>
                 <span className="folder-name" style={{ fontSize: '0.9rem', fontWeight: 700, textAlign: 'center', lineHeight: '1.3' }}>
                   Torre
@@ -1359,11 +1351,10 @@ export default function App() {
  
               <div 
                 className="folder-card" 
-                style={{ width: '220px', padding: '1.5rem 1rem' }}
                 onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina mi canción')}`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
-                  <Gamepad2 size={48} strokeWidth={1.5} />
+                  <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
                 </div>
                 <span className="folder-name" style={{ fontSize: '0.9rem', fontWeight: 700, textAlign: 'center', lineHeight: '1.3' }}>
                   Adivina mi canción
@@ -1372,11 +1363,10 @@ export default function App() {
  
               <div 
                 className="folder-card" 
-                style={{ width: '220px', padding: '1.5rem 1rem' }}
                 onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina al cantante por su paquete')}`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
-                  <Gamepad2 size={48} strokeWidth={1.5} />
+                  <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
                 </div>
                 <span className="folder-name" style={{ fontSize: '0.9rem', fontWeight: 700, textAlign: 'center', lineHeight: '1.3' }}>
                   Adivina al cantante por su paquete
@@ -1385,11 +1375,10 @@ export default function App() {
  
               <div 
                 className="folder-card" 
-                style={{ width: '220px', padding: '1.5rem 1rem' }}
                 onClick={() => { window.location.hash = `/PROYECTOS/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina la canción narrada como una escritura antigua')}`; }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
-                  <Gamepad2 size={48} strokeWidth={1.5} />
+                  <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
                 </div>
                 <span className="folder-name" style={{ fontSize: '0.9rem', fontWeight: 700, textAlign: 'center', lineHeight: '1.3' }}>
                   Adivina la canción narrada como una escritura antigua
