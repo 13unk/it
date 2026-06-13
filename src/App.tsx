@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Folder, Play, FileText, Gamepad2, Plus, Youtube } from 'lucide-react';
 
 interface Project {
@@ -337,6 +337,33 @@ export default function App() {
   const [isExample5Revealed, setIsExample5Revealed] = useState<boolean>(false);
   const [selectedAlphabetLetter, setSelectedAlphabetLetter] = useState<string | null>(null);
   const [hoveredTimelinePart, setHoveredTimelinePart] = useState<{ title: string; desc: string; x: number; y: number } | null>(null);
+
+  const [isSecretModalOpen, setIsSecretModalOpen] = useState<boolean>(false);
+  const bulletPressTimerRef = useRef<number | null>(null);
+
+  const startPress = () => {
+    if (bulletPressTimerRef.current) {
+      window.clearTimeout(bulletPressTimerRef.current);
+    }
+    bulletPressTimerRef.current = window.setTimeout(() => {
+      setIsSecretModalOpen(true);
+    }, 3000);
+  };
+
+  const endPress = () => {
+    if (bulletPressTimerRef.current) {
+      window.clearTimeout(bulletPressTimerRef.current);
+      bulletPressTimerRef.current = null;
+    }
+  };
+
+  useEffect(() => {
+    return () => {
+      if (bulletPressTimerRef.current) {
+        window.clearTimeout(bulletPressTimerRef.current);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     setIsExample1Revealed(false);
@@ -754,10 +781,18 @@ export default function App() {
                 <img 
                   src="/bullet.png" 
                   alt="Balas" 
+                  onMouseDown={startPress}
+                  onMouseUp={endPress}
+                  onMouseLeave={endPress}
+                  onTouchStart={startPress}
+                  onTouchEnd={endPress}
+                  onDragStart={(e) => e.preventDefault()}
                   style={{ 
                     height: '46px', 
                     width: 'auto', 
-                    display: 'block' 
+                    display: 'block',
+                    cursor: 'pointer',
+                    userSelect: 'none'
                   }} 
                 />
               </div>
@@ -2045,6 +2080,74 @@ export default function App() {
       <footer className="footer-text">
         <p>© UNK</p>
       </footer>
+
+      {isSecretModalOpen && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundColor: 'rgba(0, 0, 0, 0.85)',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          zIndex: 99999,
+          padding: '2rem'
+        }}>
+          <div style={{
+            backgroundColor: '#ffffff',
+            border: '3px solid #000000',
+            padding: '2.5rem',
+            width: '100%',
+            maxWidth: '900px',
+            position: 'relative',
+            fontFamily: 'Courier New, Courier, monospace',
+            color: '#000000',
+            boxShadow: '10px 10px 0px #000000'
+          }}>
+            <button 
+              onClick={() => setIsSecretModalOpen(false)}
+              style={{
+                position: 'absolute',
+                top: '1rem',
+                right: '1rem',
+                border: '2px solid #000000',
+                backgroundColor: '#ffffff',
+                color: '#000000',
+                padding: '0.25rem 0.75rem',
+                cursor: 'pointer',
+                fontFamily: 'inherit',
+                fontWeight: 'bold',
+                fontSize: '0.9rem',
+                transition: 'all 0.1s ease-in-out'
+              }}
+            >
+              [ X ]
+            </button>
+
+            <div style={{ display: 'flex', gap: '3rem', marginTop: '1rem' }}>
+              {/* Left Column */}
+              <div style={{ flex: 1, borderRight: '1px dashed #cccccc', paddingRight: '1.5rem' }}>
+                <p style={{ margin: 0, whiteSpace: 'pre-line', fontSize: '1rem', lineHeight: '1.8' }}>
+                  Me ve entrando en la disco y se me queda mirando{"\n"}
+                  Creo que me ha conocido, será uno más de tantos{"\n"}
+                  Mierda, quizá eres mi próximo error
+                </p>
+              </div>
+
+              {/* Right Column */}
+              <div style={{ flex: 1 }}>
+                <p style={{ margin: 0, whiteSpace: 'pre-line', fontSize: '1rem', lineHeight: '1.8', fontStyle: 'italic' }}>
+                  Al cruzar yo el umbral del salón de baile, su mirada quedó fija en mi figura{"\n"}
+                  Percibo que mi renombre no le es ajeno, mas debe ser otro más entre mi vasta corte de pretendientes{"\n"}
+                  ¡Pardiez! Presiento que estáis llamado a ser mi próximo desatino
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
