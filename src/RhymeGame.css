@@ -1,0 +1,288 @@
+.rhyme-game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #c49f7c;
+  color: white;
+  font-family: 'Inter', sans-serif;
+  overflow: hidden;
+  position: relative;
+}
+
+.rhyme-back-btn {
+  position: absolute;
+  top: 30px;
+  left: 20px;
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 0.2s;
+}
+
+.rhyme-back-btn:hover {
+  transform: scale(1.1);
+}
+
+.rhyme-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.rhyme-header h1 {
+  background: #fdf5e6;
+  color: #270f6b;
+  display: inline-block;
+  padding: 15px 30px;
+  border-radius: 30px;
+  font-size: 2.5rem;
+  font-weight: 900;
+  line-height: 1.2;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.rhyme-game-area {
+  position: relative;
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rhyme-ball {
+  position: absolute;
+  top: 35px;
+  left: 22.5px; /* starting position center of first block */
+  width: 30px;
+  height: 30px;
+  background: radial-gradient(circle at 30% 30%, #55ff55, #00e701);
+  border-radius: 50%;
+  box-shadow: 0 5px 15px rgba(0, 231, 1, 0.6), -10px 0 20px rgba(0, 231, 1, 0.4);
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 5;
+}
+
+.rhyme-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  padding-top: 75px;
+}
+
+.rhyme-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.row-progress-bar {
+  display: none;
+}
+
+.fade-out-up {
+  transform: translateY(-20px);
+  opacity: 0;
+}
+
+.blur-row {
+  filter: blur(4px);
+  opacity: 0.5;
+}
+
+.rhyme-block {
+  position: relative;
+  overflow: hidden;
+  width: 75px;
+  height: 60px;
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 0 2px 5px rgba(255,255,255,0.1), 0 5px 10px rgba(0,0,0,0.2);
+  border: 1px solid rgba(255,255,255,0.05);
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.block-progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  z-index: 0;
+}
+
+.rhyme-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.filling-text {
+  color: #1a1a1a !important;
+}
+
+.filling-text .rhyme-dot {
+  background-color: transparent !important;
+}
+
+.rhyme-dot {
+  width: 8px;
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+}
+
+.rhyme-word-block {
+  background-color: #e87b22;
+  color: #1a1a1a;
+  font-weight: 800;
+  font-size: 1.1rem;
+  border: none;
+}
+
+/* Rhyme colors based on A A B B scheme */
+.rhyme-color-a {
+  background-color: #6b9c3b;
+  color: white;
+}
+
+.rhyme-color-b {
+  background-color: #0f7a21;
+  color: white;
+}
+
+.rhyme-controls {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.rhyme-play-btn {
+  background: white;
+  color: #3513a0;
+  border: none;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.rhyme-play-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+}
+
+.bpm-info {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px 20px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.bpm-info span {
+  color: #ffffff;
+  font-weight: 900;
+  font-size: 1.2rem;
+  min-width: 40px;
+  text-align: center;
+}
+
+.beat-controls-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.beat-selector {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px 15px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  width: 100%;
+  max-width: 300px;
+  justify-content: space-between;
+}
+
+.beat-btn {
+  background: transparent;
+  border: none;
+  color: #fdf5e6;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 50%;
+  transition: transform 0.2s, color 0.2s, background 0.2s;
+}
+
+.beat-btn:hover {
+  transform: scale(1.1);
+  color: #ffc04a;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.beat-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.disc-icon {
+  color: #fdf5e6;
+}
+
+.spinning-disc {
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.beat-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.beat-title {
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: #fdf5e6;
+  line-height: 1.2;
+}
+
+.beat-artist {
+  font-size: 0.75rem;
+  color: #ffffff;
+  line-height: 1.2;
+}
