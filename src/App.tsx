@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Folder, Play, FileText, Plus, Youtube } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { RhymeGame } from './RhymeGame';
 
 interface Project {
   name: string;
@@ -253,12 +255,14 @@ function FolderTree({
   path: string[]; 
   onNavigate: (index: number) => void;
 }) {
+  const navigate = useNavigate();
+
   const handleRootClick = () => {
-    window.location.hash = '/';
+    navigate('/');
   };
 
   const handleCategoryClick = (category: string) => {
-    window.location.hash = `/${category}`;
+    navigate(`/${category}`);
   };
 
   // Helper to render tree node
@@ -389,6 +393,8 @@ const videos: Video[] = [
 ];
 
 export default function App() {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [activeItem, setActiveItem] = useState<ActiveItem>(null);
   const [activeCategory, setActiveCategory] = useState<string>('');
   const [activeSubPage, setActiveSubPage] = useState<{ name: string; details: string; parentName: string } | null>(null);
@@ -441,8 +447,8 @@ export default function App() {
 
   useEffect(() => {
     const handleHashChange = () => {
-      const hash = window.location.hash;
-      if (!hash || hash === '#' || hash === '#/') {
+      const hash = location.pathname;
+      if (!hash || hash === '/' || hash === '') {
         setActiveCategory('');
         setActiveItem(null);
         setActiveSubPage(null);
@@ -450,12 +456,12 @@ export default function App() {
         return;
       }
 
-      const pathStr = hash.replace(/^#\/?/, '');
+      const pathStr = hash.replace(/^\/?/, '');
       const parts = pathStr.split('/').map(decodeURIComponent).filter(Boolean);
 
       if (parts.length === 1) {
         const cat = parts[0].toUpperCase();
-        if (cat === 'PROYECTOS' || cat === 'FORMATOS' || cat === 'VÍDEOS') {
+        if (cat === 'PROYECTOS' || cat === 'FORMATOS' || cat === 'VÍDEOS' || cat === 'RHYME') {
           setActiveCategory(cat);
           setActiveItem(null);
           setActiveSubPage(null);
@@ -531,24 +537,19 @@ export default function App() {
       }
     };
 
-    window.addEventListener('hashchange', handleHashChange);
     handleHashChange();
-
-    return () => {
-      window.removeEventListener('hashchange', handleHashChange);
-    };
-  }, []);
+  }, [location.pathname]);
 
   const handleNavigate = (depth: number) => {
     const pType = activeItem?.type === 'video' 
       ? 'VÍDEOS' 
       : (projects.some(p => p.name === activeItem?.name) ? 'FORMATOS' : 'PROYECTOS');
     if (depth === 0 || depth === 1) {
-      window.location.hash = '/';
+      navigate('/');
     } else if (depth === 2) {
-      window.location.hash = `/${pType}/${encodeURIComponent(activeItem!.name)}`;
+      navigate(`/${pType}/${encodeURIComponent(activeItem!.name)}`);
     } else if (depth === 3) {
-      window.location.hash = `/${pType}/${encodeURIComponent(activeItem!.name)}/${encodeURIComponent(activeSubPage!.name)}`;
+      navigate(`/${pType}/${encodeURIComponent(activeItem!.name)}/${encodeURIComponent(activeSubPage!.name)}`);
     }
   };
 
@@ -556,12 +557,12 @@ export default function App() {
     e.preventDefault();
     const isFormat = projects.some(p => p.name === project.name);
     const type = isFormat ? 'FORMATOS' : 'PROYECTOS';
-    window.location.hash = `/${type}/${encodeURIComponent(project.name)}`;
+    navigate(`/${type}/${encodeURIComponent(project.name)}`);
   };
 
   const handleVideoClick = (e: React.MouseEvent, video: Video) => {
     e.preventDefault();
-    window.location.hash = `/VÍDEOS/${encodeURIComponent(video.title)}`;
+    navigate(`/VÍDEOS/${encodeURIComponent(video.title)}`);
   };
 
 
@@ -1224,7 +1225,7 @@ export default function App() {
         )}
         
         <button className="back-btn" onClick={() => {
-          window.location.hash = `/${parentType}/${encodeURIComponent(activeItem!.name)}/${encodeURIComponent(activeSubPage!.name)}`;
+          navigate(`/${parentType}/${encodeURIComponent(activeItem!.name)}/${encodeURIComponent(activeSubPage!.name)}`);
         }}>
           [ Volver ]
         </button>
@@ -1250,7 +1251,7 @@ export default function App() {
               <div 
                 className="folder-card" 
                 style={{ width: '220px', padding: '1.5rem 1rem' }}
-                onClick={() => { window.location.hash = `/${parentType}/${encodeURIComponent(activeItem!.name)}/Plató/Apartado técnico`; }}
+                onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem!.name)}/Plató/Apartado técnico`); }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <Folder size={48} strokeWidth={1.5} />
@@ -1261,7 +1262,7 @@ export default function App() {
               <div 
                 className="folder-card" 
                 style={{ width: '220px', padding: '1.5rem 1rem' }}
-                onClick={() => { window.location.hash = `/${parentType}/${encodeURIComponent(activeItem!.name)}/Plató/Props`; }}
+                onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem!.name)}/Plató/Props`); }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <Folder size={48} strokeWidth={1.5} />
@@ -1272,7 +1273,7 @@ export default function App() {
               <div 
                 className="folder-card" 
                 style={{ width: '220px', padding: '1.5rem 1rem' }}
-                onClick={() => { window.location.hash = `/${parentType}/${encodeURIComponent(activeItem!.name)}/Plató/Peluches`; }}
+                onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem!.name)}/Plató/Peluches`); }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <Folder size={48} strokeWidth={1.5} />
@@ -1283,7 +1284,7 @@ export default function App() {
               <div 
                 className="folder-card" 
                 style={{ width: '220px', padding: '1.5rem 1rem' }}
-                onClick={() => { window.location.hash = `/${parentType}/${encodeURIComponent(activeItem!.name)}/Plató/Tablero`; }}
+                onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem!.name)}/Plató/Tablero`); }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <Folder size={48} strokeWidth={1.5} />
@@ -1296,7 +1297,7 @@ export default function App() {
               <div 
                 className="folder-card" 
                 style={{ width: '220px', padding: '1.5rem 1rem' }}
-                onClick={() => { window.location.hash = `/${parentType}/${encodeURIComponent(activeItem!.name)}/Sponsors/Eneryeti`; }}
+                onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem!.name)}/Sponsors/Eneryeti`); }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <Folder size={48} strokeWidth={1.5} />
@@ -1307,7 +1308,7 @@ export default function App() {
               <div 
                 className="folder-card" 
                 style={{ width: '220px', padding: '1.5rem 1rem' }}
-                onClick={() => { window.location.hash = `/${parentType}/${encodeURIComponent(activeItem!.name)}/Sponsors/Simyo`; }}
+                onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem!.name)}/Sponsors/Simyo`); }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <Folder size={48} strokeWidth={1.5} />
@@ -1319,7 +1320,7 @@ export default function App() {
             <div className="folders-grid" style={{ marginTop: '2rem' }}>
               <div 
                 className="folder-card plain" 
-                onClick={() => { window.location.hash = `/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina el artista por el outfit')}`; }}
+                onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina el artista por el outfit')}`); }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
@@ -1331,7 +1332,7 @@ export default function App() {
               
               <div 
                 className="folder-card plain" 
-                onClick={() => { window.location.hash = `/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina el artista por su nombre real')}`; }}
+                onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina el artista por su nombre real')}`); }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
@@ -1343,7 +1344,7 @@ export default function App() {
  
               <div 
                 className="folder-card plain" 
-                onClick={() => { window.location.hash = `/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('¿Esta barra es real o me la acabo de inventar?')}`; }}
+                onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('¿Esta barra es real o me la acabo de inventar?')}`); }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
@@ -1355,7 +1356,7 @@ export default function App() {
  
               <div 
                 className="folder-card plain" 
-                onClick={() => { window.location.hash = `/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina el álbum por la letra X de su portada')}`; }}
+                onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina el álbum por la letra X de su portada')}`); }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
@@ -1367,7 +1368,7 @@ export default function App() {
  
               <div 
                 className="folder-card plain" 
-                onClick={() => { window.location.hash = `/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina la canción por sus stems')}`; }}
+                onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina la canción por sus stems')}`); }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
@@ -1379,7 +1380,7 @@ export default function App() {
  
               <div 
                 className="folder-card plain" 
-                onClick={() => { window.location.hash = `/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina en X palabras o menos')}`; }}
+                onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina en X palabras o menos')}`); }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
@@ -1391,7 +1392,7 @@ export default function App() {
  
               <div 
                 className="folder-card plain" 
-                onClick={() => { window.location.hash = `/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Palabras encadenadas')}`; }}
+                onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Palabras encadenadas')}`); }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
@@ -1403,7 +1404,7 @@ export default function App() {
  
               <div 
                 className="folder-card plain" 
-                onClick={() => { window.location.hash = `/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Torre')}`; }}
+                onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Torre')}`); }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
@@ -1415,7 +1416,7 @@ export default function App() {
  
               <div 
                 className="folder-card plain" 
-                onClick={() => { window.location.hash = `/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina mi canción')}`; }}
+                onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina mi canción')}`); }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
@@ -1427,7 +1428,7 @@ export default function App() {
  
               <div 
                 className="folder-card plain" 
-                onClick={() => { window.location.hash = `/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina al cantante por su paquete')}`; }}
+                onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina al cantante por su paquete')}`); }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
@@ -1439,7 +1440,7 @@ export default function App() {
  
               <div 
                 className="folder-card plain" 
-                onClick={() => { window.location.hash = `/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina la canción narrada como una escritura antigua')}`; }}
+                onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina la canción narrada como una escritura antigua')}`); }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
@@ -1576,7 +1577,7 @@ export default function App() {
         
         <button className="back-btn" onClick={() => {
           const pType = activeItem?.type === 'video' ? 'VÍDEOS' : 'PROYECTOS';
-          window.location.hash = `/${pType}/${encodeURIComponent(activeItem!.name)}`;
+          navigate(`/${pType}/${encodeURIComponent(activeItem!.name)}`);
         }}>
           [ Volver ]
         </button>
@@ -1614,7 +1615,7 @@ export default function App() {
               <div 
                 className="folder-card" 
                 style={{ width: '220px', padding: '1.5rem 1rem' }}
-                onClick={() => { window.location.hash = `/VÍDEOS/${encodeURIComponent(activeItem.name)}/Producción`; }}
+                onClick={() => { navigate(`/VÍDEOS/${encodeURIComponent(activeItem.name)}/Producción`); }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <Folder size={48} strokeWidth={1.5} />
@@ -1930,7 +1931,7 @@ export default function App() {
               <div 
                 className="folder-card" 
                 style={{ width: '220px', padding: '1.5rem 1rem' }}
-                onClick={() => { window.location.hash = `/${parentType}/${encodeURIComponent(activeItem.name)}/Samöa Club`; }}
+                onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem.name)}/Samöa Club`); }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <Folder size={48} strokeWidth={1.5} />
@@ -1998,7 +1999,7 @@ export default function App() {
               <div 
                 className="folder-card" 
                 style={{ width: '220px', padding: '1.5rem 1rem' }}
-                onClick={() => { window.location.hash = `/${parentType}/${encodeURIComponent(activeItem.name)}/${encodeURIComponent('¿Qué lubricante te gusta más?')}`; }}
+                onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem.name)}/${encodeURIComponent('¿Qué lubricante te gusta más?')}`); }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <Folder size={48} strokeWidth={1.5} />
@@ -2009,7 +2010,7 @@ export default function App() {
               <div 
                 className="folder-card" 
                 style={{ width: '220px', padding: '1.5rem 1rem' }}
-                onClick={() => { window.location.hash = `/${parentType}/${encodeURIComponent(activeItem.name)}/${encodeURIComponent('Requisitos para ser mi novia')}`; }}
+                onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem.name)}/${encodeURIComponent('Requisitos para ser mi novia')}`); }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <Folder size={48} strokeWidth={1.5} />
@@ -2048,7 +2049,7 @@ export default function App() {
               <div 
                 className="folder-card" 
                 style={{ width: '100%', padding: '1.5rem 1rem' }}
-                onClick={() => { window.location.hash = `/${parentType}/${encodeURIComponent(activeItem.name)}/Formatos`; }}
+                onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem.name)}/Formatos`); }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <Folder size={48} strokeWidth={1.5} />
@@ -2059,7 +2060,7 @@ export default function App() {
               <div 
                 className="folder-card" 
                 style={{ width: '220px', padding: '1.5rem 1rem' }}
-                onClick={() => { window.location.hash = `/${parentType}/${encodeURIComponent(activeItem.name)}/Plató`; }}
+                onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem.name)}/Plató`); }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <Folder size={48} strokeWidth={1.5} />
@@ -2070,7 +2071,7 @@ export default function App() {
               <div 
                 className="folder-card" 
                 style={{ width: '220px', padding: '1.5rem 1rem' }}
-                onClick={() => { window.location.hash = `/${parentType}/${encodeURIComponent(activeItem.name)}/Sponsors`; }}
+                onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem.name)}/Sponsors`); }}
               >
                 <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
                   <Plus size={48} strokeWidth={1.5} />
@@ -2089,7 +2090,7 @@ export default function App() {
           </main>
         )}
         
-        <button className="back-btn" onClick={() => { window.location.hash = '/'; }}>
+        <button className="back-btn" onClick={() => { navigate('/'); }}>
           [ Volver ]
         </button>
       </div>
@@ -2117,7 +2118,7 @@ export default function App() {
               ))}
             </div>
           </section>
-          <button className="back-btn" onClick={() => { window.location.hash = '/'; }}>
+          <button className="back-btn" onClick={() => { navigate('/'); }}>
             [ Volver ]
           </button>
           <footer className="footer-text">
@@ -2148,7 +2149,7 @@ export default function App() {
               ))}
             </div>
           </section>
-          <button className="back-btn" onClick={() => { window.location.hash = '/'; }}>
+          <button className="back-btn" onClick={() => { navigate('/'); }}>
             [ Volver ]
           </button>
           <footer className="footer-text">
@@ -2183,7 +2184,7 @@ export default function App() {
               ))}
             </div>
           </section>
-          <button className="back-btn" onClick={() => { window.location.hash = '/'; }}>
+          <button className="back-btn" onClick={() => { navigate('/'); }}>
             [ Volver ]
           </button>
           <footer className="footer-text">
@@ -2199,7 +2200,7 @@ export default function App() {
             <div className="folders-grid" style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
               <div
                 className="folder-card"
-                onClick={() => { window.location.hash = '/PROYECTOS'; }}
+                onClick={() => { navigate('/PROYECTOS'); }}
               >
                 <div className="folder-icon-wrapper">
                   <Folder size={64} strokeWidth={1.5} />
@@ -2209,7 +2210,7 @@ export default function App() {
 
               <div
                 className="folder-card"
-                onClick={() => { window.location.hash = '/FORMATOS'; }}
+                onClick={() => { navigate('/FORMATOS'); }}
               >
                 <div className="folder-icon-wrapper">
                   <Folder size={64} strokeWidth={1.5} />
@@ -2219,7 +2220,7 @@ export default function App() {
 
               <div
                 className="folder-card"
-                onClick={() => { window.location.hash = '/VÍDEOS'; }}
+                onClick={() => { navigate('/VÍDEOS'); }}
               >
                 <div className="folder-icon-wrapper">
                   <Folder size={64} strokeWidth={1.5} />
@@ -2250,11 +2251,15 @@ export default function App() {
     }
   }
 
+  if (activeCategory === 'RHYME') {
+    return <RhymeGame />;
+  }
+
   return (
     <>
       <header className="global-header">
         <div className="global-header-top">
-          <h1 className="logo-unk" onClick={() => { window.location.hash = '/'; }}>/UNK/</h1>
+          <h1 className="logo-unk" onClick={() => { navigate('/'); }}>/UNK/</h1>
         </div>
       </header>
       <div className="global-breadcrumbs">
