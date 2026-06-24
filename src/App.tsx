@@ -396,7 +396,21 @@ export default function App() {
   const navigate = useNavigate();
   const location = useLocation();
   const [activeItem, setActiveItem] = useState<ActiveItem>(null);
-  const [activeCategory, setActiveCategory] = useState<string>('');
+  const [activeCategory, setActiveCategory] = useState<string>(() => {
+    const hash = typeof window !== 'undefined' ? window.location.pathname : '';
+    if (!hash || hash === '/' || hash === '') return 'SPLASH';
+    const pathStr = hash.replace(/^\/?/, '');
+    const parts = pathStr.split('/').map(decodeURIComponent).filter(Boolean);
+    if (parts.length > 0) {
+      const cat = parts[0].toUpperCase();
+      if (cat === 'PROYECTOS' || cat === 'FORMATOS' || cat === 'VÍDEOS' || cat === 'RHYME') {
+        return cat;
+      } else if (cat === 'ROOT') {
+        return '';
+      }
+    }
+    return '';
+  });
   const [activeSubPage, setActiveSubPage] = useState<{ name: string; details: string; parentName: string } | null>(null);
   const [activeSubSubPage, setActiveSubSubPage] = useState<{ name: string; parentName: string } | null>(null);
   const [isExample1Revealed, setIsExample1Revealed] = useState<boolean>(false);
