@@ -60,6 +60,7 @@ export const RhymeGame: React.FC = () => {
   const [gameWords, setGameWords] = useState(() => shufflePairs(BASE_WORDS));
   const timerRef = useRef<number | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const cassetteRef = useRef<HTMLAudioElement | null>(null);
 
   const currentBeat = BEATS[currentBeatIndex];
   const bpm = currentBeat.bpm;
@@ -118,10 +119,18 @@ export const RhymeGame: React.FC = () => {
   const togglePlay = () => setIsPlaying(!isPlaying);
 
   const prevBeat = () => {
+    if (cassetteRef.current) {
+      cassetteRef.current.currentTime = 0;
+      cassetteRef.current.play().catch(e => console.log('Cassette play error', e));
+    }
     setCurrentBeatIndex((prev) => (prev === 0 ? BEATS.length - 1 : prev - 1));
   };
 
   const nextBeat = () => {
+    if (cassetteRef.current) {
+      cassetteRef.current.currentTime = 0;
+      cassetteRef.current.play().catch(e => console.log('Cassette play error', e));
+    }
     setCurrentBeatIndex((prev) => (prev === BEATS.length - 1 ? 0 : prev + 1));
   };
 
@@ -224,6 +233,7 @@ export const RhymeGame: React.FC = () => {
         </div>
 
         <audio ref={audioRef} src={currentBeat.file} loop />
+        <audio ref={cassetteRef} src="/soundfx/cassette.mp3" />
       </div>
     </div>
   );
