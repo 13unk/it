@@ -61,6 +61,14 @@ export const RhymeGame: React.FC = () => {
   const timerRef = useRef<number | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const cassetteRef = useRef<HTMLAudioElement | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 3800); // 3.8s to let the full morph animation run and hold for a moment
+    return () => clearTimeout(timer);
+  }, []);
 
   const currentBeat = BEATS[currentBeatIndex];
   const bpm = currentBeat.bpm;
@@ -138,6 +146,19 @@ export const RhymeGame: React.FC = () => {
     navigate('/');
   };
 
+
+  if (isLoading) {
+    return (
+      <div className="rhyme-loader-screen">
+        <div className="rhyme-loader-container">
+          <div className="rhyme-loader-text-wrap">
+            <h1 className="rhyme-loader-text rubik-pixels">¡RIMA COMO PUEDAS!</h1>
+            <h1 className="rhyme-loader-text rubik-glitch">¡RIMA COMO PUEDAS!</h1>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="rhyme-game-container">
