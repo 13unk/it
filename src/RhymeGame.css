@@ -39,7 +39,7 @@
 /* Jukebox Structure */
 .jukebox-body {
   width: 100%;
-  max-width: 480px;
+  max-width: 750px;
   background: linear-gradient(135deg, #d3d3d3 0%, #a9a9a9 50%, #808080 100%);
   border-radius: 60px 60px 20px 20px;
   padding: 20px;
@@ -153,16 +153,20 @@
 .rhyme-block {
   position: relative;
   overflow: hidden;
-  width: 80px;
+  width: 150px;
   height: 50px;
   background-color: #fdf5e6; /* vintage paper */
+  background-image: 
+    radial-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(0,0,0,0.05));
+  background-size: 4px 4px, 100% 100%;
   border-radius: 2px;
   border-top: 4px solid #d2042d;
   border-bottom: 4px solid #d2042d;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.5), inset 0 0 10px rgba(0,0,0,0.05);
   font-family: 'Special Elite', monospace; /* Typewriter font */
   transition: transform 0.2s;
 }
@@ -197,6 +201,29 @@
 .rhyme-word-block {
   font-weight: 800;
   font-size: 1.1rem;
+  background-color: #f5e4c3; /* slightly darker vintage tone */
+}
+
+/* Laminated/Plastic Effect for Rhyme Word Block */
+.rhyme-word-block::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    135deg, 
+    rgba(255,255,255,0) 30%, 
+    rgba(255,255,255,0.8) 45%, 
+    rgba(255,255,255,1) 50%, 
+    rgba(255,255,255,0.8) 55%, 
+    rgba(255,255,255,0) 70%
+  );
+  transform: rotate(25deg) translateY(-20%);
+  pointer-events: none;
+  z-index: 2;
+  box-shadow: inset 0 0 15px rgba(255,255,255,0.9);
 }
 
 /* Jukebox lower section */
@@ -240,18 +267,12 @@
 .coin-btn {
   background: #d2042d;
   color: #fff;
-  font-size: 0.6rem;
+  font-size: 0.5rem;
   font-weight: bold;
   padding: 2px 5px;
   border-radius: 3px;
   border: 1px solid #7a0018;
   box-shadow: 0 0 5px #ff0000;
-  animation: pulse-red 2s infinite;
-}
-
-@keyframes pulse-red {
-  0%, 100% { box-shadow: 0 0 5px #ff0000; opacity: 1; }
-  50% { box-shadow: 0 0 15px #ff0000, inset 0 0 10px #fff; opacity: 0.8; }
 }
 
 .rhyme-controls {
@@ -309,22 +330,29 @@
 }
 
 .beat-btn {
-  background: linear-gradient(180deg, #e6e6e6 0%, #a0a0a0 100%);
-  border: 2px solid #777;
-  color: #222;
-  cursor: pointer;
+  background: #d2042d;
+  color: white;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
   display: flex;
-  align-items: center;
   justify-content: center;
-  padding: 5px;
-  border-radius: 5px;
-  box-shadow: 0 4px 0 #666, 0 8px 10px rgba(0,0,0,0.4);
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 
+    0 5px 0 #7a0018, 
+    0 10px 15px rgba(0,0,0,0.5),
+    inset 0 4px 8px rgba(255,255,255,0.4);
   transition: transform 0.1s, box-shadow 0.1s;
 }
 
 .beat-btn:active {
-  transform: translateY(4px);
-  box-shadow: 0 0 0 #666, 0 2px 5px rgba(0,0,0,0.4);
+  transform: translateY(5px);
+  box-shadow: 
+    0 0 0 #7a0018, 
+    0 4px 8px rgba(0,0,0,0.5),
+    inset 0 4px 8px rgba(255,255,255,0.4);
 }
 
 .beat-info {
@@ -456,16 +484,18 @@
 }
 
 .loader-block {
-  width: 36px;
-  height: 36px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: 8px;
+  width: 150px;
+  height: 50px;
+  background-color: #fdf5e6;
+  border-radius: 2px;
+  border-top: 4px solid #d2042d;
+  border-bottom: 4px solid #d2042d;
   position: relative;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
 }
 
 .loader-progress-bar {
@@ -473,15 +503,15 @@
   top: 0;
   left: 0;
   height: 100%;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(210, 4, 45, 0.4);
   width: 0;
   z-index: 1;
 }
 
 .loader-dot {
-  width: 6px;
-  height: 6px;
-  background-color: rgba(255, 255, 255, 0.4);
+  width: 8px;
+  height: 8px;
+  background-color: #888;
   border-radius: 50%;
   z-index: 2;
 }

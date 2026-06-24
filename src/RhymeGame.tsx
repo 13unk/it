@@ -157,8 +157,11 @@ export const RhymeGame: React.FC = () => {
     return (
       <div className="rhyme-loader-screen">
         <div className="rhyme-loader-container">
-          <div className="rhyme-loader-text-wrap">
-            <h1 className="rhyme-loader-text rubik-glitch">¡RIMA COMO PUEDAS!</h1>
+          <div className="jukebox-arch" style={{ marginBottom: '40px', padding: '20px 40px' }}>
+            <div className="neon-tube"></div>
+            <div className="rhyme-header">
+              <h1>¡RIMA COMO PUEDAS!</h1>
+            </div>
           </div>
           <div className="rhyme-loader-simulation">
             <div className="loader-block">
@@ -199,7 +202,7 @@ export const RhymeGame: React.FC = () => {
 
         <div className="jukebox-center">
           <div className="rhyme-game-area">
-            <div className="rhyme-grid-viewport" style={{ width: '100%', height: '435px', overflow: 'hidden', position: 'relative', padding: '5px' }}>
+            <div className="rhyme-grid-viewport" style={{ width: '100%', height: '300px', overflow: 'hidden', position: 'relative', padding: '5px' }}>
               <div 
                 className="rhyme-grid"
                 style={{
@@ -253,7 +256,7 @@ export const RhymeGame: React.FC = () => {
           <div className="coin-slot-container">
             <div className="coin-slot">
               <div className="coin-insert"></div>
-              <div className="coin-btn">25¢</div>
+              <div className="coin-btn">25 PTAS</div>
             </div>
           </div>
 
@@ -279,8 +282,11 @@ export const RhymeGame: React.FC = () => {
                 <button onClick={nextBeat} className="beat-btn"><ChevronRight size={24} /></button>
               </div>
               
-              <div className="bpm-info">
-                <span>{bpm} BPM</span>
+              <div className="bpm-wrapper" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span style={{ fontFamily: 'Righteous', color: '#555', letterSpacing: '2px', textShadow: '1px 1px 0px rgba(255,255,255,0.3), -1px -1px 0px rgba(0,0,0,0.8)' }}>BPM</span>
+                <div className="bpm-info">
+                  <span>{bpm}</span>
+                </div>
               </div>
             </div>
 
