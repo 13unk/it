@@ -406,34 +406,36 @@
 
 /* Keyframes for Simulation */
 @keyframes loaderBall {
-  0% { left: 13px; top: 13px; }
-  18% { left: 13px; top: 13px; }
-  20% { left: 57px; top: 13px; }
-  38% { left: 57px; top: 13px; }
-  40% { left: 101px; top: 13px; }
-  58% { left: 101px; top: 13px; }
-  60% { left: 145px; top: 13px; }
-  80% { left: 145px; top: 13px; }
-  100% { left: 145px; top: 13px; }
+  0% { left: 13px; top: -14px; }
+  10% { left: 13px; top: -14px; }
+  15% { left: 35px; top: -35px; } /* peak of bounce 1 -> 2 */
+  20% { left: 57px; top: -14px; }
+  30% { left: 57px; top: -14px; }
+  35% { left: 79px; top: -35px; } /* peak of bounce 2 -> 3 */
+  40% { left: 101px; top: -14px; }
+  50% { left: 101px; top: -14px; }
+  55% { left: 123px; top: -35px; } /* peak of bounce 3 -> 4 */
+  60% { left: 145px; top: -14px; }
+  100% { left: 145px; top: -14px; }
 }
 
 @keyframes fillBar1 {
   0% { width: 0%; }
-  18%, 100% { width: 100%; }
+  10%, 100% { width: 100%; }
 }
 
 @keyframes fillBar2 {
   0%, 20% { width: 0%; }
-  38%, 100% { width: 100%; }
+  30%, 100% { width: 100%; }
 }
 
 @keyframes fillBar3 {
   0%, 40% { width: 0%; }
-  58%, 100% { width: 100%; }
+  50%, 100% { width: 100%; }
 }
 
 @keyframes fillBar4 {
   0%, 60% { width: 0%; }
-  78%, 100% { width: 100%; }
+  70%, 100% { width: 100%; }
 }
 
