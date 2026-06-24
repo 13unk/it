@@ -66,7 +66,7 @@ export const RhymeGame: React.FC = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 3800); // 3.8s to let the full morph animation run and hold for a moment
+    }, 3000); // exactly 3 seconds to complete the simulation animation
     return () => clearTimeout(timer);
   }, []);
 
@@ -152,7 +152,6 @@ export const RhymeGame: React.FC = () => {
       <div className="rhyme-loader-screen">
         <div className="rhyme-loader-container">
           <div className="rhyme-loader-text-wrap">
-            <h1 className="rhyme-loader-text rubik-pixels">¡RIMA COMO PUEDAS!</h1>
             <h1 className="rhyme-loader-text rubik-glitch">¡RIMA COMO PUEDAS!</h1>
           </div>
           <div className="rhyme-loader-simulation">
