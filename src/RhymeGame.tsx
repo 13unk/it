@@ -199,9 +199,9 @@ export const RhymeGame: React.FC = () => {
           >
             <div 
               key={currentCol} 
-              className={`rhyme-ball-inner ${currentCol > 0 ? 'bouncing' : ''}`}
+              className={`rhyme-ball-inner ${currentCol === 0 ? 'slime-puddle' : 'bouncing'}`}
               style={{
-                '--bounce-duration': `${intervalMs * 0.5}ms`
+                '--bounce-duration': `${intervalMs}ms`
               } as React.CSSProperties}
             />
           </div>

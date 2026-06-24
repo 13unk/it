@@ -70,18 +70,43 @@
   background: radial-gradient(circle at 30% 30%, #55ff55, #00e701);
   border-radius: 50%;
   box-shadow: 0 5px 15px rgba(0, 231, 1, 0.6), -10px 0 20px rgba(0, 231, 1, 0.4);
+  transform-origin: center bottom;
+}
+
+.rhyme-ball-inner.slime-puddle {
+  transform: translateY(10px) scale(1.8, 0.3);
+  border-radius: 40% 40% 20% 20%;
+  box-shadow: 0 0 20px rgba(0, 231, 1, 0.8), inset 0 -5px 10px rgba(0, 0, 0, 0.2);
 }
 
 .rhyme-ball-inner.bouncing {
-  animation: gameBallBounce var(--bounce-duration, 300ms) cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  animation: gameBallBounce var(--bounce-duration, 600ms) cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
 @keyframes gameBallBounce {
-  0%, 100% {
-    transform: translateY(0);
+  0% {
+    transform: translateY(10px) scale(1.8, 0.3);
+    border-radius: 40% 40% 20% 20%;
   }
-  50% {
-    transform: translateY(-38px); /* rise above the squares */
+  15% {
+    transform: translateY(0) scale(0.6, 1.4);
+    border-radius: 50%;
+  }
+  25% {
+    transform: translateY(-38px) scale(1, 1); /* peak of bounce, nice ball shape */
+    border-radius: 50%;
+  }
+  35% {
+    transform: translateY(0) scale(0.8, 1.2);
+    border-radius: 50%;
+  }
+  45% {
+    transform: translateY(10px) scale(1.5, 0.5); /* landed and squashed */
+    border-radius: 40% 40% 20% 20%;
+  }
+  100% {
+    transform: translateY(10px) scale(1.8, 0.3); /* rests in puddle form until next beat */
+    border-radius: 40% 40% 20% 20%;
   }
 }
 
