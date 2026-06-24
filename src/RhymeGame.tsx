@@ -189,7 +189,7 @@ export const RhymeGame: React.FC = () => {
       </div>
 
       <div className="rhyme-game-area">
-        {isPlaying && currentCol >= 0 && (
+        {currentCol >= 0 && (
           <div 
             className="rhyme-ball-container"
             style={{
