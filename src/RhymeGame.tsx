@@ -252,15 +252,9 @@ export const RhymeGame: React.FC = () => {
           </div>
         </div>
 
-        <div className="jukebox-lower">
-          <div className="coin-slot-container">
-            <div className="coin-slot">
-              <div className="coin-insert"></div>
-              <div className="coin-btn">25 PTAS</div>
-            </div>
-          </div>
-
-          <div className="rhyme-controls">
+        <div className="jukebox-lower" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', padding: '0 20px', marginTop: '20px' }}>
+          
+          <div className="rhyme-controls" style={{ display: 'flex', gap: '15px', alignItems: 'center', flexDirection: 'row', marginTop: '0' }}>
             <button 
               className="rhyme-play-btn" 
               onClick={togglePlay}
@@ -283,16 +277,23 @@ export const RhymeGame: React.FC = () => {
               </div>
               
               <div className="bpm-wrapper" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <span style={{ fontFamily: 'Righteous', color: '#555', letterSpacing: '2px', textShadow: '1px 1px 0px rgba(255,255,255,0.3), -1px -1px 0px rgba(0,0,0,0.8)' }}>BPM</span>
                 <div className="bpm-info">
                   <span>{bpm}</span>
                 </div>
+                <span style={{ fontFamily: 'Righteous', color: '#555', letterSpacing: '2px', textShadow: '1px 1px 0px rgba(255,255,255,0.3), -1px -1px 0px rgba(0,0,0,0.8)' }}>BPM</span>
               </div>
             </div>
-
-            <audio ref={audioRef} src={currentBeat.file} loop />
-            <audio ref={cassetteRef} src="/soundfx/cassette.mp3" />
           </div>
+
+          <div className="coin-slot-container" style={{ position: 'relative', top: 'auto', right: 'auto' }}>
+            <div className="coin-slot">
+              <div className="coin-insert"></div>
+              <div className="coin-btn">25¢</div>
+            </div>
+          </div>
+
+          <audio ref={audioRef} src={currentBeat.file} loop />
+          <audio ref={cassetteRef} src="/soundfx/cassette.mp3" />
         </div>
       </div>
     </div>
