@@ -291,11 +291,11 @@ export const RhymeGame: React.FC = () => {
               <span style={{ fontFamily: 'Righteous', color: '#555', letterSpacing: '2px', textShadow: '1px 1px 0px rgba(255,255,255,0.3), -1px -1px 0px rgba(0,0,0,0.8)' }}>BPM</span>
             </div>
 
-            <div className="coin-slot-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px', position: 'relative', top: '15px' }}>
+            <div className="coin-slot-container" style={{ position: 'absolute', right: '0', top: '50%', transform: 'translateY(-50%)' }}>
               <div className="coin-slot">
                 <div className="coin-insert"></div>
+                <div className="coin-btn">25¢</div>
               </div>
-              <div className="coin-btn">25¢</div>
             </div>
           </div>
 
@@ -303,7 +303,7 @@ export const RhymeGame: React.FC = () => {
           <audio ref={cassetteRef} src="/soundfx/cassette.mp3" />
         </div>
 
-        <div className="jukebox-footer" style={{ position: 'absolute', bottom: '15px', textAlign: 'center', fontSize: '0.75rem', color: '#444', fontFamily: 'Righteous', letterSpacing: '2px', textShadow: '1px 1px 0px rgba(255,255,255,0.2), -1px -1px 0px rgba(0,0,0,0.8)' }}>
+        <div className="jukebox-footer" style={{ position: 'absolute', bottom: '4px', textAlign: 'center', fontSize: '0.75rem', color: '#444', fontFamily: 'Righteous', letterSpacing: '2px', textShadow: '1px 1px 0px rgba(255,255,255,0.2), -1px -1px 0px rgba(0,0,0,0.8)' }}>
           POWERED BY UNK
         </div>
       </div>
