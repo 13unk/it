@@ -303,8 +303,10 @@ export const RhymeGame: React.FC = () => {
           <audio ref={cassetteRef} src="/soundfx/cassette.mp3" />
         </div>
 
-        <div className="jukebox-footer" style={{ position: 'absolute', bottom: '4px', textAlign: 'center', fontSize: '0.75rem', color: '#444', fontFamily: 'Righteous', letterSpacing: '2px', textShadow: '1px 1px 0px rgba(255,255,255,0.2), -1px -1px 0px rgba(0,0,0,0.8)' }}>
-          POWERED BY UNK
+        <div className="jukebox-footer" style={{ position: 'absolute', bottom: '4px', textAlign: 'center', fontSize: '0.75rem', fontFamily: 'Righteous', letterSpacing: '2px', textShadow: '1px 1px 0px rgba(255,255,255,0.2), -1px -1px 0px rgba(0,0,0,0.8)' }}>
+          <a href="https://unkedition.com" target="_blank" rel="noopener noreferrer" style={{ color: '#444', textDecoration: 'none' }}>
+            UNK EDITION
+          </a>
         </div>
       </div>
     </div>
