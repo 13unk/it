@@ -9,6 +9,7 @@ const BEATS = [
     artist: 'Fat Cat Beats',
     artistUrl: 'https://www.youtube.com/@fatcatbeats',
     bpm: 89,
+    introRows: 4,
     file: '/Beats/Get It - Fat Cat Beats - 89BPM.mp3'
   },
   {
@@ -17,6 +18,7 @@ const BEATS = [
     artist: 'KaalaH',
     artistUrl: 'https://www.youtube.com/@KaalaH',
     bpm: 94,
+    introRows: 0,
     file: '/Beats/Scarface - KaalaH - 94BPM.mp3'
   }
 ];
@@ -53,6 +55,13 @@ function shufflePairs(words: string[][]) {
   return pairs.flat();
 }
 
+function getInitialWords(beatIndex: number) {
+  const beat = BEATS[beatIndex];
+  const introCount = beat.introRows || 0;
+  const intros = Array.from({ length: introCount }, () => [null, null, null, null]);
+  return [...intros, ...shufflePairs(BASE_WORDS)];
+}
+
 import { useNavigate } from 'react-router-dom';
 
 export const RhymeGame: React.FC = () => {
@@ -61,7 +70,7 @@ export const RhymeGame: React.FC = () => {
   const [currentBeatIndex, setCurrentBeatIndex] = useState(0);
   const [currentRow, setCurrentRow] = useState(0);
   const [currentCol, setCurrentCol] = useState(-1);
-  const [gameWords, setGameWords] = useState(() => shufflePairs(BASE_WORDS));
+  const [gameWords, setGameWords] = useState<(string | null)[][]>(() => getInitialWords(0));
   const timerRef = useRef<number | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const cassetteRef = useRef<HTMLAudioElement | null>(null);
@@ -118,7 +127,7 @@ export const RhymeGame: React.FC = () => {
   useEffect(() => {
     setCurrentRow(0);
     setCurrentCol(-1);
-    setGameWords(shufflePairs(BASE_WORDS));
+    setGameWords(getInitialWords(currentBeatIndex));
     
     if (audioRef.current) {
       audioRef.current.currentTime = 0;
@@ -230,10 +239,12 @@ export const RhymeGame: React.FC = () => {
                         const isPastBlock = rIndex < currentRow || (rIndex === currentRow && cIndex < currentCol);
                         const isCurrentBlock = rIndex === currentRow && cIndex === currentCol;
                         const isBlockFilling = isPastBlock || isCurrentBlock;
+                        const isIntroBlock = word === null;
+                        const displayWord = word || '';
                         return (
                           <div 
                             key={cIndex} 
-                            className={`rhyme-block ${word ? `rhyme-word-block ${colorClass}` : ''} ${isBlockFilling ? 'filling-text' : ''}`}
+                            className={`rhyme-block ${word ? `rhyme-word-block ${colorClass}` : ''} ${isIntroBlock ? 'intro-block' : ''} ${isBlockFilling ? 'filling-text' : ''}`}
                           >
                             <div 
                               className="block-progress-bar"
@@ -243,7 +254,7 @@ export const RhymeGame: React.FC = () => {
                               }}
                             />
                             <div className="rhyme-content">
-                              {word ? word : <span className="rhyme-dot"></span>}
+                              {displayWord ? displayWord : (!isIntroBlock && <span className="rhyme-dot"></span>)}
                             </div>
                           </div>
                         );

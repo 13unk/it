@@ -228,6 +228,13 @@
   box-shadow: inset 0 0 5px rgba(255,255,255,0.5);
 }
 
+/* Intro blocks */
+.intro-block {
+  background-color: #666;
+  background-image: none;
+  box-shadow: inset 0 5px 10px rgba(0,0,0,0.5);
+}
+
 /* Jukebox lower section */
 .jukebox-lower {
   width: 100%;
