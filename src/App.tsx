@@ -449,7 +449,7 @@ export default function App() {
     const handleHashChange = () => {
       const hash = location.pathname;
       if (!hash || hash === '/' || hash === '') {
-        setActiveCategory('');
+        setActiveCategory('SPLASH');
         setActiveItem(null);
         setActiveSubPage(null);
         setActiveSubSubPage(null);
@@ -463,6 +463,12 @@ export default function App() {
         const cat = parts[0].toUpperCase();
         if (cat === 'PROYECTOS' || cat === 'FORMATOS' || cat === 'VÍDEOS' || cat === 'RHYME') {
           setActiveCategory(cat);
+          setActiveItem(null);
+          setActiveSubPage(null);
+          setActiveSubSubPage(null);
+          return;
+        } else if (cat === 'ROOT') {
+          setActiveCategory('');
           setActiveItem(null);
           setActiveSubPage(null);
           setActiveSubSubPage(null);
@@ -2253,6 +2259,14 @@ export default function App() {
 
   if (activeCategory === 'RHYME') {
     return <RhymeGame />;
+  }
+
+  if (activeCategory === 'SPLASH') {
+    return (
+      <div style={{ display: 'flex', width: '100vw', height: '100vh', justifyContent: 'center', alignItems: 'center' }}>
+        <span style={{ fontSize: '0.9rem', color: '#555', letterSpacing: '1px' }}>© UNK</span>
+      </div>
+    );
   }
 
   return (

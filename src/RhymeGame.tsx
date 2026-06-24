@@ -62,10 +62,8 @@ function getInitialWords(beatIndex: number) {
   return [...intros, ...shufflePairs(BASE_WORDS)];
 }
 
-import { useNavigate } from 'react-router-dom';
 
 export const RhymeGame: React.FC = () => {
-  const navigate = useNavigate();
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentBeatIndex, setCurrentBeatIndex] = useState(0);
   const [currentRow, setCurrentRow] = useState(0);
@@ -161,11 +159,6 @@ export const RhymeGame: React.FC = () => {
     setCurrentBeatIndex((prev) => (prev === BEATS.length - 1 ? 0 : prev + 1));
   };
 
-  const goBack = () => {
-    navigate('/');
-  };
-
-
   if (isLoading) {
     return (
       <div className="rhyme-loader-screen">
@@ -201,9 +194,6 @@ export const RhymeGame: React.FC = () => {
 
   return (
     <div className="rhyme-game-container">
-      <button className="rhyme-back-btn" onClick={goBack}>
-        <ChevronLeft size={32} />
-      </button>
       
       <div className="jukebox-body">
         <div className="jukebox-arch">
