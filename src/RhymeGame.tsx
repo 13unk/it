@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Play, Pause, ChevronLeft, ChevronRight, Disc } from 'lucide-react';
+import { Play, ChevronLeft, ChevronRight, Disc } from 'lucide-react';
 import './RhymeGame.css';
 
 const BEATS = [
@@ -124,7 +124,11 @@ export const RhymeGame: React.FC = () => {
     }
   }, [currentBeatIndex]);
 
-  const togglePlay = () => setIsPlaying(!isPlaying);
+  const togglePlay = () => {
+    if (!isPlaying) {
+      setIsPlaying(true);
+    }
+  };
 
   const prevBeat = () => {
     if (cassetteRef.current) {
@@ -155,7 +159,6 @@ export const RhymeGame: React.FC = () => {
             <h1 className="rhyme-loader-text rubik-glitch">¡RIMA COMO PUEDAS!</h1>
           </div>
           <div className="rhyme-loader-simulation">
-            <div className="loader-ball" />
             <div className="loader-block">
               <div className="loader-progress-bar bar-1" />
               <span className="loader-dot"></span>
@@ -189,24 +192,6 @@ export const RhymeGame: React.FC = () => {
       </div>
 
       <div className="rhyme-game-area">
-        {currentCol >= 0 && (
-          <div 
-            className="rhyme-ball-container"
-            style={{
-              transform: `translateX(${currentCol * 95}px)`,
-              transitionDuration: currentCol === 0 ? '0s' : `${intervalMs * 0.5}ms`
-            }}
-          >
-            <div 
-              key={currentCol} 
-              className={`rhyme-ball-inner ${currentCol === 0 ? 'slime-puddle' : 'bouncing'}`}
-              style={{
-                '--bounce-duration': `${intervalMs}ms`
-              } as React.CSSProperties}
-            />
-          </div>
-        )}
-        
         <div className="rhyme-grid-viewport" style={{ width: '100%', height: '435px', overflow: 'hidden', position: 'relative', padding: '5px' }}>
           <div 
             className="rhyme-grid"
@@ -257,8 +242,12 @@ export const RhymeGame: React.FC = () => {
       </div>
 
       <div className="rhyme-controls">
-        <button className="rhyme-play-btn" onClick={togglePlay}>
-          {isPlaying ? <Pause size={32} /> : <Play size={32} />}
+        <button 
+          className="rhyme-play-btn" 
+          onClick={togglePlay}
+          style={{ opacity: isPlaying ? 0.5 : 1, cursor: isPlaying ? 'default' : 'pointer' }}
+        >
+          <Play size={32} />
         </button>
         
         <div className="beat-controls-row">
