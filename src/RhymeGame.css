@@ -329,7 +329,7 @@
   padding: 0;
   border-radius: 10px;
   border: 2px solid #555;
-  box-shadow: inset 0 5px 10px rgba(0,0,0,0.8);
+  box-shadow: inset 0 5px 10px rgba(0,0,0,0.8), 0 5px 0 #333, 0 10px 15px rgba(0,0,0,0.5);
   height: 50px;
   box-sizing: border-box;
 }
@@ -545,20 +545,20 @@
 
 @keyframes fillBar1 {
   0% { width: 0%; }
-  10%, 100% { width: 100%; }
+  25%, 100% { width: 100%; }
 }
 
 @keyframes fillBar2 {
-  0%, 20% { width: 0%; }
-  30%, 100% { width: 100%; }
-}
-
-@keyframes fillBar3 {
-  0%, 40% { width: 0%; }
+  0%, 25% { width: 0%; }
   50%, 100% { width: 100%; }
 }
 
+@keyframes fillBar3 {
+  0%, 50% { width: 0%; }
+  75%, 100% { width: 100%; }
+}
+
 @keyframes fillBar4 {
-  0%, 60% { width: 0%; }
-  70%, 100% { width: 100%; }
+  0%, 75% { width: 0%; }
+  100% { width: 100%; }
 }
