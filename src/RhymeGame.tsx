@@ -257,7 +257,7 @@ export const RhymeGame: React.FC = () => {
           </div>
         </div>
 
-        <div className="jukebox-lower" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', padding: '0 20px', marginTop: '20px' }}>
+        <div className="jukebox-lower" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', padding: '0 20px 40px', marginTop: '20px' }}>
           
           <div className="rhyme-controls" style={{ display: 'flex', gap: '20px', alignItems: 'center', flexDirection: 'row', marginTop: '0', width: '100%', justifyContent: 'center' }}>
             <button 
@@ -291,7 +291,7 @@ export const RhymeGame: React.FC = () => {
               <span style={{ fontFamily: 'Righteous', color: '#555', letterSpacing: '2px', textShadow: '1px 1px 0px rgba(255,255,255,0.3), -1px -1px 0px rgba(0,0,0,0.8)' }}>BPM</span>
             </div>
 
-            <div className="coin-slot-container" style={{ position: 'absolute', right: '0', top: '50%', transform: 'translateY(-50%)' }}>
+            <div className="coin-slot-container" style={{ position: 'absolute', right: '0', top: '-10px' }}>
               <div className="coin-slot">
                 <div className="coin-insert"></div>
                 <div className="coin-btn">25¢</div>
