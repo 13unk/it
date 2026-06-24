@@ -5,13 +5,17 @@ import './RhymeGame.css';
 const BEATS = [
   {
     title: 'Get It',
+    titleUrl: 'https://www.youtube.com/watch?v=xbqGwPRwJFc',
     artist: 'Fat Cat Beats',
+    artistUrl: 'https://www.youtube.com/@fatcatbeats',
     bpm: 89,
     file: '/Beats/Get It - Fat Cat Beats - 89BPM.mp3'
   },
   {
     title: 'Scarface',
+    titleUrl: 'https://www.youtube.com/watch?v=N9-uaszmAzc',
     artist: 'KaalaH',
+    artistUrl: 'https://www.youtube.com/@KaalaH',
     bpm: 94,
     file: '/Beats/Scarface - KaalaH - 94BPM.mp3'
   }
@@ -196,7 +200,7 @@ export const RhymeGame: React.FC = () => {
         <div className="jukebox-arch">
           <div className="neon-tube"></div>
           <div className="rhyme-header">
-            <h1>THE RHYME GAME</h1>
+            <h1>RIMA COMO PUEDAS</h1>
           </div>
         </div>
 
@@ -254,46 +258,52 @@ export const RhymeGame: React.FC = () => {
 
         <div className="jukebox-lower" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', padding: '0 20px', marginTop: '20px' }}>
           
-          <div className="rhyme-controls" style={{ display: 'flex', gap: '15px', alignItems: 'center', flexDirection: 'row', marginTop: '0' }}>
+          <div className="rhyme-controls" style={{ display: 'flex', gap: '20px', alignItems: 'center', flexDirection: 'row', marginTop: '0', width: '100%', justifyContent: 'center' }}>
             <button 
               className="rhyme-play-btn" 
               onClick={togglePlay}
               style={{ opacity: isPlaying ? 0.5 : 1, cursor: isPlaying ? 'default' : 'pointer' }}
             >
-              <Play size={32} />
+              <Play size={24} />
             </button>
             
-            <div className="beat-controls-row">
-              <div className="beat-selector">
-                <button onClick={prevBeat} className="beat-btn"><ChevronLeft size={24} /></button>
-                <div className="beat-info">
-                  <Disc size={28} className={`disc-icon ${isPlaying ? 'spinning-disc' : ''}`} />
-                  <div className="beat-text">
-                    <span className="beat-title">{currentBeat.title}</span>
-                    <span className="beat-artist">{currentBeat.artist}</span>
-                  </div>
+            <div className="beat-selector" style={{ width: '320px', height: '50px' }}>
+              <button onClick={prevBeat} className="beat-btn"><ChevronLeft size={24} /></button>
+              <div className="beat-info">
+                <Disc size={28} className={`disc-icon ${isPlaying ? 'spinning-disc' : ''}`} />
+                <div className="beat-text">
+                  <span className="beat-title">
+                    <a href={currentBeat.titleUrl} target="_blank" rel="noopener noreferrer">{currentBeat.title}</a>
+                  </span>
+                  <span className="beat-artist">
+                    <a href={currentBeat.artistUrl} target="_blank" rel="noopener noreferrer">{currentBeat.artist}</a>
+                  </span>
                 </div>
-                <button onClick={nextBeat} className="beat-btn"><ChevronRight size={24} /></button>
               </div>
-              
-              <div className="bpm-wrapper" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <div className="bpm-info">
-                  <span>{bpm}</span>
-                </div>
-                <span style={{ fontFamily: 'Righteous', color: '#555', letterSpacing: '2px', textShadow: '1px 1px 0px rgba(255,255,255,0.3), -1px -1px 0px rgba(0,0,0,0.8)' }}>BPM</span>
+              <button onClick={nextBeat} className="beat-btn"><ChevronRight size={24} /></button>
+            </div>
+            
+            <div className="coin-slot-container" style={{ position: 'relative', top: 'auto', right: 'auto' }}>
+              <div className="coin-slot">
+                <div className="coin-insert"></div>
+                <div className="coin-btn">25¢</div>
               </div>
             </div>
-          </div>
 
-          <div className="coin-slot-container" style={{ position: 'relative', top: 'auto', right: 'auto' }}>
-            <div className="coin-slot">
-              <div className="coin-insert"></div>
-              <div className="coin-btn">25¢</div>
+            <div className="bpm-wrapper" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <div className="bpm-info">
+                <span>{bpm}</span>
+              </div>
+              <span style={{ fontFamily: 'Righteous', color: '#555', letterSpacing: '2px', textShadow: '1px 1px 0px rgba(255,255,255,0.3), -1px -1px 0px rgba(0,0,0,0.8)' }}>BPM</span>
             </div>
           </div>
 
           <audio ref={audioRef} src={currentBeat.file} loop />
           <audio ref={cassetteRef} src="/soundfx/cassette.mp3" />
+        </div>
+
+        <div className="jukebox-footer" style={{ textAlign: 'center', marginTop: '20px', color: '#444', fontFamily: 'Righteous', letterSpacing: '4px', textShadow: '1px 1px 0px rgba(255,255,255,0.2), -1px -1px 0px rgba(0,0,0,0.8)' }}>
+          POWERED BY UNK
         </div>
       </div>
     </div>

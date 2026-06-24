@@ -40,6 +40,8 @@
 .jukebox-body {
   width: 100%;
   max-width: 750px;
+  transform: scale(1.2);
+  margin: 50px 0; /* Add margin so scaling doesn't overflow container bounds */
   background: linear-gradient(135deg, #d3d3d3 0%, #a9a9a9 50%, #808080 100%);
   border-radius: 60px 60px 20px 20px;
   padding: 20px;
@@ -81,22 +83,22 @@
 
 .rhyme-header h1 {
   font-family: 'Righteous', sans-serif;
-  color: #ff00ff;
+  color: #ff0000;
   font-size: 2.8rem;
   margin: 0;
   text-transform: uppercase;
   text-shadow: 
     0 0 5px #fff,
     0 0 10px #fff,
-    0 0 20px #ff00ff,
-    0 0 40px #ff00ff,
-    0 0 80px #ff00ff;
+    0 0 20px #ff0000,
+    0 0 40px #ff0000,
+    0 0 80px #ff0000;
   animation: neon-flicker 3s infinite alternate;
 }
 
 @keyframes neon-flicker {
   0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #ff00ff, 0 0 40px #ff00ff, 0 0 80px #ff00ff;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #ff0000, 0 0 40px #ff0000, 0 0 80px #ff0000;
     opacity: 1;
   }
   20%, 24%, 55% {
@@ -289,9 +291,9 @@
   background: #d2042d;
   color: white;
   border: none;
-  width: 80px;
-  height: 80px;
-  border-radius: 12px;
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -365,8 +367,8 @@
 }
 
 .disc-icon {
-  color: #00ffff;
-  filter: drop-shadow(0 0 2px #00ffff);
+  color: #ff0000;
+  filter: drop-shadow(0 0 2px #ff0000);
 }
 
 .spinning-disc {
@@ -407,12 +409,12 @@
 }
 
 .bpm-info span {
-  color: #ff00ff;
+  color: #ff0000;
   font-family: 'Righteous', sans-serif;
   font-size: 1.1rem;
   min-width: 40px;
   text-align: center;
-  text-shadow: 0 0 5px #ff00ff;
+  text-shadow: 0 0 5px #ff0000;
 }
 
 /* Loader Screen */
@@ -518,10 +520,10 @@
   z-index: 2;
 }
 
-.bar-1 { animation: fillBar1 3s linear infinite; }
-.bar-2 { animation: fillBar2 3s linear infinite; }
-.bar-3 { animation: fillBar3 3s linear infinite; }
-.bar-4 { animation: fillBar4 3s linear infinite; }
+.bar-1 { animation: fillBar1 6s linear infinite; }
+.bar-2 { animation: fillBar2 6s linear infinite; }
+.bar-3 { animation: fillBar3 6s linear infinite; }
+.bar-4 { animation: fillBar4 6s linear infinite; }
 
 @keyframes fillBar1 {
   0% { width: 0%; }
