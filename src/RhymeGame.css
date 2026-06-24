@@ -408,3 +408,100 @@
     text-shadow: 0 0 20px rgba(0, 231, 1, 0.8);
   }
 }
+
+/* Loader Simulation */
+.rhyme-loader-simulation {
+  display: flex;
+  gap: 8px;
+  margin-top: 30px;
+  justify-content: center;
+  position: relative;
+  width: 168px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.loader-block {
+  width: 36px;
+  height: 36px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.loader-progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  width: 0;
+  z-index: 1;
+}
+
+.loader-dot {
+  width: 6px;
+  height: 6px;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.loader-ball {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #ffffff;
+  border-radius: 50%;
+  z-index: 5;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
+  animation: loaderBall 2.5s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+.bar-1 { animation: fillBar1 2.5s linear infinite; }
+.bar-2 { animation: fillBar2 2.5s linear infinite; }
+.bar-3 { animation: fillBar3 2.5s linear infinite; }
+.bar-4 { animation: fillBar4 2.5s linear infinite; }
+
+/* Keyframes for Simulation */
+@keyframes loaderBall {
+  0% { left: 13px; top: 13px; }
+  20% { left: 13px; top: 13px; }
+  25% { left: 57px; top: 13px; }
+  45% { left: 57px; top: 13px; }
+  50% { left: 101px; top: 13px; }
+  70% { left: 101px; top: 13px; }
+  75% { left: 145px; top: 13px; }
+  95% { left: 145px; top: 13px; }
+  100% { left: 13px; top: 13px; }
+}
+
+@keyframes fillBar1 {
+  0% { width: 0%; }
+  20%, 95% { width: 100%; }
+  100% { width: 0%; }
+}
+
+@keyframes fillBar2 {
+  0%, 25% { width: 0%; }
+  45%, 95% { width: 100%; }
+  100% { width: 0%; }
+}
+
+@keyframes fillBar3 {
+  0%, 50% { width: 0%; }
+  70%, 95% { width: 100%; }
+  100% { width: 0%; }
+}
+
+@keyframes fillBar4 {
+  0%, 75% { width: 0%; }
+  95% { width: 100%; }
+  100% { width: 0%; }
+}
+

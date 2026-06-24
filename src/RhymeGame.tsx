@@ -155,6 +155,25 @@ export const RhymeGame: React.FC = () => {
             <h1 className="rhyme-loader-text rubik-pixels">¡RIMA COMO PUEDAS!</h1>
             <h1 className="rhyme-loader-text rubik-glitch">¡RIMA COMO PUEDAS!</h1>
           </div>
+          <div className="rhyme-loader-simulation">
+            <div className="loader-ball" />
+            <div className="loader-block">
+              <div className="loader-progress-bar bar-1" />
+              <span className="loader-dot"></span>
+            </div>
+            <div className="loader-block">
+              <div className="loader-progress-bar bar-2" />
+              <span className="loader-dot"></span>
+            </div>
+            <div className="loader-block">
+              <div className="loader-progress-bar bar-3" />
+              <span className="loader-dot"></span>
+            </div>
+            <div className="loader-block">
+              <div className="loader-progress-bar bar-4" />
+              <span className="loader-dot"></span>
+            </div>
+          </div>
         </div>
       </div>
     );
