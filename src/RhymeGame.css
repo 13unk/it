@@ -317,11 +317,6 @@
   display: flex;
   align-items: center;
   gap: 15px;
-  background: #222;
-  padding: 10px 15px;
-  border-radius: 10px;
-  border: 2px solid #555;
-  box-shadow: inset 0 5px 10px rgba(0,0,0,0.8);
 }
 
 .beat-selector {
@@ -331,6 +326,11 @@
   width: 100%;
   max-width: 300px;
   justify-content: space-between;
+  background: #222;
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: 2px solid #555;
+  box-shadow: inset 0 5px 10px rgba(0,0,0,0.8);
 }
 
 .beat-btn {
@@ -383,6 +383,11 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.beat-text a {
+  text-decoration: none;
+  color: inherit;
 }
 
 .beat-title {
