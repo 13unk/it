@@ -131,6 +131,7 @@ export const RhymeGame: React.FC = () => {
   };
 
   const prevBeat = () => {
+    setIsPlaying(false);
     if (cassetteRef.current) {
       cassetteRef.current.currentTime = 0;
       cassetteRef.current.play().catch(e => console.log('Cassette play error', e));
@@ -139,6 +140,7 @@ export const RhymeGame: React.FC = () => {
   };
 
   const nextBeat = () => {
+    setIsPlaying(false);
     if (cassetteRef.current) {
       cassetteRef.current.currentTime = 0;
       cassetteRef.current.play().catch(e => console.log('Cassette play error', e));
@@ -187,89 +189,105 @@ export const RhymeGame: React.FC = () => {
         <ChevronLeft size={32} />
       </button>
       
-      <div className="rhyme-header">
-        <h1>THE RHYME GAME</h1>
-      </div>
-
-      <div className="rhyme-game-area">
-        <div className="rhyme-grid-viewport" style={{ width: '100%', height: '435px', overflow: 'hidden', position: 'relative', padding: '5px' }}>
-          <div 
-            className="rhyme-grid"
-            style={{
-              transform: `translateY(-${currentRow * 75}px)`,
-              transition: `transform ${intervalMs * 0.8}ms cubic-bezier(0.25, 1, 0.5, 1)`
-            }}
-          >
-            {gameWords.map((row, rIndex) => {
-              const isRhymeA = Math.floor(rIndex / 2) % 2 === 0;
-              const colorClass = isRhymeA ? 'rhyme-color-a' : 'rhyme-color-b';
-              const isPast = rIndex < currentRow - 1;
-              const isPastBlurred = rIndex === currentRow - 1;
-              const isFutureBlurred = rIndex === currentRow + 4;
-
-              return (
-                <div 
-                  key={rIndex} 
-                  className={`rhyme-row ${isPast ? 'fade-out-up' : ''} ${isPastBlurred || isFutureBlurred ? 'blur-row' : ''}`}
-                >
-                  {row.map((word, cIndex) => {
-                    const isPastBlock = rIndex < currentRow || (rIndex === currentRow && cIndex < currentCol);
-                    const isCurrentBlock = rIndex === currentRow && cIndex === currentCol;
-                    const isBlockFilling = isPastBlock || isCurrentBlock;
-                    return (
-                      <div 
-                        key={cIndex} 
-                        className={`rhyme-block ${word ? `rhyme-word-block ${colorClass}` : ''} ${isBlockFilling ? 'filling-text' : ''}`}
-                      >
-                        <div 
-                          className="block-progress-bar"
-                          style={{
-                            width: isPastBlock || isCurrentBlock ? '100%' : '0%',
-                            transition: isCurrentBlock && isPlaying ? `width ${intervalMs}ms linear` : 'none'
-                          }}
-                        />
-                        <div className="rhyme-content">
-                          {word ? word : <span className="rhyme-dot"></span>}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              );
-            })}
+      <div className="jukebox-body">
+        <div className="jukebox-arch">
+          <div className="neon-tube"></div>
+          <div className="rhyme-header">
+            <h1>THE RHYME GAME</h1>
           </div>
         </div>
-      </div>
 
-      <div className="rhyme-controls">
-        <button 
-          className="rhyme-play-btn" 
-          onClick={togglePlay}
-          style={{ opacity: isPlaying ? 0.5 : 1, cursor: isPlaying ? 'default' : 'pointer' }}
-        >
-          <Play size={32} />
-        </button>
-        
-        <div className="beat-controls-row">
-          <div className="beat-selector">
-            <button onClick={prevBeat} className="beat-btn"><ChevronLeft size={24} /></button>
-            <div className="beat-info">
-              <Disc size={28} className={`disc-icon ${isPlaying ? 'spinning-disc' : ''}`} />
-              <div className="beat-text">
-                <span className="beat-title">{currentBeat.title}</span>
-                <span className="beat-artist">{currentBeat.artist}</span>
+        <div className="jukebox-center">
+          <div className="rhyme-game-area">
+            <div className="rhyme-grid-viewport" style={{ width: '100%', height: '435px', overflow: 'hidden', position: 'relative', padding: '5px' }}>
+              <div 
+                className="rhyme-grid"
+                style={{
+                  transform: `translateY(-${currentRow * 75}px)`,
+                  transition: `transform ${intervalMs * 0.8}ms cubic-bezier(0.25, 1, 0.5, 1)`
+                }}
+              >
+                {gameWords.map((row, rIndex) => {
+                  const isRhymeA = Math.floor(rIndex / 2) % 2 === 0;
+                  const colorClass = isRhymeA ? 'rhyme-color-a' : 'rhyme-color-b';
+                  const isPast = rIndex < currentRow - 1;
+                  const isPastBlurred = rIndex === currentRow - 1;
+                  const isFutureBlurred = rIndex === currentRow + 4;
+
+                  return (
+                    <div 
+                      key={rIndex} 
+                      className={`rhyme-row ${isPast ? 'fade-out-up' : ''} ${isPastBlurred || isFutureBlurred ? 'blur-row' : ''}`}
+                    >
+                      {row.map((word, cIndex) => {
+                        const isPastBlock = rIndex < currentRow || (rIndex === currentRow && cIndex < currentCol);
+                        const isCurrentBlock = rIndex === currentRow && cIndex === currentCol;
+                        const isBlockFilling = isPastBlock || isCurrentBlock;
+                        return (
+                          <div 
+                            key={cIndex} 
+                            className={`rhyme-block ${word ? `rhyme-word-block ${colorClass}` : ''} ${isBlockFilling ? 'filling-text' : ''}`}
+                          >
+                            <div 
+                              className="block-progress-bar"
+                              style={{
+                                width: isPastBlock || isCurrentBlock ? '100%' : '0%',
+                                transition: isCurrentBlock && isPlaying ? `width ${intervalMs}ms linear` : 'none'
+                              }}
+                            />
+                            <div className="rhyme-content">
+                              {word ? word : <span className="rhyme-dot"></span>}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  );
+                })}
               </div>
             </div>
-            <button onClick={nextBeat} className="beat-btn"><ChevronRight size={24} /></button>
-          </div>
-          
-          <div className="bpm-info">
-            <span>{bpm} BPM</span>
           </div>
         </div>
 
-        <audio ref={audioRef} src={currentBeat.file} loop />
-        <audio ref={cassetteRef} src="/soundfx/cassette.mp3" />
+        <div className="jukebox-lower">
+          <div className="coin-slot-container">
+            <div className="coin-slot">
+              <div className="coin-insert"></div>
+              <div className="coin-btn">25¢</div>
+            </div>
+          </div>
+
+          <div className="rhyme-controls">
+            <button 
+              className="rhyme-play-btn" 
+              onClick={togglePlay}
+              style={{ opacity: isPlaying ? 0.5 : 1, cursor: isPlaying ? 'default' : 'pointer' }}
+            >
+              <Play size={32} />
+            </button>
+            
+            <div className="beat-controls-row">
+              <div className="beat-selector">
+                <button onClick={prevBeat} className="beat-btn"><ChevronLeft size={24} /></button>
+                <div className="beat-info">
+                  <Disc size={28} className={`disc-icon ${isPlaying ? 'spinning-disc' : ''}`} />
+                  <div className="beat-text">
+                    <span className="beat-title">{currentBeat.title}</span>
+                    <span className="beat-artist">{currentBeat.artist}</span>
+                  </div>
+                </div>
+                <button onClick={nextBeat} className="beat-btn"><ChevronRight size={24} /></button>
+              </div>
+              
+              <div className="bpm-info">
+                <span>{bpm} BPM</span>
+              </div>
+            </div>
+
+            <audio ref={audioRef} src={currentBeat.file} loop />
+            <audio ref={cassetteRef} src="/soundfx/cassette.mp3" />
+          </div>
+        </div>
       </div>
     </div>
   );
