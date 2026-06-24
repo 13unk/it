@@ -191,12 +191,20 @@ export const RhymeGame: React.FC = () => {
       <div className="rhyme-game-area">
         {isPlaying && currentCol >= 0 && (
           <div 
-            className="rhyme-ball"
+            className="rhyme-ball-container"
             style={{
-              transform: `translate(${currentCol * 95}px, 0)`,
+              transform: `translateX(${currentCol * 95}px)`,
               transitionDuration: currentCol === 0 ? '0s' : `${intervalMs * 0.5}ms`
             }}
-          />
+          >
+            <div 
+              key={currentCol} 
+              className={`rhyme-ball-inner ${currentCol > 0 ? 'bouncing' : ''}`}
+              style={{
+                '--bounce-duration': `${intervalMs * 0.5}ms`
+              } as React.CSSProperties}
+            />
+          </div>
         )}
         
         <div className="rhyme-grid-viewport" style={{ width: '100%', height: '435px', overflow: 'hidden', position: 'relative', padding: '5px' }}>
