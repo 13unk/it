@@ -209,7 +209,7 @@ export const RhymeGame: React.FC = () => {
               <div 
                 className="rhyme-grid"
                 style={{
-                  transform: `translateY(-${currentRow * 75}px)`,
+                  transform: `translateY(-${currentRow * 65}px)`,
                   transition: `transform ${intervalMs * 0.8}ms cubic-bezier(0.25, 1, 0.5, 1)`
                 }}
               >
