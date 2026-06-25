@@ -65,7 +65,7 @@ function getInitialWords(beatIndex: number, limit: number) {
     ...shufflePairs(BASE_WORDS), 
     ...shufflePairs(BASE_WORDS)
   ].slice(0, limit);
-  const outros = Array.from({ length: 4 }, () => [null, null, null, null]);
+  const outros = [[null, null, null, null]];
   return [...intros, ...words, ...outros];
 }
 
@@ -150,6 +150,10 @@ export const RhymeGame: React.FC = () => {
   useEffect(() => {
     if (isFadingOut && audioRef.current) {
       const audio = audioRef.current;
+      const totalFadeTime = intervalMs * 4;
+      const steps = 20;
+      const fadeIntervalMs = totalFadeTime / steps;
+
       const fadeInterval = setInterval(() => {
         if (audio.volume > 0.05) {
           audio.volume -= 0.05;
@@ -157,13 +161,12 @@ export const RhymeGame: React.FC = () => {
           audio.pause();
           audio.volume = 1;
           setIsFadingOut(false);
-          setIsPlaying(false);
           clearInterval(fadeInterval);
         }
-      }, 150);
+      }, fadeIntervalMs);
       return () => clearInterval(fadeInterval);
     }
-  }, [isFadingOut]);
+  }, [isFadingOut, intervalMs]);
 
   // Restart game & audio if beat changes
   useEffect(() => {
