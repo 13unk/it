@@ -13,20 +13,12 @@ const BEATS = [
     file: '/Beats/Get It - Fat Cat Beats - 89BPM.mp3'
   },
   {
-    title: 'Karma',
-    titleUrl: '#',
-    artist: 'Dusty Villain',
-    artistUrl: '#',
-    bpm: 92,
-    introRows: 0,
-    file: '/Beats/Karma - Dusty Villain - 92BPM.mp3'
-  },
-  {
     title: 'Jutsu',
-    titleUrl: '#',
+    titleUrl: 'https://www.youtube.com/watch?v=XeMUZg2uTT8',
     artist: 'Atom Child',
-    artistUrl: '#',
+    artistUrl: 'https://www.youtube.com/@PRODBYATOMCHILD',
     bpm: 140,
+    gameBpm: 70,
     introRows: 0,
     file: '/Beats/Jutsu - Atom Child - 140BPM.mp3'
   }
@@ -92,7 +84,8 @@ export const RhymeGame: React.FC = () => {
 
   const currentBeat = BEATS[currentBeatIndex];
   const bpm = currentBeat.bpm;
-  const intervalMs = (60 / bpm) * 1000;
+  const effectiveBpm = (currentBeat as any).gameBpm || currentBeat.bpm;
+  const intervalMs = (60 / effectiveBpm) * 1000;
 
   useEffect(() => {
     if (currentRow + 10 >= gameWords.length) {
