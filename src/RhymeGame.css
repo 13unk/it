@@ -170,7 +170,7 @@
   align-items: center;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.5), inset 0 0 10px rgba(0,0,0,0.05);
   font-family: 'Special Elite', monospace; /* Typewriter font */
-  transition: transform 0.2s;
+  transition: transform 0.2s, border-color 0.2s ease;
 }
 
 .block-progress-bar {
@@ -248,6 +248,12 @@
 .rhyme-row.intro-row .rhyme-block {
   border-top: 4px solid #555;
   border-bottom: 4px solid #555;
+}
+
+/* Locked Block Borders */
+.rhyme-row .rhyme-block.block-locked {
+  border-top-color: #222;
+  border-bottom-color: #222;
 }
 
 /* Jukebox lower section */

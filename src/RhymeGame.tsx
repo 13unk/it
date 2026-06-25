@@ -296,7 +296,7 @@ export const RhymeGame: React.FC = () => {
                         return (
                           <div 
                             key={cIndex} 
-                            className={`rhyme-block ${word ? `rhyme-word-block ${colorClass}` : ''} ${isIntroBlock ? 'intro-block' : ''} ${isBlockFilling ? 'filling-text' : ''}`}
+                            className={`rhyme-block ${word ? `rhyme-word-block` : ''} ${isIntroBlock ? 'intro-block' : ''} ${isBlockFilling ? 'filling-text' : ''} ${isPastBlock ? 'block-locked' : ''}`}
                           >
                             <div 
                               className="block-progress-bar"
