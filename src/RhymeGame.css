@@ -16,6 +16,8 @@
   font-family: 'Righteous', 'Inter', sans-serif;
   overflow: hidden;
   position: relative;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .rhyme-back-btn {
