@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Play, ChevronLeft, ChevronRight, Disc } from 'lucide-react';
+import { Play, ChevronLeft, ChevronRight, Disc, Shuffle } from 'lucide-react';
 import './RhymeGame.css';
 
 const BEATS = [
@@ -218,6 +218,22 @@ export const RhymeGame: React.FC = () => {
     setCurrentBeatIndex((prev) => (prev === BEATS.length - 1 ? 0 : prev + 1));
   };
 
+  const randomBeat = () => {
+    setIsPlaying(false);
+    if (cassetteRef.current) {
+      cassetteRef.current.currentTime = 0;
+      cassetteRef.current.play().catch(e => console.log('Cassette play error', e));
+    }
+    setCurrentBeatIndex((prev) => {
+      if (BEATS.length <= 1) return prev;
+      let next;
+      do {
+        next = Math.floor(Math.random() * BEATS.length);
+      } while (next === prev);
+      return next;
+    });
+  };
+
   if (isLoading) {
     return (
       <div className="rhyme-loader-screen">
@@ -332,6 +348,14 @@ export const RhymeGame: React.FC = () => {
               style={{ opacity: isPlaying ? 0.5 : 1, cursor: isPlaying ? 'default' : 'pointer' }}
             >
               <Play size={24} />
+            </button>
+            
+            <button 
+              className="rhyme-random-btn" 
+              onClick={randomBeat}
+              title="Beat aleatorio"
+            >
+              <Shuffle size={18} />
             </button>
             
             <div className="beat-selector" style={{ width: '320px', height: '50px' }}>

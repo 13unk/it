@@ -339,6 +339,30 @@
     inset 0 5px 10px rgba(255,255,255,0.4);
 }
 
+.rhyme-random-btn {
+  background: #333;
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 
+    0 4px 0 #111,
+    inset 0 2px 4px rgba(255,255,255,0.2);
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.rhyme-random-btn:active {
+  transform: translateY(4px);
+  box-shadow: 
+    0 0 0 #111,
+    inset 0 2px 4px rgba(255,255,255,0.2);
+}
+
 .beat-controls-row {
   display: flex;
   align-items: center;
