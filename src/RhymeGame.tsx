@@ -13,13 +13,22 @@ const BEATS = [
     file: '/Beats/Get It - Fat Cat Beats - 89BPM.mp3'
   },
   {
-    title: 'Scarface',
-    titleUrl: 'https://www.youtube.com/watch?v=N9-uaszmAzc',
-    artist: 'KaalaH',
-    artistUrl: 'https://www.youtube.com/@KaalaH',
-    bpm: 94,
+    title: 'Karma',
+    titleUrl: '#',
+    artist: 'Dusty Villain',
+    artistUrl: '#',
+    bpm: 92,
     introRows: 0,
-    file: '/Beats/Scarface - KaalaH - 94BPM.mp3'
+    file: '/Beats/Karma - Dusty Villain - 92BPM.mp3'
+  },
+  {
+    title: 'Jutsu',
+    titleUrl: '#',
+    artist: 'Atom Child',
+    artistUrl: '#',
+    bpm: 140,
+    introRows: 0,
+    file: '/Beats/Jutsu - Atom Child - 140BPM.mp3'
   }
 ];
 import './RhymeGame.css';
