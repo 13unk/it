@@ -297,11 +297,11 @@
 }
 
 .coin-slot {
-  width: 60px;
-  height: 120px;
+  width: 40px;
+  height: 80px;
   background: linear-gradient(90deg, #555, #888, #555);
-  border-radius: 8px;
-  border: 3px solid #333;
+  border-radius: 5px;
+  border: 2px solid #333;
   box-shadow: inset 0 2px 5px rgba(255,255,255,0.3), 2px 2px 5px rgba(0,0,0,0.6);
   display: flex;
   flex-direction: column;
@@ -311,10 +311,10 @@
 }
 
 .coin-insert {
-  width: 8px;
-  height: 60px;
+  width: 6px;
+  height: 40px;
   background: #111;
-  border-radius: 4px;
+  border-radius: 3px;
   box-shadow: inset 0 2px 4px rgba(0,0,0,0.8), 1px 0 1px rgba(255,255,255,0.4);
 }
 
@@ -343,17 +343,17 @@
   background: #d2042d;
   color: white;
   border: none;
-  width: 80px;
-  height: 80px;
-  border-radius: 12px;
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   box-shadow: 
-    0 12px 0 #7a0018, 
-    0 20px 25px rgba(0,0,0,0.5),
-    inset 0 6px 12px rgba(255,255,255,0.4);
+    0 8px 0 #7a0018, 
+    0 15px 20px rgba(0,0,0,0.5),
+    inset 0 5px 10px rgba(255,255,255,0.4);
   transition: transform 0.1s, box-shadow 0.1s;
 }
 
@@ -369,17 +369,17 @@
   background: #d2042d;
   color: white;
   border: none;
-  width: 80px;
-  height: 80px;
-  border-radius: 12px;
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   box-shadow: 
-    0 12px 0 #7a0018, 
-    0 20px 25px rgba(0,0,0,0.5),
-    inset 0 6px 12px rgba(255,255,255,0.4);
+    0 8px 0 #7a0018, 
+    0 15px 20px rgba(0,0,0,0.5),
+    inset 0 5px 10px rgba(255,255,255,0.4);
   transition: transform 0.1s, box-shadow 0.1s;
 }
 
@@ -401,14 +401,14 @@
   display: flex;
   align-items: center;
   width: 100%;
-  max-width: 480px;
+  max-width: 340px;
   justify-content: space-between;
   background: #222;
   padding: 0;
-  border-radius: 12px;
+  border-radius: 10px;
   border: 2px solid #555;
   box-shadow: inset 0 5px 10px rgba(0,0,0,0.8), 0 5px 0 #333, 0 10px 15px rgba(0,0,0,0.5);
-  height: 80px;
+  height: 50px;
   box-sizing: border-box;
 }
 
@@ -416,8 +416,8 @@
   background: #d2042d;
   color: white;
   border: none;
-  width: 80px;
-  height: 80px;
+  width: 50px;
+  height: 50px;
   border-radius: 0;
   margin: -2px;
   position: relative;
@@ -442,11 +442,11 @@
 }
 
 .beat-selector > :first-child {
-  border-radius: 12px 0 0 12px;
+  border-radius: 10px 0 0 10px;
 }
 
 .beat-selector > :last-child {
-  border-radius: 0 12px 12px 0;
+  border-radius: 0 10px 10px 0;
 }
 
 .beat-info {
@@ -471,6 +471,47 @@
   100% { transform: rotate(360deg); }
 }
 
+/* -------------------------------------
+   MOBILE MASSIVE UI OVERRIDES
+------------------------------------- */
+@media (max-width: 768px) {
+  .rhyme-play-btn, .rhyme-random-btn {
+    width: 80px;
+    height: 80px;
+    border-radius: 12px;
+    box-shadow: 
+      0 12px 0 #7a0018, 
+      0 20px 25px rgba(0,0,0,0.5),
+      inset 0 6px 12px rgba(255,255,255,0.4);
+  }
+  .beat-selector {
+    max-width: 480px;
+    height: 80px;
+    border-radius: 12px;
+  }
+  .beat-btn {
+    width: 80px;
+    height: 80px;
+  }
+  .beat-selector > :first-child { border-radius: 12px 0 0 12px; }
+  .beat-selector > :last-child { border-radius: 0 12px 12px 0; }
+  .beat-title { font-size: 1.4rem; }
+  .beat-artist { font-size: 1rem; }
+  .bpm-info { width: 90px; padding: 15px 0; border-radius: 8px; }
+  .bpm-info span { font-size: 1.6rem; }
+  .coin-slot { 
+    width: 60px; 
+    height: 120px; 
+    border-radius: 8px; 
+    border-width: 3px; 
+  }
+  .coin-insert { 
+    width: 8px; 
+    height: 60px; 
+    border-radius: 4px; 
+  }
+}
+
 .beat-text {
   display: flex;
   flex-direction: column;
@@ -484,7 +525,7 @@
 
 .beat-title {
   font-family: 'Righteous', sans-serif;
-  font-size: 1.4rem;
+  font-size: 1rem;
   color: #fdf5e6;
   text-shadow: 1px 1px 2px #000;
   line-height: 1.2;
@@ -492,18 +533,18 @@
 
 .beat-artist {
   font-family: 'Inter', sans-serif;
-  font-size: 1rem;
+  font-size: 0.75rem;
   color: #aaa;
   line-height: 1.2;
 }
 
 .bpm-info {
   background: #111;
-  padding: 15px 0;
-  border-radius: 8px;
+  padding: 10px 0;
+  border-radius: 5px;
   border: 2px solid #333;
   box-shadow: inset 0 2px 5px rgba(0,0,0,0.8);
-  width: 90px;
+  width: 60px;
   display: flex;
   justify-content: center;
   cursor: default;
@@ -512,7 +553,7 @@
 .bpm-info span {
   color: #ff0000;
   font-family: 'Righteous', sans-serif;
-  font-size: 1.6rem;
+  font-size: 1.1rem;
   text-align: center;
   text-shadow: 0 0 5px #ff0000;
 }
