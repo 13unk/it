@@ -178,7 +178,6 @@
   top: 0;
   left: 0;
   height: 100%;
-  background-color: rgba(60, 60, 60, 0.4); /* dark gray sweep */
   z-index: 0;
 }
 

@@ -302,7 +302,8 @@ export const RhymeGame: React.FC = () => {
                               className="block-progress-bar"
                               style={{
                                 width: isPastBlock || isCurrentBlock ? '100%' : '0%',
-                                transition: isCurrentBlock && isPlaying ? `width ${intervalMs}ms linear` : 'none'
+                                backgroundColor: isPastBlock ? 'rgba(30, 30, 30, 0.85)' : 'rgba(60, 60, 60, 0.4)',
+                                transition: (isCurrentBlock && isPlaying ? `width ${intervalMs}ms linear, ` : '') + 'background-color 0.2s ease'
                               }}
                             />
                             <div className="rhyme-content">
