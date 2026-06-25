@@ -19,7 +19,7 @@ const BEATS = [
     artistUrl: 'https://www.youtube.com/@PRODBYATOMCHILD',
     bpm: 140,
     gameBpm: 70,
-    introRows: 0,
+    introRows: 4,
     file: '/Beats/Jutsu - Atom Child - 140BPM.mp3'
   }
 ];
