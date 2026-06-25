@@ -381,9 +381,9 @@ export const RhymeGame: React.FC = () => {
 
         <div className="jukebox-lower" style={{ position: 'relative', display: 'flex', width: '100%', padding: '20px 20px 40px', marginTop: '10px', minHeight: '130px' }}>
           
-          <div className="rhyme-controls" style={{ display: 'flex', flexDirection: 'column', gap: '20px', alignItems: 'center', width: '100%', paddingRight: '50px' }}>
+          <div className="rhyme-controls" style={{ display: 'flex', flexDirection: 'column', gap: '35px', alignItems: 'center', width: '100%', paddingRight: '50px' }}>
             
-            <div className="controls-top-row" style={{ display: 'flex', gap: '20px', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
+            <div className="controls-top-row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', maxWidth: '480px' }}>
               <button 
                 className="rhyme-play-btn" 
                 onClick={togglePlay}
