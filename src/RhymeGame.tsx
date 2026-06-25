@@ -437,7 +437,7 @@ export const RhymeGame: React.FC = () => {
 
           </div>
 
-          <div className="coin-slot-container" style={{ position: 'absolute', right: '20px', top: '15px', cursor: isPlaying ? 'default' : 'pointer', userSelect: 'none' }} onClick={cycleWordLimit}>
+          <div className="coin-slot-container" style={{ position: 'absolute', right: '20px', top: 'calc(50% - 10px)', transform: 'translateY(-50%)', cursor: isPlaying ? 'default' : 'pointer', userSelect: 'none' }} onClick={cycleWordLimit}>
             <div className="coin-slot">
               <div className="coin-insert" style={{ background: `linear-gradient(to top, #ffd700 ${fillPercentage}%, #111 ${fillPercentage}%)` }}></div>
               <div className="coin-btn" style={{ fontSize: '11px', padding: '2px 4px' }}>{wordLimit}</div>
