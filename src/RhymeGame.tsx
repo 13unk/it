@@ -61,7 +61,8 @@ function getInitialWords(beatIndex: number) {
   const introCount = beat.introRows || 0;
   const intros = Array.from({ length: introCount }, () => [null, null, null, null]);
   const words = [...shufflePairs(BASE_WORDS), ...shufflePairs(BASE_WORDS)].slice(0, 20);
-  return [...intros, ...words];
+  const outros = Array.from({ length: 4 }, () => [null, null, null, null]);
+  return [...intros, ...words, ...outros];
 }
 
 
@@ -92,7 +93,7 @@ export const RhymeGame: React.FC = () => {
   // Fixed limit is handled by getInitialWords, so we don't append words anymore
 
   useEffect(() => {
-    if (isPlaying && !isFadingOut) {
+    if (isPlaying) {
       if (currentCol === -1) {
         setCurrentCol(0);
       }
@@ -100,20 +101,14 @@ export const RhymeGame: React.FC = () => {
       timerRef.current = window.setInterval(() => {
         setCurrentCol((prev) => {
           if (prev >= 3) {
-            setCurrentRow((r) => {
-              if (r + 1 >= gameWords.length) {
-                setIsFadingOut(true);
-                return r;
-              }
-              return r + 1;
-            });
+            setCurrentRow((r) => r + 1);
             return 0;
           }
           return prev + 1;
         });
       }, intervalMs);
 
-      if (audioRef.current && audioRef.current.paused) {
+      if (audioRef.current && audioRef.current.paused && !isFadingOut) {
         audioRef.current.play().catch(e => console.log('Audio play error', e));
       }
     } else if (!isFadingOut) {
@@ -125,7 +120,21 @@ export const RhymeGame: React.FC = () => {
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [isPlaying, isFadingOut, effectiveBpm, gameWords.length]);
+  }, [isPlaying, effectiveBpm, isFadingOut]);
+
+  useEffect(() => {
+    const beat = BEATS[currentBeatIndex];
+    const introCount = beat.introRows || 0;
+    const fadeOutRow = introCount + 20;
+
+    if (currentRow === fadeOutRow && isPlaying && !isFadingOut) {
+      setIsFadingOut(true);
+    }
+
+    if (currentRow >= gameWords.length && isPlaying) {
+      setIsPlaying(false);
+    }
+  }, [currentRow, isPlaying, isFadingOut, currentBeatIndex, gameWords.length]);
 
   useEffect(() => {
     if (isFadingOut && audioRef.current) {
