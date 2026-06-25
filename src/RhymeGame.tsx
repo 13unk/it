@@ -270,8 +270,14 @@ export const RhymeGame: React.FC = () => {
                 }}
               >
                 {gameWords.map((row, rIndex) => {
-                  const isRhymeA = Math.floor(rIndex / 2) % 2 === 0;
+                  const beat = BEATS[currentBeatIndex];
+                  const introCount = beat.introRows || 0;
+                  const isWaitLine = row[3] === null;
+                  const gameRowIndex = rIndex - introCount;
+                  const isRhymeA = Math.floor(Math.max(0, gameRowIndex) / 2) % 2 === 0;
                   const colorClass = isRhymeA ? 'rhyme-color-a' : 'rhyme-color-b';
+                  const rowTypeClass = isWaitLine ? 'intro-row' : colorClass;
+                  
                   const isPast = rIndex < currentRow - 1;
                   const isPastBlurred = rIndex === currentRow - 1;
                   const isFutureBlurred = rIndex === currentRow + 4;
@@ -279,7 +285,7 @@ export const RhymeGame: React.FC = () => {
                   return (
                     <div 
                       key={rIndex} 
-                      className={`rhyme-row ${isPast ? 'fade-out-up' : ''} ${isPastBlurred || isFutureBlurred ? 'blur-row' : ''}`}
+                      className={`rhyme-row ${isPast ? 'fade-out-up' : ''} ${isPastBlurred || isFutureBlurred ? 'blur-row' : ''} ${rowTypeClass}`}
                     >
                       {row.map((word, cIndex) => {
                         const isPastBlock = rIndex < currentRow || (rIndex === currentRow && cIndex < currentCol);
