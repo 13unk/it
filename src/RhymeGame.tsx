@@ -82,6 +82,7 @@ export const RhymeGame: React.FC = () => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const cassetteRef = useRef<HTMLAudioElement | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [scale, setScale] = useState(1.2);
   
   const [useChromaKey, setUseChromaKey] = useState(false);
   const chromaTimeoutRef = useRef<number | null>(null);
@@ -98,6 +99,26 @@ export const RhymeGame: React.FC = () => {
       chromaTimeoutRef.current = null;
     }
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      const screenWidth = window.innerWidth;
+      const desiredBase = 750;
+      
+      if (screenWidth < desiredBase * 1.2) {
+        // scale down to fit screen width with a small 10px padding on each side
+        const newScale = (screenWidth - 20) / desiredBase;
+        setScale(newScale);
+      } else {
+        setScale(1.2);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -286,7 +307,7 @@ export const RhymeGame: React.FC = () => {
   return (
     <div className={`rhyme-game-container ${useChromaKey ? 'chroma-mode' : ''}`}>
       
-      <div className="jukebox-body">
+      <div className="jukebox-body" style={{ transform: `scale(${scale})`, transformOrigin: 'center center' }}>
         <div className="jukebox-arch">
           <div className="neon-tube"></div>
           <div className="rhyme-header">
@@ -410,7 +431,7 @@ export const RhymeGame: React.FC = () => {
             </div>
 
             <div className="coin-slot-container" style={{ position: 'absolute', right: '0', top: '-10px', cursor: isPlaying ? 'default' : 'pointer', userSelect: 'none' }} onClick={cycleWordLimit}>
-              <div className="coin-slot" style={{ pointerEvents: 'none' }}>
+              <div className="coin-slot">
                 <div className="coin-insert" style={{ background: `linear-gradient(to top, #ffd700 ${fillPercentage}%, #111 ${fillPercentage}%)` }}></div>
                 <div className="coin-btn" style={{ fontSize: '11px', padding: '2px 4px' }}>{wordLimit}</div>
               </div>

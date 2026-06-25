@@ -47,7 +47,6 @@
 .jukebox-body {
   width: 100%;
   max-width: 750px;
-  transform: scale(1.2);
   margin: 50px 0; /* Add margin so scaling doesn't overflow container bounds */
   background: linear-gradient(135deg, #d3d3d3 0%, #a9a9a9 50%, #808080 100%);
   border-radius: 60px 60px 20px 20px;
