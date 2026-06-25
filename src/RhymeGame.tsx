@@ -60,7 +60,8 @@ function getInitialWords(beatIndex: number) {
   const beat = BEATS[beatIndex];
   const introCount = beat.introRows || 0;
   const intros = Array.from({ length: introCount }, () => [null, null, null, null]);
-  return [...intros, ...shufflePairs(BASE_WORDS)];
+  const words = [...shufflePairs(BASE_WORDS), ...shufflePairs(BASE_WORDS)].slice(0, 20);
+  return [...intros, ...words];
 }
 
 
@@ -70,6 +71,7 @@ export const RhymeGame: React.FC = () => {
   const [currentRow, setCurrentRow] = useState(0);
   const [currentCol, setCurrentCol] = useState(-1);
   const [gameWords, setGameWords] = useState<(string | null)[][]>(() => getInitialWords(0));
+  const [isFadingOut, setIsFadingOut] = useState(false);
   const timerRef = useRef<number | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const cassetteRef = useRef<HTMLAudioElement | null>(null);
@@ -87,14 +89,10 @@ export const RhymeGame: React.FC = () => {
   const effectiveBpm = (currentBeat as any).gameBpm || currentBeat.bpm;
   const intervalMs = (60 / effectiveBpm) * 1000;
 
-  useEffect(() => {
-    if (currentRow + 10 >= gameWords.length) {
-      setGameWords((prev) => [...prev, ...shufflePairs(BASE_WORDS)]);
-    }
-  }, [currentRow, gameWords.length]);
+  // Fixed limit is handled by getInitialWords, so we don't append words anymore
 
   useEffect(() => {
-    if (isPlaying) {
+    if (isPlaying && !isFadingOut) {
       if (currentCol === -1) {
         setCurrentCol(0);
       }
@@ -102,17 +100,23 @@ export const RhymeGame: React.FC = () => {
       timerRef.current = window.setInterval(() => {
         setCurrentCol((prev) => {
           if (prev >= 3) {
-            setCurrentRow((r) => r + 1);
+            setCurrentRow((r) => {
+              if (r + 1 >= gameWords.length) {
+                setIsFadingOut(true);
+                return r;
+              }
+              return r + 1;
+            });
             return 0;
           }
           return prev + 1;
         });
       }, intervalMs);
 
-      if (audioRef.current) {
+      if (audioRef.current && audioRef.current.paused) {
         audioRef.current.play().catch(e => console.log('Audio play error', e));
       }
-    } else {
+    } else if (!isFadingOut) {
       if (timerRef.current) clearInterval(timerRef.current);
       if (audioRef.current) {
         audioRef.current.pause();
@@ -121,15 +125,35 @@ export const RhymeGame: React.FC = () => {
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [isPlaying, bpm]);
+  }, [isPlaying, isFadingOut, effectiveBpm, gameWords.length]);
+
+  useEffect(() => {
+    if (isFadingOut && audioRef.current) {
+      const audio = audioRef.current;
+      const fadeInterval = setInterval(() => {
+        if (audio.volume > 0.05) {
+          audio.volume -= 0.05;
+        } else {
+          audio.pause();
+          audio.volume = 1;
+          setIsFadingOut(false);
+          setIsPlaying(false);
+          clearInterval(fadeInterval);
+        }
+      }, 150);
+      return () => clearInterval(fadeInterval);
+    }
+  }, [isFadingOut]);
 
   // Restart game & audio if beat changes
   useEffect(() => {
     setCurrentRow(0);
     setCurrentCol(-1);
+    setIsFadingOut(false);
     setGameWords(getInitialWords(currentBeatIndex));
     
     if (audioRef.current) {
+      audioRef.current.volume = 1;
       audioRef.current.currentTime = 0;
       if (isPlaying) {
         audioRef.current.play().catch(e => console.log('Audio play error', e));
@@ -139,7 +163,17 @@ export const RhymeGame: React.FC = () => {
 
   const togglePlay = () => {
     if (!isPlaying) {
+      if (currentRow >= gameWords.length - 1 && currentCol >= 3) {
+        setCurrentRow(0);
+        setCurrentCol(-1);
+        if (audioRef.current) {
+          audioRef.current.currentTime = 0;
+          audioRef.current.volume = 1;
+        }
+      }
       setIsPlaying(true);
+    } else {
+      setIsPlaying(false);
     }
   };
 
