@@ -56,11 +56,15 @@ function shufflePairs(words: string[][]) {
   return pairs.flat();
 }
 
-function getInitialWords(beatIndex: number) {
+function getInitialWords(beatIndex: number, limit: number) {
   const beat = BEATS[beatIndex];
   const introCount = beat.introRows || 0;
   const intros = Array.from({ length: introCount }, () => [null, null, null, null]);
-  const words = [...shufflePairs(BASE_WORDS), ...shufflePairs(BASE_WORDS)].slice(0, 20);
+  const words = [
+    ...shufflePairs(BASE_WORDS), 
+    ...shufflePairs(BASE_WORDS), 
+    ...shufflePairs(BASE_WORDS)
+  ].slice(0, limit);
   const outros = Array.from({ length: 4 }, () => [null, null, null, null]);
   return [...intros, ...words, ...outros];
 }
@@ -71,7 +75,8 @@ export const RhymeGame: React.FC = () => {
   const [currentBeatIndex, setCurrentBeatIndex] = useState(0);
   const [currentRow, setCurrentRow] = useState(0);
   const [currentCol, setCurrentCol] = useState(-1);
-  const [gameWords, setGameWords] = useState<(string | null)[][]>(() => getInitialWords(0));
+  const [wordLimit, setWordLimit] = useState(20);
+  const [gameWords, setGameWords] = useState<(string | null)[][]>(() => getInitialWords(0, 20));
   const [isFadingOut, setIsFadingOut] = useState(false);
   const timerRef = useRef<number | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -89,6 +94,12 @@ export const RhymeGame: React.FC = () => {
   const bpm = currentBeat.bpm;
   const effectiveBpm = (currentBeat as any).gameBpm || currentBeat.bpm;
   const intervalMs = (60 / effectiveBpm) * 1000;
+
+  const cycleWordLimit = () => {
+    if (isPlaying) return;
+    setWordLimit((prev) => (prev === 32 ? 8 : prev + 4));
+  };
+  const fillPercentage = (wordLimit / 4 - 1) * 12.5;
 
   // Fixed limit is handled by getInitialWords, so we don't append words anymore
 
@@ -125,7 +136,7 @@ export const RhymeGame: React.FC = () => {
   useEffect(() => {
     const beat = BEATS[currentBeatIndex];
     const introCount = beat.introRows || 0;
-    const fadeOutRow = introCount + 20;
+    const fadeOutRow = introCount + wordLimit;
 
     if (currentRow === fadeOutRow && isPlaying && !isFadingOut) {
       setIsFadingOut(true);
@@ -159,7 +170,7 @@ export const RhymeGame: React.FC = () => {
     setCurrentRow(0);
     setCurrentCol(-1);
     setIsFadingOut(false);
-    setGameWords(getInitialWords(currentBeatIndex));
+    setGameWords(getInitialWords(currentBeatIndex, wordLimit));
     
     if (audioRef.current) {
       audioRef.current.volume = 1;
@@ -168,7 +179,7 @@ export const RhymeGame: React.FC = () => {
         audioRef.current.play().catch(e => console.log('Audio play error', e));
       }
     }
-  }, [currentBeatIndex]);
+  }, [currentBeatIndex, wordLimit]);
 
   const togglePlay = () => {
     if (!isPlaying) {
@@ -336,10 +347,10 @@ export const RhymeGame: React.FC = () => {
               <span style={{ fontFamily: 'Righteous', color: '#555', letterSpacing: '2px', textShadow: '1px 1px 0px rgba(255,255,255,0.3), -1px -1px 0px rgba(0,0,0,0.8)' }}>BPM</span>
             </div>
 
-            <div className="coin-slot-container" style={{ position: 'absolute', right: '0', top: '-10px' }}>
-              <div className="coin-slot">
-                <div className="coin-insert"></div>
-                <div className="coin-btn">25¢</div>
+            <div className="coin-slot-container" style={{ position: 'absolute', right: '0', top: '-10px', cursor: isPlaying ? 'default' : 'pointer' }} onClick={cycleWordLimit}>
+              <div className="coin-slot" style={{ pointerEvents: 'none' }}>
+                <div className="coin-insert" style={{ background: `linear-gradient(to top, #ffd700 ${fillPercentage}%, #111 ${fillPercentage}%)` }}></div>
+                <div className="coin-btn" style={{ fontSize: '11px', padding: '2px 4px' }}>{wordLimit}</div>
               </div>
             </div>
           </div>
