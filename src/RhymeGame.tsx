@@ -389,7 +389,7 @@ export const RhymeGame: React.FC = () => {
                 onClick={togglePlay}
                 style={{ opacity: isPlaying ? 0.5 : 1, cursor: isPlaying ? 'default' : 'pointer' }}
               >
-                <Play size={24} />
+                <Play size={40} />
               </button>
               
               <button 
@@ -397,7 +397,7 @@ export const RhymeGame: React.FC = () => {
                 onClick={randomBeat}
                 title="Beat aleatorio"
               >
-                <Shuffle size={18} />
+                <Shuffle size={32} />
               </button>
 
               <div className="bpm-wrapper" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -413,15 +413,15 @@ export const RhymeGame: React.FC = () => {
                 >
                   <span>{bpm}</span>
                 </div>
-                <span style={{ fontFamily: 'Righteous', color: '#555', letterSpacing: '2px', textShadow: '1px 1px 0px rgba(255,255,255,0.3), -1px -1px 0px rgba(0,0,0,0.8)' }}>BPM</span>
+                <span style={{ fontFamily: 'Righteous', fontSize: '1.4rem', color: '#555', letterSpacing: '2px', textShadow: '1px 1px 0px rgba(255,255,255,0.3), -1px -1px 0px rgba(0,0,0,0.8)' }}>BPM</span>
               </div>
             </div>
 
             <div className="controls-bottom-row" style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
-              <div className="beat-selector" style={{ width: '100%', maxWidth: '340px', height: '50px' }}>
-                <button onClick={prevBeat} className="beat-btn"><ChevronLeft size={24} /></button>
+              <div className="beat-selector" style={{ width: '100%', maxWidth: '480px', height: '80px' }}>
+                <button onClick={prevBeat} className="beat-btn"><ChevronLeft size={40} /></button>
                 <div className="beat-info">
-                  <Disc size={28} className={`disc-icon ${isPlaying ? 'spinning-disc' : ''}`} />
+                  <Disc size={44} className={`disc-icon ${isPlaying ? 'spinning-disc' : ''}`} />
                   <div className="beat-text">
                     <span className="beat-title">
                       <a href={currentBeat.titleUrl} target="_blank" rel="noopener noreferrer">{currentBeat.title}</a>
@@ -431,7 +431,7 @@ export const RhymeGame: React.FC = () => {
                     </span>
                   </div>
                 </div>
-                <button onClick={nextBeat} className="beat-btn"><ChevronRight size={24} /></button>
+                <button onClick={nextBeat} className="beat-btn"><ChevronRight size={40} /></button>
               </div>
             </div>
 
@@ -440,7 +440,7 @@ export const RhymeGame: React.FC = () => {
           <div className="coin-slot-container" style={{ position: 'absolute', right: '20px', top: 'calc(50% - 10px)', transform: 'translateY(-50%)', cursor: isPlaying ? 'default' : 'pointer', userSelect: 'none' }} onClick={cycleWordLimit}>
             <div className="coin-slot">
               <div className="coin-insert" style={{ background: `linear-gradient(to top, #ffd700 ${fillPercentage}%, #111 ${fillPercentage}%)` }}></div>
-              <div className="coin-btn" style={{ fontSize: '11px', padding: '2px 4px' }}>{wordLimit}</div>
+              <div className="coin-btn" style={{ fontSize: '16px', padding: '2px 4px' }}>{wordLimit}</div>
             </div>
           </div>
           
