@@ -82,6 +82,22 @@ export const RhymeGame: React.FC = () => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const cassetteRef = useRef<HTMLAudioElement | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  
+  const [useChromaKey, setUseChromaKey] = useState(false);
+  const chromaTimeoutRef = useRef<number | null>(null);
+
+  const handleBpmPointerDown = () => {
+    chromaTimeoutRef.current = window.setTimeout(() => {
+      setUseChromaKey(prev => !prev);
+    }, 3000);
+  };
+
+  const handleBpmPointerUpOrLeave = () => {
+    if (chromaTimeoutRef.current) {
+      clearTimeout(chromaTimeoutRef.current);
+      chromaTimeoutRef.current = null;
+    }
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -278,7 +294,7 @@ export const RhymeGame: React.FC = () => {
           </div>
         </div>
 
-        <div className="jukebox-center">
+        <div className={`jukebox-center ${useChromaKey ? 'chroma-mode' : ''}`}>
           <div className="rhyme-game-area">
             <div className="rhyme-grid-viewport" style={{ width: '100%', height: '300px', overflow: 'hidden', position: 'relative', padding: '5px' }}>
               <div 
@@ -300,11 +316,14 @@ export const RhymeGame: React.FC = () => {
                   const isPast = rIndex < currentRow - 1;
                   const isPastBlurred = rIndex === currentRow - 1;
                   const isFutureBlurred = rIndex === currentRow + 4;
+                  const isGameFinished = !isPlaying && currentRow >= gameWords.length;
+                  const isOutroRow = rIndex === gameWords.length - 1;
 
                   return (
                     <div 
                       key={rIndex} 
                       className={`rhyme-row ${isPast ? 'fade-out-up' : ''} ${isPastBlurred || isFutureBlurred ? 'blur-row' : ''} ${rowTypeClass}`}
+                      style={isGameFinished && isOutroRow ? { opacity: 0, transition: 'opacity 1.5s ease 0.5s' } : {}}
                     >
                       {row.map((word, cIndex) => {
                         const isPastBlock = rIndex < currentRow || (rIndex === currentRow && cIndex < currentCol);
@@ -375,7 +394,13 @@ export const RhymeGame: React.FC = () => {
             </div>
             
             <div className="bpm-wrapper" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <div className="bpm-info">
+              <div 
+                className="bpm-info"
+                onPointerDown={handleBpmPointerDown}
+                onPointerUp={handleBpmPointerUpOrLeave}
+                onPointerLeave={handleBpmPointerUpOrLeave}
+                onContextMenu={(e) => e.preventDefault()}
+              >
                 <span>{bpm}</span>
               </div>
               <span style={{ fontFamily: 'Righteous', color: '#555', letterSpacing: '2px', textShadow: '1px 1px 0px rgba(255,255,255,0.3), -1px -1px 0px rgba(0,0,0,0.8)' }}>BPM</span>

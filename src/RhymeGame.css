@@ -118,6 +118,27 @@
   box-shadow: inset 0 10px 20px rgba(0,0,0,0.8);
 }
 
+.rhyme-screen {
+  background-color: #1a1a1a;
+  background-image: 
+    linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+  width: 100%;
+  height: 400px;
+  border-radius: 10px;
+  border: 3px solid #111;
+  box-shadow: inset 0 0 30px rgba(0,0,0,0.9), 0 0 10px rgba(0,0,0,0.5);
+  overflow: hidden;
+  position: relative;
+}
+
+.rhyme-screen.chroma-mode {
+  background-color: #00ff00;
+  background-image: none;
+  box-shadow: none;
+}
+
 .rhyme-game-area {
   position: relative;
   width: 100%;
@@ -343,24 +364,26 @@
   background: #333;
   color: white;
   border: none;
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 
-    0 4px 0 #111,
-    inset 0 2px 4px rgba(255,255,255,0.2);
   cursor: pointer;
+  box-shadow: 
+    0 8px 0 #111, 
+    0 15px 20px rgba(0,0,0,0.5),
+    inset 0 5px 10px rgba(255,255,255,0.2);
   transition: transform 0.1s, box-shadow 0.1s;
 }
 
 .rhyme-random-btn:active {
-  transform: translateY(4px);
+  transform: translateY(8px);
   box-shadow: 
-    0 0 0 #111,
-    inset 0 2px 4px rgba(255,255,255,0.2);
+    0 0 0 #111, 
+    0 5px 10px rgba(0,0,0,0.5),
+    inset 0 5px 10px rgba(255,255,255,0.2);
 }
 
 .beat-controls-row {
@@ -373,7 +396,7 @@
   display: flex;
   align-items: center;
   width: 100%;
-  max-width: 320px;
+  max-width: 260px;
   justify-content: space-between;
   background: #222;
   padding: 0;
@@ -471,17 +494,20 @@
 
 .bpm-info {
   background: #111;
-  padding: 10px 15px;
+  padding: 10px 0;
   border-radius: 5px;
   border: 2px solid #333;
   box-shadow: inset 0 2px 5px rgba(0,0,0,0.8);
+  width: 60px;
+  display: flex;
+  justify-content: center;
+  cursor: default;
 }
 
 .bpm-info span {
   color: #ff0000;
   font-family: 'Righteous', sans-serif;
   font-size: 1.1rem;
-  min-width: 40px;
   text-align: center;
   text-shadow: 0 0 5px #ff0000;
 }
