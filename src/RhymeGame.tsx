@@ -284,7 +284,7 @@ export const RhymeGame: React.FC = () => {
   }
 
   return (
-    <div className="rhyme-game-container">
+    <div className={`rhyme-game-container ${useChromaKey ? 'chroma-mode' : ''}`}>
       
       <div className="jukebox-body">
         <div className="jukebox-arch">
@@ -294,7 +294,7 @@ export const RhymeGame: React.FC = () => {
           </div>
         </div>
 
-        <div className={`jukebox-center ${useChromaKey ? 'chroma-mode' : ''}`}>
+        <div className="jukebox-center">
           <div className="rhyme-game-area">
             <div className="rhyme-grid-viewport" style={{ width: '100%', height: '300px', overflow: 'hidden', position: 'relative', padding: '5px' }}>
               <div 
@@ -396,10 +396,13 @@ export const RhymeGame: React.FC = () => {
             <div className="bpm-wrapper" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <div 
                 className="bpm-info"
-                onPointerDown={handleBpmPointerDown}
-                onPointerUp={handleBpmPointerUpOrLeave}
-                onPointerLeave={handleBpmPointerUpOrLeave}
+                onMouseDown={handleBpmPointerDown}
+                onMouseUp={handleBpmPointerUpOrLeave}
+                onMouseLeave={handleBpmPointerUpOrLeave}
+                onTouchStart={handleBpmPointerDown}
+                onTouchEnd={handleBpmPointerUpOrLeave}
                 onContextMenu={(e) => e.preventDefault()}
+                style={{ touchAction: 'none' }}
               >
                 <span>{bpm}</span>
               </div>
