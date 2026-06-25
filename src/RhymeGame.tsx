@@ -360,7 +360,7 @@ export const RhymeGame: React.FC = () => {
 
         <div className="jukebox-lower" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', padding: '0 20px 40px', marginTop: '20px' }}>
           
-          <div className="rhyme-controls" style={{ display: 'flex', gap: '40px', alignItems: 'center', flexDirection: 'row', marginTop: '0', width: '100%', justifyContent: 'center' }}>
+          <div className="rhyme-controls" style={{ display: 'flex', gap: '20px', alignItems: 'center', flexDirection: 'row', marginTop: '0', width: '100%', justifyContent: 'center', paddingRight: '60px' }}>
             <button 
               className="rhyme-play-btn" 
               onClick={togglePlay}
@@ -377,7 +377,7 @@ export const RhymeGame: React.FC = () => {
               <Shuffle size={18} />
             </button>
             
-            <div className="beat-selector" style={{ width: '320px', height: '50px' }}>
+            <div className="beat-selector" style={{ width: '100%', height: '50px' }}>
               <button onClick={prevBeat} className="beat-btn"><ChevronLeft size={24} /></button>
               <div className="beat-info">
                 <Disc size={28} className={`disc-icon ${isPlaying ? 'spinning-disc' : ''}`} />

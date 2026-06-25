@@ -361,7 +361,7 @@
 }
 
 .rhyme-random-btn {
-  background: #333;
+  background: #d2042d;
   color: white;
   border: none;
   width: 50px;
@@ -372,18 +372,18 @@
   align-items: center;
   cursor: pointer;
   box-shadow: 
-    0 8px 0 #111, 
+    0 8px 0 #7a0018, 
     0 15px 20px rgba(0,0,0,0.5),
-    inset 0 5px 10px rgba(255,255,255,0.2);
+    inset 0 5px 10px rgba(255,255,255,0.4);
   transition: transform 0.1s, box-shadow 0.1s;
 }
 
 .rhyme-random-btn:active {
   transform: translateY(8px);
   box-shadow: 
-    0 0 0 #111, 
+    0 0 0 #7a0018, 
     0 5px 10px rgba(0,0,0,0.5),
-    inset 0 5px 10px rgba(255,255,255,0.2);
+    inset 0 5px 10px rgba(255,255,255,0.4);
 }
 
 .beat-controls-row {
@@ -396,7 +396,7 @@
   display: flex;
   align-items: center;
   width: 100%;
-  max-width: 260px;
+  max-width: 340px;
   justify-content: space-between;
   background: #222;
   padding: 0;
