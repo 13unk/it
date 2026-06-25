@@ -379,65 +379,71 @@ export const RhymeGame: React.FC = () => {
           </div>
         </div>
 
-        <div className="jukebox-lower" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', padding: '0 20px 40px', marginTop: '20px' }}>
+        <div className="jukebox-lower" style={{ position: 'relative', display: 'flex', width: '100%', padding: '20px 20px 40px', marginTop: '10px', minHeight: '130px' }}>
           
-          <div className="rhyme-controls" style={{ display: 'flex', gap: '20px', alignItems: 'center', flexDirection: 'row', marginTop: '0', width: '100%', justifyContent: 'center', paddingRight: '60px' }}>
-            <button 
-              className="rhyme-play-btn" 
-              onClick={togglePlay}
-              style={{ opacity: isPlaying ? 0.5 : 1, cursor: isPlaying ? 'default' : 'pointer' }}
-            >
-              <Play size={24} />
-            </button>
+          <div className="rhyme-controls" style={{ display: 'flex', flexDirection: 'column', gap: '20px', alignItems: 'center', width: '100%', paddingRight: '50px' }}>
             
-            <button 
-              className="rhyme-random-btn" 
-              onClick={randomBeat}
-              title="Beat aleatorio"
-            >
-              <Shuffle size={18} />
-            </button>
-            
-            <div className="beat-selector" style={{ width: '100%', height: '50px' }}>
-              <button onClick={prevBeat} className="beat-btn"><ChevronLeft size={24} /></button>
-              <div className="beat-info">
-                <Disc size={28} className={`disc-icon ${isPlaying ? 'spinning-disc' : ''}`} />
-                <div className="beat-text">
-                  <span className="beat-title">
-                    <a href={currentBeat.titleUrl} target="_blank" rel="noopener noreferrer">{currentBeat.title}</a>
-                  </span>
-                  <span className="beat-artist">
-                    <a href={currentBeat.artistUrl} target="_blank" rel="noopener noreferrer">{currentBeat.artist}</a>
-                  </span>
-                </div>
-              </div>
-              <button onClick={nextBeat} className="beat-btn"><ChevronRight size={24} /></button>
-            </div>
-            
-            <div className="bpm-wrapper" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <div 
-                className="bpm-info"
-                onMouseDown={handleBpmPointerDown}
-                onMouseUp={handleBpmPointerUpOrLeave}
-                onMouseLeave={handleBpmPointerUpOrLeave}
-                onTouchStart={handleBpmPointerDown}
-                onTouchEnd={handleBpmPointerUpOrLeave}
-                onContextMenu={(e) => e.preventDefault()}
-                style={{ touchAction: 'none' }}
+            <div className="controls-top-row" style={{ display: 'flex', gap: '20px', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
+              <button 
+                className="rhyme-play-btn" 
+                onClick={togglePlay}
+                style={{ opacity: isPlaying ? 0.5 : 1, cursor: isPlaying ? 'default' : 'pointer' }}
               >
-                <span>{bpm}</span>
+                <Play size={24} />
+              </button>
+              
+              <button 
+                className="rhyme-random-btn" 
+                onClick={randomBeat}
+                title="Beat aleatorio"
+              >
+                <Shuffle size={18} />
+              </button>
+
+              <div className="bpm-wrapper" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <div 
+                  className="bpm-info"
+                  onMouseDown={handleBpmPointerDown}
+                  onMouseUp={handleBpmPointerUpOrLeave}
+                  onMouseLeave={handleBpmPointerUpOrLeave}
+                  onTouchStart={handleBpmPointerDown}
+                  onTouchEnd={handleBpmPointerUpOrLeave}
+                  onContextMenu={(e) => e.preventDefault()}
+                  style={{ touchAction: 'none' }}
+                >
+                  <span>{bpm}</span>
+                </div>
+                <span style={{ fontFamily: 'Righteous', color: '#555', letterSpacing: '2px', textShadow: '1px 1px 0px rgba(255,255,255,0.3), -1px -1px 0px rgba(0,0,0,0.8)' }}>BPM</span>
               </div>
-              <span style={{ fontFamily: 'Righteous', color: '#555', letterSpacing: '2px', textShadow: '1px 1px 0px rgba(255,255,255,0.3), -1px -1px 0px rgba(0,0,0,0.8)' }}>BPM</span>
             </div>
 
-            <div className="coin-slot-container" style={{ position: 'absolute', right: '0', top: '-10px', cursor: isPlaying ? 'default' : 'pointer', userSelect: 'none' }} onClick={cycleWordLimit}>
-              <div className="coin-slot">
-                <div className="coin-insert" style={{ background: `linear-gradient(to top, #ffd700 ${fillPercentage}%, #111 ${fillPercentage}%)` }}></div>
-                <div className="coin-btn" style={{ fontSize: '11px', padding: '2px 4px' }}>{wordLimit}</div>
+            <div className="controls-bottom-row" style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+              <div className="beat-selector" style={{ width: '100%', maxWidth: '340px', height: '50px' }}>
+                <button onClick={prevBeat} className="beat-btn"><ChevronLeft size={24} /></button>
+                <div className="beat-info">
+                  <Disc size={28} className={`disc-icon ${isPlaying ? 'spinning-disc' : ''}`} />
+                  <div className="beat-text">
+                    <span className="beat-title">
+                      <a href={currentBeat.titleUrl} target="_blank" rel="noopener noreferrer">{currentBeat.title}</a>
+                    </span>
+                    <span className="beat-artist">
+                      <a href={currentBeat.artistUrl} target="_blank" rel="noopener noreferrer">{currentBeat.artist}</a>
+                    </span>
+                  </div>
+                </div>
+                <button onClick={nextBeat} className="beat-btn"><ChevronRight size={24} /></button>
               </div>
             </div>
+
           </div>
 
+          <div className="coin-slot-container" style={{ position: 'absolute', right: '20px', top: '15px', cursor: isPlaying ? 'default' : 'pointer', userSelect: 'none' }} onClick={cycleWordLimit}>
+            <div className="coin-slot">
+              <div className="coin-insert" style={{ background: `linear-gradient(to top, #ffd700 ${fillPercentage}%, #111 ${fillPercentage}%)` }}></div>
+              <div className="coin-btn" style={{ fontSize: '11px', padding: '2px 4px' }}>{wordLimit}</div>
+            </div>
+          </div>
+          
           <audio ref={audioRef} src={currentBeat.file} loop />
           <audio ref={cassetteRef} src="/soundfx/cassette.mp3" />
         </div>
@@ -451,3 +457,5 @@ export const RhymeGame: React.FC = () => {
     </div>
   );
 };
+
+export default RhymeGame;
