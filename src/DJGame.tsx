@@ -50,12 +50,14 @@ export const DJGame: React.FC = () => {
   const animationFrameRef = useRef<number | null>(null);
   const startTimeRef = useRef<number>(0);
   const activeDurationRef = useRef<number>(0);
+  const resolveClickedRef = useRef<boolean>(false);
 
   // Load and decode all 4 stems using Web Audio API
   useEffect(() => {
     setIsLoaded(false);
     setLoadingProgress(0);
     setIsResolved(false);
+    resolveClickedRef.current = false;
     setCurrentLevel(null);
     setUnlockedLevel(1);
     setProgress(0);
@@ -170,7 +172,8 @@ export const DJGame: React.FC = () => {
   };
 
   const handleResolve = () => {
-    if (isResolved || !audioCtxRef.current || !isLoaded) return;
+    if (resolveClickedRef.current || isResolved || !audioCtxRef.current || !isLoaded) return;
+    resolveClickedRef.current = true;
     setIsResolved(true);
     playTrack(4);
   };
