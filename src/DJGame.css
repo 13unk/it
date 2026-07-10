@@ -199,9 +199,12 @@
 
 /* Level Selector Container */
 .level-buttons-container {
-  display: flex;
-  flex-direction: column-reverse;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .glass-level-btn {
@@ -213,12 +216,13 @@
   background: #2a2a2c;
   border: 2px solid #111;
   color: #888;
-  padding: 3rem 1.5rem;
-  font-size: 2.5rem;
+  padding: 1.5rem;
+  aspect-ratio: 1 / 1;
+  font-size: 2.2rem;
   font-weight: 900;
   letter-spacing: 2px;
   text-transform: uppercase;
-  border-radius: 8px;
+  border-radius: 16px;
   cursor: pointer;
   transform: translateY(0);
   box-shadow: 0 6px 0 #111, 0 15px 30px rgba(0, 0, 0, 0.8);
