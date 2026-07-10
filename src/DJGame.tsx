@@ -113,6 +113,7 @@ export const DJGame: React.FC = () => {
   }, [volume]);
 
   const playTrack = async (level: 1 | 2 | 3 | 4) => {
+    if (currentLevel === level) return;
     if (!audioCtxRef.current || !isLoaded) return;
     const ctx = audioCtxRef.current;
     
