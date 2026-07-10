@@ -11,6 +11,8 @@
   padding: 3rem 1.5rem;
   position: relative;
   overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 /* Lava Lamp Background */
@@ -307,6 +309,10 @@
 
 .flip-card-button:disabled {
   cursor: not-allowed;
+}
+
+.flip-card-button.resolved:disabled {
+  cursor: default;
 }
 
 .flip-card-button:disabled .flip-card-inner {
