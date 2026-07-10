@@ -216,7 +216,7 @@ export const DJGame: React.FC = () => {
                           className="btn-progress-fill" 
                           style={{ 
                             width: progressWidth,
-                            backgroundColor: 'rgba(0, 242, 254, 0.2)'
+                            backgroundColor: 'rgba(168, 85, 247, 0.2)'
                           }}
                         ></div>
                         <span className="btn-text">Nivel {level}</span>
@@ -230,7 +230,7 @@ export const DJGame: React.FC = () => {
                     title="Resolver"
                   >
                     <span className="btn-text" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <Crown size={24} color={isResolved ? '#22c55e' : '#facc15'} />
+                      <Crown size={24} color={isResolved ? '#a855f7' : '#888'} />
                     </span>
                   </button>
                 </div>
