@@ -450,3 +450,15 @@
   background: rgba(34, 197, 94, 0.8);
   box-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
 }
+
+/* Footer Logo */
+.footer-logo {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 35px;
+  opacity: 0.5;
+  z-index: 10;
+  pointer-events: none;
+}

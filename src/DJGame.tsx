@@ -320,6 +320,9 @@ export const DJGame: React.FC = () => {
           </div>
         </div>
       )}
+
+      {/* Footer Logo */}
+      <img src="/unklogo.png" alt="UNK Logo" className="footer-logo" />
     </div>
   );
 };
