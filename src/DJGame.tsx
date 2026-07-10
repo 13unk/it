@@ -236,7 +236,7 @@ export const DJGame: React.FC = () => {
                     <div className="glass-level-btn flip-card-front">
                       <Crown size={36} color={isResolved ? '#a855f7' : '#888'} />
                     </div>
-                    <div className="glass-level-btn active flip-card-back">
+                    <div className="glass-level-btn flip-card-back">
                       <div className="pad-song-title">FE!N</div>
                       <div className="pad-artist-name">Travis Scott<br/>ft. Playboi Carti</div>
                     </div>
