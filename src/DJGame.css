@@ -253,6 +253,7 @@
   background: #2a2a2c;
   color: #fff;
   text-shadow: 0 0 10px #d8b4fe;
+  pointer-events: none;
 }
 
 .glass-level-btn:active:not(:disabled) {
