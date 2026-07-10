@@ -194,58 +194,54 @@ export const DJGame: React.FC = () => {
         </div>
       ) : (
         <div className="panels-wrapper">
-          {!isResolved ? (
-            <div className="glass-deck">
-              {/* Level Switchers (Tosco / Large block buttons but with liquid glass style) */}
-              <div className="glass-controls-grid">
-                <div className="level-buttons-container">
-                  {[1, 2, 3].map((level) => {
-                    const numLevel = level as 1 | 2 | 3;
-                    const isActive = currentLevel === numLevel;
-                    const isUnlocked = numLevel <= unlockedLevel;
-                    const progressWidth = isActive ? `${progress}%` : '0%';
-                    
-                    return (
-                      <button 
-                        key={level}
-                        className={`glass-level-btn ${isActive ? 'active' : ''} ${!isUnlocked ? 'locked' : ''}`}
-                        onClick={() => playTrack(numLevel)}
-                        disabled={isResolved || !isUnlocked}
-                      >
-                        <div 
-                          className="btn-progress-fill" 
-                          style={{ 
-                            width: progressWidth,
-                            backgroundColor: 'rgba(168, 85, 247, 0.2)'
-                          }}
-                        ></div>
-                        <span className="btn-text">Nivel {level}</span>
-                      </button>
-                    );
-                  })}
+          <div className="glass-deck">
+            <div className="glass-controls-grid">
+              <div className="level-buttons-container">
+                {[1, 2, 3].map((level) => {
+                  const numLevel = level as 1 | 2 | 3;
+                  const isActive = currentLevel === numLevel;
+                  const isUnlocked = numLevel <= unlockedLevel;
+                  const progressWidth = isActive ? `${progress}%` : '0%';
+                  
+                  return (
+                    <button 
+                      key={level}
+                      className={`glass-level-btn ${isActive ? 'active' : ''} ${!isUnlocked ? 'locked' : ''}`}
+                      onClick={() => playTrack(numLevel)}
+                      disabled={isResolved || !isUnlocked}
+                    >
+                      <div 
+                        className="btn-progress-fill" 
+                        style={{ 
+                          width: progressWidth,
+                          backgroundColor: 'rgba(168, 85, 247, 0.2)'
+                        }}
+                      ></div>
+                      <span className="btn-text">Nivel {level}</span>
+                    </button>
+                  );
+                })}
+                
+                <div className="flip-card-wrapper">
                   <button 
-                    className={`glass-level-btn ${isResolved ? 'active' : ''}`}
+                    className={`glass-level-btn flip-card-inner ${isResolved ? 'resolved' : ''}`}
                     onClick={handleResolve}
                     disabled={isResolved || !isLoaded}
                     title="Resolver"
                   >
-                    <span className="btn-text" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <Crown size={24} color={isResolved ? '#a855f7' : '#888'} />
-                    </span>
+                    <div className="flip-card-front">
+                      <Crown size={36} color={isResolved ? '#a855f7' : '#888'} />
+                    </div>
+                    <div className="flip-card-back">
+                      <div className="pad-song-title">FE!N</div>
+                      <div className="pad-artist-name">Travis Scott<br/>ft. Playboi Carti</div>
+                    </div>
                   </button>
                 </div>
+
               </div>
             </div>
-          ) : (
-            <div className="glass-deck reveal-mode">
-              <div className="reveal-song-title">FE!N</div>
-              <div className="reveal-artist-name">Travis Scott ft. Playboi Carti</div>
-              
-              <button className="brutalist-reset-btn" onClick={handleReset}>
-                REINICIAR
-              </button>
-            </div>
-          )}
+          </div>
         </div>
       )}
     </div>
