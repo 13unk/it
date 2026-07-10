@@ -265,13 +265,13 @@
 
 .glass-level-btn.locked {
   opacity: 0.3;
-  cursor: not-allowed;
+  cursor: default;
   filter: grayscale(100%);
 }
 
 .glass-level-btn:disabled {
   opacity: 0.3;
-  cursor: not-allowed;
+  cursor: default;
 }
 
 /* Glass Progress Bar */
@@ -308,10 +308,6 @@
 }
 
 .flip-card-button:disabled {
-  cursor: not-allowed;
-}
-
-.flip-card-button.resolved:disabled {
   cursor: default;
 }
 
