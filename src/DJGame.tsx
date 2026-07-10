@@ -2,7 +2,36 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Volume2, Crown } from 'lucide-react';
 import './DJGame.css';
 
+type Track = {
+  id: string;
+  name: string;
+  title: string;
+  artist: string;
+  stems: string[];
+};
+
+const TRACKS: Track[] = [
+  {
+    id: 'track1',
+    name: 'TRACK 1',
+    title: 'FE!N',
+    artist: 'Travis Scott\nft. Playboi Carti',
+    stems: ['/stems/fein1.mp3', '/stems/fein2.mp3', '/stems/fein3.mp3', '/stems/fein4.mp3']
+  },
+  {
+    id: 'track2',
+    name: 'TRACK 2',
+    title: 'BnB',
+    artist: 'Young Miko\nft. Clarent',
+    stems: ['/stems/bnb1.mp3', '/stems/bnb2.mp3', '/stems/bnb3.mp3', '/stems/bnb4.mp3']
+  }
+];
+
 export const DJGame: React.FC = () => {
+  const [selectedTrackId, setSelectedTrackId] = useState<string>('track1');
+  const activeTrack = TRACKS.find(t => t.id === selectedTrackId) || TRACKS[0];
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
   const [currentLevel, setCurrentLevel] = useState<1 | 2 | 3 | 4 | null>(null);
   const [unlockedLevel, setUnlockedLevel] = useState<1 | 2 | 3>(1);
   const [volume, setVolume] = useState(1);
@@ -24,16 +53,22 @@ export const DJGame: React.FC = () => {
 
   // Load and decode all 4 stems using Web Audio API
   useEffect(() => {
+    setIsLoaded(false);
+    setLoadingProgress(0);
+    setIsResolved(false);
+    setCurrentLevel(null);
+    setUnlockedLevel(1);
+    setProgress(0);
+
+    if (sourceRef.current) {
+      try { sourceRef.current.stop(); } catch(e) {}
+    }
+
     const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
-    const ctx = new AudioContextClass();
+    const ctx = audioCtxRef.current || new AudioContextClass();
     audioCtxRef.current = ctx;
 
-    const urls = [
-      '/stems/fein1.mp3',
-      '/stems/fein2.mp3',
-      '/stems/fein3.mp3',
-      '/stems/fein4.mp3'
-    ];
+    const urls = activeTrack.stems;
 
     let loadedCount = 0;
 
@@ -58,15 +93,13 @@ export const DJGame: React.FC = () => {
     urls.forEach((url, i) => loadTrack(url, i));
 
     return () => {
+      // Don't close the audio context here so it can be reused on track switch
       if (sourceRef.current) {
         try { sourceRef.current.stop(); } catch(e) {}
       }
       if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current);
-      if (audioCtxRef.current && audioCtxRef.current.state !== 'closed') {
-        audioCtxRef.current.close();
-      }
     };
-  }, []);
+  }, [activeTrack.stems]);
 
   // Update volume live
   useEffect(() => {
@@ -137,12 +170,40 @@ export const DJGame: React.FC = () => {
   };
 
   const handleResolve = () => {
+    if (isResolved || !audioCtxRef.current || !isLoaded) return;
     setIsResolved(true);
     playTrack(4);
   };
 
   return (
     <div className="dj-game-container glass-brutalist">
+      {/* Track Selector Sidebar */}
+      <div className={`track-sidebar ${sidebarOpen ? 'open' : ''}`}>
+        <button 
+          className="sidebar-toggle"
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+        >
+          {sidebarOpen ? '◀' : '▶'}
+        </button>
+        <div className="sidebar-content">
+          <h2 className="sidebar-title">TRACKS</h2>
+          <div className="track-list">
+            {TRACKS.map(track => (
+              <button
+                key={track.id}
+                className={`track-item-btn ${selectedTrackId === track.id ? 'active' : ''}`}
+                onClick={() => {
+                  setSelectedTrackId(track.id);
+                  setSidebarOpen(false);
+                }}
+              >
+                {track.name}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
       {/* Lava Lamp Background */}
       <div className="lava-background">
         <div className="blob blob-1"></div>
@@ -232,8 +293,15 @@ export const DJGame: React.FC = () => {
                       <Crown size={36} color={isResolved ? '#a855f7' : '#888'} />
                     </div>
                     <div className="glass-level-btn flip-card-back">
-                      <div className="pad-song-title">FE!N</div>
-                      <div className="pad-artist-name">Travis Scott<br/>ft. Playboi Carti</div>
+                      <div className="pad-song-title">{activeTrack.title}</div>
+                      <div className="pad-artist-name">
+                        {activeTrack.artist.split('\n').map((line, i) => (
+                          <React.Fragment key={i}>
+                            {line}
+                            {i === 0 && <br />}
+                          </React.Fragment>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </button>
