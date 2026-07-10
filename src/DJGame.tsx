@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Volume2, Crown } from 'lucide-react';
+import { Volume2, Crown, Disc } from 'lucide-react';
 import './DJGame.css';
 
 type Track = {
@@ -30,6 +30,7 @@ const TRACKS: Track[] = [
 export const DJGame: React.FC = () => {
   const [selectedTrackId, setSelectedTrackId] = useState<string>('track1');
   const activeTrack = TRACKS.find(t => t.id === selectedTrackId) || TRACKS[0];
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const [currentLevel, setCurrentLevel] = useState<1 | 2 | 3 | 4 | null>(null);
   const [unlockedLevel, setUnlockedLevel] = useState<1 | 2 | 3>(1);
@@ -176,15 +177,25 @@ export const DJGame: React.FC = () => {
 
   return (
     <div className="dj-game-container glass-brutalist">
+      <button 
+        className="disc-menu-btn" 
+        onClick={() => setSidebarOpen(!sidebarOpen)}
+      >
+        <Disc size={24} color="#fff" />
+      </button>
+
       {/* Track Selector Sidebar */}
-      <div className="track-sidebar">
+      <div className={`track-sidebar ${sidebarOpen ? 'open' : ''}`}>
         <div className="sidebar-content">
           <div className="track-list">
             {TRACKS.map(track => (
               <button
                 key={track.id}
                 className={`track-item-btn ${selectedTrackId === track.id ? 'active' : ''}`}
-                onClick={() => setSelectedTrackId(track.id)}
+                onClick={() => {
+                  setSelectedTrackId(track.id);
+                  setSidebarOpen(false);
+                }}
               >
                 {track.name}
               </button>
