@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Folder, Play, FileText, Plus, Youtube } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { RhymeGame } from './RhymeGame';
+import { DJGame } from './DJGame';
+
 
 interface Project {
   name: string;
@@ -258,7 +260,7 @@ function FolderTree({
   const navigate = useNavigate();
 
   const handleRootClick = () => {
-    navigate('/');
+    navigate('/root');
   };
 
   const handleCategoryClick = (category: string) => {
@@ -403,7 +405,7 @@ export default function App() {
     const parts = pathStr.split('/').map(decodeURIComponent).filter(Boolean);
     if (parts.length > 0) {
       const cat = parts[0].toUpperCase();
-      if (cat === 'PROYECTOS' || cat === 'FORMATOS' || cat === 'VÍDEOS' || cat === 'RHYME') {
+      if (cat === 'PROYECTOS' || cat === 'FORMATOS' || cat === 'VÍDEOS' || cat === 'RHYME' || cat === 'DJ') {
         return cat;
       } else if (cat === 'ROOT') {
         return '';
@@ -475,7 +477,7 @@ export default function App() {
 
       if (parts.length === 1) {
         const cat = parts[0].toUpperCase();
-        if (cat === 'PROYECTOS' || cat === 'FORMATOS' || cat === 'VÍDEOS' || cat === 'RHYME') {
+        if (cat === 'PROYECTOS' || cat === 'FORMATOS' || cat === 'VÍDEOS' || cat === 'RHYME' || cat === 'DJ') {
           setActiveCategory(cat);
           setActiveItem(null);
           setActiveSubPage(null);
@@ -565,7 +567,7 @@ export default function App() {
       ? 'VÍDEOS' 
       : (projects.some(p => p.name === activeItem?.name) ? 'FORMATOS' : 'PROYECTOS');
     if (depth === 0 || depth === 1) {
-      navigate('/');
+      navigate('/root');
     } else if (depth === 2) {
       navigate(`/${pType}/${encodeURIComponent(activeItem!.name)}`);
     } else if (depth === 3) {
@@ -793,8 +795,34 @@ export default function App() {
             
             <hr style={{ border: 'none', borderTop: '1px solid #cccccc', margin: '1.5rem 0' }} />
             
-            <div style={{ color: '#000000', lineHeight: '1.6' }}>
-              <p style={{ fontStyle: 'italic' }}>Esta carpeta está vacía.</p>
+            <div style={{ color: '#000000', lineHeight: '1.6', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '1.5rem' }}>
+              <p>Escucha los stems de la canción en diferentes niveles de dificultad y adivina el título.</p>
+              <button 
+                onClick={() => navigate('/dj')}
+                style={{
+                  background: '#000000',
+                  color: '#ffffff',
+                  border: '2px solid #000000',
+                  padding: '0.75rem 1.5rem',
+                  fontWeight: 'bold',
+                  cursor: 'pointer',
+                  fontFamily: 'var(--font-heading)',
+                  textTransform: 'uppercase',
+                  letterSpacing: '1px',
+                  boxShadow: '4px 4px 0px #888888',
+                  transition: 'all 0.1s ease-in-out'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#ffffff';
+                  e.currentTarget.style.color = '#000000';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = '#000000';
+                  e.currentTarget.style.color = '#ffffff';
+                }}
+              >
+                Abrir Juego de DJ (Stems)
+              </button>
             </div>
           </main>
         ) : activeSubSubPage.name === 'Adivina en X palabras o menos' ? (
@@ -1127,7 +1155,7 @@ export default function App() {
               <p style={{ fontStyle: 'italic', color: '#666666' }}>Esta carpeta está vacía.</p>
             </div>
           </main>
-        ) : (
+        ) : activeSubSubPage.name === 'Ficha policial' ? (
           <main className="custom-page-content" style={{ border: 'none', background: 'transparent', padding: '2rem 0', textAlign: 'left' }}>
             <FolderTree path={[parentType, activeItem!.name, activeSubPage!.name, activeSubSubPage.name]} onNavigate={handleNavigate} />
             
@@ -1242,6 +1270,14 @@ export default function App() {
               </div>
             </div>
           </main>
+        ) : (
+          <main className="custom-page-content" style={{ border: 'none', background: 'transparent', padding: '2rem 0', textAlign: 'left' }}>
+            <FolderTree path={[parentType, activeItem!.name, activeSubPage!.name, activeSubSubPage.name]} onNavigate={handleNavigate} />
+            <hr style={{ border: 'none', borderTop: '1px solid #cccccc', margin: '1.5rem 0' }} />
+            <div style={{ color: '#000000', lineHeight: '1.6' }}>
+              <p style={{ fontStyle: 'italic', color: '#666666' }}>Esta carpeta está vacía.</p>
+            </div>
+          </main>
         )}
         
         <button className="back-btn" onClick={() => {
@@ -1337,137 +1373,163 @@ export default function App() {
               </div>
             </div>
           ) : activeSubPage.parentName === 'BUNKER' && activeSubPage.name === 'Formatos' ? (
-            <div className="folders-grid" style={{ marginTop: '2rem' }}>
-              <div 
-                className="folder-card plain" 
-                onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina el artista por el outfit')}`); }}
-              >
-                <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
-                  <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
-                </div>
-                <span className="folder-name" style={{ fontSize: '0.9rem', fontWeight: 700, textAlign: 'center', lineHeight: '1.3' }}>
-                  Adivina el artista por el outfit
-                </span>
-              </div>
+            <div style={{ marginTop: '2rem' }}>
+              <h3 style={{ fontSize: '1.1rem', fontWeight: 800, textTransform: 'uppercase', marginBottom: '1.25rem', borderLeft: '4px solid #000000', paddingLeft: '0.75rem', fontFamily: 'var(--font-heading)' }}>
+                Formatos Destacados
+              </h3>
               
-              <div 
-                className="folder-card plain" 
-                onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina el artista por su nombre real')}`); }}
-              >
-                <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
-                  <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
+              <div className="folders-grid" style={{ marginBottom: '2.5rem' }}>
+                <div 
+                  className="folder-card plain" 
+                  onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina el artista por el outfit')}`); }}
+                >
+                  <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
+                    <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
+                  </div>
+                  <span className="folder-name" style={{ fontSize: '0.9rem', fontWeight: 700, textAlign: 'center', lineHeight: '1.3' }}>
+                    Adivina el artista por el outfit
+                  </span>
                 </div>
-                <span className="folder-name" style={{ fontSize: '0.9rem', fontWeight: 700, textAlign: 'center', lineHeight: '1.3' }}>
-                  Adivina el artista por su nombre real
-                </span>
+                
+                <div 
+                  className="folder-card plain" 
+                  onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Ficha policial')}`); }}
+                >
+                  <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
+                    <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
+                  </div>
+                  <span className="folder-name" style={{ fontSize: '0.9rem', fontWeight: 700, textAlign: 'center', lineHeight: '1.3' }}>
+                    Ficha policial
+                  </span>
+                </div>
+   
+                <div 
+                  className="folder-card plain" 
+                  onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('¿Esta barra es real o me la acabo de inventar?')}`); }}
+                >
+                  <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
+                    <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
+                  </div>
+                  <span className="folder-name" style={{ fontSize: '0.9rem', fontWeight: 700, textAlign: 'center', lineHeight: '1.3' }}>
+                    ¿Esta barra es real o me la acabo de inventar?
+                  </span>
+                </div>
+
+                <div 
+                  className="folder-card plain" 
+                  onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina la canción narrada como una escritura antigua')}`); }}
+                >
+                  <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
+                    <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
+                  </div>
+                  <span className="folder-name" style={{ fontSize: '0.9rem', fontWeight: 700, textAlign: 'center', lineHeight: '1.3' }}>
+                    Adivina la canción narrada como una escritura antigua
+                  </span>
+                </div>
+
+                <div 
+                  className="folder-card plain" 
+                  onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Hot Takes')}`); }}
+                >
+                  <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
+                    <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
+                  </div>
+                  <span className="folder-name" style={{ fontSize: '0.9rem', fontWeight: 700, textAlign: 'center', lineHeight: '1.3' }}>
+                    Hot Takes
+                  </span>
+                </div>
               </div>
- 
-              <div 
-                className="folder-card plain" 
-                onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('¿Esta barra es real o me la acabo de inventar?')}`); }}
-              >
-                <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
-                  <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
+
+              <hr style={{ border: 'none', borderTop: '2px solid #000000', margin: '2rem 0' }} />
+
+              <h3 style={{ fontSize: '1.1rem', fontWeight: 800, textTransform: 'uppercase', marginBottom: '1.25rem', borderLeft: '4px solid #000000', paddingLeft: '0.75rem', fontFamily: 'var(--font-heading)' }}>
+                Otros Formatos
+              </h3>
+
+              <div className="folders-grid">
+                <div 
+                  className="folder-card plain" 
+                  onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina el álbum por la letra X de su portada')}`); }}
+                >
+                  <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
+                    <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
+                  </div>
+                  <span className="folder-name" style={{ fontSize: '0.9rem', fontWeight: 700, textAlign: 'center', lineHeight: '1.3' }}>
+                    Adivina el álbum por la letra X de su portada
+                  </span>
                 </div>
-                <span className="folder-name" style={{ fontSize: '0.9rem', fontWeight: 700, textAlign: 'center', lineHeight: '1.3' }}>
-                  ¿Esta barra es real o me la acabo de inventar?
-                </span>
-              </div>
- 
-              <div 
-                className="folder-card plain" 
-                onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina el álbum por la letra X de su portada')}`); }}
-              >
-                <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
-                  <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
+   
+                <div 
+                  className="folder-card plain" 
+                  onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina la canción por sus stems')}`); }}
+                >
+                  <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
+                    <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
+                  </div>
+                  <span className="folder-name" style={{ fontSize: '0.9rem', fontWeight: 700, textAlign: 'center', lineHeight: '1.3' }}>
+                    Adivina la canción por sus stems
+                  </span>
                 </div>
-                <span className="folder-name" style={{ fontSize: '0.9rem', fontWeight: 700, textAlign: 'center', lineHeight: '1.3' }}>
-                  Adivina el álbum por la letra X de su portada
-                </span>
-              </div>
- 
-              <div 
-                className="folder-card plain" 
-                onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina la canción por sus stems')}`); }}
-              >
-                <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
-                  <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
+   
+                <div 
+                  className="folder-card plain" 
+                  onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina en X palabras o menos')}`); }}
+                >
+                  <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
+                    <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
+                  </div>
+                  <span className="folder-name" style={{ fontSize: '0.9rem', fontWeight: 700, textAlign: 'center', lineHeight: '1.3' }}>
+                    Adivina en X palabras o menos
+                  </span>
                 </div>
-                <span className="folder-name" style={{ fontSize: '0.9rem', fontWeight: 700, textAlign: 'center', lineHeight: '1.3' }}>
-                  Adivina la canción por sus stems
-                </span>
-              </div>
- 
-              <div 
-                className="folder-card plain" 
-                onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina en X palabras o menos')}`); }}
-              >
-                <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
-                  <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
+   
+                <div 
+                  className="folder-card plain" 
+                  onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Palabras encadenadas')}`); }}
+                >
+                  <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
+                    <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
+                  </div>
+                  <span className="folder-name" style={{ fontSize: '0.9rem', fontWeight: 700, textAlign: 'center', lineHeight: '1.3' }}>
+                    Palabras encadenadas
+                  </span>
                 </div>
-                <span className="folder-name" style={{ fontSize: '0.9rem', fontWeight: 700, textAlign: 'center', lineHeight: '1.3' }}>
-                  Adivina en X palabras o menos
-                </span>
-              </div>
- 
-              <div 
-                className="folder-card plain" 
-                onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Palabras encadenadas')}`); }}
-              >
-                <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
-                  <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
+   
+                <div 
+                  className="folder-card plain" 
+                  onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Torre')}`); }}
+                >
+                  <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
+                    <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
+                  </div>
+                  <span className="folder-name" style={{ fontSize: '0.9rem', fontWeight: 700, textAlign: 'center', lineHeight: '1.3' }}>
+                    Torre
+                  </span>
                 </div>
-                <span className="folder-name" style={{ fontSize: '0.9rem', fontWeight: 700, textAlign: 'center', lineHeight: '1.3' }}>
-                  Palabras encadenadas
-                </span>
-              </div>
- 
-              <div 
-                className="folder-card plain" 
-                onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Torre')}`); }}
-              >
-                <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
-                  <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
+   
+                <div 
+                  className="folder-card plain" 
+                  onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina mi canción')}`); }}
+                >
+                  <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
+                    <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
+                  </div>
+                  <span className="folder-name" style={{ fontSize: '0.9rem', fontWeight: 700, textAlign: 'center', lineHeight: '1.3' }}>
+                    Adivina mi canción
+                  </span>
                 </div>
-                <span className="folder-name" style={{ fontSize: '0.9rem', fontWeight: 700, textAlign: 'center', lineHeight: '1.3' }}>
-                  Torre
-                </span>
-              </div>
- 
-              <div 
-                className="folder-card plain" 
-                onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina mi canción')}`); }}
-              >
-                <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
-                  <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
+   
+                <div 
+                  className="folder-card plain" 
+                  onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina al cantante por su paquete')}`); }}
+                >
+                  <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
+                    <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
+                  </div>
+                  <span className="folder-name" style={{ fontSize: '0.9rem', fontWeight: 700, textAlign: 'center', lineHeight: '1.3' }}>
+                    Adivina al cantante por su paquete
+                  </span>
                 </div>
-                <span className="folder-name" style={{ fontSize: '0.9rem', fontWeight: 700, textAlign: 'center', lineHeight: '1.3' }}>
-                  Adivina mi canción
-                </span>
-              </div>
- 
-              <div 
-                className="folder-card plain" 
-                onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina al cantante por su paquete')}`); }}
-              >
-                <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
-                  <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
-                </div>
-                <span className="folder-name" style={{ fontSize: '0.9rem', fontWeight: 700, textAlign: 'center', lineHeight: '1.3' }}>
-                  Adivina al cantante por su paquete
-                </span>
-              </div>
- 
-              <div 
-                className="folder-card plain" 
-                onClick={() => { navigate(`/${parentType}/${encodeURIComponent(activeItem!.name)}/Formatos/${encodeURIComponent('Adivina la canción narrada como una escritura antigua')}`); }}
-              >
-                <div className="folder-icon-wrapper" style={{ marginBottom: '0.75rem' }}>
-                  <img src="/gun.png" alt="Format" style={{ height: '48px', width: 'auto', display: 'block', margin: '0 auto' }} />
-                </div>
-                <span className="folder-name" style={{ fontSize: '0.9rem', fontWeight: 700, textAlign: 'center', lineHeight: '1.3' }}>
-                  Adivina la canción narrada como una escritura antigua
-                </span>
               </div>
             </div>
           ) : activeSubPage.parentName === 'MAPA INTERACTIVO' && activeSubPage.name === 'Samöa Club' ? (
@@ -2110,7 +2172,7 @@ export default function App() {
           </main>
         )}
         
-        <button className="back-btn" onClick={() => { navigate('/'); }}>
+        <button className="back-btn" onClick={() => { navigate('/root'); }}>
           [ Volver ]
         </button>
       </div>
@@ -2138,7 +2200,7 @@ export default function App() {
               ))}
             </div>
           </section>
-          <button className="back-btn" onClick={() => { navigate('/'); }}>
+          <button className="back-btn" onClick={() => { navigate('/root'); }}>
             [ Volver ]
           </button>
           <footer className="footer-text">
@@ -2169,7 +2231,7 @@ export default function App() {
               ))}
             </div>
           </section>
-          <button className="back-btn" onClick={() => { navigate('/'); }}>
+          <button className="back-btn" onClick={() => { navigate('/root'); }}>
             [ Volver ]
           </button>
           <footer className="footer-text">
@@ -2204,7 +2266,7 @@ export default function App() {
               ))}
             </div>
           </section>
-          <button className="back-btn" onClick={() => { navigate('/'); }}>
+          <button className="back-btn" onClick={() => { navigate('/root'); }}>
             [ Volver ]
           </button>
           <footer className="footer-text">
@@ -2275,6 +2337,10 @@ export default function App() {
     return <RhymeGame />;
   }
 
+  if (activeCategory === 'DJ') {
+    return <DJGame />;
+  }
+
   if (activeCategory === 'SPLASH') {
     return (
       <div style={{ display: 'flex', width: '100vw', height: '100vh', justifyContent: 'center', alignItems: 'center' }}>
@@ -2287,7 +2353,7 @@ export default function App() {
     <>
       <header className="global-header">
         <div className="global-header-top">
-          <h1 className="logo-unk" onClick={() => { navigate('/'); }}>/UNK/</h1>
+          <h1 className="logo-unk" onClick={() => { navigate('/root'); }}>/UNK/</h1>
         </div>
       </header>
       <div className="global-breadcrumbs">

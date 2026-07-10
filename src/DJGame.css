@@ -1,0 +1,330 @@
+/* DJGame.css - Modern Liquid Glass + Chunky Brutalist Aesthetic */
+.dj-game-container.glass-brutalist {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #000000;
+  color: #ffffff;
+  font-family: 'Inter', 'Rubik', sans-serif;
+  padding: 3rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Lava Lamp Background */
+.lava-background {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  overflow: hidden;
+  z-index: 0;
+  filter: blur(60px);
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  mix-blend-mode: screen;
+  opacity: 0.6;
+}
+
+.blob-1 { width: 200px; height: 200px; background: #00f2fe; top: -50px; left: 10%; animation: blob-float-1 12s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate; }
+.blob-2 { width: 250px; height: 250px; background: #4facfe; bottom: 50px; right: 5%; animation: blob-float-2 15s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate; }
+.blob-3 { width: 150px; height: 150px; background: #38bdf8; top: 30%; left: 40%; animation: blob-float-3 18s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate; }
+.blob-4 { width: 180px; height: 180px; background: #818cf8; top: 10%; right: 20%; animation: blob-float-1 14s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate-reverse; }
+.blob-5 { width: 220px; height: 220px; background: #c084fc; bottom: -20px; left: 20%; animation: blob-float-2 19s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate; }
+.blob-6 { width: 160px; height: 160px; background: #f472b6; top: 60%; right: 30%; animation: blob-float-3 16s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate-reverse; }
+.blob-7 { width: 190px; height: 190px; background: #2dd4bf; top: 40%; left: 10%; animation: blob-float-1 21s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate; }
+.blob-8 { width: 240px; height: 240px; background: #34d399; bottom: 30%; right: 40%; animation: blob-float-2 17s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate-reverse; }
+
+@keyframes blob-float-1 {
+  0% { transform: translate(0, 0) scale(1); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+  50% { transform: translate(100px, 100px) scale(1.1); border-radius: 60% 40% 30% 70% / 50% 60% 50% 40%; }
+  100% { transform: translate(-30px, 150px) scale(0.9); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+}
+
+@keyframes blob-float-2 {
+  0% { transform: translate(0, 0) scale(1); border-radius: 50% 50% 60% 40% / 40% 60% 50% 50%; }
+  50% { transform: translate(-100px, -100px) scale(0.9); border-radius: 60% 40% 40% 60% / 50% 50% 60% 50%; }
+  100% { transform: translate(-50px, -200px) scale(1.1); border-radius: 50% 50% 60% 40% / 40% 60% 50% 50%; }
+}
+
+@keyframes blob-float-3 {
+  0% { transform: translate(0, 0) scale(1) rotate(0deg); border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+  50% { transform: translate(50px, -50px) scale(1.2) rotate(180deg); border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
+  100% { transform: translate(-50px, -100px) scale(1) rotate(360deg); border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+}
+
+/* Top Header Controls */
+.dj-header-controls {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  z-index: 10;
+}
+
+.dj-volume-glass {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+  transition: all 0.2s ease;
+}
+
+.dj-volume-glass:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.volume-slider-mini.glass {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 0px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: width 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.3s ease;
+}
+
+.dj-volume-glass:hover .volume-slider-mini.glass {
+  width: 85px;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.volume-slider-mini.glass::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+}
+
+/* Glass Loader */
+.glass-loader {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  padding: 3rem;
+  border-radius: 16px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  text-align: center;
+  max-width: 420px;
+  width: 100%;
+}
+
+.glass-progress-track {
+  width: 100%;
+  height: 6px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 1.5rem 0;
+}
+
+.glass-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00f2fe, #4facfe);
+  box-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
+  transition: width 0.1s ease;
+}
+
+/* Glass Deck (Chunky Layout + Premium Glassmorphism) */
+.panels-wrapper {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  width: 100%;
+  max-width: 1400px;
+  position: relative;
+  z-index: 10;
+}
+
+.glass-deck {
+  width: 100%;
+  max-width: 800px;
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  padding: 3rem;
+  border-radius: 24px;
+  box-shadow: 
+    0 30px 70px rgba(0, 0, 0, 0.8),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  flex-shrink: 0;
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.glass-deck.reveal-mode {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 3rem;
+  animation: glassFadeIn 0.5s ease;
+}
+
+@keyframes glassFadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Deleted Display */
+
+/* Controls Grid */
+.glass-controls-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+/* Level Selector Container */
+.level-buttons-container {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 2rem;
+}
+
+.glass-level-btn {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  padding: 3rem 1.5rem;
+  font-size: 2.5rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.btn-progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.btn-text {
+  position: relative;
+  z-index: 1;
+}
+
+.glass-level-btn:active:not(:disabled) {
+  transform: scale(0.92);
+  box-shadow: inset 0 10px 25px rgba(0, 0, 0, 0.5), 0 2px 5px rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.glass-level-btn.locked {
+  opacity: 0.3;
+  cursor: not-allowed;
+  filter: grayscale(100%);
+}
+
+.glass-level-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Glass Progress Bar */
+.glass-progress-container {
+  width: 100%;
+}
+
+.glass-progress-track {
+  width: 100%;
+  height: 10px;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.glass-progress-fill {
+  height: 100%;
+  box-shadow: 0 0 10px currentColor;
+  transition: width 0.05s linear;
+}
+
+/* End Progress Bar */
+
+.reveal-song-title {
+  font-size: 3.2rem;
+  font-weight: 900;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+.reveal-artist-name {
+  font-size: 1.4rem;
+  color: #8892b0;
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+
+.brutalist-reset-btn {
+  background: rgba(255, 255, 255, 0.04);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1rem 2.5rem;
+  font-size: 1.05rem;
+  font-weight: 800;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 1.5rem;
+}
+
+.brutalist-reset-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.brutalist-reset-btn:active {
+  transform: scale(0.98);
+}
+
+.resolve-progress-bar {
+  width: 100%;
+  height: 6px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.resolve-progress-fill {
+  height: 100%;
+  background: rgba(34, 197, 94, 0.8);
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+}
