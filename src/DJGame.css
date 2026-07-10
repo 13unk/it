@@ -210,8 +210,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(20, 20, 25, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: #ffffff;
   padding: 3rem 1.5rem;
   font-size: 2.5rem;
@@ -220,8 +221,9 @@
   text-transform: uppercase;
   border-radius: 16px;
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transform: translateY(0);
+  box-shadow: 0 8px 0 rgba(0, 0, 0, 0.8), 0 15px 30px rgba(0, 0, 0, 0.6);
+  transition: all 0.1s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .btn-progress-fill {
@@ -238,10 +240,18 @@
   z-index: 1;
 }
 
+.glass-level-btn.active {
+  transform: translateY(8px);
+  box-shadow: 0 0px 0 rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 242, 254, 0.5), inset 0 5px 20px rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(0, 242, 254, 0.9);
+  background: rgba(0, 242, 254, 0.08);
+  color: #00f2fe;
+  text-shadow: 0 0 10px rgba(0, 242, 254, 0.6);
+}
+
 .glass-level-btn:active:not(:disabled) {
-  transform: scale(0.92);
-  box-shadow: inset 0 10px 25px rgba(0, 0, 0, 0.5), 0 2px 5px rgba(0, 0, 0, 0.2);
-  background: rgba(255, 255, 255, 0.04);
+  transform: translateY(8px) scale(0.98);
+  box-shadow: 0 0px 0 rgba(0, 0, 0, 0.8), inset 0 5px 25px rgba(0, 0, 0, 0.9);
 }
 
 .glass-level-btn.locked {
