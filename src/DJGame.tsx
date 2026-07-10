@@ -186,7 +186,6 @@ export const DJGame: React.FC = () => {
           {sidebarOpen ? '◀' : '▶'}
         </button>
         <div className="sidebar-content">
-          <h2 className="sidebar-title">TRACKS</h2>
           <div className="track-list">
             {TRACKS.map(track => (
               <button
