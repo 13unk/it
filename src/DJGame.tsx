@@ -226,22 +226,22 @@ export const DJGame: React.FC = () => {
                   );
                 })}
                 
-                <div className="flip-card-wrapper">
-                  <button 
-                    className={`glass-level-btn flip-card-inner ${isResolved ? 'resolved' : ''}`}
-                    onClick={handleResolve}
-                    disabled={isResolved || !isLoaded}
-                    title="Resolver"
-                  >
-                    <div className="flip-card-front">
+                <button 
+                  className={`flip-card-button ${isResolved ? 'resolved' : ''}`}
+                  onClick={handleResolve}
+                  disabled={isResolved || !isLoaded}
+                  title="Resolver"
+                >
+                  <div className="flip-card-inner">
+                    <div className="glass-level-btn flip-card-front">
                       <Crown size={36} color={isResolved ? '#a855f7' : '#888'} />
                     </div>
-                    <div className="flip-card-back">
+                    <div className="glass-level-btn active flip-card-back">
                       <div className="pad-song-title">FE!N</div>
                       <div className="pad-artist-name">Travis Scott<br/>ft. Playboi Carti</div>
                     </div>
-                  </button>
-                </div>
+                  </div>
+                </button>
 
               </div>
             </div>
