@@ -309,6 +309,10 @@
   cursor: not-allowed;
 }
 
+.flip-card-button:disabled .flip-card-inner {
+  pointer-events: none;
+}
+
 .flip-card-inner {
   position: relative;
   width: 100%;
