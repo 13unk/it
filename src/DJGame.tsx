@@ -141,19 +141,6 @@ export const DJGame: React.FC = () => {
     playTrack(4);
   };
 
-  const handleReset = () => {
-    setIsResolved(false);
-    setUnlockedLevel(1);
-    setCurrentLevel(null);
-    setProgress(0);
-    
-    if (sourceRef.current) {
-      try { sourceRef.current.stop(); } catch (e) {}
-      sourceRef.current = null;
-    }
-    if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current);
-  };
-
   return (
     <div className="dj-game-container glass-brutalist">
       {/* Lava Lamp Background */}
