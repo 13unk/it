@@ -29,14 +29,18 @@
   opacity: 0.6;
 }
 
-.blob-1 { width: 200px; height: 200px; background: #00f2fe; top: -50px; left: 10%; animation: blob-float-1 12s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate; }
-.blob-2 { width: 250px; height: 250px; background: #4facfe; bottom: 50px; right: 5%; animation: blob-float-2 15s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate; }
-.blob-3 { width: 150px; height: 150px; background: #38bdf8; top: 30%; left: 40%; animation: blob-float-3 18s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate; }
-.blob-4 { width: 180px; height: 180px; background: #818cf8; top: 10%; right: 20%; animation: blob-float-1 14s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate-reverse; }
-.blob-5 { width: 220px; height: 220px; background: #c084fc; bottom: -20px; left: 20%; animation: blob-float-2 19s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate; }
-.blob-6 { width: 160px; height: 160px; background: #f472b6; top: 60%; right: 30%; animation: blob-float-3 16s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate-reverse; }
-.blob-7 { width: 190px; height: 190px; background: #2dd4bf; top: 40%; left: 10%; animation: blob-float-1 21s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate; }
-.blob-8 { width: 240px; height: 240px; background: #34d399; bottom: 30%; right: 40%; animation: blob-float-2 17s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate-reverse; }
+.blob-1 { width: 100px; height: 100px; background: #00f2fe; top: -50px; left: 10%; animation: blob-float-1 12s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate; }
+.blob-2 { width: 125px; height: 125px; background: #4facfe; bottom: 50px; right: 5%; animation: blob-float-2 15s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate; }
+.blob-3 { width: 75px; height: 75px; background: #38bdf8; top: 30%; left: 40%; animation: blob-float-3 18s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate; }
+.blob-4 { width: 90px; height: 90px; background: #818cf8; top: 10%; right: 20%; animation: blob-float-1 14s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate-reverse; }
+.blob-5 { width: 110px; height: 110px; background: #c084fc; bottom: -20px; left: 20%; animation: blob-float-2 19s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate; }
+.blob-6 { width: 80px; height: 80px; background: #f472b6; top: 60%; right: 30%; animation: blob-float-3 16s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate-reverse; }
+.blob-7 { width: 95px; height: 95px; background: #2dd4bf; top: 40%; left: 10%; animation: blob-float-1 21s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate; }
+.blob-8 { width: 120px; height: 120px; background: #34d399; bottom: 30%; right: 40%; animation: blob-float-2 17s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate-reverse; }
+.blob-9 { width: 65px; height: 65px; background: #fbbf24; top: 80%; left: 50%; animation: blob-float-3 14s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate; }
+.blob-10 { width: 105px; height: 105px; background: #f87171; top: 20%; left: 70%; animation: blob-float-1 22s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate-reverse; }
+.blob-11 { width: 85px; height: 85px; background: #a78bfa; bottom: 10%; right: 15%; animation: blob-float-2 13s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate; }
+.blob-12 { width: 115px; height: 115px; background: #6ee7b7; top: 50%; right: 60%; animation: blob-float-3 20s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate-reverse; }
 
 @keyframes blob-float-1 {
   0% { transform: translate(0, 0) scale(1); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
@@ -282,10 +286,13 @@
   perspective: 1000px;
   width: 100%;
   height: 100%;
+  aspect-ratio: 1 / 1;
 }
 
 .flip-card-inner.glass-level-btn {
   padding: 0;
+  width: 100%;
+  height: 100%;
   transform-style: preserve-3d;
   transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }

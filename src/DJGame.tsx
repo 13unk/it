@@ -166,6 +166,10 @@ export const DJGame: React.FC = () => {
         <div className="blob blob-6"></div>
         <div className="blob blob-7"></div>
         <div className="blob blob-8"></div>
+        <div className="blob blob-9"></div>
+        <div className="blob blob-10"></div>
+        <div className="blob blob-11"></div>
+        <div className="blob blob-12"></div>
       </div>
 
       {/* Top Header Controls */}
