@@ -34,6 +34,7 @@ export const DJGame: React.FC = () => {
 
   const [currentLevel, setCurrentLevel] = useState<1 | 2 | 3 | 4 | null>(null);
   const [unlockedLevel, setUnlockedLevel] = useState<1 | 2 | 3>(1);
+  const [finishedLevels, setFinishedLevels] = useState<number[]>([]);
   const [volume, setVolume] = useState(1);
   const [progress, setProgress] = useState(0);
   const [isResolved, setIsResolved] = useState(false);
@@ -60,6 +61,7 @@ export const DJGame: React.FC = () => {
     resolveClickedRef.current = false;
     setCurrentLevel(null);
     setUnlockedLevel(1);
+    setFinishedLevels([]);
     setProgress(0);
 
     if (sourceRef.current) {
@@ -164,6 +166,7 @@ export const DJGame: React.FC = () => {
         animationFrameRef.current = requestAnimationFrame(updateProgress);
       } else {
         setProgress(0);
+        setFinishedLevels(prev => [...new Set([...prev, level])]);
         setCurrentLevel(null);
       }
     };
@@ -265,7 +268,8 @@ export const DJGame: React.FC = () => {
                   const numLevel = level as 1 | 2 | 3;
                   const isActive = currentLevel === numLevel;
                   const isUnlocked = numLevel <= unlockedLevel;
-                  const progressWidth = isActive ? `${progress}%` : '0%';
+                  const isFinished = finishedLevels.includes(numLevel);
+                  const progressWidth = isActive ? `${progress}%` : isFinished ? '100%' : '0%';
                   
                   return (
                     <button 
