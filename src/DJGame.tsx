@@ -30,7 +30,6 @@ const TRACKS: Track[] = [
 export const DJGame: React.FC = () => {
   const [selectedTrackId, setSelectedTrackId] = useState<string>('track1');
   const activeTrack = TRACKS.find(t => t.id === selectedTrackId) || TRACKS[0];
-  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const [currentLevel, setCurrentLevel] = useState<1 | 2 | 3 | 4 | null>(null);
   const [unlockedLevel, setUnlockedLevel] = useState<1 | 2 | 3>(1);
@@ -178,23 +177,14 @@ export const DJGame: React.FC = () => {
   return (
     <div className="dj-game-container glass-brutalist">
       {/* Track Selector Sidebar */}
-      <div className={`track-sidebar ${sidebarOpen ? 'open' : ''}`}>
-        <button 
-          className="sidebar-toggle"
-          onClick={() => setSidebarOpen(!sidebarOpen)}
-        >
-          {sidebarOpen ? '◀' : '▶'}
-        </button>
+      <div className="track-sidebar">
         <div className="sidebar-content">
           <div className="track-list">
             {TRACKS.map(track => (
               <button
                 key={track.id}
                 className={`track-item-btn ${selectedTrackId === track.id ? 'active' : ''}`}
-                onClick={() => {
-                  setSelectedTrackId(track.id);
-                  setSidebarOpen(false);
-                }}
+                onClick={() => setSelectedTrackId(track.id)}
               >
                 {track.name}
               </button>
