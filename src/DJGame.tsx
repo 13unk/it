@@ -177,16 +177,17 @@ export const DJGame: React.FC = () => {
 
   return (
     <div className="dj-game-container glass-brutalist">
-      <button 
-        className="disc-menu-btn" 
-        onClick={() => setSidebarOpen(!sidebarOpen)}
-      >
-        <Disc size={24} color="#fff" />
-      </button>
+      {/* Track Selector Dropdown */}
+      <div className="track-dropdown-container">
+        <button 
+          className="track-item-btn dropdown-toggle" 
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+        >
+          <Disc size={20} color="#fff" />
+          <span>{activeTrack.name}</span>
+        </button>
 
-      {/* Track Selector Sidebar */}
-      <div className={`track-sidebar ${sidebarOpen ? 'open' : ''}`}>
-        <div className="sidebar-content">
+        <div className={`track-dropdown-menu ${sidebarOpen ? 'open' : ''}`}>
           <div className="track-list">
             {TRACKS.map(track => (
               <button
