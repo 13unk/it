@@ -3,7 +3,6 @@ import { Volume2, Crown } from 'lucide-react';
 import './DJGame.css';
 
 export const DJGame: React.FC = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
   const [currentLevel, setCurrentLevel] = useState<1 | 2 | 3 | 4 | null>(null);
   const [unlockedLevel, setUnlockedLevel] = useState<1 | 2 | 3>(1);
   const [volume, setVolume] = useState(1);
@@ -114,7 +113,6 @@ export const DJGame: React.FC = () => {
     activeDurationRef.current = buffer.duration;
     
     setCurrentLevel(level);
-    setIsPlaying(true);
     
     // Advance unlocked level if needed
     if (level === 1 && unlockedLevel < 2) setUnlockedLevel(2);
@@ -130,7 +128,6 @@ export const DJGame: React.FC = () => {
       if (percent < 100) {
         animationFrameRef.current = requestAnimationFrame(updateProgress);
       } else {
-        setIsPlaying(false);
         setProgress(0);
         setCurrentLevel(null);
       }
@@ -147,7 +144,6 @@ export const DJGame: React.FC = () => {
   const handleReset = () => {
     setIsResolved(false);
     setUnlockedLevel(1);
-    setIsPlaying(false);
     setCurrentLevel(null);
     setProgress(0);
     
