@@ -18,7 +18,7 @@ export const SpotifyScam: React.FC = () => {
         width: '100vw',
         backgroundColor: '#00ff00',
         color: '#ff00ff',
-        fontFamily: '"Comic Sans MS", "Comic Sans", cursive',
+        fontFamily: '"Comic Sans MS", "Chalkboard SE", "Comic Neue", "Marker Felt", sans-serif',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -34,21 +34,21 @@ export const SpotifyScam: React.FC = () => {
         zIndex: 999999
       }}
     >
-      <h1 style={{ fontSize: '5rem', textShadow: '4px 4px #000', margin: 0, animation: 'blink 0.5s infinite' }}>
+      <h1 style={{ fontSize: 'clamp(2rem, 8vw, 5rem)', textShadow: '2px 2px #000, 4px 4px #000', margin: 0, animation: 'blink 0.5s infinite', wordBreak: 'break-word', padding: '0 10px' }}>
         !!! DESCARGAR ESPOTIFAI PREMIUN GRATIS !!!
       </h1>
       
-      <p style={{ fontSize: '3rem', fontWeight: 'bold', background: 'yellow', color: 'red', padding: '10px', border: '5px dashed red', marginTop: '2rem' }}>
+      <p style={{ fontSize: 'clamp(1.2rem, 5vw, 3rem)', fontWeight: 'bold', background: 'yellow', color: 'red', padding: '10px', border: '5px dashed red', marginTop: '2rem', wordBreak: 'break-word', width: '90%', maxWidth: '800px' }}>
         ¡¡ HAZ CLIC AQUÍ PARA DESCARGAR LA APK 100% LIBRE DE VIRUS !!
       </p>
 
-      <div style={{ fontSize: '10rem', marginTop: '2rem', animation: 'bounce 1s infinite' }}>
+      <div style={{ fontSize: 'clamp(4rem, 15vw, 10rem)', marginTop: '2rem', animation: 'bounce 1s infinite' }}>
         👇👇👇
       </div>
 
       <button style={{
-        fontSize: '4rem',
-        padding: '2rem 4rem',
+        fontSize: 'clamp(1.5rem, 6vw, 4rem)',
+        padding: 'clamp(1rem, 4vw, 2rem) clamp(1rem, 6vw, 4rem)',
         backgroundColor: 'red',
         color: 'yellow',
         border: '10px solid blue',
