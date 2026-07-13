@@ -169,6 +169,10 @@ export const DJGame: React.FC = () => {
         setProgress(0);
         setFinishedLevels(prev => [...new Set([...prev, level])]);
         setCurrentLevel(null);
+        if (level === 4) {
+          setIsResolved(false);
+          resolveClickedRef.current = false;
+        }
       }
     };
     
