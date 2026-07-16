@@ -70,6 +70,42 @@ const TRACKS: Track[] = [
       '/stems/5 Jay Wheeler - De Lejitos/3.mp3',
       '/stems/5 Jay Wheeler - De Lejitos/4.mp3'
     ]
+  },
+  {
+    id: 'track6',
+    name: 'TRACK 6',
+    title: 'Amanece',
+    artist: 'Anuel AA',
+    stems: [
+      '/stems/6 Anuel AA - Amanece/1.mp3',
+      '/stems/6 Anuel AA - Amanece/2.mp3',
+      '/stems/6 Anuel AA - Amanece/3.mp3',
+      '/stems/6 Anuel AA - Amanece/4.mp3'
+    ]
+  },
+  {
+    id: 'track7',
+    name: 'TRACK 7',
+    title: 'Adivino',
+    artist: 'Myke Towers',
+    stems: [
+      '/stems/7 Myke Towers - Adivino/1.mp3',
+      '/stems/7 Myke Towers - Adivino/2.mp3',
+      '/stems/7 Myke Towers - Adivino/3.mp3',
+      '/stems/7 Myke Towers - Adivino/4.mp3'
+    ]
+  },
+  {
+    id: 'track8',
+    name: 'TRACK 8',
+    title: 'Ginza',
+    artist: 'J Balvin',
+    stems: [
+      '/stems/8 J Balvin - Ginza/1.mp3',
+      '/stems/8 J Balvin - Ginza/2.mp3',
+      '/stems/8 J Balvin - Ginza/3.mp3',
+      '/stems/8 J Balvin - Ginza/4.mp3'
+    ]
   }
 ];
 
