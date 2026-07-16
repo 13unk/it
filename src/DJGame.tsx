@@ -106,6 +106,30 @@ const TRACKS: Track[] = [
       '/stems/8 J Balvin - Ginza/3.mp3',
       '/stems/8 J Balvin - Ginza/4.mp3'
     ]
+  },
+  {
+    id: 'track9',
+    name: 'TRACK 9',
+    title: "Don't Stop The Music",
+    artist: 'Rihanna',
+    stems: [
+      "/stems/9 Rihanna - Don't Stop The Music/1.mp3",
+      "/stems/9 Rihanna - Don't Stop The Music/2.mp3",
+      "/stems/9 Rihanna - Don't Stop The Music/3.mp3",
+      "/stems/9 Rihanna - Don't Stop The Music/4.mp3"
+    ]
+  },
+  {
+    id: 'track10',
+    name: 'TRACK 10',
+    title: 'Suavemente',
+    artist: 'Elvis Crespo',
+    stems: [
+      '/stems/10 Elvis Crespo - Suavemente/1.mp3',
+      '/stems/10 Elvis Crespo - Suavemente/2.mp3',
+      '/stems/10 Elvis Crespo - Suavemente/3.mp3',
+      '/stems/10 Elvis Crespo - Suavemente/4.mp3'
+    ]
   }
 ];
 
