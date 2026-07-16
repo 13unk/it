@@ -16,14 +16,60 @@ const TRACKS: Track[] = [
     name: 'TRACK 1',
     title: 'FE!N',
     artist: 'Travis Scott\nft. Playboi Carti',
-    stems: ['/stems/fein1.mp3', '/stems/fein2.mp3', '/stems/fein3.mp3', '/stems/fein4.mp3']
+    stems: [
+      '/stems/1 Travis Scott - Fein/1.mp3',
+      '/stems/1 Travis Scott - Fein/2.mp3',
+      '/stems/1 Travis Scott - Fein/3.mp3',
+      '/stems/1 Travis Scott - Fein/4.mp3'
+    ]
   },
   {
     id: 'track2',
     name: 'TRACK 2',
     title: 'BnB',
     artist: 'Young Miko\nft. Clarent',
-    stems: ['/stems/bnb1.mp3', '/stems/bnb2.mp3', '/stems/bnb3.mp3', '/stems/bnb4.mp3']
+    stems: [
+      '/stems/2 Young Miko - BnB/1.mp3',
+      '/stems/2 Young Miko - BnB/2.mp3',
+      '/stems/2 Young Miko - BnB/3.mp3',
+      '/stems/2 Young Miko - BnB/4.mp3'
+    ]
+  },
+  {
+    id: 'track3',
+    name: 'TRACK 3',
+    title: 'QLOO',
+    artist: 'Young Cister',
+    stems: [
+      '/stems/3 Young Cister - QLOO/1.mp3',
+      '/stems/3 Young Cister - QLOO/2.mp3',
+      '/stems/3 Young Cister - QLOO/3.mp3',
+      '/stems/3 Young Cister - QLOO/4.mp3'
+    ]
+  },
+  {
+    id: 'track4',
+    name: 'TRACK 4',
+    title: 'La Plena',
+    artist: 'Beéle',
+    stems: [
+      '/stems/4 Beéle - La Plena/1.mp3',
+      '/stems/4 Beéle - La Plena/2.mp3',
+      '/stems/4 Beéle - La Plena/3.mp3',
+      '/stems/4 Beéle - La Plena/4.mp3'
+    ]
+  },
+  {
+    id: 'track5',
+    name: 'TRACK 5',
+    title: 'De Lejitos',
+    artist: 'Jay Wheeler',
+    stems: [
+      '/stems/5 Jay Wheeler - De Lejitos/1.mp3',
+      '/stems/5 Jay Wheeler - De Lejitos/2.mp3',
+      '/stems/5 Jay Wheeler - De Lejitos/3.mp3',
+      '/stems/5 Jay Wheeler - De Lejitos/4.mp3'
+    ]
   }
 ];
 
