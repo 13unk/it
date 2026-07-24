@@ -329,6 +329,7 @@ export const DJGame: React.FC = () => {
                   setUnlockedLevel(1);
                   setFinishedLevels([]);
                   setProgress(0);
+                  setIsLoaded(false);
                   setSelectedTrackId(track.id);
                   setSidebarOpen(false);
                 }}
