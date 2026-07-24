@@ -323,6 +323,12 @@ export const DJGame: React.FC = () => {
                 key={track.id}
                 className={`track-item-btn ${selectedTrackId === track.id ? 'active' : ''}`}
                 onClick={() => {
+                  setIsResolved(false);
+                  resolveClickedRef.current = false;
+                  setCurrentLevel(null);
+                  setUnlockedLevel(1);
+                  setFinishedLevels([]);
+                  setProgress(0);
                   setSelectedTrackId(track.id);
                   setSidebarOpen(false);
                 }}
