@@ -4,6 +4,7 @@ import './DJGame.css';
 
 type Track = {
   id: string;
+  category: string;
   name: string;
   title: string;
   artist: string;
@@ -13,134 +14,184 @@ type Track = {
 const TRACKS: Track[] = [
   {
     id: 'track1',
+    category: 'HITS DE LOS 90',
     name: 'TRACK 1',
-    title: 'FE!N',
-    artist: 'Travis Scott\nft. Playboi Carti',
+    title: 'Suavemente',
+    artist: 'Elvis Crespo',
     stems: [
-      '/stems/1 Travis Scott - Fein/1.mp3',
-      '/stems/1 Travis Scott - Fein/2.mp3',
-      '/stems/1 Travis Scott - Fein/3.mp3',
-      '/stems/1 Travis Scott - Fein/4.mp3'
+      '/stems/HITS DE LOS 90/1 Elvis Crespo - Suavemente/1.mp3',
+      '/stems/HITS DE LOS 90/1 Elvis Crespo - Suavemente/2.mp3',
+      '/stems/HITS DE LOS 90/1 Elvis Crespo - Suavemente/3.mp3',
+      '/stems/HITS DE LOS 90/1 Elvis Crespo - Suavemente/4.mp3'
     ]
   },
   {
     id: 'track2',
+    category: 'HITS DE POP 2000S',
     name: 'TRACK 2',
-    title: 'BnB',
-    artist: 'Young Miko\nft. Clarent',
+    title: "Don't Stop The Music",
+    artist: 'Rihanna',
     stems: [
-      '/stems/2 Young Miko - BnB/1.mp3',
-      '/stems/2 Young Miko - BnB/2.mp3',
-      '/stems/2 Young Miko - BnB/3.mp3',
-      '/stems/2 Young Miko - BnB/4.mp3'
+      "/stems/HITS DE POP 2000S/1 Rihanna - Don't Stop The Music/1.mp3",
+      "/stems/HITS DE POP 2000S/1 Rihanna - Don't Stop The Music/2.mp3",
+      "/stems/HITS DE POP 2000S/1 Rihanna - Don't Stop The Music/3.mp3",
+      "/stems/HITS DE POP 2000S/1 Rihanna - Don't Stop The Music/4.mp3"
     ]
   },
   {
     id: 'track3',
+    category: 'HITS DE REGGAETON',
     name: 'TRACK 3',
     title: 'QLOO',
     artist: 'Young Cister',
     stems: [
-      '/stems/3 Young Cister - QLOO/1.mp3',
-      '/stems/3 Young Cister - QLOO/2.mp3',
-      '/stems/3 Young Cister - QLOO/3.mp3',
-      '/stems/3 Young Cister - QLOO/4.mp3'
+      '/stems/HITS DE REGGAETON/1 Young Cister - QLOO/1.mp3',
+      '/stems/HITS DE REGGAETON/1 Young Cister - QLOO/2.mp3',
+      '/stems/HITS DE REGGAETON/1 Young Cister - QLOO/3.mp3',
+      '/stems/HITS DE REGGAETON/1 Young Cister - QLOO/4.mp3'
     ]
   },
   {
     id: 'track4',
+    category: 'HITS DE REGGAETON',
     name: 'TRACK 4',
     title: 'La Plena',
     artist: 'Beéle',
     stems: [
-      '/stems/4 Beéle - La Plena/1.mp3',
-      '/stems/4 Beéle - La Plena/2.mp3',
-      '/stems/4 Beéle - La Plena/3.mp3',
-      '/stems/4 Beéle - La Plena/4.mp3'
+      '/stems/HITS DE REGGAETON/2 Beéle - La Plena/1.mp3',
+      '/stems/HITS DE REGGAETON/2 Beéle - La Plena/2.mp3',
+      '/stems/HITS DE REGGAETON/2 Beéle - La Plena/3.mp3',
+      '/stems/HITS DE REGGAETON/2 Beéle - La Plena/4.mp3'
     ]
   },
   {
     id: 'track5',
+    category: 'HITS DE REGGAETON',
     name: 'TRACK 5',
     title: 'De Lejitos',
     artist: 'Jay Wheeler',
     stems: [
-      '/stems/5 Jay Wheeler - De Lejitos/1.mp3',
-      '/stems/5 Jay Wheeler - De Lejitos/2.mp3',
-      '/stems/5 Jay Wheeler - De Lejitos/3.mp3',
-      '/stems/5 Jay Wheeler - De Lejitos/4.mp3'
+      '/stems/HITS DE REGGAETON/3 Jay Wheeler - De Lejitos/1.mp3',
+      '/stems/HITS DE REGGAETON/3 Jay Wheeler - De Lejitos/2.mp3',
+      '/stems/HITS DE REGGAETON/3 Jay Wheeler - De Lejitos/3.mp3',
+      '/stems/HITS DE REGGAETON/3 Jay Wheeler - De Lejitos/4.mp3'
     ]
   },
   {
     id: 'track6',
+    category: 'HITS DE REGGAETON',
     name: 'TRACK 6',
     title: 'Amanece',
     artist: 'Anuel AA',
     stems: [
-      '/stems/6 Anuel AA - Amanece/1.mp3',
-      '/stems/6 Anuel AA - Amanece/2.mp3',
-      '/stems/6 Anuel AA - Amanece/3.mp3',
-      '/stems/6 Anuel AA - Amanece/4.mp3'
+      '/stems/HITS DE REGGAETON/4 Anuel AA - Amanece/1.mp3',
+      '/stems/HITS DE REGGAETON/4 Anuel AA - Amanece/2.mp3',
+      '/stems/HITS DE REGGAETON/4 Anuel AA - Amanece/3.mp3',
+      '/stems/HITS DE REGGAETON/4 Anuel AA - Amanece/4.mp3'
     ]
   },
   {
     id: 'track7',
+    category: 'HITS DE REGGAETON',
     name: 'TRACK 7',
     title: 'Adivino',
     artist: 'Myke Towers',
     stems: [
-      '/stems/7 Myke Towers - Adivino/1.mp3',
-      '/stems/7 Myke Towers - Adivino/2.mp3',
-      '/stems/7 Myke Towers - Adivino/3.mp3',
-      '/stems/7 Myke Towers - Adivino/4.mp3'
+      '/stems/HITS DE REGGAETON/5 Myke Towers - Adivino/1.mp3',
+      '/stems/HITS DE REGGAETON/5 Myke Towers - Adivino/2.mp3',
+      '/stems/HITS DE REGGAETON/5 Myke Towers - Adivino/3.mp3',
+      '/stems/HITS DE REGGAETON/5 Myke Towers - Adivino/4.mp3'
     ]
   },
   {
     id: 'track8',
+    category: 'HITS DE REGGAETON',
     name: 'TRACK 8',
     title: 'Ginza',
     artist: 'J Balvin',
     stems: [
-      '/stems/8 J Balvin - Ginza/1.mp3',
-      '/stems/8 J Balvin - Ginza/2.mp3',
-      '/stems/8 J Balvin - Ginza/3.mp3',
-      '/stems/8 J Balvin - Ginza/4.mp3'
+      '/stems/HITS DE REGGAETON/6 J Balvin - Ginza/1.mp3',
+      '/stems/HITS DE REGGAETON/6 J Balvin - Ginza/2.mp3',
+      '/stems/HITS DE REGGAETON/6 J Balvin - Ginza/3.mp3',
+      '/stems/HITS DE REGGAETON/6 J Balvin - Ginza/4.mp3'
     ]
   },
   {
     id: 'track9',
+    category: 'HITS DE REGGAETON',
     name: 'TRACK 9',
-    title: "Don't Stop The Music",
-    artist: 'Rihanna',
+    title: "Po' Encima",
+    artist: 'Arcángel',
     stems: [
-      "/stems/9 Rihanna - Don't Stop The Music/1.mp3",
-      "/stems/9 Rihanna - Don't Stop The Music/2.mp3",
-      "/stems/9 Rihanna - Don't Stop The Music/3.mp3",
-      "/stems/9 Rihanna - Don't Stop The Music/4.mp3"
+      "/stems/HITS DE REGGAETON/7 Arcángel - Po' Encima/1.mp3",
+      "/stems/HITS DE REGGAETON/7 Arcángel - Po' Encima/2.mp3",
+      "/stems/HITS DE REGGAETON/7 Arcángel - Po' Encima/3.mp3",
+      "/stems/HITS DE REGGAETON/7 Arcángel - Po' Encima/4.mp3"
     ]
   },
   {
     id: 'track10',
+    category: 'HITS DE REGGAETON',
     name: 'TRACK 10',
-    title: 'Suavemente',
-    artist: 'Elvis Crespo',
+    title: 'Cuando No Era Cantante',
+    artist: 'El Bogueto',
     stems: [
-      '/stems/10 Elvis Crespo - Suavemente/1.mp3',
-      '/stems/10 Elvis Crespo - Suavemente/2.mp3',
-      '/stems/10 Elvis Crespo - Suavemente/3.mp3',
-      '/stems/10 Elvis Crespo - Suavemente/4.mp3'
+      '/stems/HITS DE REGGAETON/8 El Bogueto - Cuando No Era Cantante/1.mp3',
+      '/stems/HITS DE REGGAETON/8 El Bogueto - Cuando No Era Cantante/2.mp3',
+      '/stems/HITS DE REGGAETON/8 El Bogueto - Cuando No Era Cantante/3.mp3',
+      '/stems/HITS DE REGGAETON/8 El Bogueto - Cuando No Era Cantante/4.mp3'
     ]
   },
   {
     id: 'track11',
+    category: 'HITS DE TRAP',
     name: 'TRACK 11',
-    title: "Po' Encima",
-    artist: 'Arcángel',
+    title: 'FE!N',
+    artist: 'Travis Scott\nft. Playboi Carti',
     stems: [
-      "/stems/11 Arcángel - Po' Encima/1.mp3",
-      "/stems/11 Arcángel - Po' Encima/2.mp3",
-      "/stems/11 Arcángel - Po' Encima/3.mp3",
-      "/stems/11 Arcángel - Po' Encima/4.mp3"
+      '/stems/HITS DE TRAP/1 Travis Scott - Fein/1.mp3',
+      '/stems/HITS DE TRAP/1 Travis Scott - Fein/2.mp3',
+      '/stems/HITS DE TRAP/1 Travis Scott - Fein/3.mp3',
+      '/stems/HITS DE TRAP/1 Travis Scott - Fein/4.mp3'
+    ]
+  },
+  {
+    id: 'track12',
+    category: 'HITS DE TRAP',
+    name: 'TRACK 12',
+    title: 'Boss',
+    artist: 'Lil Pump',
+    stems: [
+      '/stems/HITS DE TRAP/2 Lil Pump - Boss/1.mp3',
+      '/stems/HITS DE TRAP/2 Lil Pump - Boss/2.mp3',
+      '/stems/HITS DE TRAP/2 Lil Pump - Boss/3.mp3',
+      '/stems/HITS DE TRAP/2 Lil Pump - Boss/4.mp3'
+    ]
+  },
+  {
+    id: 'track13',
+    category: 'HITS DE TRAP',
+    name: 'TRACK 13',
+    title: 'Betrayed',
+    artist: 'Lil Xan',
+    stems: [
+      '/stems/HITS DE TRAP/3 Lil Xan - Betrayed/1.mp3',
+      '/stems/HITS DE TRAP/3 Lil Xan - Betrayed/2.mp3',
+      '/stems/HITS DE TRAP/3 Lil Xan - Betrayed/3.mp3',
+      '/stems/HITS DE TRAP/3 Lil Xan - Betrayed/4.mp3'
+    ]
+  },
+  {
+    id: 'track14',
+    category: 'HITS DE TRAP LATINO',
+    name: 'TRACK 14',
+    title: 'BnB',
+    artist: 'Young Miko\nft. Clarent',
+    stems: [
+      '/stems/HITS DE TRAP LATINO/1 Young Miko - BnB/1.mp3',
+      '/stems/HITS DE TRAP LATINO/1 Young Miko - BnB/2.mp3',
+      '/stems/HITS DE TRAP LATINO/1 Young Miko - BnB/3.mp3',
+      '/stems/HITS DE TRAP LATINO/1 Young Miko - BnB/4.mp3'
     ]
   }
 ];
@@ -304,6 +355,8 @@ export const DJGame: React.FC = () => {
     playTrack(4);
   };
 
+  const categories = Array.from(new Set(TRACKS.map(t => t.category)));
+
   return (
     <div className="dj-game-container glass-brutalist">
       {/* Track Selector Dropdown */}
@@ -318,24 +371,31 @@ export const DJGame: React.FC = () => {
 
         <div className={`track-dropdown-menu ${sidebarOpen ? 'open' : ''}`}>
           <div className="track-list">
-            {TRACKS.map(track => (
-              <button
-                key={track.id}
-                className={`track-item-btn ${selectedTrackId === track.id ? 'active' : ''}`}
-                onClick={() => {
-                  setIsResolved(false);
-                  resolveClickedRef.current = false;
-                  setCurrentLevel(null);
-                  setUnlockedLevel(1);
-                  setFinishedLevels([]);
-                  setProgress(0);
-                  setIsLoaded(false);
-                  setSelectedTrackId(track.id);
-                  setSidebarOpen(false);
-                }}
-              >
-                {track.name}
-              </button>
+            {categories.map(category => (
+              <div key={category} className="track-category-group">
+                <div className="track-category-header">{category}</div>
+                <div className="track-category-items">
+                  {TRACKS.filter(t => t.category === category).map(track => (
+                    <button
+                      key={track.id}
+                      className={`track-item-btn ${selectedTrackId === track.id ? 'active' : ''}`}
+                      onClick={() => {
+                        setIsResolved(false);
+                        resolveClickedRef.current = false;
+                        setCurrentLevel(null);
+                        setUnlockedLevel(1);
+                        setFinishedLevels([]);
+                        setProgress(0);
+                        setIsLoaded(false);
+                        setSelectedTrackId(track.id);
+                        setSidebarOpen(false);
+                      }}
+                    >
+                      {track.name}
+                    </button>
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
         </div>

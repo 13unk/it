@@ -462,3 +462,30 @@
   z-index: 10;
   pointer-events: none;
 }
+
+/* Category Dropdown Styles */
+.track-category-group {
+  margin-bottom: 1rem;
+}
+
+.track-category-group:last-child {
+  margin-bottom: 0;
+}
+
+.track-category-header {
+  font-size: 0.75rem;
+  color: #c084fc;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 0.5rem 0.25rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px dashed rgba(168, 85, 247, 0.3);
+  text-align: left;
+}
+
+.track-category-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
