@@ -28,7 +28,7 @@ const TRACKS: Track[] = [
   {
     id: 'track2',
     category: 'HITS DE POP 2000S',
-    name: 'TRACK 2',
+    name: 'TRACK 1',
     title: "Don't Stop The Music",
     artist: 'Rihanna',
     stems: [
@@ -41,7 +41,7 @@ const TRACKS: Track[] = [
   {
     id: 'track3',
     category: 'HITS DE REGGAETON',
-    name: 'TRACK 3',
+    name: 'TRACK 1',
     title: 'QLOO',
     artist: 'Young Cister',
     stems: [
@@ -54,7 +54,7 @@ const TRACKS: Track[] = [
   {
     id: 'track4',
     category: 'HITS DE REGGAETON',
-    name: 'TRACK 4',
+    name: 'TRACK 2',
     title: 'La Plena',
     artist: 'Beéle',
     stems: [
@@ -67,7 +67,7 @@ const TRACKS: Track[] = [
   {
     id: 'track5',
     category: 'HITS DE REGGAETON',
-    name: 'TRACK 5',
+    name: 'TRACK 3',
     title: 'De Lejitos',
     artist: 'Jay Wheeler',
     stems: [
@@ -80,7 +80,7 @@ const TRACKS: Track[] = [
   {
     id: 'track6',
     category: 'HITS DE REGGAETON',
-    name: 'TRACK 6',
+    name: 'TRACK 4',
     title: 'Amanece',
     artist: 'Anuel AA',
     stems: [
@@ -93,7 +93,7 @@ const TRACKS: Track[] = [
   {
     id: 'track7',
     category: 'HITS DE REGGAETON',
-    name: 'TRACK 7',
+    name: 'TRACK 5',
     title: 'Adivino',
     artist: 'Myke Towers',
     stems: [
@@ -106,7 +106,7 @@ const TRACKS: Track[] = [
   {
     id: 'track8',
     category: 'HITS DE REGGAETON',
-    name: 'TRACK 8',
+    name: 'TRACK 6',
     title: 'Ginza',
     artist: 'J Balvin',
     stems: [
@@ -119,7 +119,7 @@ const TRACKS: Track[] = [
   {
     id: 'track9',
     category: 'HITS DE REGGAETON',
-    name: 'TRACK 9',
+    name: 'TRACK 7',
     title: "Po' Encima",
     artist: 'Arcángel',
     stems: [
@@ -132,7 +132,7 @@ const TRACKS: Track[] = [
   {
     id: 'track10',
     category: 'HITS DE REGGAETON',
-    name: 'TRACK 10',
+    name: 'TRACK 8',
     title: 'Cuando No Era Cantante',
     artist: 'El Bogueto',
     stems: [
@@ -145,7 +145,7 @@ const TRACKS: Track[] = [
   {
     id: 'track11',
     category: 'HITS DE TRAP',
-    name: 'TRACK 11',
+    name: 'TRACK 1',
     title: 'FE!N',
     artist: 'Travis Scott\nft. Playboi Carti',
     stems: [
@@ -158,7 +158,7 @@ const TRACKS: Track[] = [
   {
     id: 'track12',
     category: 'HITS DE TRAP',
-    name: 'TRACK 12',
+    name: 'TRACK 2',
     title: 'Boss',
     artist: 'Lil Pump',
     stems: [
@@ -171,7 +171,7 @@ const TRACKS: Track[] = [
   {
     id: 'track13',
     category: 'HITS DE TRAP',
-    name: 'TRACK 13',
+    name: 'TRACK 3',
     title: 'Betrayed',
     artist: 'Lil Xan',
     stems: [
@@ -184,7 +184,7 @@ const TRACKS: Track[] = [
   {
     id: 'track14',
     category: 'HITS DE TRAP LATINO',
-    name: 'TRACK 14',
+    name: 'TRACK 1',
     title: 'BnB',
     artist: 'Young Miko\nft. Clarent',
     stems: [
