@@ -724,10 +724,14 @@ export const DJGame: React.FC = () => {
         </div>
 
         <div className="selection-content">
-          {categories.map(category => (
-            <div key={category} className="selection-category-section">
-              <h2 className="selection-category-title">{category}</h2>
-              <div className="selection-tracks-grid">
+          <div className="selection-tracks-grid">
+            {categories.map(category => (
+              <React.Fragment key={category}>
+                {/* Category Title Card */}
+                <div className="track-square-card category-title-card">
+                  <span className="category-card-title">{category}</span>
+                </div>
+                {/* Tracks inside this category */}
                 {TRACKS.filter(t => t.category === category).map(track => (
                   <button
                     key={track.id}
@@ -749,9 +753,9 @@ export const DJGame: React.FC = () => {
                     <span className="track-card-number">{track.name.replace('TRACK ', '')}</span>
                   </button>
                 ))}
-              </div>
-            </div>
-          ))}
+              </React.Fragment>
+            ))}
+          </div>
         </div>
 
         {/* Footer Logo */}

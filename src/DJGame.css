@@ -696,3 +696,25 @@
   border-color: #a855f7;
   box-shadow: 0 15px 30px rgba(168, 85, 247, 0.25);
 }
+
+/* Category Title Card in the selection grid */
+.category-title-card {
+  background: rgba(168, 85, 247, 0.15) !important;
+  border: 1.5px solid rgba(168, 85, 247, 0.4) !important;
+  cursor: default !important;
+  pointer-events: none;
+  padding: 0.5rem;
+  box-shadow: inset 0 0 15px rgba(168, 85, 247, 0.2) !important;
+}
+
+.category-card-title {
+  font-size: 0.65rem;
+  font-weight: 900;
+  color: #d8b4fe;
+  text-shadow: 0 0 8px rgba(168, 85, 247, 0.5);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.3;
+  word-wrap: break-word;
+}
