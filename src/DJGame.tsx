@@ -720,8 +720,7 @@ export const DJGame: React.FC = () => {
 
         <div className="selection-header">
           <Disc className="spinning-disc" size={48} color="#a855f7" />
-          <h1 className="selection-title">SELECCIONA UNA CANCIÓN</h1>
-          <p className="selection-subtitle">Escucha los stems en diferentes niveles y adivina el título</p>
+          <h1 className="selection-title">¿PUEDES ADIVINAR LA CANCIÓN?</h1>
         </div>
 
         <div className="selection-content">
