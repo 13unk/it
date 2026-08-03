@@ -747,8 +747,7 @@ export const DJGame: React.FC = () => {
                     <div className="track-card-decor">
                       <Disc size={20} className="card-disc-icon" />
                     </div>
-                    <span className="track-card-number">{track.name}</span>
-                    <span className="track-card-mystery">¿QUIÉN ES?</span>
+                    <span className="track-card-number">{track.name.replace('TRACK ', '')}</span>
                   </button>
                 ))}
               </div>
