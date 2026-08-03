@@ -587,8 +587,8 @@
 
 .selection-tracks-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
+  gap: 0.75rem;
 }
 
 /* Track Square Card (Modern brutalist-glass style) */
@@ -596,8 +596,8 @@
   position: relative;
   aspect-ratio: 1 / 1;
   background: rgba(255, 255, 255, 0.02);
-  border: 2px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
+  border: 1.5px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -605,7 +605,7 @@
   cursor: pointer;
   overflow: hidden;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(10px);
 }
 
@@ -620,9 +620,9 @@
 }
 
 .track-square-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-4px);
   border-color: #a855f7;
-  box-shadow: 0 20px 40px rgba(168, 85, 247, 0.25);
+  box-shadow: 0 10px 20px rgba(168, 85, 247, 0.25);
   background: rgba(255, 255, 255, 0.04);
 }
 
@@ -638,7 +638,7 @@
 .track-card-decor {
   position: relative;
   z-index: 1;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.5rem;
 }
 
 .card-disc-icon {
@@ -649,20 +649,20 @@
 .track-card-number {
   position: relative;
   z-index: 1;
-  font-size: 1.6rem;
+  font-size: 1rem;
   font-weight: 900;
   color: #fff;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
 }
 
 .track-card-mystery {
   position: relative;
   z-index: 1;
-  font-size: 0.75rem;
+  font-size: 0.6rem;
   font-weight: 700;
   color: #8892b0;
-  letter-spacing: 2px;
-  margin-top: 0.5rem;
+  letter-spacing: 1px;
+  margin-top: 0.25rem;
   transition: color 0.3s ease;
 }
 

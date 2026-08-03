@@ -261,6 +261,19 @@ const TRACKS: Track[] = [
   },
   {
     id: 'track20',
+    category: 'HITS DE REGGAETON',
+    name: 'TRACK 17',
+    title: 'Se Va Pal Club',
+    artist: 'Hugo Castejón',
+    stems: [
+      '/stems/HITS DE REGGAETON/17 Hugo Castejón - Se Va Pal Club/1.mp3',
+      '/stems/HITS DE REGGAETON/17 Hugo Castejón - Se Va Pal Club/2.mp3',
+      '/stems/HITS DE REGGAETON/17 Hugo Castejón - Se Va Pal Club/3.mp3',
+      '/stems/HITS DE REGGAETON/17 Hugo Castejón - Se Va Pal Club/4.mp3'
+    ]
+  },
+  {
+    id: 'track21',
     category: 'HITS DE TRAP',
     name: 'TRACK 1',
     title: 'Fein',
@@ -273,7 +286,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track21',
+    id: 'track22',
     category: 'HITS DE TRAP',
     name: 'TRACK 2',
     title: 'Boss',
@@ -286,7 +299,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track22',
+    id: 'track23',
     category: 'HITS DE TRAP',
     name: 'TRACK 3',
     title: 'Betrayed',
@@ -299,7 +312,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track23',
+    id: 'track24',
     category: 'HITS DE TRAP',
     name: 'TRACK 4',
     title: 'Bank Account',
@@ -312,7 +325,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track24',
+    id: 'track25',
     category: 'HITS DE TRAP',
     name: 'TRACK 5',
     title: 'Freestyle',
@@ -325,7 +338,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track25',
+    id: 'track26',
     category: 'HITS DE TRAP',
     name: 'TRACK 6',
     title: 'WTHELLY',
@@ -338,7 +351,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track26',
+    id: 'track27',
     category: 'HITS DE TRAP',
     name: 'TRACK 7',
     title: 'The Box',
@@ -351,7 +364,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track27',
+    id: 'track28',
     category: 'HITS DE TRAP',
     name: 'TRACK 8',
     title: 'Yes Indeed',
@@ -364,7 +377,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track28',
+    id: 'track29',
     category: 'HITS DE TRAP',
     name: 'TRACK 9',
     title: 'A Lot',
@@ -377,7 +390,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track29',
+    id: 'track30',
     category: 'HITS DE TRAP',
     name: 'TRACK 10',
     title: 'Hate Bein\' Sober',
@@ -390,7 +403,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track30',
+    id: 'track31',
     category: 'HITS DE TRAP',
     name: 'TRACK 11',
     title: 'I Don\'t Like',
@@ -403,7 +416,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track31',
+    id: 'track32',
     category: 'HITS DE TRAP',
     name: 'TRACK 12',
     title: 'Leave Me Alone',
@@ -416,7 +429,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track32',
+    id: 'track33',
     category: 'HITS DE TRAP',
     name: 'TRACK 13',
     title: 'Love Sosa',
@@ -429,7 +442,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track33',
+    id: 'track34',
     category: 'HITS DE TRAP',
     name: 'TRACK 14',
     title: 'Trap Queen',
@@ -442,7 +455,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track34',
+    id: 'track35',
     category: 'HITS DE TRAP ESPAÑOL',
     name: 'TRACK 1',
     title: 'Dracukeo',
@@ -455,7 +468,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track35',
+    id: 'track36',
     category: 'HITS DE TRAP ESPAÑOL',
     name: 'TRACK 2',
     title: 'Beso Negro',
@@ -468,7 +481,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track36',
+    id: 'track37',
     category: 'HITS DE TRAP ESPAÑOL',
     name: 'TRACK 3',
     title: 'La Ley de Eddie Murphy',
@@ -481,7 +494,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track37',
+    id: 'track38',
     category: 'HITS DE TRAP LATINO',
     name: 'TRACK 1',
     title: 'BnB',
@@ -494,7 +507,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track38',
+    id: 'track39',
     category: 'HITS DE TRAP LATINO',
     name: 'TRACK 2',
     title: 'Si Me Gano Un Grammy',
@@ -732,7 +745,7 @@ export const DJGame: React.FC = () => {
                     }}
                   >
                     <div className="track-card-decor">
-                      <Disc size={28} className="card-disc-icon" />
+                      <Disc size={20} className="card-disc-icon" />
                     </div>
                     <span className="track-card-number">{track.name}</span>
                     <span className="track-card-mystery">¿QUIÉN ES?</span>
