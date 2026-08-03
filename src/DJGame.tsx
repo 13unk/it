@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Volume2, Crown, Disc } from 'lucide-react';
+import { Volume2, Crown, Disc, ArrowLeft } from 'lucide-react';
 import './DJGame.css';
 
 type Track = {
@@ -509,9 +509,8 @@ const TRACKS: Track[] = [
 ];
 
 export const DJGame: React.FC = () => {
-  const [selectedTrackId, setSelectedTrackId] = useState<string>('track1');
-  const activeTrack = TRACKS.find(t => t.id === selectedTrackId) || TRACKS[0];
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [selectedTrackId, setSelectedTrackId] = useState<string | null>(null);
+  const activeTrack = TRACKS.find(t => t.id === selectedTrackId);
 
   const [currentLevel, setCurrentLevel] = useState<1 | 2 | 3 | 4 | null>(null);
   const [unlockedLevel, setUnlockedLevel] = useState<1 | 2 | 3>(1);
@@ -536,6 +535,15 @@ export const DJGame: React.FC = () => {
 
   // Load and decode all 4 stems using Web Audio API
   useEffect(() => {
+    if (!activeTrack) {
+      // If we go back to the menu, stop any playing audio
+      if (sourceRef.current) {
+        try { sourceRef.current.stop(); } catch(e) {}
+      }
+      if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current);
+      return;
+    }
+
     setIsLoaded(false);
     setLoadingProgress(0);
     setIsResolved(false);
@@ -584,7 +592,7 @@ export const DJGame: React.FC = () => {
       }
       if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current);
     };
-  }, [activeTrack.stems]);
+  }, [activeTrack?.stems]);
 
   // Update volume live
   useEffect(() => {
@@ -669,49 +677,91 @@ export const DJGame: React.FC = () => {
 
   const categories = Array.from(new Set(TRACKS.map(t => t.category)));
 
+  // If no track is selected, render the full-screen selection menu
+  if (selectedTrackId === null) {
+    return (
+      <div className="dj-game-container glass-brutalist track-selection-screen">
+        {/* Lava Lamp Background */}
+        <div className="lava-background">
+          <div className="blob blob-1"></div>
+          <div className="blob blob-2"></div>
+          <div className="blob blob-3"></div>
+          <div className="blob blob-4"></div>
+          <div className="blob blob-5"></div>
+          <div className="blob blob-6"></div>
+          <div className="blob blob-7"></div>
+          <div className="blob blob-8"></div>
+          <div className="blob blob-9"></div>
+          <div className="blob blob-10"></div>
+          <div className="blob blob-11"></div>
+          <div className="blob blob-12"></div>
+          <div className="blob blob-13"></div>
+          <div className="blob blob-14"></div>
+          <div className="blob blob-15"></div>
+          <div className="blob blob-16"></div>
+          <div className="blob blob-17"></div>
+          <div className="blob blob-18"></div>
+          <div className="blob blob-19"></div>
+          <div className="blob blob-20"></div>
+        </div>
+
+        <div className="selection-header">
+          <Disc className="spinning-disc" size={48} color="#a855f7" />
+          <h1 className="selection-title">SELECCIONA UNA CANCIÓN</h1>
+          <p className="selection-subtitle">Escucha los stems en diferentes niveles y adivina el título</p>
+        </div>
+
+        <div className="selection-content">
+          {categories.map(category => (
+            <div key={category} className="selection-category-section">
+              <h2 className="selection-category-title">{category}</h2>
+              <div className="selection-tracks-grid">
+                {TRACKS.filter(t => t.category === category).map(track => (
+                  <button
+                    key={track.id}
+                    className="track-square-card glass"
+                    onClick={() => {
+                      setIsResolved(false);
+                      resolveClickedRef.current = false;
+                      setCurrentLevel(null);
+                      setUnlockedLevel(1);
+                      setFinishedLevels([]);
+                      setProgress(0);
+                      setIsLoaded(false);
+                      setSelectedTrackId(track.id);
+                    }}
+                  >
+                    <div className="track-card-decor">
+                      <Disc size={28} className="card-disc-icon" />
+                    </div>
+                    <span className="track-card-number">{track.name}</span>
+                    <span className="track-card-mystery">¿QUIÉN ES?</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Footer Logo */}
+        <img src="/unklogo.png" alt="UNK Logo" className="footer-logo" />
+      </div>
+    );
+  }
+
+  // Active track must be defined if selectedTrackId is not null
+  const currentActiveTrack = activeTrack!;
+
   return (
     <div className="dj-game-container glass-brutalist">
-      {/* Track Selector Dropdown */}
-      <div className="track-dropdown-container">
-        <button 
-          className="track-item-btn dropdown-toggle" 
-          onClick={() => setSidebarOpen(!sidebarOpen)}
-        >
-          <Disc size={20} color="#fff" />
-          <span>{activeTrack.name}</span>
-        </button>
-
-        <div className={`track-dropdown-menu ${sidebarOpen ? 'open' : ''}`}>
-          <div className="track-list">
-            {categories.map(category => (
-              <div key={category} className="track-category-group">
-                <div className="track-category-header">{category}</div>
-                <div className="track-category-items">
-                  {TRACKS.filter(t => t.category === category).map(track => (
-                    <button
-                      key={track.id}
-                      className={`track-item-btn ${selectedTrackId === track.id ? 'active' : ''}`}
-                      onClick={() => {
-                        setIsResolved(false);
-                        resolveClickedRef.current = false;
-                        setCurrentLevel(null);
-                        setUnlockedLevel(1);
-                        setFinishedLevels([]);
-                        setProgress(0);
-                        setIsLoaded(false);
-                        setSelectedTrackId(track.id);
-                        setSidebarOpen(false);
-                      }}
-                    >
-                      {track.name}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      {/* Back Button to Selection Screen */}
+      <button 
+        className="back-to-menu-btn glass" 
+        onClick={() => setSelectedTrackId(null)}
+        title="Volver a la selección de canciones"
+      >
+        <ArrowLeft size={24} color="#fff" />
+      </button>
 
       {/* Lava Lamp Background */}
       <div className="lava-background">
@@ -803,9 +853,9 @@ export const DJGame: React.FC = () => {
                       <Crown size={36} color={isResolved ? '#a855f7' : '#888'} />
                     </div>
                     <div className="glass-level-btn flip-card-back">
-                      <div className="pad-song-title">{activeTrack.title}</div>
+                      <div className="pad-song-title">{currentActiveTrack.title}</div>
                       <div className="pad-artist-name">
-                        {activeTrack.artist.split('\n').map((line, i) => (
+                        {currentActiveTrack.artist.split('\n').map((line, i) => (
                           <React.Fragment key={i}>
                             {line}
                             {i === 0 && <br />}
