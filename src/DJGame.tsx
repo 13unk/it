@@ -29,17 +29,30 @@ const TRACKS: Track[] = [
     id: 'track2',
     category: 'HITS DE POP 2000S',
     name: 'TRACK 1',
-    title: "Don't Stop The Music",
+    title: 'Don\'t Stop The Music',
     artist: 'Rihanna',
     stems: [
-      "/stems/HITS DE POP 2000S/1 Rihanna - Don't Stop The Music/1.mp3",
-      "/stems/HITS DE POP 2000S/1 Rihanna - Don't Stop The Music/2.mp3",
-      "/stems/HITS DE POP 2000S/1 Rihanna - Don't Stop The Music/3.mp3",
-      "/stems/HITS DE POP 2000S/1 Rihanna - Don't Stop The Music/4.mp3"
+      '/stems/HITS DE POP 2000S/1 Rihanna - Don\'t Stop The Music/1.mp3',
+      '/stems/HITS DE POP 2000S/1 Rihanna - Don\'t Stop The Music/2.mp3',
+      '/stems/HITS DE POP 2000S/1 Rihanna - Don\'t Stop The Music/3.mp3',
+      '/stems/HITS DE POP 2000S/1 Rihanna - Don\'t Stop The Music/4.mp3'
     ]
   },
   {
     id: 'track3',
+    category: 'HITS DE RAP',
+    name: 'TRACK 1',
+    title: 'No Role Modelz',
+    artist: 'J. Cole',
+    stems: [
+      '/stems/HITS DE RAP/1 J. Cole - No Role Modelz/1.mp3',
+      '/stems/HITS DE RAP/1 J. Cole - No Role Modelz/2.mp3',
+      '/stems/HITS DE RAP/1 J. Cole - No Role Modelz/3.mp3',
+      '/stems/HITS DE RAP/1 J. Cole - No Role Modelz/4.mp3'
+    ]
+  },
+  {
+    id: 'track4',
     category: 'HITS DE REGGAETON',
     name: 'TRACK 1',
     title: 'QLOO',
@@ -52,7 +65,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track4',
+    id: 'track5',
     category: 'HITS DE REGGAETON',
     name: 'TRACK 2',
     title: 'La Plena',
@@ -65,7 +78,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track5',
+    id: 'track6',
     category: 'HITS DE REGGAETON',
     name: 'TRACK 3',
     title: 'De Lejitos',
@@ -78,7 +91,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track6',
+    id: 'track7',
     category: 'HITS DE REGGAETON',
     name: 'TRACK 4',
     title: 'Amanece',
@@ -91,7 +104,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track7',
+    id: 'track8',
     category: 'HITS DE REGGAETON',
     name: 'TRACK 5',
     title: 'Adivino',
@@ -104,7 +117,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track8',
+    id: 'track9',
     category: 'HITS DE REGGAETON',
     name: 'TRACK 6',
     title: 'Ginza',
@@ -117,20 +130,20 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track9',
+    id: 'track10',
     category: 'HITS DE REGGAETON',
     name: 'TRACK 7',
-    title: "Po' Encima",
+    title: 'Po\' Encima',
     artist: 'Arcángel',
     stems: [
-      "/stems/HITS DE REGGAETON/7 Arcángel - Po' Encima/1.mp3",
-      "/stems/HITS DE REGGAETON/7 Arcángel - Po' Encima/2.mp3",
-      "/stems/HITS DE REGGAETON/7 Arcángel - Po' Encima/3.mp3",
-      "/stems/HITS DE REGGAETON/7 Arcángel - Po' Encima/4.mp3"
+      '/stems/HITS DE REGGAETON/7 Arcángel - Po\' Encima/1.mp3',
+      '/stems/HITS DE REGGAETON/7 Arcángel - Po\' Encima/2.mp3',
+      '/stems/HITS DE REGGAETON/7 Arcángel - Po\' Encima/3.mp3',
+      '/stems/HITS DE REGGAETON/7 Arcángel - Po\' Encima/4.mp3'
     ]
   },
   {
-    id: 'track10',
+    id: 'track11',
     category: 'HITS DE REGGAETON',
     name: 'TRACK 8',
     title: 'Cuando No Era Cantante',
@@ -143,11 +156,115 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track11',
+    id: 'track12',
+    category: 'HITS DE REGGAETON',
+    name: 'TRACK 9',
+    title: 'Diavla',
+    artist: 'Chris Viz',
+    stems: [
+      '/stems/HITS DE REGGAETON/9 Chris Viz - Diavla/1.mp3',
+      '/stems/HITS DE REGGAETON/9 Chris Viz - Diavla/2.mp3',
+      '/stems/HITS DE REGGAETON/9 Chris Viz - Diavla/3.mp3',
+      '/stems/HITS DE REGGAETON/9 Chris Viz - Diavla/4.mp3'
+    ]
+  },
+  {
+    id: 'track13',
+    category: 'HITS DE REGGAETON',
+    name: 'TRACK 10',
+    title: 'Mirándote',
+    artist: 'Rvfv',
+    stems: [
+      '/stems/HITS DE REGGAETON/10 Rvfv - Mirándote/1.mp3',
+      '/stems/HITS DE REGGAETON/10 Rvfv - Mirándote/2.mp3',
+      '/stems/HITS DE REGGAETON/10 Rvfv - Mirándote/3.mp3',
+      '/stems/HITS DE REGGAETON/10 Rvfv - Mirándote/4.mp3'
+    ]
+  },
+  {
+    id: 'track14',
+    category: 'HITS DE REGGAETON',
+    name: 'TRACK 11',
+    title: 'Afrorue',
+    artist: 'Afrojuice',
+    stems: [
+      '/stems/HITS DE REGGAETON/11 Afrojuice - Afrorue/1.mp3',
+      '/stems/HITS DE REGGAETON/11 Afrojuice - Afrorue/2.mp3',
+      '/stems/HITS DE REGGAETON/11 Afrojuice - Afrorue/3.mp3',
+      '/stems/HITS DE REGGAETON/11 Afrojuice - Afrorue/4.mp3'
+    ]
+  },
+  {
+    id: 'track15',
+    category: 'HITS DE REGGAETON',
+    name: 'TRACK 12',
+    title: 'Virtual Diva',
+    artist: 'Don Omar',
+    stems: [
+      '/stems/HITS DE REGGAETON/12 Don Omar - Virtual Diva/1.mp3',
+      '/stems/HITS DE REGGAETON/12 Don Omar - Virtual Diva/2.mp3',
+      '/stems/HITS DE REGGAETON/12 Don Omar - Virtual Diva/3.mp3',
+      '/stems/HITS DE REGGAETON/12 Don Omar - Virtual Diva/4.mp3'
+    ]
+  },
+  {
+    id: 'track16',
+    category: 'HITS DE REGGAETON',
+    name: 'TRACK 13',
+    title: 'El Señor de la Noche',
+    artist: 'Don Omar',
+    stems: [
+      '/stems/HITS DE REGGAETON/13 Don Omar - El Señor de la Noche/1.mp3',
+      '/stems/HITS DE REGGAETON/13 Don Omar - El Señor de la Noche/2.mp3',
+      '/stems/HITS DE REGGAETON/13 Don Omar - El Señor de la Noche/3.mp3',
+      '/stems/HITS DE REGGAETON/13 Don Omar - El Señor de la Noche/4.mp3'
+    ]
+  },
+  {
+    id: 'track17',
+    category: 'HITS DE REGGAETON',
+    name: 'TRACK 14',
+    title: 'La Rubia Remix',
+    artist: 'La Nueva Escuela',
+    stems: [
+      '/stems/HITS DE REGGAETON/14 La Nueva Escuela - La Rubia Remix/1.mp3',
+      '/stems/HITS DE REGGAETON/14 La Nueva Escuela - La Rubia Remix/2.mp3',
+      '/stems/HITS DE REGGAETON/14 La Nueva Escuela - La Rubia Remix/3.mp3',
+      '/stems/HITS DE REGGAETON/14 La Nueva Escuela - La Rubia Remix/4.mp3'
+    ]
+  },
+  {
+    id: 'track18',
+    category: 'HITS DE REGGAETON',
+    name: 'TRACK 15',
+    title: 'Té De Campana',
+    artist: 'Atomic Otro Way',
+    stems: [
+      '/stems/HITS DE REGGAETON/15 Atomic Otro Way - Té De Campana/1.mp3',
+      '/stems/HITS DE REGGAETON/15 Atomic Otro Way - Té De Campana/2.mp3',
+      '/stems/HITS DE REGGAETON/15 Atomic Otro Way - Té De Campana/3.mp3',
+      '/stems/HITS DE REGGAETON/15 Atomic Otro Way - Té De Campana/4.mp3'
+    ]
+  },
+  {
+    id: 'track19',
+    category: 'HITS DE REGGAETON',
+    name: 'TRACK 16',
+    title: 'Superman Sin Capa',
+    artist: 'El Super Nuevo',
+    stems: [
+      '/stems/HITS DE REGGAETON/16 El Super Nuevo - Superman Sin Capa/1.mp3',
+      '/stems/HITS DE REGGAETON/16 El Super Nuevo - Superman Sin Capa/2.mp3',
+      '/stems/HITS DE REGGAETON/16 El Super Nuevo - Superman Sin Capa/3.mp3',
+      '/stems/HITS DE REGGAETON/16 El Super Nuevo - Superman Sin Capa/4.mp3'
+    ]
+  },
+  {
+    id: 'track20',
     category: 'HITS DE TRAP',
     name: 'TRACK 1',
-    title: 'FE!N',
-    artist: 'Travis Scott\nft. Playboi Carti',
+    title: 'Fein',
+    artist: 'Travis Scott',
     stems: [
       '/stems/HITS DE TRAP/1 Travis Scott - Fein/1.mp3',
       '/stems/HITS DE TRAP/1 Travis Scott - Fein/2.mp3',
@@ -156,7 +273,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track12',
+    id: 'track21',
     category: 'HITS DE TRAP',
     name: 'TRACK 2',
     title: 'Boss',
@@ -169,7 +286,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track13',
+    id: 'track22',
     category: 'HITS DE TRAP',
     name: 'TRACK 3',
     title: 'Betrayed',
@@ -182,16 +299,211 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track14',
+    id: 'track23',
+    category: 'HITS DE TRAP',
+    name: 'TRACK 4',
+    title: 'Bank Account',
+    artist: '21 Savage',
+    stems: [
+      '/stems/HITS DE TRAP/4 21 Savage - Bank Account/1.mp3',
+      '/stems/HITS DE TRAP/4 21 Savage - Bank Account/2.mp3',
+      '/stems/HITS DE TRAP/4 21 Savage - Bank Account/3.mp3',
+      '/stems/HITS DE TRAP/4 21 Savage - Bank Account/4.mp3'
+    ]
+  },
+  {
+    id: 'track24',
+    category: 'HITS DE TRAP',
+    name: 'TRACK 5',
+    title: 'Freestyle',
+    artist: 'Lil Baby',
+    stems: [
+      '/stems/HITS DE TRAP/5 Lil Baby - Freestyle/1.mp3',
+      '/stems/HITS DE TRAP/5 Lil Baby - Freestyle/2.mp3',
+      '/stems/HITS DE TRAP/5 Lil Baby - Freestyle/3.mp3',
+      '/stems/HITS DE TRAP/5 Lil Baby - Freestyle/4.mp3'
+    ]
+  },
+  {
+    id: 'track25',
+    category: 'HITS DE TRAP',
+    name: 'TRACK 6',
+    title: 'WTHELLY',
+    artist: 'Rob49',
+    stems: [
+      '/stems/HITS DE TRAP/6 Rob49 - WTHELLY/1.mp3',
+      '/stems/HITS DE TRAP/6 Rob49 - WTHELLY/2.mp3',
+      '/stems/HITS DE TRAP/6 Rob49 - WTHELLY/3.mp3',
+      '/stems/HITS DE TRAP/6 Rob49 - WTHELLY/4.mp3'
+    ]
+  },
+  {
+    id: 'track26',
+    category: 'HITS DE TRAP',
+    name: 'TRACK 7',
+    title: 'The Box',
+    artist: 'Roddy Ricch',
+    stems: [
+      '/stems/HITS DE TRAP/7 Roddy Ricch - The Box/1.mp3',
+      '/stems/HITS DE TRAP/7 Roddy Ricch - The Box/2.mp3',
+      '/stems/HITS DE TRAP/7 Roddy Ricch - The Box/3.mp3',
+      '/stems/HITS DE TRAP/7 Roddy Ricch - The Box/4.mp3'
+    ]
+  },
+  {
+    id: 'track27',
+    category: 'HITS DE TRAP',
+    name: 'TRACK 8',
+    title: 'Yes Indeed',
+    artist: 'Lil Baby',
+    stems: [
+      '/stems/HITS DE TRAP/8 Lil Baby - Yes Indeed/1.mp3',
+      '/stems/HITS DE TRAP/8 Lil Baby - Yes Indeed/2.mp3',
+      '/stems/HITS DE TRAP/8 Lil Baby - Yes Indeed/3.mp3',
+      '/stems/HITS DE TRAP/8 Lil Baby - Yes Indeed/4.mp3'
+    ]
+  },
+  {
+    id: 'track28',
+    category: 'HITS DE TRAP',
+    name: 'TRACK 9',
+    title: 'A Lot',
+    artist: '21 Savage',
+    stems: [
+      '/stems/HITS DE TRAP/9 21 Savage - A Lot/1.mp3',
+      '/stems/HITS DE TRAP/9 21 Savage - A Lot/2.mp3',
+      '/stems/HITS DE TRAP/9 21 Savage - A Lot/3.mp3',
+      '/stems/HITS DE TRAP/9 21 Savage - A Lot/4.mp3'
+    ]
+  },
+  {
+    id: 'track29',
+    category: 'HITS DE TRAP',
+    name: 'TRACK 10',
+    title: 'Hate Bein\' Sober',
+    artist: 'Chief Keef',
+    stems: [
+      '/stems/HITS DE TRAP/10 Chief Keef - Hate Bein\' Sober/1.mp3',
+      '/stems/HITS DE TRAP/10 Chief Keef - Hate Bein\' Sober/2.mp3',
+      '/stems/HITS DE TRAP/10 Chief Keef - Hate Bein\' Sober/3.mp3',
+      '/stems/HITS DE TRAP/10 Chief Keef - Hate Bein\' Sober/4.mp3'
+    ]
+  },
+  {
+    id: 'track30',
+    category: 'HITS DE TRAP',
+    name: 'TRACK 11',
+    title: 'I Don\'t Like',
+    artist: 'Chief Keef',
+    stems: [
+      '/stems/HITS DE TRAP/11 Chief Keef - I Don\'t Like/1.mp3',
+      '/stems/HITS DE TRAP/11 Chief Keef - I Don\'t Like/2.mp3',
+      '/stems/HITS DE TRAP/11 Chief Keef - I Don\'t Like/3.mp3',
+      '/stems/HITS DE TRAP/11 Chief Keef - I Don\'t Like/4.mp3'
+    ]
+  },
+  {
+    id: 'track31',
+    category: 'HITS DE TRAP',
+    name: 'TRACK 12',
+    title: 'Leave Me Alone',
+    artist: 'Flipp Dinero',
+    stems: [
+      '/stems/HITS DE TRAP/12 Flipp Dinero - Leave Me Alone/1.mp3',
+      '/stems/HITS DE TRAP/12 Flipp Dinero - Leave Me Alone/2.mp3',
+      '/stems/HITS DE TRAP/12 Flipp Dinero - Leave Me Alone/3.mp3',
+      '/stems/HITS DE TRAP/12 Flipp Dinero - Leave Me Alone/4.mp3'
+    ]
+  },
+  {
+    id: 'track32',
+    category: 'HITS DE TRAP',
+    name: 'TRACK 13',
+    title: 'Love Sosa',
+    artist: 'Chief Keef',
+    stems: [
+      '/stems/HITS DE TRAP/13 Chief Keef - Love Sosa/1.mp3',
+      '/stems/HITS DE TRAP/13 Chief Keef - Love Sosa/2.mp3',
+      '/stems/HITS DE TRAP/13 Chief Keef - Love Sosa/3.mp3',
+      '/stems/HITS DE TRAP/13 Chief Keef - Love Sosa/4.mp3'
+    ]
+  },
+  {
+    id: 'track33',
+    category: 'HITS DE TRAP',
+    name: 'TRACK 14',
+    title: 'Trap Queen',
+    artist: 'Fetty Wap',
+    stems: [
+      '/stems/HITS DE TRAP/14 Fetty Wap - Trap Queen/1.mp3',
+      '/stems/HITS DE TRAP/14 Fetty Wap - Trap Queen/2.mp3',
+      '/stems/HITS DE TRAP/14 Fetty Wap - Trap Queen/3.mp3',
+      '/stems/HITS DE TRAP/14 Fetty Wap - Trap Queen/4.mp3'
+    ]
+  },
+  {
+    id: 'track34',
+    category: 'HITS DE TRAP ESPAÑOL',
+    name: 'TRACK 1',
+    title: 'Dracukeo',
+    artist: 'Kidd Keo',
+    stems: [
+      '/stems/HITS DE TRAP ESPAÑOL/1 Kidd Keo - Dracukeo/1.mp3',
+      '/stems/HITS DE TRAP ESPAÑOL/1 Kidd Keo - Dracukeo/2.mp3',
+      '/stems/HITS DE TRAP ESPAÑOL/1 Kidd Keo - Dracukeo/3.mp3',
+      '/stems/HITS DE TRAP ESPAÑOL/1 Kidd Keo - Dracukeo/4.mp3'
+    ]
+  },
+  {
+    id: 'track35',
+    category: 'HITS DE TRAP ESPAÑOL',
+    name: 'TRACK 2',
+    title: 'Beso Negro',
+    artist: 'Kinder Malo',
+    stems: [
+      '/stems/HITS DE TRAP ESPAÑOL/2 Kinder Malo - Beso Negro/1.mp3',
+      '/stems/HITS DE TRAP ESPAÑOL/2 Kinder Malo - Beso Negro/2.mp3',
+      '/stems/HITS DE TRAP ESPAÑOL/2 Kinder Malo - Beso Negro/3.mp3',
+      '/stems/HITS DE TRAP ESPAÑOL/2 Kinder Malo - Beso Negro/4.mp3'
+    ]
+  },
+  {
+    id: 'track36',
+    category: 'HITS DE TRAP ESPAÑOL',
+    name: 'TRACK 3',
+    title: 'La Ley de Eddie Murphy',
+    artist: 'Kinder Malo',
+    stems: [
+      '/stems/HITS DE TRAP ESPAÑOL/3 Kinder Malo - La Ley de Eddie Murphy/1.mp3',
+      '/stems/HITS DE TRAP ESPAÑOL/3 Kinder Malo - La Ley de Eddie Murphy/2.mp3',
+      '/stems/HITS DE TRAP ESPAÑOL/3 Kinder Malo - La Ley de Eddie Murphy/3.mp3',
+      '/stems/HITS DE TRAP ESPAÑOL/3 Kinder Malo - La Ley de Eddie Murphy/4.mp3'
+    ]
+  },
+  {
+    id: 'track37',
     category: 'HITS DE TRAP LATINO',
     name: 'TRACK 1',
     title: 'BnB',
-    artist: 'Young Miko\nft. Clarent',
+    artist: 'Young Miko',
     stems: [
       '/stems/HITS DE TRAP LATINO/1 Young Miko - BnB/1.mp3',
       '/stems/HITS DE TRAP LATINO/1 Young Miko - BnB/2.mp3',
       '/stems/HITS DE TRAP LATINO/1 Young Miko - BnB/3.mp3',
       '/stems/HITS DE TRAP LATINO/1 Young Miko - BnB/4.mp3'
+    ]
+  },
+  {
+    id: 'track38',
+    category: 'HITS DE TRAP LATINO',
+    name: 'TRACK 2',
+    title: 'Si Me Gano Un Grammy',
+    artist: 'Jon Z',
+    stems: [
+      '/stems/HITS DE TRAP LATINO/2 Jon Z - Si Me Gano Un Grammy/1.mp3',
+      '/stems/HITS DE TRAP LATINO/2 Jon Z - Si Me Gano Un Grammy/2.mp3',
+      '/stems/HITS DE TRAP LATINO/2 Jon Z - Si Me Gano Un Grammy/3.mp3',
+      '/stems/HITS DE TRAP LATINO/2 Jon Z - Si Me Gano Un Grammy/4.mp3'
     ]
   }
 ];
