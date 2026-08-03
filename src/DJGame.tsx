@@ -456,6 +456,58 @@ const TRACKS: Track[] = [
   },
   {
     id: 'track35',
+    category: 'HITS DE TRAP',
+    name: 'TRACK 15',
+    title: 'Japan',
+    artist: 'Famous Dex',
+    stems: [
+      '/stems/HITS DE TRAP/15 Famous Dex - Japan/1.mp3',
+      '/stems/HITS DE TRAP/15 Famous Dex - Japan/2.mp3',
+      '/stems/HITS DE TRAP/15 Famous Dex - Japan/3.mp3',
+      '/stems/HITS DE TRAP/15 Famous Dex - Japan/4.mp3'
+    ]
+  },
+  {
+    id: 'track36',
+    category: 'HITS DE TRAP',
+    name: 'TRACK 16',
+    title: 'Doja',
+    artist: 'Central Cee',
+    stems: [
+      '/stems/HITS DE TRAP/16 Central Cee - Doja/1.mp3',
+      '/stems/HITS DE TRAP/16 Central Cee - Doja/2.mp3',
+      '/stems/HITS DE TRAP/16 Central Cee - Doja/3.mp3',
+      '/stems/HITS DE TRAP/16 Central Cee - Doja/4.mp3'
+    ]
+  },
+  {
+    id: 'track37',
+    category: 'HITS DE TRAP',
+    name: 'TRACK 17',
+    title: 'Ransom',
+    artist: 'Lil Tecca',
+    stems: [
+      '/stems/HITS DE TRAP/17 Lil Tecca - Ransom/1.mp3',
+      '/stems/HITS DE TRAP/17 Lil Tecca - Ransom/2.mp3',
+      '/stems/HITS DE TRAP/17 Lil Tecca - Ransom/3.mp3',
+      '/stems/HITS DE TRAP/17 Lil Tecca - Ransom/4.mp3'
+    ]
+  },
+  {
+    id: 'track38',
+    category: 'HITS DE TRAP',
+    name: 'TRACK 18',
+    title: 'Sprinter',
+    artist: 'Central Cee',
+    stems: [
+      '/stems/HITS DE TRAP/18 Central Cee - Sprinter/1.mp3',
+      '/stems/HITS DE TRAP/18 Central Cee - Sprinter/2.mp3',
+      '/stems/HITS DE TRAP/18 Central Cee - Sprinter/3.mp3',
+      '/stems/HITS DE TRAP/18 Central Cee - Sprinter/4.mp3'
+    ]
+  },
+  {
+    id: 'track39',
     category: 'HITS DE TRAP ESPAÑOL',
     name: 'TRACK 1',
     title: 'Dracukeo',
@@ -468,7 +520,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track36',
+    id: 'track40',
     category: 'HITS DE TRAP ESPAÑOL',
     name: 'TRACK 2',
     title: 'Beso Negro',
@@ -481,7 +533,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track37',
+    id: 'track41',
     category: 'HITS DE TRAP ESPAÑOL',
     name: 'TRACK 3',
     title: 'La Ley de Eddie Murphy',
@@ -494,7 +546,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track38',
+    id: 'track42',
     category: 'HITS DE TRAP LATINO',
     name: 'TRACK 1',
     title: 'BnB',
@@ -507,7 +559,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track39',
+    id: 'track43',
     category: 'HITS DE TRAP LATINO',
     name: 'TRACK 2',
     title: 'Si Me Gano Un Grammy',
