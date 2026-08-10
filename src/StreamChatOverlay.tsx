@@ -9,6 +9,7 @@ interface AlertMessage {
   theme: 'purple' | 'cyan' | 'gold' | 'red';
   duration: number; // in milliseconds
   sound: 'none' | 'bell' | 'retro' | 'laser';
+  layout: 'top-right-banner' | 'full-bottom-banner' | 'top-left-alert';
 }
 
 export const StreamChatOverlay: React.FC = () => {
@@ -124,6 +125,7 @@ export const StreamChatOverlay: React.FC = () => {
           theme: payload.theme || 'purple',
           duration: payload.duration || 5000,
           sound: payload.sound || 'bell',
+          layout: payload.layout || 'top-right-banner',
         };
 
         // Clear existing timers
@@ -135,7 +137,7 @@ export const StreamChatOverlay: React.FC = () => {
 
         // Show the alert
         setCurrentAlert(newAlert);
-        setAnimationClass('alert-animate-enter');
+        setAnimationClass(`alert-animate-enter layout-${newAlert.layout}`);
         setProgressWidth(100);
 
         // Track remaining progress bar width
@@ -154,12 +156,12 @@ export const StreamChatOverlay: React.FC = () => {
 
         // Schedule exit animation
         timerRef.current = window.setTimeout(() => {
-          setAnimationClass('alert-animate-exit');
+          setAnimationClass(`alert-animate-exit layout-${newAlert.layout}`);
           
           // Clear current alert from DOM once exit animation finishes
           timerRef.current = window.setTimeout(() => {
             setCurrentAlert(null);
-          }, 450); // matching slideOutUp animation duration
+          }, 450); // matching animation durations
         }, newAlert.duration);
 
       } catch (err) {
@@ -177,7 +179,7 @@ export const StreamChatOverlay: React.FC = () => {
   return (
     <div className="chroma-container">
       {currentAlert && (
-        <div className={`stream-alert-card theme-${currentAlert.theme} ${animationClass}`}>
+        <div className={`stream-alert-card theme-${currentAlert.theme} layout-${currentAlert.layout} ${animationClass}`}>
           <div className="alert-header">
             <ShieldAlert size={20} className="alert-header-icon" />
             <span className="alert-header-title">{currentAlert.title}</span>

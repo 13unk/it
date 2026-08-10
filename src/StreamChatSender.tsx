@@ -9,6 +9,7 @@ interface HistoryItem {
   theme: 'purple' | 'cyan' | 'gold' | 'red';
   duration: number;
   sound: string;
+  layout: 'top-right-banner' | 'full-bottom-banner' | 'top-left-alert';
   timestamp: number;
 }
 
@@ -18,6 +19,7 @@ export const StreamChatSender: React.FC = () => {
   const [theme, setTheme] = useState<'purple' | 'cyan' | 'gold' | 'red'>('purple');
   const [duration, setDuration] = useState<number>(6); // in seconds
   const [sound, setSound] = useState<string>('bell');
+  const [layout, setLayout] = useState<'top-right-banner' | 'full-bottom-banner' | 'top-left-alert'>('top-right-banner');
   
   const [isSending, setIsSending] = useState<boolean>(false);
   const [sendSuccess, setSendSuccess] = useState<boolean>(false);
@@ -55,6 +57,7 @@ export const StreamChatSender: React.FC = () => {
       theme: theme,
       duration: duration * 1000,
       sound: sound,
+      layout: layout,
     };
 
     try {
@@ -80,6 +83,7 @@ export const StreamChatSender: React.FC = () => {
           theme: payload.theme,
           duration: duration,
           sound: payload.sound,
+          layout: payload.layout,
           timestamp: Date.now(),
         };
         saveToHistory(newItem);
@@ -98,12 +102,13 @@ export const StreamChatSender: React.FC = () => {
   };
 
   // Presets
-  const applyPreset = (presetTitle: string, presetMsg: string, presetTheme: typeof theme, presetDur: number, presetSound: string) => {
+  const applyPreset = (presetTitle: string, presetMsg: string, presetTheme: typeof theme, presetDur: number, presetSound: string, presetLayout: typeof layout) => {
     setTitle(presetTitle);
     setMessage(presetMsg);
     setTheme(presetTheme);
     setDuration(presetDur);
     setSound(presetSound);
+    setLayout(presetLayout);
   };
 
   const applyHistory = (item: HistoryItem) => {
@@ -112,6 +117,7 @@ export const StreamChatSender: React.FC = () => {
     setTheme(item.theme);
     setDuration(item.duration);
     setSound(item.sound);
+    setLayout(item.layout || 'top-right-banner');
   };
 
   return (
@@ -186,6 +192,20 @@ export const StreamChatSender: React.FC = () => {
             </div>
           </div>
 
+          {/* Layout Selector */}
+          <div className="form-group">
+            <label className="form-label">Diseño de Alerta (Layout)</label>
+            <select 
+              className="sound-selector" 
+              value={layout} 
+              onChange={(e) => setLayout(e.target.value as any)}
+            >
+              <option value="top-right-banner">Banner (Deslizar arriba-derecha)</option>
+              <option value="top-left-alert">Alerta clásica (Arriba-izquierda)</option>
+              <option value="full-bottom-banner">Banner completo inferior (Deslizar abajo)</option>
+            </select>
+          </div>
+
           {/* Alert Sound Trigger */}
           <div className="form-group">
             <label className="form-label">Sonido de Notificación</label>
@@ -230,28 +250,28 @@ export const StreamChatSender: React.FC = () => {
             <button 
               type="button" 
               className="preset-chip"
-              onClick={() => applyPreset('DIRECTO', '¡Empezamos en unos minutos!', 'purple', 10, 'laser')}
+              onClick={() => applyPreset('DIRECTO', '¡Empezamos en unos minutos!', 'purple', 10, 'laser', 'top-right-banner')}
             >
               🚀 Empezar Directo
             </button>
             <button 
               type="button" 
               className="preset-chip"
-              onClick={() => applyPreset('VOLVEMOS', '¡Pausa breve! Ya regresamos.', 'cyan', 12, 'bell')}
+              onClick={() => applyPreset('VOLVEMOS', '¡Pausa breve! Ya regresamos.', 'cyan', 12, 'bell', 'top-left-alert')}
             >
               ☕ Pausa / Café
             </button>
             <button 
               type="button" 
               className="preset-chip"
-              onClick={() => applyPreset('TEMA NUEVO', '¡Escuchando temas en directo!', 'gold', 8, 'bell')}
+              onClick={() => applyPreset('TEMA NUEVO', '¡Escuchando temas en directo!', 'gold', 8, 'bell', 'top-right-banner')}
             >
               🎵 Escuchando Temas
             </button>
             <button 
               type="button" 
               className="preset-chip"
-              onClick={() => applyPreset('ATENCIÓN', '¡Escuchen esto con atención!', 'red', 6, 'retro')}
+              onClick={() => applyPreset('ATENCIÓN', '¡Escuchen esto con atención!', 'red', 6, 'retro', 'full-bottom-banner')}
             >
               ⚠️ Alerta / Micrófono
             </button>
