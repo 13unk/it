@@ -172,14 +172,14 @@
 }
 
 /* Layout Positioning Overrides */
-.stream-alert-card.layout-top-right {
+.stream-alert-card.layout-top-right-banner {
   top: 40px;
   right: 40px;
   left: auto;
   transform: none;
 }
 
-.stream-alert-card.layout-top-left {
+.stream-alert-card.layout-top-left-alert {
   top: 40px;
   left: 40px;
   right: auto;
@@ -187,7 +187,7 @@
   max-width: 420px;
 }
 
-.stream-alert-card.layout-full-bottom {
+.stream-alert-card.layout-full-bottom-banner {
   bottom: 0;
   top: auto;
   left: 0;
@@ -205,24 +205,24 @@
 }
 
 /* Animations */
-.alert-animate-enter.layout-top-right {
+.alert-animate-enter.layout-top-right-banner {
   animation: slideInRight 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
 }
-.alert-animate-exit.layout-top-right {
+.alert-animate-exit.layout-top-right-banner {
   animation: slideOutRight 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
 }
 
-.alert-animate-enter.layout-top-left {
+.alert-animate-enter.layout-top-left-alert {
   animation: slideInLeft 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
 }
-.alert-animate-exit.layout-top-left {
+.alert-animate-exit.layout-top-left-alert {
   animation: slideOutLeft 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
 }
 
-.alert-animate-enter.layout-full-bottom {
+.alert-animate-enter.layout-full-bottom-banner {
   animation: slideInUp 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
 }
-.alert-animate-exit.layout-full-bottom {
+.alert-animate-exit.layout-full-bottom-banner {
   animation: slideOutDown 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
 }
 
