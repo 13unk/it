@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { ShieldAlert } from 'lucide-react';
 import './StreamChat.css';
 
 interface AlertMessage {
@@ -7,18 +6,17 @@ interface AlertMessage {
   title: string;
   message: string;
   theme: 'purple' | 'cyan' | 'gold' | 'red';
-  duration: number; // in milliseconds
   sound: 'none' | 'bell' | 'retro' | 'laser';
   layout: 'top-right-banner' | 'full-bottom-banner' | 'top-left-alert';
+  avatar: string;
 }
 
 export const StreamChatOverlay: React.FC = () => {
   const [currentAlert, setCurrentAlert] = useState<AlertMessage | null>(null);
   const [animationClass, setAnimationClass] = useState<string>('');
-  const [progressWidth, setProgressWidth] = useState<number>(100);
   
+  const currentAlertRef = useRef<AlertMessage | null>(null);
   const timerRef = useRef<number | null>(null);
-  const progressIntervalRef = useRef<number | null>(null);
   const audioCtxRef = useRef<AudioContext | null>(null);
 
   // Play synthetic sound using Web Audio API
@@ -30,7 +28,6 @@ export const StreamChatOverlay: React.FC = () => {
       const ctx = audioCtxRef.current || new AudioContextClass();
       audioCtxRef.current = ctx;
 
-      // Resume context if suspended
       if (ctx.state === 'suspended') {
         ctx.resume();
       }
@@ -38,16 +35,15 @@ export const StreamChatOverlay: React.FC = () => {
       const now = ctx.currentTime;
 
       if (soundType === 'bell') {
-        // Bell chime: Dual sine wave oscillators with exponential decay
         const osc1 = ctx.createOscillator();
         const osc2 = ctx.createOscillator();
         const gainNode = ctx.createGain();
 
         osc1.type = 'sine';
-        osc1.frequency.setValueAtTime(880, now); // A5
+        osc1.frequency.setValueAtTime(880, now);
 
         osc2.type = 'sine';
-        osc2.frequency.setValueAtTime(1320, now); // E6 (harmonic)
+        osc2.frequency.setValueAtTime(1320, now);
 
         gainNode.gain.setValueAtTime(0, now);
         gainNode.gain.linearRampToValueAtTime(0.3, now + 0.05);
@@ -62,7 +58,6 @@ export const StreamChatOverlay: React.FC = () => {
         osc1.stop(now + 1.3);
         osc2.stop(now + 1.3);
       } else if (soundType === 'retro') {
-        // Retro Blip: Square wave with quick pitch sweep
         const osc = ctx.createOscillator();
         const gainNode = ctx.createGain();
 
@@ -80,7 +75,6 @@ export const StreamChatOverlay: React.FC = () => {
         osc.start(now);
         osc.stop(now + 0.22);
       } else if (soundType === 'laser') {
-        // Laser Sweep: Sawtooth wave sweeping down in pitch
         const osc = ctx.createOscillator();
         const gainNode = ctx.createGain();
 
@@ -104,7 +98,6 @@ export const StreamChatOverlay: React.FC = () => {
   };
 
   useEffect(() => {
-    // Topic: unked-obs-chat-stream-alerts (using a highly unique pub-sub topic)
     const topic = 'unked-obs-chat-stream-alerts';
     const sseUrl = `https://ntfy.sh/${topic}/sse`;
     
@@ -115,54 +108,42 @@ export const StreamChatOverlay: React.FC = () => {
         const sseData = JSON.parse(event.data);
         if (sseData.event !== 'message') return;
 
-        // Parse custom JSON payload from the ntfy message field
         const payload = JSON.parse(sseData.message);
+
+        // If it's a clear command
+        if (payload.action === 'clear') {
+          if (timerRef.current) window.clearTimeout(timerRef.current);
+          
+          const currentLayout = currentAlertRef.current?.layout || 'top-right-banner';
+          setAnimationClass(`alert-animate-exit layout-${currentLayout}`);
+          
+          timerRef.current = window.setTimeout(() => {
+            setCurrentAlert(null);
+            currentAlertRef.current = null;
+          }, 450); // matching slide exit animation duration
+          return;
+        }
         
+        // Show new alert
         const newAlert: AlertMessage = {
           id: sseData.id || String(Date.now()),
           title: payload.title || 'AVISO',
           message: payload.message || '',
           theme: payload.theme || 'purple',
-          duration: payload.duration || 5000,
           sound: payload.sound || 'bell',
           layout: payload.layout || 'top-right-banner',
+          avatar: payload.avatar || '/unklogo.png',
         };
 
-        // Clear existing timers
         if (timerRef.current) window.clearTimeout(timerRef.current);
-        if (progressIntervalRef.current) window.clearInterval(progressIntervalRef.current);
 
         // Play the alert sound
         playSynthSound(newAlert.sound);
 
         // Show the alert
         setCurrentAlert(newAlert);
+        currentAlertRef.current = newAlert;
         setAnimationClass(`alert-animate-enter layout-${newAlert.layout}`);
-        setProgressWidth(100);
-
-        // Track remaining progress bar width
-        const startTime = Date.now();
-        const intervalMs = 50;
-        
-        progressIntervalRef.current = window.setInterval(() => {
-          const elapsed = Date.now() - startTime;
-          const remainingPercent = Math.max(0, 100 - (elapsed / newAlert.duration) * 100);
-          setProgressWidth(remainingPercent);
-          
-          if (elapsed >= newAlert.duration) {
-            if (progressIntervalRef.current) window.clearInterval(progressIntervalRef.current);
-          }
-        }, intervalMs);
-
-        // Schedule exit animation
-        timerRef.current = window.setTimeout(() => {
-          setAnimationClass(`alert-animate-exit layout-${newAlert.layout}`);
-          
-          // Clear current alert from DOM once exit animation finishes
-          timerRef.current = window.setTimeout(() => {
-            setCurrentAlert(null);
-          }, 450); // matching animation durations
-        }, newAlert.duration);
 
       } catch (err) {
         console.error('Error receiving or parsing stream chat event:', err);
@@ -172,7 +153,6 @@ export const StreamChatOverlay: React.FC = () => {
     return () => {
       eventSource.close();
       if (timerRef.current) window.clearTimeout(timerRef.current);
-      if (progressIntervalRef.current) window.clearInterval(progressIntervalRef.current);
     };
   }, []);
 
@@ -181,17 +161,16 @@ export const StreamChatOverlay: React.FC = () => {
       {currentAlert && (
         <div className={`stream-alert-card theme-${currentAlert.theme} layout-${currentAlert.layout} ${animationClass}`}>
           <div className="alert-header">
-            <ShieldAlert size={20} className="alert-header-icon" />
+            <img 
+              src={currentAlert.avatar} 
+              alt="Avatar" 
+              className="alert-avatar-img" 
+              onError={(e) => { (e.target as HTMLImageElement).src = '/unklogo.png'; }}
+            />
             <span className="alert-header-title">{currentAlert.title}</span>
           </div>
           <div className="alert-body">
             {currentAlert.message}
-          </div>
-          <div className="alert-progress-track">
-            <div 
-              className="alert-progress-fill" 
-              style={{ width: `${progressWidth}%` }}
-            ></div>
           </div>
         </div>
       )}

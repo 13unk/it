@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Send, Sparkles, RefreshCw, Clock } from 'lucide-react';
+import { Sparkles, RefreshCw, Play, Square } from 'lucide-react';
 import './StreamChat.css';
 
 interface HistoryItem {
@@ -7,22 +7,30 @@ interface HistoryItem {
   title: string;
   message: string;
   theme: 'purple' | 'cyan' | 'gold' | 'red';
-  duration: number;
   sound: string;
   layout: 'top-right-banner' | 'full-bottom-banner' | 'top-left-alert';
+  avatar: string;
   timestamp: number;
 }
 
+const AVATAR_PRESETS = [
+  { name: 'UNK', url: '/unklogo.png' },
+  { name: 'Robot', url: 'https://api.dicebear.com/7.x/bottts/svg?seed=unked' },
+  { name: 'Música', url: 'https://api.dicebear.com/7.x/identicon/svg?seed=music' },
+  { name: 'Streamer', url: 'https://api.dicebear.com/7.x/avataaars/svg?seed=streamer' }
+];
+
 export const StreamChatSender: React.FC = () => {
-  const [title, setTitle] = useState<string>('AVISO');
+  const [title, setTitle] = useState<string>('UNK');
   const [message, setMessage] = useState<string>('');
   const [theme, setTheme] = useState<'purple' | 'cyan' | 'gold' | 'red'>('purple');
-  const [duration, setDuration] = useState<number>(6); // in seconds
   const [sound, setSound] = useState<string>('bell');
   const [layout, setLayout] = useState<'top-right-banner' | 'full-bottom-banner' | 'top-left-alert'>('top-right-banner');
+  const [avatar, setAvatar] = useState<string>('/unklogo.png');
+  const [customAvatar, setCustomAvatar] = useState<string>('');
   
   const [isSending, setIsSending] = useState<boolean>(false);
-  const [sendSuccess, setSendSuccess] = useState<boolean>(false);
+  const [activeInStream, setActiveInStream] = useState<boolean>(false);
   const [history, setHistory] = useState<HistoryItem[]>([]);
 
   // Load history from localStorage
@@ -44,80 +52,104 @@ export const StreamChatSender: React.FC = () => {
     localStorage.setItem('unked_stream_chat_history', JSON.stringify(updatedHistory));
   };
 
-  const handleSend = async (e?: React.FormEvent) => {
-    if (e) e.preventDefault();
-    if (!message.trim()) return;
-
+  const sendPayload = async (payload: any) => {
     setIsSending(true);
-    setSendSuccess(false);
-
-    const payload = {
-      title: title.trim() || 'AVISO',
-      message: message.trim(),
-      theme: theme,
-      duration: duration * 1000,
-      sound: sound,
-      layout: layout,
-    };
-
     try {
       const topic = 'unked-obs-chat-stream-alerts';
       const response = await fetch(`https://ntfy.sh/${topic}`, {
         method: 'POST',
         headers: {
-          // ntfy allows publishing via POST where request body is the message
           'Content-Type': 'text/plain',
         },
         body: JSON.stringify(payload),
       });
-
-      if (response.ok) {
-        setSendSuccess(true);
-        setMessage(''); // Clear message text but keep others
-        
-        // Add to history list
-        const newItem: HistoryItem = {
-          id: String(Date.now()),
-          title: payload.title,
-          message: payload.message,
-          theme: payload.theme,
-          duration: duration,
-          sound: payload.sound,
-          layout: payload.layout,
-          timestamp: Date.now(),
-        };
-        saveToHistory(newItem);
-
-        // Reset success state after a delay
-        setTimeout(() => setSendSuccess(false), 2000);
-      } else {
-        alert('Error al enviar el mensaje al servidor.');
-      }
+      return response.ok;
     } catch (error) {
       console.error('Error sending message:', error);
-      alert('Error de conexión al enviar el mensaje.');
+      return false;
     } finally {
       setIsSending(false);
     }
   };
 
+  const handleToggleStream = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (activeInStream) {
+      // Send clear command
+      const success = await sendPayload({ action: 'clear' });
+      if (success) {
+        setActiveInStream(false);
+      } else {
+        alert('Error al intentar quitar la alerta.');
+      }
+    } else {
+      if (!message.trim()) return;
+
+      const payload = {
+        action: 'show',
+        title: title.trim() || 'UNK',
+        message: message.trim(),
+        theme: theme,
+        sound: sound,
+        layout: layout,
+        avatar: avatar,
+      };
+
+      const success = await sendPayload(payload);
+      if (success) {
+        setActiveInStream(true);
+        
+        // Add to history
+        const newItem: HistoryItem = {
+          id: String(Date.now()),
+          title: payload.title,
+          message: payload.message,
+          theme: payload.theme,
+          sound: payload.sound,
+          layout: payload.layout,
+          avatar: payload.avatar,
+          timestamp: Date.now(),
+        };
+        saveToHistory(newItem);
+      } else {
+        alert('Error al enviar la alerta.');
+      }
+    }
+  };
+
   // Presets
-  const applyPreset = (presetTitle: string, presetMsg: string, presetTheme: typeof theme, presetDur: number, presetSound: string, presetLayout: typeof layout) => {
+  const applyPreset = (presetTitle: string, presetMsg: string, presetTheme: typeof theme, presetSound: string, presetLayout: typeof layout, presetAvatar: string) => {
     setTitle(presetTitle);
     setMessage(presetMsg);
     setTheme(presetTheme);
-    setDuration(presetDur);
     setSound(presetSound);
     setLayout(presetLayout);
+    setAvatar(presetAvatar);
+    setCustomAvatar('');
+    setActiveInStream(false); // Reset active state since we have new data to show
   };
 
   const applyHistory = (item: HistoryItem) => {
     setTitle(item.title);
     setMessage(item.message);
     setTheme(item.theme);
-    setDuration(item.duration);
     setSound(item.sound);
     setLayout(item.layout || 'top-right-banner');
+    setAvatar(item.avatar || '/unklogo.png');
+    if (!AVATAR_PRESETS.some(p => p.url === item.avatar)) {
+      setCustomAvatar(item.avatar);
+    } else {
+      setCustomAvatar('');
+    }
+    setActiveInStream(false);
+  };
+
+  const getLayoutLabel = (l: HistoryItem['layout']) => {
+    if (l === 'top-right-banner') return 'Arriba Der';
+    if (l === 'top-left-alert') return 'Arriba Izq';
+    if (l === 'full-bottom-banner') return 'Abajo';
+    return 'Banner';
   };
 
   return (
@@ -128,18 +160,49 @@ export const StreamChatSender: React.FC = () => {
           <h1 className="sender-title">UNKED CONTROLLER</h1>
         </div>
 
-        <form onSubmit={handleSend} className="form-group" style={{ gap: '1.25rem' }}>
+        <form onSubmit={handleToggleStream} className="form-group" style={{ gap: '1.25rem' }}>
           
-          {/* Header/Title */}
+          {/* Author */}
           <div className="form-group">
-            <label className="form-label">Cabecera / Autor</label>
+            <label className="form-label">Autor</label>
             <input 
               type="text" 
               className="form-input" 
               value={title} 
               onChange={(e) => setTitle(e.target.value)}
-              placeholder="Ej: AVISO, UNK, IMPORTANTE..."
+              placeholder="Ej: UNK, AVISO..."
               maxLength={25}
+            />
+          </div>
+
+          {/* Profile Picture Selector */}
+          <div className="form-group">
+            <label className="form-label">Imagen de Perfil</label>
+            <div className="avatar-picker">
+              {AVATAR_PRESETS.map((preset) => (
+                <div 
+                  key={preset.name}
+                  className={`avatar-option ${avatar === preset.url ? 'selected' : ''}`}
+                  onClick={() => {
+                    setAvatar(preset.url);
+                    setCustomAvatar('');
+                  }}
+                >
+                  <img src={preset.url} alt={preset.name} className="avatar-img-preview" />
+                  <span className="avatar-name-label">{preset.name}</span>
+                </div>
+              ))}
+            </div>
+            <input 
+              type="text" 
+              className="form-input" 
+              value={customAvatar} 
+              onChange={(e) => {
+                setCustomAvatar(e.target.value);
+                setAvatar(e.target.value || '/unklogo.png');
+              }}
+              placeholder="O pega una URL de imagen personalizada..."
+              style={{ marginTop: '0.25rem', fontSize: '0.85rem' }}
             />
           </div>
 
@@ -175,23 +238,6 @@ export const StreamChatSender: React.FC = () => {
             </div>
           </div>
 
-          {/* Duration Slider */}
-          <div className="form-group">
-            <label className="form-label">Duración en Stream</label>
-            <div className="duration-slider-container">
-              <Clock size={16} color="#94a3b8" />
-              <input 
-                type="range" 
-                min="3" 
-                max="15" 
-                className="duration-slider"
-                value={duration} 
-                onChange={(e) => setDuration(parseInt(e.target.value))}
-              />
-              <span className="duration-value">{duration}s</span>
-            </div>
-          </div>
-
           {/* Layout Selector */}
           <div className="form-group">
             <label className="form-label">Diseño de Alerta (Layout)</label>
@@ -221,23 +267,30 @@ export const StreamChatSender: React.FC = () => {
             </select>
           </div>
 
-          {/* Send Button */}
+          {/* Send/Toggle Button */}
           <button 
             type="submit" 
             className="send-btn"
-            disabled={isSending || !message.trim()}
+            style={{ 
+              backgroundColor: activeInStream ? '#ef4444' : '#a855f7',
+              borderColor: '#111'
+            }}
+            disabled={isSending || (!activeInStream && !message.trim())}
           >
             {isSending ? (
               <>
                 <RefreshCw size={20} className="spinning-disc" />
-                ENVIANDO...
+                COMUNICANDO...
               </>
-            ) : sendSuccess ? (
-              '¡ENVIADO AL DIRECTO!'
+            ) : activeInStream ? (
+              <>
+                <Square size={18} />
+                QUITAR DE STREAM (STOP)
+              </>
             ) : (
               <>
-                <Send size={20} />
-                ENVIAR MENSAJE
+                <Play size={18} />
+                MOSTRAR EN STREAM (PLAY)
               </>
             )}
           </button>
@@ -250,28 +303,28 @@ export const StreamChatSender: React.FC = () => {
             <button 
               type="button" 
               className="preset-chip"
-              onClick={() => applyPreset('DIRECTO', '¡Empezamos en unos minutos!', 'purple', 10, 'laser', 'top-right-banner')}
+              onClick={() => applyPreset('DIRECTO', '¡Empezamos en unos minutos!', 'purple', 'laser', 'top-right-banner', '/unklogo.png')}
             >
               🚀 Empezar Directo
             </button>
             <button 
               type="button" 
               className="preset-chip"
-              onClick={() => applyPreset('VOLVEMOS', '¡Pausa breve! Ya regresamos.', 'cyan', 12, 'bell', 'top-left-alert')}
+              onClick={() => applyPreset('VOLVEMOS', '¡Pausa breve! Ya regresamos.', 'cyan', 'bell', 'top-left-alert', 'https://api.dicebear.com/7.x/bottts/svg?seed=unked')}
             >
               ☕ Pausa / Café
             </button>
             <button 
               type="button" 
               className="preset-chip"
-              onClick={() => applyPreset('TEMA NUEVO', '¡Escuchando temas en directo!', 'gold', 8, 'bell', 'top-right-banner')}
+              onClick={() => applyPreset('TEMA NUEVO', '¡Escuchando temas en directo!', 'gold', 'bell', 'top-right-banner', '/unklogo.png')}
             >
               🎵 Escuchando Temas
             </button>
             <button 
               type="button" 
               className="preset-chip"
-              onClick={() => applyPreset('ATENCIÓN', '¡Escuchen esto con atención!', 'red', 6, 'retro', 'full-bottom-banner')}
+              onClick={() => applyPreset('ATENCIÓN', '¡Escuchen esto con atención!', 'red', 'retro', 'full-bottom-banner', 'https://api.dicebear.com/7.x/identicon/svg?seed=music')}
             >
               ⚠️ Alerta / Micrófono
             </button>
@@ -289,10 +342,18 @@ export const StreamChatSender: React.FC = () => {
                   className="history-item"
                   onClick={() => applyHistory(item)}
                 >
-                  <span className="history-item-text">{item.message}</span>
-                  <span className={`history-item-tag ${item.theme}`}>
-                    {item.title}
-                  </span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', width: '70%' }}>
+                    <img src={item.avatar} alt="" style={{ width: '20px', height: '20px', borderRadius: '50%' }} />
+                    <span className="history-item-text" style={{ maxWidth: '80%' }}>{item.message}</span>
+                  </div>
+                  <div style={{ display: 'flex', gap: '0.25rem', alignItems: 'center' }}>
+                    <span className="history-item-tag" style={{ background: 'rgba(255,255,255,0.08)', color: '#94a3b8' }}>
+                      {getLayoutLabel(item.layout)}
+                    </span>
+                    <span className={`history-item-tag ${item.theme}`}>
+                      {item.title}
+                    </span>
+                  </div>
                 </div>
               ))}
             </div>
