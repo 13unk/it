@@ -120,7 +120,7 @@ export const StreamChatOverlay: React.FC = () => {
           timerRef.current = window.setTimeout(() => {
             setCurrentAlert(null);
             currentAlertRef.current = null;
-          }, 450); // matching slide exit animation duration
+          }, 850); // matching slide exit animation duration (0.8s)
           return;
         }
         
