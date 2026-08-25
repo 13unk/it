@@ -183,6 +183,9 @@ const VideoCard: React.FC<{ video: VideoData }> = ({ video }) => {
   const timeoutRef = useRef<number | ReturnType<typeof setTimeout>>();
   const [isVisible, setIsVisible] = React.useState(false);
   
+  // Determinamos si es móvil al cargar para evitar cargar la miniatura de 6s en móvil
+  const isMobile = typeof window !== 'undefined' ? window.innerWidth <= 600 : false;
+  
   // Mute overlay and state
   const [isMuted, setIsMuted] = React.useState(true);
   const [showMuteOverlay, setShowMuteOverlay] = React.useState(false);
@@ -196,24 +199,28 @@ const VideoCard: React.FC<{ video: VideoData }> = ({ video }) => {
         // Autoplay logic on scroll ONLY for mobile
         if (window.innerWidth <= 600) {
           if (entry.isIntersecting) {
-            // Reduced timeout for snappier mobile response without wild firing
             timeoutRef.current = window.setTimeout(() => {
               if (videoRef.current) {
-                videoRef.current.currentTime = 0; // Play from start
-                videoRef.current.muted = true; // ALWAYS start muted as the universal norm
+                // Ensure it plays from 0
+                if (videoRef.current.currentTime !== 0) {
+                  videoRef.current.currentTime = 0;
+                }
+                videoRef.current.muted = true;
                 setIsMuted(true);
                 setShowMuteOverlay(true);
                 setIsFadingOutMute(false);
                 const p = videoRef.current.play();
                 if (p !== undefined) p.catch(() => {});
-                videoRef.current.style.filter = 'grayscale(0%)';
+                // En móvil empieza en blanco y negro hasta desmutear
+                videoRef.current.style.filter = 'grayscale(100%)';
               }
-            }, 150);
+            }, 100); // Super responsive timeout
           } else {
             window.clearTimeout(timeoutRef.current);
             if (videoRef.current) {
               videoRef.current.pause();
-              videoRef.current.currentTime = 6.0; // Reset to 6s thumbnail
+              // En móvil lo devolvemos a 0 en lugar de 6s para evitar parpadeos
+              videoRef.current.currentTime = 0; 
               videoRef.current.style.filter = 'grayscale(100%)';
             }
             // Reset states
@@ -255,6 +262,7 @@ const VideoCard: React.FC<{ video: VideoData }> = ({ video }) => {
       setIsFadingOutMute(false);
       const p = videoRef.current.play();
       if (p !== undefined) p.catch(() => {});
+      // En desktop, al hacer hover sí que ponemos el color directamente
       videoRef.current.style.filter = 'grayscale(0%)';
     }
   };
@@ -277,6 +285,10 @@ const VideoCard: React.FC<{ video: VideoData }> = ({ video }) => {
       videoRef.current.muted = false; // Desmutear
       setIsMuted(false);
       setIsFadingOutMute(true); // Iniciar animación de desaparición
+      
+      // En móvil, la transición a color ocurre AQUÍ
+      videoRef.current.style.filter = 'grayscale(0%)';
+
       setTimeout(() => {
         setShowMuteOverlay(false); // Eliminar del DOM después de 1 segundo
       }, 1000);
@@ -300,7 +312,7 @@ const VideoCard: React.FC<{ video: VideoData }> = ({ video }) => {
       >
         <video 
           ref={videoRef}
-          src={video.src + '#t=6.0'} 
+          src={isMobile ? video.src : video.src + '#t=6.0'} 
           className="showcase-video"
           loop
           muted
