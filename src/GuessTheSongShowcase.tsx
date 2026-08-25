@@ -238,7 +238,13 @@ const VideoCard: React.FC<{ video: VideoData }> = ({ video }) => {
     if (window.innerWidth > 600 && videoRef.current) {
       videoRef.current.currentTime = 0;
       videoRef.current.muted = false;
-      videoRef.current.play().catch(e => console.log('Autoplay prevented:', e));
+      videoRef.current.play().catch(e => {
+        console.log('Autoplay con sonido prevenido en hover, intentando muteado:', e);
+        if (videoRef.current) {
+          videoRef.current.muted = true;
+          videoRef.current.play().catch(console.error);
+        }
+      });
       videoRef.current.style.filter = 'grayscale(0%)';
     }
   };
