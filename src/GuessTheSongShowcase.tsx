@@ -23,7 +23,7 @@ const videos: VideoData[] = [
   {
     id: 1,
     title: 'Capítulo 1',
-    src: '/Reel 1 1080p.mp4',
+    src: '/Reel_1_1080p.mp4',
     stats: {
       instagram: '13.8K',
       tiktok: '1.1K',
@@ -39,7 +39,7 @@ const videos: VideoData[] = [
   {
     id: 2,
     title: 'Capítulo 2',
-    src: '/Reel 2 1080p.mp4',
+    src: '/Reel_2_1080p.mp4',
     stats: {
       instagram: '7.6K',
       tiktok: '123.2K',
@@ -55,7 +55,7 @@ const videos: VideoData[] = [
   {
     id: 3,
     title: 'Capítulo 3',
-    src: '/Reel 3 1080p.mp4',
+    src: '/Reel_3_1080p.mp4',
     stats: {
       instagram: '5.1K',
       tiktok: '61.3K',
@@ -71,7 +71,7 @@ const videos: VideoData[] = [
   {
     id: 4,
     title: 'Capítulo 4',
-    src: '/Reel 4 1080p.mp4',
+    src: '/Reel_4_1080p.mp4',
     stats: {
       instagram: '3.3K',
       tiktok: '40.5K',
@@ -178,7 +178,7 @@ const InstagramWidget: React.FC = () => {
     <div className="ig-widget">
       <div className="ig-widget-header">
         <div className="ig-avatar">
-          <img src="/unklogo.png" alt="UNK EDITION" />
+          <img src="/instagram_pfp.jpg" alt="UNK EDITION" />
         </div>
         <div className="ig-info">
           <div className="ig-username">
