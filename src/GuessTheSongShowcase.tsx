@@ -185,14 +185,13 @@ const InstagramWidget: React.FC = () => {
             unkedition <CheckCircle2 size={16} color="#38bdf8" fill="#ffffff" style={{marginLeft: '4px'}} />
           </div>
           <div className="ig-stats">
-            <span><strong>34</strong> posts</span>
-            <span><strong>54.2K</strong> followers</span>
-            <span><strong>0</strong> following</span>
+            <span><strong>205</strong> posts</span>
+            <span><strong>56.4K</strong> followers</span>
+            <span><strong>17</strong> following</span>
           </div>
           <div className="ig-bio">
-            <strong>UNK EDITION</strong><br/>
-            Productora Audiovisual.<br/>
-            Creando los mejores formatos.
+            🫟 INCLASIFICABLE 🫟<br/>
+            • • Least obvious psyop • •
           </div>
         </div>
       </div>
@@ -201,13 +200,13 @@ const InstagramWidget: React.FC = () => {
       </div>
       <div className="ig-grid">
         <div className="ig-grid-item">
-          <video src="/Reel 1 1080p.mp4#t=6.0" className="ig-grid-img" />
+          <img src="/859.png" alt="Post 1" className="ig-grid-img" />
         </div>
         <div className="ig-grid-item">
-          <video src="/Reel 2 1080p.mp4#t=6.0" className="ig-grid-img" />
+          <img src="/848.png" alt="Post 2" className="ig-grid-img" />
         </div>
         <div className="ig-grid-item">
-          <video src="/Reel 3 1080p.mp4#t=6.0" className="ig-grid-img" />
+          <img src="/841.png" alt="Post 3" className="ig-grid-img" />
         </div>
       </div>
     </div>
