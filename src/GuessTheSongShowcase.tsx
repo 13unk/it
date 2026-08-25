@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Instagram, Youtube, Music2, Grid, CheckCircle2 } from 'lucide-react';
+import { Instagram, Youtube, Music2, Grid, CheckCircle2, ChevronDown } from 'lucide-react';
 import './GuessTheSongShowcase.css';
 
 interface VideoData {
@@ -89,19 +89,28 @@ const videos: VideoData[] = [
 export const GuessTheSongShowcase: React.FC = () => {
   return (
     <div className="showcase-container">
-      <header className="showcase-header">
-        <h1 className="showcase-title">ADIVINA LA CANCIÓN</h1>
-        <p className="showcase-subtitle">
-          Un formato de <a href="https://www.instagram.com/unkedition" target="_blank" rel="noopener noreferrer" className="unk-link">UNK EDITION</a>.
-        </p>
+      {/* Hero Section */}
+      <section className="hero-section">
+        <h2 className="brand-title">UNK EDITION</h2>
+        
         <InstagramWidget />
-      </header>
+        
+        <p className="presents-text">presenta el formato de</p>
+        <h1 className="showcase-title">ADIVINA LA CANCIÓN</h1>
+        
+        <div className="scroll-indicator">
+          <ChevronDown size={40} />
+        </div>
+      </section>
 
-      <div className="videos-grid">
-        {videos.map((video) => (
-          <VideoCard key={video.id} video={video} />
-        ))}
-      </div>
+      {/* Videos Section */}
+      <section className="videos-section">
+        <div className="videos-grid">
+          {videos.map((video) => (
+            <VideoCard key={video.id} video={video} />
+          ))}
+        </div>
+      </section>
     </div>
   );
 };
@@ -131,6 +140,10 @@ const VideoCard: React.FC<{ video: VideoData }> = ({ video }) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
+      <div className="card-header">
+        <h2 className="chapter-title">{video.title.toUpperCase()}</h2>
+      </div>
+      
       <div className="video-wrapper">
         <video 
           ref={videoRef}
@@ -143,8 +156,6 @@ const VideoCard: React.FC<{ video: VideoData }> = ({ video }) => {
       </div>
       
       <div className="video-info">
-        <h2 className="chapter-title">{video.title.toUpperCase()}</h2>
-        
         <div className="stats-container">
           <div className="total-views">
             <span>Views Totales:</span>
