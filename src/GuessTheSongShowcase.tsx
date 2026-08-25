@@ -198,15 +198,10 @@ const VideoCard: React.FC<{ video: VideoData }> = ({ video }) => {
             timeoutRef.current = window.setTimeout(() => {
               if (videoRef.current) {
                 videoRef.current.currentTime = 0; // Play from start
-                videoRef.current.muted = false;
-                videoRef.current.play().catch(e => {
-                  console.log('Unmuted autoplay blocked, trying muted', e);
-                  if(videoRef.current) {
-                    videoRef.current.muted = true;
-                    setShowMuteOverlay(true);
-                    videoRef.current.play().catch(console.log);
-                  }
-                });
+                videoRef.current.muted = true; // ALWAYS start muted as the universal norm
+                setShowMuteOverlay(true);
+                setIsFadingOutMute(false);
+                videoRef.current.play().catch(console.log);
                 videoRef.current.style.filter = 'grayscale(0%)';
               }
             }, 500); // Wait half a second
@@ -245,14 +240,10 @@ const VideoCard: React.FC<{ video: VideoData }> = ({ video }) => {
   const handleMouseEnter = () => {
     if (window.innerWidth > 600 && videoRef.current) {
       videoRef.current.currentTime = 0;
-      videoRef.current.muted = false;
-      videoRef.current.play().catch(e => {
-        console.log('Autoplay con sonido prevenido en hover, intentando muteado:', e);
-        if (videoRef.current) {
-          videoRef.current.muted = true;
-          videoRef.current.play().catch(console.error);
-        }
-      });
+      videoRef.current.muted = true; // Siempre iniciar muteado
+      setShowMuteOverlay(true);
+      setIsFadingOutMute(false);
+      videoRef.current.play().catch(console.error);
       videoRef.current.style.filter = 'grayscale(0%)';
     }
   };
@@ -263,6 +254,8 @@ const VideoCard: React.FC<{ video: VideoData }> = ({ video }) => {
       videoRef.current.currentTime = 6.0;
       videoRef.current.muted = true;
       videoRef.current.style.filter = 'grayscale(100%)';
+      setShowMuteOverlay(false);
+      setIsFadingOutMute(false);
     }
   };
 

@@ -102,7 +102,6 @@
   justify-content: center;
   scroll-snap-align: start;
   scroll-snap-stop: always;
-  padding-bottom: 2rem;
 }
 
 .card-header {
@@ -149,7 +148,7 @@
 .video-info {
   flex-grow: 0;
   padding: 1.5rem;
-  margin: 0 auto 2rem auto;
+  margin: 0 auto;
   width: 100%;
   max-width: 400px; /* Align with video width on desktop */
   display: flex;
