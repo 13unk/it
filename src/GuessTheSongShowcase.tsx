@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Instagram, Youtube, Music2, Grid, CheckCircle2, ChevronDown } from 'lucide-react';
+import { Instagram, Youtube, Music2, Grid, CheckCircle2, ChevronDown, VolumeX } from 'lucide-react';
 import './GuessTheSongShowcase.css';
 
 interface VideoData {
@@ -42,9 +42,9 @@ const videos: VideoData[] = [
     src: '/Reel_2_1080p.mp4',
     stats: {
       instagram: '7.6K',
-      tiktok: '123.3K',
+      tiktok: '125K',
       youtube: '5.2K',
-      total: '136.1K'
+      total: '137.8K'
     },
     links: {
       instagram: 'https://www.instagram.com/reel/Db8V5xmjK9u/',
@@ -58,9 +58,9 @@ const videos: VideoData[] = [
     src: '/Reel_3_1080p.mp4',
     stats: {
       instagram: '5.1K',
-      tiktok: '61.3K',
+      tiktok: '62.1K',
       youtube: '1K',
-      total: '67.4K'
+      total: '68.2K'
     },
     links: {
       instagram: 'https://www.instagram.com/reel/DcJ20EIibxz/',
@@ -74,9 +74,9 @@ const videos: VideoData[] = [
     src: '/Reel_4_1080p.mp4',
     stats: {
       instagram: '3.3K',
-      tiktok: '40.7K',
+      tiktok: '44K',
       youtube: '1.4K',
-      total: '45.4K'
+      total: '48.7K'
     },
     links: {
       instagram: 'https://www.instagram.com/reel/DcWsADhjjdA/',
@@ -182,6 +182,10 @@ const VideoCard: React.FC<{ video: VideoData }> = ({ video }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const timeoutRef = useRef<number | ReturnType<typeof setTimeout>>();
   const [isVisible, setIsVisible] = React.useState(false);
+  
+  // Mute overlay states for mobile
+  const [showMuteOverlay, setShowMuteOverlay] = React.useState(false);
+  const [isFadingOutMute, setIsFadingOutMute] = React.useState(false);
 
   React.useEffect(() => {
     const observer = new IntersectionObserver(
@@ -199,6 +203,7 @@ const VideoCard: React.FC<{ video: VideoData }> = ({ video }) => {
                   console.log('Unmuted autoplay blocked, trying muted', e);
                   if(videoRef.current) {
                     videoRef.current.muted = true;
+                    setShowMuteOverlay(true);
                     videoRef.current.play().catch(console.log);
                   }
                 });
@@ -211,6 +216,9 @@ const VideoCard: React.FC<{ video: VideoData }> = ({ video }) => {
               videoRef.current.pause();
               videoRef.current.currentTime = 6.0; // Reset to 6s thumbnail
               videoRef.current.style.filter = 'grayscale(100%)';
+              // Reset mute overlay state
+              setShowMuteOverlay(false);
+              setIsFadingOutMute(false);
             }
           }
         } else {
@@ -258,22 +266,32 @@ const VideoCard: React.FC<{ video: VideoData }> = ({ video }) => {
     }
   };
 
+  const handleUnmute = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Evitar otros clics
+    if (videoRef.current) {
+      videoRef.current.muted = false; // Desmutear
+      setIsFadingOutMute(true); // Iniciar animación de desaparición
+      setTimeout(() => {
+        setShowMuteOverlay(false); // Eliminar del DOM después de 1 segundo
+      }, 1000);
+    }
+  };
+
   const openLink = (url: string) => {
     window.open(url, '_blank', 'noopener,noreferrer');
   };
 
   return (
-    <div 
-      ref={cardRef}
-      className="showcase-video-card"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
+    <div ref={cardRef} className="showcase-video-card">
       <div className="card-header">
         <h2 className="chapter-title">{video.title.toUpperCase()}</h2>
       </div>
       
-      <div className="video-wrapper">
+      <div 
+        className="video-wrapper"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
         <video 
           ref={videoRef}
           src={video.src + '#t=6.0'} 
@@ -282,6 +300,14 @@ const VideoCard: React.FC<{ video: VideoData }> = ({ video }) => {
           muted
           playsInline
         />
+        {showMuteOverlay && (
+          <div 
+            className={`mute-icon-overlay ${isFadingOutMute ? 'fade-out' : ''}`}
+            onClick={handleUnmute}
+          >
+            <VolumeX size={32} />
+          </div>
+        )}
       </div>
       
       <div className="video-info">
