@@ -5,6 +5,7 @@ import App from './App.tsx'
 import { SpotifyScam } from './SpotifyScam.tsx'
 import { StreamChatOverlay } from './StreamChatOverlay.tsx'
 import { StreamChatSender } from './StreamChatSender.tsx'
+import { GuessTheSongShowcase } from './GuessTheSongShowcase.tsx'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -14,6 +15,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <Route path="/spotify" element={<SpotifyScam />} />
         <Route path="/chat" element={<StreamChatOverlay />} />
         <Route path="/sendchat" element={<StreamChatSender />} />
+        <Route path="/adivinalacancion" element={<GuessTheSongShowcase />} />
         <Route path="*" element={<App />} />
       </Routes>
     </BrowserRouter>
