@@ -65,7 +65,7 @@
   }
 }
 
-.video-card {
+.showcase-video-card {
   background: #0f0f0f;
   border-radius: 16px;
   overflow: hidden;
@@ -75,7 +75,7 @@
   flex-direction: column;
 }
 
-.video-card:hover {
+.showcase-video-card:hover {
   transform: translateY(-10px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(168, 85, 247, 0.1);
   border-color: #333333;
@@ -117,7 +117,7 @@
   transition: opacity 0.3s ease;
 }
 
-.video-card:hover .play-hint {
+.showcase-video-card:hover .play-hint {
   opacity: 0;
 }
 
@@ -162,6 +162,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .stat-item {

@@ -126,7 +126,7 @@ const VideoCard: React.FC<{ video: VideoData }> = ({ video }) => {
 
   return (
     <div 
-      className="video-card"
+      className="showcase-video-card"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
