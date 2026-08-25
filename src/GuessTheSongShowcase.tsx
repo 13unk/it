@@ -27,8 +27,8 @@ const videos: VideoData[] = [
     stats: {
       instagram: '13.8K',
       tiktok: '1.1K',
-      youtube: '23K',
-      total: '37.9K'
+      youtube: '23.1K',
+      total: '38K'
     },
     links: {
       instagram: 'https://www.instagram.com/reel/Db3gyz6t_p0/',
@@ -75,8 +75,8 @@ const videos: VideoData[] = [
     stats: {
       instagram: '3.4K',
       tiktok: '44.5K',
-      youtube: '1.4K',
-      total: '49.3K'
+      youtube: '1.6K',
+      total: '49.5K'
     },
     links: {
       instagram: 'https://www.instagram.com/reel/DcWsADhjjdA/',
