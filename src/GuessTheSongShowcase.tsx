@@ -117,16 +117,58 @@ export const GuessTheSongShowcase: React.FC = () => {
 
 const VideoCard: React.FC<{ video: VideoData }> = ({ video }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const timeoutRef = useRef<number | ReturnType<typeof setTimeout>>();
+
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Only apply scroll logic on mobile devices
+        if (window.innerWidth <= 600) {
+          if (entry.isIntersecting) {
+            timeoutRef.current = setTimeout(() => {
+              if (videoRef.current) {
+                videoRef.current.muted = false;
+                videoRef.current.play().catch(e => {
+                  console.log('Unmuted autoplay blocked, trying muted', e);
+                  videoRef.current!.muted = true;
+                  videoRef.current!.play().catch(console.log);
+                });
+                videoRef.current.style.filter = 'grayscale(0%)';
+              }
+            }, 500); // Wait half a second
+          } else {
+            clearTimeout(timeoutRef.current);
+            if (videoRef.current) {
+              videoRef.current.pause();
+              videoRef.current.style.filter = 'grayscale(100%)';
+            }
+          }
+        }
+      },
+      { threshold: 0.6 } // Trigger when 60% of the card is visible
+    );
+
+    if (cardRef.current) {
+      observer.observe(cardRef.current);
+    }
+    return () => {
+      observer.disconnect();
+      clearTimeout(timeoutRef.current);
+    };
+  }, []);
 
   const handleMouseEnter = () => {
-    if (videoRef.current) {
+    if (window.innerWidth > 600 && videoRef.current) {
+      videoRef.current.muted = false;
       videoRef.current.play().catch(e => console.log('Autoplay prevented:', e));
     }
   };
 
   const handleMouseLeave = () => {
-    if (videoRef.current) {
+    if (window.innerWidth > 600 && videoRef.current) {
       videoRef.current.pause();
+      videoRef.current.muted = true;
     }
   };
 
@@ -136,6 +178,7 @@ const VideoCard: React.FC<{ video: VideoData }> = ({ video }) => {
 
   return (
     <div 
+      ref={cardRef}
       className="showcase-video-card"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
