@@ -183,7 +183,8 @@ const VideoCard: React.FC<{ video: VideoData }> = ({ video }) => {
   const timeoutRef = useRef<number | ReturnType<typeof setTimeout>>();
   const [isVisible, setIsVisible] = React.useState(false);
   
-  // Mute overlay states for mobile
+  // Mute overlay and state
+  const [isMuted, setIsMuted] = React.useState(true);
   const [showMuteOverlay, setShowMuteOverlay] = React.useState(false);
   const [isFadingOutMute, setIsFadingOutMute] = React.useState(false);
 
@@ -195,33 +196,41 @@ const VideoCard: React.FC<{ video: VideoData }> = ({ video }) => {
         // Autoplay logic on scroll ONLY for mobile
         if (window.innerWidth <= 600) {
           if (entry.isIntersecting) {
+            // Reduced timeout for snappier mobile response without wild firing
             timeoutRef.current = window.setTimeout(() => {
               if (videoRef.current) {
                 videoRef.current.currentTime = 0; // Play from start
                 videoRef.current.muted = true; // ALWAYS start muted as the universal norm
+                setIsMuted(true);
                 setShowMuteOverlay(true);
                 setIsFadingOutMute(false);
-                videoRef.current.play().catch(console.log);
+                const p = videoRef.current.play();
+                if (p !== undefined) p.catch(() => {});
                 videoRef.current.style.filter = 'grayscale(0%)';
               }
-            }, 500); // Wait half a second
+            }, 150);
           } else {
             window.clearTimeout(timeoutRef.current);
             if (videoRef.current) {
               videoRef.current.pause();
               videoRef.current.currentTime = 6.0; // Reset to 6s thumbnail
               videoRef.current.style.filter = 'grayscale(100%)';
-              // Reset mute overlay state
-              setShowMuteOverlay(false);
-              setIsFadingOutMute(false);
             }
+            // Reset states
+            setIsMuted(true);
+            setShowMuteOverlay(false);
+            setIsFadingOutMute(false);
           }
         } else {
           // Desktop: Pause video if user scrolls far away while it was playing
           if (!entry.isIntersecting && videoRef.current && !videoRef.current.paused) {
             videoRef.current.pause();
             videoRef.current.currentTime = 6.0;
+            videoRef.current.muted = true;
             videoRef.current.style.filter = 'grayscale(100%)';
+            setIsMuted(true);
+            setShowMuteOverlay(false);
+            setIsFadingOutMute(false);
           }
         }
       },
@@ -241,9 +250,11 @@ const VideoCard: React.FC<{ video: VideoData }> = ({ video }) => {
     if (window.innerWidth > 600 && videoRef.current) {
       videoRef.current.currentTime = 0;
       videoRef.current.muted = true; // Siempre iniciar muteado
+      setIsMuted(true);
       setShowMuteOverlay(true);
       setIsFadingOutMute(false);
-      videoRef.current.play().catch(console.error);
+      const p = videoRef.current.play();
+      if (p !== undefined) p.catch(() => {});
       videoRef.current.style.filter = 'grayscale(0%)';
     }
   };
@@ -254,6 +265,7 @@ const VideoCard: React.FC<{ video: VideoData }> = ({ video }) => {
       videoRef.current.currentTime = 6.0;
       videoRef.current.muted = true;
       videoRef.current.style.filter = 'grayscale(100%)';
+      setIsMuted(true);
       setShowMuteOverlay(false);
       setIsFadingOutMute(false);
     }
@@ -263,6 +275,7 @@ const VideoCard: React.FC<{ video: VideoData }> = ({ video }) => {
     e.stopPropagation(); // Evitar otros clics
     if (videoRef.current) {
       videoRef.current.muted = false; // Desmutear
+      setIsMuted(false);
       setIsFadingOutMute(true); // Iniciar animación de desaparición
       setTimeout(() => {
         setShowMuteOverlay(false); // Eliminar del DOM después de 1 segundo
@@ -281,7 +294,7 @@ const VideoCard: React.FC<{ video: VideoData }> = ({ video }) => {
       </div>
       
       <div 
-        className="video-wrapper"
+        className={`video-wrapper ${!isMuted ? 'hide-cursor' : ''}`}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >

@@ -19,7 +19,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  padding: 2rem;
+  padding: 8vh 2rem 2rem 2rem;
   text-align: center;
   scroll-snap-align: start;
   scroll-snap-stop: always;
@@ -60,6 +60,10 @@
   }
   .brand-title {
     font-size: 1.8rem;
+  }
+  .presents-text {
+    font-size: 0.8rem;
+    letter-spacing: 3px;
   }
 }
 
@@ -102,6 +106,7 @@
   justify-content: center;
   scroll-snap-align: start;
   scroll-snap-stop: always;
+  padding-top: 8vh;
 }
 
 .card-header {
@@ -353,3 +358,5 @@
 
 .mute-icon-overlay { position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%); background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(4px); border-radius: 50px; padding: 0.75rem 1.5rem; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: opacity 1s ease; opacity: 1; z-index: 10; border: 1px solid rgba(255, 255, 255, 0.2); }
 .mute-icon-overlay.fade-out { opacity: 0; pointer-events: none; }
+
+.hide-cursor { cursor: none !important; }
