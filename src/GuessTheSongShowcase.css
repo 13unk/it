@@ -106,7 +106,7 @@
 }
 
 .card-header {
-  padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+  padding: 1.5rem;
   text-align: center;
   width: 100%;
   max-width: 400px;
@@ -148,7 +148,7 @@
 
 .video-info {
   flex-grow: 0;
-  padding: 1rem 1.5rem;
+  padding: 1.5rem;
   margin: 0 auto 2rem auto;
   width: 100%;
   max-width: 400px; /* Align with video width on desktop */
