@@ -10,6 +10,12 @@ interface VideoData {
     instagram: string;
     tiktok: string;
     youtube: string;
+    total: string;
+  };
+  links: {
+    instagram: string;
+    tiktok: string;
+    youtube: string;
   };
 }
 
@@ -19,9 +25,15 @@ const videos: VideoData[] = [
     title: 'Capítulo 1',
     src: '/Reel 1 1080p.mp4',
     stats: {
-      instagram: '1.2M',
-      tiktok: '2.5M',
-      youtube: '800K'
+      instagram: '13.8K',
+      tiktok: '1.1K',
+      youtube: '23K',
+      total: '37.9K'
+    },
+    links: {
+      instagram: 'https://www.instagram.com/reel/Db3gyz6t_p0/',
+      tiktok: 'https://www.tiktok.com/@tresilllo/video/7672852055253421334',
+      youtube: 'https://www.youtube.com/shorts/Z1cGAo7uqWI'
     }
   },
   {
@@ -29,9 +41,15 @@ const videos: VideoData[] = [
     title: 'Capítulo 2',
     src: '/Reel 2 1080p.mp4',
     stats: {
-      instagram: '850K',
-      tiktok: '1.8M',
-      youtube: '620K'
+      instagram: '7.6K',
+      tiktok: '123.2K',
+      youtube: '5.2K',
+      total: '136K'
+    },
+    links: {
+      instagram: 'https://www.instagram.com/reel/Db8V5xmjK9u/',
+      tiktok: 'https://www.tiktok.com/@tresilllo/video/7673167825141239062',
+      youtube: 'https://www.youtube.com/shorts/SOAUOPNU4iY'
     }
   },
   {
@@ -39,9 +57,15 @@ const videos: VideoData[] = [
     title: 'Capítulo 3',
     src: '/Reel 3 1080p.mp4',
     stats: {
-      instagram: '2.1M',
-      tiktok: '4.2M',
-      youtube: '1.5M'
+      instagram: '5.1K',
+      tiktok: '61.3K',
+      youtube: '1K',
+      total: '67.4K'
+    },
+    links: {
+      instagram: 'https://www.instagram.com/reel/DcJ20EIibxz/',
+      tiktok: 'https://www.tiktok.com/@tresilllo/video/7675095464558988566',
+      youtube: 'https://www.youtube.com/shorts/UWZiFuCJQoY'
     }
   },
   {
@@ -49,9 +73,15 @@ const videos: VideoData[] = [
     title: 'Capítulo 4',
     src: '/Reel 4 1080p.mp4',
     stats: {
-      instagram: '950K',
-      tiktok: '1.1M',
-      youtube: '410K'
+      instagram: '3.3K',
+      tiktok: '40.5K',
+      youtube: '1.4K',
+      total: '45.2K'
+    },
+    links: {
+      instagram: 'https://www.instagram.com/reel/DcWsADhjjdA/',
+      tiktok: 'https://www.tiktok.com/@tresilllo/video/7676943636063325462',
+      youtube: 'https://www.youtube.com/shorts/zKi0q8bxmsI'
     }
   }
 ];
@@ -60,9 +90,9 @@ export const GuessTheSongShowcase: React.FC = () => {
   return (
     <div className="showcase-container">
       <header className="showcase-header">
-        <h1 className="showcase-title">¿PUEDES ADIVINAR LA CANCIÓN?</h1>
+        <h1 className="showcase-title">ADIVINA LA CANCIÓN</h1>
         <p className="showcase-subtitle">
-          Serie producida por UNK. Pasa el ratón por encima de cada vídeo para reproducirlo.
+          Una producción de <a href="https://www.instagram.com/unkedition" target="_blank" rel="noopener noreferrer" className="unk-link">UNK EDITION</a>.
         </p>
       </header>
 
@@ -87,9 +117,11 @@ const VideoCard: React.FC<{ video: VideoData }> = ({ video }) => {
   const handleMouseLeave = () => {
     if (videoRef.current) {
       videoRef.current.pause();
-      // Optionally reset to beginning
-      // videoRef.current.currentTime = 0; 
     }
+  };
+
+  const openLink = (url: string) => {
+    window.open(url, '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -116,28 +148,26 @@ const VideoCard: React.FC<{ video: VideoData }> = ({ video }) => {
         <h2 className="chapter-title">{video.title}</h2>
         
         <div className="stats-container">
-          <div className="stat-row instagram">
-            <div className="stat-icon">
-              <Instagram size={18} />
-            </div>
-            <span>Instagram:</span>
-            <span className="stat-value">{video.stats.instagram}</span>
+          <div className="total-views">
+            <span>Vistas Totales:</span>
+            <span className="total-views-value">{video.stats.total}</span>
           </div>
-          
-          <div className="stat-row tiktok">
-            <div className="stat-icon">
-              <Music2 size={18} />
+
+          <div className="stats-row-horizontal">
+            <div className="stat-item instagram" onClick={() => openLink(video.links.instagram)}>
+              <Instagram size={22} />
+              <span className="stat-value">{video.stats.instagram}</span>
             </div>
-            <span>TikTok:</span>
-            <span className="stat-value">{video.stats.tiktok}</span>
-          </div>
-          
-          <div className="stat-row youtube">
-            <div className="stat-icon">
-              <Youtube size={18} />
+            
+            <div className="stat-item tiktok" onClick={() => openLink(video.links.tiktok)}>
+              <Music2 size={22} />
+              <span className="stat-value">{video.stats.tiktok}</span>
             </div>
-            <span>Shorts:</span>
-            <span className="stat-value">{video.stats.youtube}</span>
+            
+            <div className="stat-item youtube" onClick={() => openLink(video.links.youtube)}>
+              <Youtube size={22} />
+              <span className="stat-value">{video.stats.youtube}</span>
+            </div>
           </div>
         </div>
       </div>

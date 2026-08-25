@@ -33,6 +33,18 @@
   margin: 0 auto;
 }
 
+.unk-link {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.unk-link:hover {
+  color: #a8a8a8;
+}
+
 .videos-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -71,9 +83,11 @@
 
 .video-wrapper {
   position: relative;
-  width: 100%;
+  width: calc(100% - 2rem);
+  margin: 1rem;
   aspect-ratio: 9/16;
   background: #000;
+  border-radius: 12px;
   overflow: hidden;
 }
 
@@ -108,7 +122,7 @@
 }
 
 .video-info {
-  padding: 1.5rem;
+  padding: 0.5rem 1.5rem 1.5rem 1.5rem;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -117,7 +131,7 @@
 .chapter-title {
   font-size: 1.5rem;
   font-weight: 800;
-  margin: 0 0 1.5rem 0;
+  margin: 0 0 1rem 0;
   color: #ffffff;
 }
 
@@ -128,28 +142,44 @@
   margin-top: auto;
 }
 
-.stat-row {
+.total-views {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 0.75rem;
+  font-size: 1.1rem;
+  font-weight: 700;
   color: #a0a0a0;
-  font-size: 1rem;
-  font-weight: 500;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #1f1f1f;
 }
 
-.stat-icon {
+.total-views-value {
+  color: #ffffff;
+  font-size: 1.25rem;
+}
+
+.stats-row-horizontal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stat-item {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.05);
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-.stat-row.instagram .stat-icon { color: #E1306C; }
-.stat-row.tiktok .stat-icon { color: #ffffff; }
-.stat-row.youtube .stat-icon { color: #FF0000; }
+.stat-item:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+.stat-item.instagram { color: #E1306C; }
+.stat-item.tiktok { color: #ffffff; }
+.stat-item.youtube { color: #FF0000; }
 
 .stat-value {
   font-weight: 700;
