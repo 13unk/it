@@ -42,9 +42,9 @@ const videos: VideoData[] = [
     src: '/Reel_2_1080p.mp4',
     stats: {
       instagram: '7.6K',
-      tiktok: '125K',
+      tiktok: '125.5K',
       youtube: '5.2K',
-      total: '137.8K'
+      total: '138.3K'
     },
     links: {
       instagram: 'https://www.instagram.com/reel/Db8V5xmjK9u/',
@@ -74,9 +74,9 @@ const videos: VideoData[] = [
     src: '/Reel_4_1080p.mp4',
     stats: {
       instagram: '3.4K',
-      tiktok: '44.5K',
+      tiktok: '45.5K',
       youtube: '1.6K',
-      total: '49.5K'
+      total: '50.5K'
     },
     links: {
       instagram: 'https://www.instagram.com/reel/DcWsADhjjdA/',
