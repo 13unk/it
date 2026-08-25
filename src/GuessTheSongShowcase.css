@@ -124,21 +124,24 @@
 .video-wrapper {
   position: relative;
   flex-grow: 0;
-  width: 85%;
-  max-width: 380px; /* Constrain on desktop */
-  height: auto;
-  max-height: 55vh;
+  height: 60vh;
+  max-height: 800px;
+  width: auto;
+  max-width: 85vw;
   aspect-ratio: 9/16;
   margin: 0 auto;
-  background: #000;
+  background: transparent;
   border-radius: 12px;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .showcase-video {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   transition: opacity 0.3s ease, filter 0.3s ease;
   filter: grayscale(100%);
 }
