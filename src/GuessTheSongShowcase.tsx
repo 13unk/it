@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Instagram, Youtube, Music2, Play } from 'lucide-react';
+import { Instagram, Youtube, Music2, Grid, CheckCircle2 } from 'lucide-react';
 import './GuessTheSongShowcase.css';
 
 interface VideoData {
@@ -92,8 +92,9 @@ export const GuessTheSongShowcase: React.FC = () => {
       <header className="showcase-header">
         <h1 className="showcase-title">ADIVINA LA CANCIÓN</h1>
         <p className="showcase-subtitle">
-          Una producción de <a href="https://www.instagram.com/unkedition" target="_blank" rel="noopener noreferrer" className="unk-link">UNK EDITION</a>.
+          Un formato de <a href="https://www.instagram.com/unkedition" target="_blank" rel="noopener noreferrer" className="unk-link">UNK EDITION</a>.
         </p>
+        <InstagramWidget />
       </header>
 
       <div className="videos-grid">
@@ -139,9 +140,6 @@ const VideoCard: React.FC<{ video: VideoData }> = ({ video }) => {
           muted
           playsInline
         />
-        <div className="play-hint">
-          <Play size={16} fill="currentColor" /> Reproducir
-        </div>
       </div>
       
       <div className="video-info">
@@ -155,20 +153,61 @@ const VideoCard: React.FC<{ video: VideoData }> = ({ video }) => {
 
           <div className="stats-row-horizontal">
             <div className="stat-item instagram" onClick={() => openLink(video.links.instagram)}>
-              <Instagram size={22} />
+              <Instagram size={18} />
               <span className="stat-value">{video.stats.instagram}</span>
             </div>
             
             <div className="stat-item tiktok" onClick={() => openLink(video.links.tiktok)}>
-              <Music2 size={22} />
+              <Music2 size={18} />
               <span className="stat-value">{video.stats.tiktok}</span>
             </div>
             
             <div className="stat-item youtube" onClick={() => openLink(video.links.youtube)}>
-              <Youtube size={22} />
+              <Youtube size={18} />
               <span className="stat-value">{video.stats.youtube}</span>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const InstagramWidget: React.FC = () => {
+  return (
+    <div className="ig-widget">
+      <div className="ig-widget-header">
+        <div className="ig-avatar">
+          <img src="/unklogo.png" alt="UNK EDITION" />
+        </div>
+        <div className="ig-info">
+          <div className="ig-username">
+            unkedition <CheckCircle2 size={16} color="#38bdf8" fill="#ffffff" style={{marginLeft: '4px'}} />
+          </div>
+          <div className="ig-stats">
+            <span><strong>34</strong> posts</span>
+            <span><strong>54.2K</strong> followers</span>
+            <span><strong>0</strong> following</span>
+          </div>
+          <div className="ig-bio">
+            <strong>UNK EDITION</strong><br/>
+            Productora Audiovisual.<br/>
+            Creando los mejores formatos.
+          </div>
+        </div>
+      </div>
+      <div className="ig-tabs">
+        <div className="ig-tab active"><Grid size={16} /> POSTS</div>
+      </div>
+      <div className="ig-grid">
+        <div className="ig-grid-item">
+          <video src="/Reel 1 1080p.mp4#t=6.0" className="ig-grid-img" />
+        </div>
+        <div className="ig-grid-item">
+          <video src="/Reel 2 1080p.mp4#t=6.0" className="ig-grid-img" />
+        </div>
+        <div className="ig-grid-item">
+          <video src="/Reel 3 1080p.mp4#t=6.0" className="ig-grid-img" />
         </div>
       </div>
     </div>
