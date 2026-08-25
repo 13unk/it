@@ -89,13 +89,20 @@ const videos: VideoData[] = [
 export const GuessTheSongShowcase: React.FC = () => {
   return (
     <div className="showcase-container">
-      {/* Hero Section */}
+      {/* Page 1: Brand & IG */}
       <section className="hero-section">
         <h2 className="brand-title">UNK EDITION</h2>
         
         <InstagramWidget />
         
-        <p className="presents-text">presenta el formato de</p>
+        <div className="scroll-indicator">
+          <ChevronDown size={40} />
+        </div>
+      </section>
+
+      {/* Page 2: Title */}
+      <section className="hero-section">
+        <p className="presents-text">presenta el formato</p>
         <h1 className="showcase-title">ADIVINA LA CANCIÓN</h1>
         
         <div className="scroll-indicator">
@@ -128,11 +135,14 @@ const VideoCard: React.FC<{ video: VideoData }> = ({ video }) => {
           if (entry.isIntersecting) {
             timeoutRef.current = setTimeout(() => {
               if (videoRef.current) {
+                videoRef.current.currentTime = 0; // Play from start
                 videoRef.current.muted = false;
                 videoRef.current.play().catch(e => {
                   console.log('Unmuted autoplay blocked, trying muted', e);
-                  videoRef.current!.muted = true;
-                  videoRef.current!.play().catch(console.log);
+                  if(videoRef.current) {
+                    videoRef.current.muted = true;
+                    videoRef.current.play().catch(console.log);
+                  }
                 });
                 videoRef.current.style.filter = 'grayscale(0%)';
               }
@@ -141,6 +151,7 @@ const VideoCard: React.FC<{ video: VideoData }> = ({ video }) => {
             clearTimeout(timeoutRef.current);
             if (videoRef.current) {
               videoRef.current.pause();
+              videoRef.current.currentTime = 6.0; // Reset to 6s thumbnail
               videoRef.current.style.filter = 'grayscale(100%)';
             }
           }
@@ -160,6 +171,7 @@ const VideoCard: React.FC<{ video: VideoData }> = ({ video }) => {
 
   const handleMouseEnter = () => {
     if (window.innerWidth > 600 && videoRef.current) {
+      videoRef.current.currentTime = 0; // Play from start
       videoRef.current.muted = false;
       videoRef.current.play().catch(e => console.log('Autoplay prevented:', e));
     }
@@ -168,6 +180,7 @@ const VideoCard: React.FC<{ video: VideoData }> = ({ video }) => {
   const handleMouseLeave = () => {
     if (window.innerWidth > 600 && videoRef.current) {
       videoRef.current.pause();
+      videoRef.current.currentTime = 6.0; // Reset to 6s thumbnail
       videoRef.current.muted = true;
     }
   };

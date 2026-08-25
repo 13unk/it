@@ -127,13 +127,21 @@
     margin: 0;
     scroll-snap-align: start;
     scroll-snap-stop: always;
+    justify-content: center;
+    padding-bottom: 2rem;
   }
   
   .video-wrapper {
-    flex-grow: 1;
-    margin: 0;
-    border-radius: 0;
-    width: 100%;
+    flex-grow: 0;
+    height: 55vh;
+    width: 85%;
+    margin: 0 auto;
+    border-radius: 12px;
+  }
+  
+  .video-info {
+    flex-grow: 0;
+    margin-bottom: 2rem;
   }
   
   .showcase-video-card:hover {
