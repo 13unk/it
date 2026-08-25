@@ -122,15 +122,73 @@ export const GuessTheSongShowcase: React.FC = () => {
   );
 };
 
+const AnimatedNumber: React.FC<{ value: string; isVisible: boolean; delay?: number }> = ({ value, isVisible, delay = 0 }) => {
+  const [displayValue, setDisplayValue] = React.useState('0');
+  const [suffix, setSuffix] = React.useState('');
+
+  React.useEffect(() => {
+    if (!isVisible) {
+      setDisplayValue('0');
+      return;
+    }
+
+    const match = value.match(/^([\d.]+)(.*)$/);
+    if (!match) {
+      setDisplayValue(value);
+      return;
+    }
+
+    const endNum = parseFloat(match[1]);
+    const suff = match[2];
+    setSuffix(suff);
+    const isFloat = match[1].includes('.');
+
+    let startTimestamp: number | null = null;
+    let timeoutId: number;
+    let rafId: number;
+
+    const duration = 1500; // 1.5s animation
+
+    const step = (timestamp: number) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      const easeProgress = 1 - Math.pow(1 - progress, 3); // cubic ease out
+      
+      const current = easeProgress * endNum;
+      setDisplayValue(isFloat ? current.toFixed(1) : Math.round(current).toString());
+      
+      if (progress < 1) {
+        rafId = window.requestAnimationFrame(step);
+      } else {
+        setDisplayValue(match[1]); // Ensure exact end value
+      }
+    };
+
+    timeoutId = window.setTimeout(() => {
+      rafId = window.requestAnimationFrame(step);
+    }, delay);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+      if (rafId) window.cancelAnimationFrame(rafId);
+    };
+  }, [value, isVisible, delay]);
+
+  return <span>{displayValue}{suffix}</span>;
+};
+
 const VideoCard: React.FC<{ video: VideoData }> = ({ video }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const timeoutRef = useRef<number | ReturnType<typeof setTimeout>>();
+  const [isVisible, setIsVisible] = React.useState(false);
 
   React.useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // Only apply scroll logic on mobile devices
+        setIsVisible(entry.isIntersecting);
+        
+        // Only apply scroll autoplay logic on mobile devices
         if (window.innerWidth <= 600) {
           if (entry.isIntersecting) {
             timeoutRef.current = setTimeout(() => {
@@ -213,25 +271,33 @@ const VideoCard: React.FC<{ video: VideoData }> = ({ video }) => {
       
       <div className="video-info">
         <div className="stats-container">
-          <div className="total-views">
+          <div className={`total-views fade-in-element ${isVisible ? 'visible' : ''}`} style={{ transitionDelay: '0.1s' }}>
             <span>Views Totales:</span>
-            <span className="total-views-value">{video.stats.total}</span>
+            <span className="total-views-value">
+              <AnimatedNumber value={video.stats.total} isVisible={isVisible} delay={100} />
+            </span>
           </div>
 
-          <div className="stats-row-horizontal">
+          <div className={`stats-row-horizontal fade-in-element ${isVisible ? 'visible' : ''}`} style={{ transitionDelay: '0.4s' }}>
             <div className="stat-item instagram" onClick={() => openLink(video.links.instagram)}>
               <Instagram size={18} />
-              <span className="stat-value">{video.stats.instagram}</span>
+              <span className="stat-value">
+                <AnimatedNumber value={video.stats.instagram} isVisible={isVisible} delay={400} />
+              </span>
             </div>
             
             <div className="stat-item tiktok" onClick={() => openLink(video.links.tiktok)}>
               <Music2 size={18} />
-              <span className="stat-value">{video.stats.tiktok}</span>
+              <span className="stat-value">
+                <AnimatedNumber value={video.stats.tiktok} isVisible={isVisible} delay={400} />
+              </span>
             </div>
             
             <div className="stat-item youtube" onClick={() => openLink(video.links.youtube)}>
               <Youtube size={18} />
-              <span className="stat-value">{video.stats.youtube}</span>
+              <span className="stat-value">
+                <AnimatedNumber value={video.stats.youtube} isVisible={isVisible} delay={400} />
+              </span>
             </div>
           </div>
         </div>
