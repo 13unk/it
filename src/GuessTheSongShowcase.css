@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap');
+
 .showcase-container {
   min-height: 100vh;
   background-color: #050505;
   color: #ffffff;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   padding: 4rem 2rem;
   display: flex;
   flex-direction: column;
@@ -48,12 +50,12 @@
 .videos-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 2.5rem;
+  gap: 2rem;
   width: 100%;
-  max-width: 1400px;
+  max-width: 1100px;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1024px) {
   .videos-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -95,7 +97,12 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease, filter 0.3s ease;
+  filter: grayscale(100%);
+}
+
+.showcase-video-card:hover .showcase-video {
+  filter: grayscale(0%);
 }
 
 .play-hint {
@@ -130,9 +137,11 @@
 
 .chapter-title {
   font-size: 1.5rem;
-  font-weight: 800;
+  font-weight: 900;
   margin: 0 0 1rem 0;
   color: #ffffff;
+  text-align: center;
+  width: 100%;
 }
 
 .stats-container {
@@ -186,5 +195,5 @@
 .stat-value {
   font-weight: 700;
   color: #ffffff;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }

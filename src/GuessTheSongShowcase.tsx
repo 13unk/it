@@ -133,7 +133,7 @@ const VideoCard: React.FC<{ video: VideoData }> = ({ video }) => {
       <div className="video-wrapper">
         <video 
           ref={videoRef}
-          src={video.src} 
+          src={video.src + '#t=6.0'} 
           className="showcase-video"
           loop
           muted
@@ -145,11 +145,11 @@ const VideoCard: React.FC<{ video: VideoData }> = ({ video }) => {
       </div>
       
       <div className="video-info">
-        <h2 className="chapter-title">{video.title}</h2>
+        <h2 className="chapter-title">{video.title.toUpperCase()}</h2>
         
         <div className="stats-container">
           <div className="total-views">
-            <span>Vistas Totales:</span>
+            <span>Views Totales:</span>
             <span className="total-views-value">{video.stats.total}</span>
           </div>
 
