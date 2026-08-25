@@ -188,27 +188,36 @@ const VideoCard: React.FC<{ video: VideoData }> = ({ video }) => {
       ([entry]) => {
         setIsVisible(entry.isIntersecting);
         
-        // Apply scroll autoplay logic on all devices
-        if (entry.isIntersecting) {
-          timeoutRef.current = window.setTimeout(() => {
+        // Autoplay logic on scroll ONLY for mobile
+        if (window.innerWidth <= 600) {
+          if (entry.isIntersecting) {
+            timeoutRef.current = window.setTimeout(() => {
+              if (videoRef.current) {
+                videoRef.current.currentTime = 0; // Play from start
+                videoRef.current.muted = false;
+                videoRef.current.play().catch(e => {
+                  console.log('Unmuted autoplay blocked, trying muted', e);
+                  if(videoRef.current) {
+                    videoRef.current.muted = true;
+                    videoRef.current.play().catch(console.log);
+                  }
+                });
+                videoRef.current.style.filter = 'grayscale(0%)';
+              }
+            }, 500); // Wait half a second
+          } else {
+            window.clearTimeout(timeoutRef.current);
             if (videoRef.current) {
-              videoRef.current.currentTime = 0; // Play from start
-              videoRef.current.muted = false;
-              videoRef.current.play().catch(e => {
-                console.log('Unmuted autoplay blocked, trying muted', e);
-                if(videoRef.current) {
-                  videoRef.current.muted = true;
-                  videoRef.current.play().catch(console.log);
-                }
-              });
-              videoRef.current.style.filter = 'grayscale(0%)';
+              videoRef.current.pause();
+              videoRef.current.currentTime = 6.0; // Reset to 6s thumbnail
+              videoRef.current.style.filter = 'grayscale(100%)';
             }
-          }, 500); // Wait half a second
+          }
         } else {
-          window.clearTimeout(timeoutRef.current);
-          if (videoRef.current) {
+          // Desktop: Pause video if user scrolls far away while it was playing
+          if (!entry.isIntersecting && videoRef.current && !videoRef.current.paused) {
             videoRef.current.pause();
-            videoRef.current.currentTime = 6.0; // Reset to 6s thumbnail
+            videoRef.current.currentTime = 6.0;
             videoRef.current.style.filter = 'grayscale(100%)';
           }
         }
@@ -225,6 +234,24 @@ const VideoCard: React.FC<{ video: VideoData }> = ({ video }) => {
     };
   }, []);
 
+  const handleMouseEnter = () => {
+    if (window.innerWidth > 600 && videoRef.current) {
+      videoRef.current.currentTime = 0;
+      videoRef.current.muted = false;
+      videoRef.current.play().catch(e => console.log('Autoplay prevented:', e));
+      videoRef.current.style.filter = 'grayscale(0%)';
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (window.innerWidth > 600 && videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 6.0;
+      videoRef.current.muted = true;
+      videoRef.current.style.filter = 'grayscale(100%)';
+    }
+  };
+
   const openLink = (url: string) => {
     window.open(url, '_blank', 'noopener,noreferrer');
   };
@@ -233,6 +260,8 @@ const VideoCard: React.FC<{ video: VideoData }> = ({ video }) => {
     <div 
       ref={cardRef}
       className="showcase-video-card"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       <div className="card-header">
         <h2 className="chapter-title">{video.title.toUpperCase()}</h2>
