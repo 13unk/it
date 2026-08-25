@@ -58,9 +58,9 @@ const videos: VideoData[] = [
     src: '/Reel_3_1080p.mp4',
     stats: {
       instagram: '5.1K',
-      tiktok: '62.1K',
+      tiktok: '62.2K',
       youtube: '1K',
-      total: '68.2K'
+      total: '68.3K'
     },
     links: {
       instagram: 'https://www.instagram.com/reel/DcJ20EIibxz/',
@@ -73,10 +73,10 @@ const videos: VideoData[] = [
     title: 'Capítulo 4',
     src: '/Reel_4_1080p.mp4',
     stats: {
-      instagram: '3.3K',
-      tiktok: '44K',
+      instagram: '3.4K',
+      tiktok: '44.5K',
       youtube: '1.4K',
-      total: '48.7K'
+      total: '49.3K'
     },
     links: {
       instagram: 'https://www.instagram.com/reel/DcWsADhjjdA/',
