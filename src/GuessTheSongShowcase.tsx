@@ -25,10 +25,10 @@ const videos: VideoData[] = [
     title: 'Capítulo 1',
     src: '/Reel_1_1080p.mp4',
     stats: {
-      instagram: '13.8K',
+      instagram: '13.9K',
       tiktok: '1.1K',
       youtube: '23.1K',
-      total: '38K'
+      total: '38.1K'
     },
     links: {
       instagram: 'https://www.instagram.com/reel/Db3gyz6t_p0/',
@@ -41,10 +41,10 @@ const videos: VideoData[] = [
     title: 'Capítulo 2',
     src: '/Reel_2_1080p.mp4',
     stats: {
-      instagram: '7.6K',
-      tiktok: '125.5K',
+      instagram: '7.7K',
+      tiktok: '127.4K',
       youtube: '5.2K',
-      total: '138.3K'
+      total: '140.3K'
     },
     links: {
       instagram: 'https://www.instagram.com/reel/Db8V5xmjK9u/',
@@ -57,10 +57,10 @@ const videos: VideoData[] = [
     title: 'Capítulo 3',
     src: '/Reel_3_1080p.mp4',
     stats: {
-      instagram: '5.1K',
-      tiktok: '62.2K',
+      instagram: '5.2K',
+      tiktok: '63.4K',
       youtube: '1K',
-      total: '68.3K'
+      total: '69.6K'
     },
     links: {
       instagram: 'https://www.instagram.com/reel/DcJ20EIibxz/',
@@ -73,10 +73,10 @@ const videos: VideoData[] = [
     title: 'Capítulo 4',
     src: '/Reel_4_1080p.mp4',
     stats: {
-      instagram: '3.4K',
-      tiktok: '45.5K',
-      youtube: '1.6K',
-      total: '50.5K'
+      instagram: '3.5K',
+      tiktok: '50.5K',
+      youtube: '1.8K',
+      total: '55.8K'
     },
     links: {
       instagram: 'https://www.instagram.com/reel/DcWsADhjjdA/',
