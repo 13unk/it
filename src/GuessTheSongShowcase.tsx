@@ -42,9 +42,9 @@ const videos: VideoData[] = [
     src: '/Reel_2_1080p.mp4',
     stats: {
       instagram: '7.7K',
-      tiktok: '127.4K',
+      tiktok: '130K',
       youtube: '5.2K',
-      total: '140.3K'
+      total: '142.9K'
     },
     links: {
       instagram: 'https://www.instagram.com/reel/Db8V5xmjK9u/',
@@ -58,9 +58,9 @@ const videos: VideoData[] = [
     src: '/Reel_3_1080p.mp4',
     stats: {
       instagram: '5.2K',
-      tiktok: '63.4K',
+      tiktok: '64.2K',
       youtube: '1K',
-      total: '69.6K'
+      total: '70.4K'
     },
     links: {
       instagram: 'https://www.instagram.com/reel/DcJ20EIibxz/',
@@ -74,9 +74,9 @@ const videos: VideoData[] = [
     src: '/Reel_4_1080p.mp4',
     stats: {
       instagram: '3.5K',
-      tiktok: '50.5K',
+      tiktok: '54.2K',
       youtube: '1.8K',
-      total: '55.8K'
+      total: '59.5K'
     },
     links: {
       instagram: 'https://www.instagram.com/reel/DcWsADhjjdA/',
