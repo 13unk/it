@@ -26,9 +26,9 @@ const videos: VideoData[] = [
     src: '/Reel_1_1080p.mp4',
     stats: {
       instagram: '13.9K',
-      tiktok: '1.1K',
+      tiktok: '1.2K',
       youtube: '23.1K',
-      total: '38.1K'
+      total: '38.2K'
     },
     links: {
       instagram: 'https://www.instagram.com/reel/Db3gyz6t_p0/',
@@ -42,9 +42,9 @@ const videos: VideoData[] = [
     src: '/Reel_2_1080p.mp4',
     stats: {
       instagram: '7.7K',
-      tiktok: '130K',
+      tiktok: '131.5K',
       youtube: '5.2K',
-      total: '142.9K'
+      total: '144.4K'
     },
     links: {
       instagram: 'https://www.instagram.com/reel/Db8V5xmjK9u/',
@@ -57,10 +57,10 @@ const videos: VideoData[] = [
     title: 'Capítulo 3',
     src: '/Reel_3_1080p.mp4',
     stats: {
-      instagram: '5.2K',
-      tiktok: '64.2K',
+      instagram: '5.3K',
+      tiktok: '64.8K',
       youtube: '1K',
-      total: '70.4K'
+      total: '71.1K'
     },
     links: {
       instagram: 'https://www.instagram.com/reel/DcJ20EIibxz/',
@@ -73,10 +73,10 @@ const videos: VideoData[] = [
     title: 'Capítulo 4',
     src: '/Reel_4_1080p.mp4',
     stats: {
-      instagram: '3.5K',
-      tiktok: '54.2K',
-      youtube: '1.8K',
-      total: '59.5K'
+      instagram: '3.7K',
+      tiktok: '55.2K',
+      youtube: '2K',
+      total: '60.9K'
     },
     links: {
       instagram: 'https://www.instagram.com/reel/DcWsADhjjdA/',
@@ -378,7 +378,7 @@ const InstagramWidget: React.FC = () => {
           </div>
           <div className="ig-stats">
             <span><strong>205</strong> posts</span>
-            <span><strong>56.4K</strong> followers</span>
+            <span><strong>56.5K</strong> followers</span>
             <span><strong>17</strong> following</span>
           </div>
           <div className="ig-bio">
