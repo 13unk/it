@@ -360,3 +360,55 @@
 .mute-icon-overlay.fade-out { opacity: 0; pointer-events: none; }
 
 .hide-cursor { cursor: none !important; }
+
+@media (min-width: 1024px) {
+  .videos-section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+  .videos-grid {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5vw;
+    width: 100%;
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: 0 2vw;
+  }
+  .showcase-video-card {
+    height: auto;
+    flex: 1;
+    padding-top: 0;
+    scroll-snap-align: none;
+  }
+  .card-header {
+    padding: 1rem 0;
+  }
+  .chapter-title {
+    font-size: 1.1vw;
+  }
+  .video-wrapper {
+    height: 50vh;
+    width: 100%;
+  }
+  .video-info {
+    padding: 1rem 0;
+  }
+  .total-views {
+    font-size: 0.9vw;
+  }
+  .total-views-value {
+    font-size: 1vw;
+  }
+  .stat-item {
+    font-size: 0.8vw;
+  }
+  .stat-value {
+    font-size: 0.8vw;
+  }
+}
