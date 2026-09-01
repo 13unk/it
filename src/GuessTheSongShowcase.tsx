@@ -25,10 +25,10 @@ const videos: VideoData[] = [
     title: 'Capítulo 1',
     src: '/Reel_1_1080p.mp4',
     stats: {
-      instagram: '13.9K',
+      instagram: '14K',
       tiktok: '1.2K',
       youtube: '23.1K',
-      total: '38.2K'
+      total: '38.3K'
     },
     links: {
       instagram: 'https://www.instagram.com/reel/Db3gyz6t_p0/',
@@ -41,10 +41,10 @@ const videos: VideoData[] = [
     title: 'Capítulo 2',
     src: '/Reel_2_1080p.mp4',
     stats: {
-      instagram: '7.7K',
-      tiktok: '131.5K',
+      instagram: '7.8K',
+      tiktok: '144.7K',
       youtube: '5.2K',
-      total: '144.4K'
+      total: '157.7K'
     },
     links: {
       instagram: 'https://www.instagram.com/reel/Db8V5xmjK9u/',
@@ -57,10 +57,10 @@ const videos: VideoData[] = [
     title: 'Capítulo 3',
     src: '/Reel_3_1080p.mp4',
     stats: {
-      instagram: '5.3K',
-      tiktok: '64.8K',
+      instagram: '5.5K',
+      tiktok: '70.2K',
       youtube: '1K',
-      total: '71.1K'
+      total: '76.7K'
     },
     links: {
       instagram: 'https://www.instagram.com/reel/DcJ20EIibxz/',
@@ -73,15 +73,31 @@ const videos: VideoData[] = [
     title: 'Capítulo 4',
     src: '/Reel_4_1080p.mp4',
     stats: {
-      instagram: '3.7K',
-      tiktok: '55.2K',
+      instagram: '4.2K',
+      tiktok: '57.9K',
       youtube: '2K',
-      total: '60.9K'
+      total: '64.1K'
     },
     links: {
       instagram: 'https://www.instagram.com/reel/DcWsADhjjdA/',
       tiktok: 'https://www.tiktok.com/@tresilllo/video/7676943636063325462',
       youtube: 'https://www.youtube.com/shorts/zKi0q8bxmsI'
+    }
+  },
+  {
+    id: 5,
+    title: 'Capítulo 5',
+    src: '/Reel_5_1080p.mp4',
+    stats: {
+      instagram: '3.1K',
+      tiktok: '2.2K',
+      youtube: '6.9K',
+      total: '12.2K'
+    },
+    links: {
+      instagram: 'https://www.instagram.com/reel/DcloE4ZlWaU/',
+      tiktok: 'https://www.tiktok.com/@tresilllo/video/7679096559102889238',
+      youtube: 'https://www.youtube.com/shorts/bZXutfQf84Q'
     }
   }
 ];
@@ -378,7 +394,7 @@ const InstagramWidget: React.FC = () => {
           </div>
           <div className="ig-stats">
             <span><strong>205</strong> posts</span>
-            <span><strong>56.5K</strong> followers</span>
+            <span><strong>56.6K</strong> followers</span>
             <span><strong>17</strong> following</span>
           </div>
           <div className="ig-bio">
