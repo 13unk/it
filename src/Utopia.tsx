@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Utopia.css';
-import { ChevronLeft, ChevronRight, Plus, Calendar as CalendarIcon, User, Tv } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Plus, Calendar as CalendarIcon, User } from 'lucide-react';
 
 interface EventCard {
   id: string;
@@ -19,9 +19,25 @@ const PROJECTS_MAP: Record<string, string[]> = {
   'YEP': ['yep_1', 'yep_2', 'yep_3'],
 };
 
+const CHANNEL_ICONS: Record<string, string> = {
+  'SEED': '/utopia/pfp_seed.jpg',
+  'UNK': '/utopia/pfp_unk.jpeg',
+  'YEP': '/utopia/pfp_yep.jpg'
+};
+
+const CHANNEL_COLORS: Record<string, string> = {
+  'SEED': '#74C476',
+  'UNK': '#9B5DE0',
+  'YEP': '#6BAED6'
+};
+
 export const Utopia: React.FC = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
-  const [events, setEvents] = useState<EventCard[]>([]);
+  
+  const [events, setEvents] = useState<EventCard[]>(() => {
+    const saved = localStorage.getItem('utopia_events');
+    return saved ? JSON.parse(saved) : [];
+  });
   
   const [formData, setFormData] = useState({
     title: '',
@@ -30,6 +46,10 @@ export const Utopia: React.FC = () => {
     channel: '',
     project: ''
   });
+
+  useEffect(() => {
+    localStorage.setItem('utopia_events', JSON.stringify(events));
+  }, [events]);
 
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
@@ -54,7 +74,7 @@ export const Utopia: React.FC = () => {
     setFormData(prev => ({ 
       ...prev, 
       channel: prev.channel === c ? '' : c,
-      project: '' // Reset project when changing channel
+      project: '' 
     }));
   };
 
@@ -94,7 +114,11 @@ export const Utopia: React.FC = () => {
           <div className="cell-date">{d}</div>
           <div className="events-container">
             {dayEvents.map(ev => (
-              <div key={ev.id} className="event-chip">
+              <div 
+                key={ev.id} 
+                className="event-chip"
+                style={{ backgroundColor: CHANNEL_COLORS[ev.channel] || '#111' }}
+              >
                 <span className="event-chip-title">{ev.title}</span>
                 <div className="event-chip-meta">
                   <span className="channel-indicator" title={ev.project}>{ev.channel} / {ev.project.split('_')[1]}</span>
@@ -177,7 +201,8 @@ export const Utopia: React.FC = () => {
                   className={`pill-btn ${formData.channel === c ? 'active' : ''}`}
                   onClick={() => setChannel(c)}
                 >
-                  <Tv size={16} /> {c}
+                  <img src={CHANNEL_ICONS[c]} alt={c} className="channel-icon" />
+                  {c}
                 </button>
               ))}
             </div>
