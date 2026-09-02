@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './Utopia.css';
-import { ChevronLeft, ChevronRight, Plus, Calendar as CalendarIcon, User, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Plus, Calendar as CalendarIcon, User, X, Edit2 } from 'lucide-react';
 import { db } from './firebase';
-import { collection, addDoc, onSnapshot, query, deleteDoc, doc } from 'firebase/firestore';
+import { collection, addDoc, onSnapshot, query, deleteDoc, doc, updateDoc } from 'firebase/firestore';
 
 interface EventCard {
   id: string;
   date: string;
   title: string;
+  description?: string;
   users: string[];
   channel: string;
   project: string;
@@ -37,10 +38,12 @@ export const Utopia: React.FC = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [events, setEvents] = useState<EventCard[]>([]);
   const [selectedEvent, setSelectedEvent] = useState<EventCard | null>(null);
+  const [editingEventId, setEditingEventId] = useState<string | null>(null);
   
   const [formData, setFormData] = useState({
     title: '',
     date: new Date().toISOString().split('T')[0],
+    description: '',
     users: [] as string[],
     channel: '',
     project: ''
@@ -97,17 +100,45 @@ export const Utopia: React.FC = () => {
     const newEvent = {
       title: formData.title,
       date: formData.date,
+      description: formData.description,
       users: formData.users,
       channel: formData.channel,
       project: formData.project
     };
 
     try {
-      await addDoc(collection(db, 'events'), newEvent);
-      setFormData(prev => ({ ...prev, title: '' }));
+      if (editingEventId) {
+        await updateDoc(doc(db, 'events', editingEventId), newEvent);
+        setEditingEventId(null);
+      } else {
+        await addDoc(collection(db, 'events'), newEvent);
+      }
+      setFormData({
+        title: '',
+        date: new Date().toISOString().split('T')[0],
+        description: '',
+        users: [],
+        channel: '',
+        project: ''
+      });
     } catch (error) {
-      console.error("Error adding document: ", error);
+      console.error("Error saving document: ", error);
     }
+  };
+
+  const startEditEvent = () => {
+    if (!selectedEvent) return;
+    setFormData({
+      title: selectedEvent.title,
+      date: selectedEvent.date,
+      description: selectedEvent.description || '',
+      users: selectedEvent.users,
+      channel: selectedEvent.channel,
+      project: selectedEvent.project
+    });
+    setEditingEventId(selectedEvent.id);
+    setSelectedEvent(null);
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
   };
 
   const handleDeleteEvent = async (id: string) => {
@@ -168,32 +199,38 @@ export const Utopia: React.FC = () => {
               <X size={24} />
             </button>
             
-            <div className="event-detail-header">
-              <img 
-                src={CHANNEL_ICONS[selectedEvent.channel]} 
-                alt={selectedEvent.channel} 
-                style={{ borderColor: CHANNEL_COLORS[selectedEvent.channel] || '#111' }} 
-              />
+            <div className="event-detail-content-stacked">
               <h2 className="event-detail-title">{selectedEvent.title}</h2>
-            </div>
-            
-            <div className="event-detail-info">
-              <div className="info-block">
-                <span className="info-label">Fecha</span>
-                <span className="info-value">
-                  {selectedEvent.date.split('-').reverse().join('/')}
+              <div className="event-detail-date-right">
+                {selectedEvent.date.split('-').reverse().join('/')}
+              </div>
+
+              {selectedEvent.description && (
+                <div className="stacked-info">
+                  <span className="stacked-label">Descripción</span>
+                  <p className="stacked-desc">{selectedEvent.description}</p>
+                </div>
+              )}
+
+              <div className="stacked-info">
+                <span className="stacked-label">Canal</span>
+                <span className="stacked-value">
+                  <img 
+                    src={CHANNEL_ICONS[selectedEvent.channel]} 
+                    alt={selectedEvent.channel} 
+                    style={{ width: '24px', height: '24px', borderRadius: '50%', objectFit: 'cover' }} 
+                  />
+                  {selectedEvent.channel}
                 </span>
               </div>
-              <div className="info-block">
-                <span className="info-label">Canal</span>
-                <span className="info-value">{selectedEvent.channel}</span>
+
+              <div className="stacked-info">
+                <span className="stacked-label">Proyecto</span>
+                <span className="stacked-value">{selectedEvent.project}</span>
               </div>
-              <div className="info-block">
-                <span className="info-label">Proyecto</span>
-                <span className="info-value">{selectedEvent.project}</span>
-              </div>
-              <div className="info-block">
-                <span className="info-label">Equipo Involucrado</span>
+
+              <div className="stacked-info">
+                <span className="stacked-label">Equipo Involucrado</span>
                 <div className="pills-container" style={{ marginTop: '0.25rem' }}>
                   {selectedEvent.users.map(u => (
                     <span key={u} className="pill-btn active" style={{ cursor: 'default', padding: '0.4rem 1rem' }}>
@@ -205,8 +242,11 @@ export const Utopia: React.FC = () => {
             </div>
 
             <div className="event-detail-actions">
+              <button className="edit-btn" onClick={startEditEvent}>
+                <Edit2 size={18} strokeWidth={3} /> Editar
+              </button>
               <button className="delete-btn" onClick={() => handleDeleteEvent(selectedEvent.id)}>
-                <X size={18} strokeWidth={3} /> Eliminar Evento
+                <X size={18} strokeWidth={3} /> Eliminar
               </button>
             </div>
           </div>
@@ -233,7 +273,7 @@ export const Utopia: React.FC = () => {
       <div className="tool-card">
         <div className="tool-header">
           <CalendarIcon size={24} />
-          <span>Añadir</span>
+          <span>{editingEventId ? 'Editar Evento' : 'Añadir'}</span>
         </div>
         
         <form onSubmit={handleAddEvent} className="form-grid">
@@ -256,6 +296,17 @@ export const Utopia: React.FC = () => {
               value={formData.date}
               onChange={e => setFormData({...formData, date: e.target.value})}
               required
+            />
+          </div>
+          
+          <div className="form-group full-width">
+            <label className="form-label">Descripción (Opcional)</label>
+            <textarea 
+              className="form-input" 
+              rows={3}
+              placeholder="Detalles sobre el rodaje, ubicaciones, notas..."
+              value={formData.description}
+              onChange={e => setFormData({...formData, description: e.target.value})}
             />
           </div>
 
@@ -310,8 +361,26 @@ export const Utopia: React.FC = () => {
           </div>
 
           <button type="submit" className="submit-btn" disabled={!formData.title || !formData.channel || !formData.project}>
-            <Plus size={20} /> Añadir al Calendario
+            {editingEventId ? (
+              <><Edit2 size={20} /> Guardar Cambios</>
+            ) : (
+              <><Plus size={20} /> Añadir al Calendario</>
+            )}
           </button>
+          
+          {editingEventId && (
+            <button 
+              type="button" 
+              className="submit-btn" 
+              style={{ background: '#f0f0f0', color: '#111', marginTop: '0.5rem' }}
+              onClick={() => {
+                setEditingEventId(null);
+                setFormData({ title: '', date: new Date().toISOString().split('T')[0], description: '', users: [], channel: '', project: '' });
+              }}
+            >
+              Cancelar Edición
+            </button>
+          )}
         </form>
       </div>
     </div>
