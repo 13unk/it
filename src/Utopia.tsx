@@ -8,10 +8,16 @@ interface EventCard {
   title: string;
   users: string[];
   channel: string;
+  project: string;
 }
 
 const USERS = ['Dario', 'Kai', 'Omar', 'Tresillo'];
 const CHANNELS = ['SEED', 'UNK', 'YEP'];
+const PROJECTS_MAP: Record<string, string[]> = {
+  'SEED': ['seed_1', 'seed_2', 'seed_3'],
+  'UNK': ['unk_1', 'unk_2', 'unk_3'],
+  'YEP': ['yep_1', 'yep_2', 'yep_3'],
+};
 
 export const Utopia: React.FC = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -21,7 +27,8 @@ export const Utopia: React.FC = () => {
     title: '',
     date: new Date().toISOString().split('T')[0],
     users: [] as string[],
-    channel: ''
+    channel: '',
+    project: ''
   });
 
   const year = currentDate.getFullYear();
@@ -44,19 +51,24 @@ export const Utopia: React.FC = () => {
   };
 
   const setChannel = (c: string) => {
-    setFormData(prev => ({ ...prev, channel: prev.channel === c ? '' : c }));
+    setFormData(prev => ({ 
+      ...prev, 
+      channel: prev.channel === c ? '' : c,
+      project: '' // Reset project when changing channel
+    }));
   };
 
   const handleAddEvent = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.title || !formData.date || !formData.channel) return;
+    if (!formData.title || !formData.date || !formData.channel || !formData.project) return;
 
     const newEvent: EventCard = {
       id: Math.random().toString(36).substr(2, 9),
       title: formData.title,
       date: formData.date,
       users: formData.users,
-      channel: formData.channel
+      channel: formData.channel,
+      project: formData.project
     };
 
     setEvents(prev => [...prev, newEvent]);
@@ -85,7 +97,7 @@ export const Utopia: React.FC = () => {
               <div key={ev.id} className="event-chip">
                 <span className="event-chip-title">{ev.title}</span>
                 <div className="event-chip-meta">
-                  <span className="channel-indicator">{ev.channel}</span>
+                  <span className="channel-indicator" title={ev.project}>{ev.channel} / {ev.project.split('_')[1]}</span>
                   <div className="users-indicator">
                     {ev.users.map(u => (
                       <div key={u} className="user-dot" title={u}>{u.charAt(0)}</div>
@@ -129,16 +141,15 @@ export const Utopia: React.FC = () => {
       <div className="tool-card">
         <div className="tool-header">
           <CalendarIcon size={24} />
-          <span>Añadir Proyecto</span>
+          <span>Añadir</span>
         </div>
         
         <form onSubmit={handleAddEvent} className="form-grid">
           <div className="form-group">
-            <label className="form-label">Título del evento</label>
+            <label className="form-label">Título</label>
             <input 
               type="text" 
               className="form-input" 
-              placeholder="Ej: Rodaje Clip Principal" 
               value={formData.title}
               onChange={e => setFormData({...formData, title: e.target.value})}
               required
@@ -156,7 +167,40 @@ export const Utopia: React.FC = () => {
             />
           </div>
 
-          <div className="form-group">
+          <div className="form-group full-width">
+            <label className="form-label">Canal</label>
+            <div className="pills-container">
+              {CHANNELS.map(c => (
+                <button 
+                  key={c} 
+                  type="button"
+                  className={`pill-btn ${formData.channel === c ? 'active' : ''}`}
+                  onClick={() => setChannel(c)}
+                >
+                  <Tv size={16} /> {c}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {formData.channel && (
+            <div className="form-group full-width">
+              <label className="form-label">Proyecto</label>
+              <select 
+                className="form-input"
+                value={formData.project}
+                onChange={e => setFormData({...formData, project: e.target.value})}
+                required
+              >
+                <option value="">Selecciona un proyecto...</option>
+                {PROJECTS_MAP[formData.channel].map(p => (
+                  <option key={p} value={p}>{p}</option>
+                ))}
+              </select>
+            </div>
+          )}
+
+          <div className="form-group full-width">
             <label className="form-label">Equipo Involucrado</label>
             <div className="pills-container">
               {USERS.map(u => (
@@ -172,23 +216,7 @@ export const Utopia: React.FC = () => {
             </div>
           </div>
 
-          <div className="form-group">
-            <label className="form-label">Canal / Proyecto</label>
-            <div className="pills-container">
-              {CHANNELS.map(c => (
-                <button 
-                  key={c} 
-                  type="button"
-                  className={`pill-btn ${formData.channel === c ? 'active' : ''}`}
-                  onClick={() => setChannel(c)}
-                >
-                  <Tv size={16} /> {c}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <button type="submit" className="submit-btn" disabled={!formData.title || !formData.channel}>
+          <button type="submit" className="submit-btn" disabled={!formData.title || !formData.channel || !formData.project}>
             <Plus size={20} /> Añadir al Calendario
           </button>
         </form>
