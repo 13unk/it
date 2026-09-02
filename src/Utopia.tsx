@@ -53,6 +53,11 @@ export const Utopia: React.FC = () => {
         eventsData.push({ id: doc.id, ...doc.data() } as EventCard);
       });
       setEvents(eventsData);
+    }, (error) => {
+      console.error("Snapshot error:", error);
+      if (error.code === 'permission-denied') {
+        alert("Atención: No hay permisos para leer/escribir en la base de datos. Asegúrate de poner Firestore en 'Modo de prueba' (Test mode).");
+      }
     });
     return () => unsubscribe();
   }, []);
