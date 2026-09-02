@@ -36,6 +36,7 @@ const CHANNEL_COLORS: Record<string, string> = {
 export const Utopia: React.FC = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [events, setEvents] = useState<EventCard[]>([]);
+  const [selectedEvent, setSelectedEvent] = useState<EventCard | null>(null);
   
   const [formData, setFormData] = useState({
     title: '',
@@ -109,10 +110,10 @@ export const Utopia: React.FC = () => {
     }
   };
 
-  const handleDeleteEvent = async (id: string, e: React.MouseEvent) => {
-    e.stopPropagation();
+  const handleDeleteEvent = async (id: string) => {
     try {
       await deleteDoc(doc(db, 'events', id));
+      setSelectedEvent(null);
     } catch (error) {
       console.error("Error deleting document: ", error);
     }
@@ -137,30 +138,15 @@ export const Utopia: React.FC = () => {
           <div className="cell-date">{d}</div>
           <div className="events-container">
             {dayEvents.map(ev => (
-              <div 
+              <button 
                 key={ev.id} 
-                className="event-chip"
-                style={{ backgroundColor: CHANNEL_COLORS[ev.channel] || '#111' }}
+                className="event-chip-mini"
+                style={{ borderColor: CHANNEL_COLORS[ev.channel] || '#111' }}
+                title={ev.title}
+                onClick={() => setSelectedEvent(ev)}
               >
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span className="event-chip-title">{ev.title}</span>
-                  <button 
-                    onClick={(e) => handleDeleteEvent(ev.id, e)}
-                    style={{ background: 'none', border: 'none', color: '#fff', cursor: 'pointer', padding: 0, display: 'flex', alignItems: 'center' }}
-                    title="Eliminar"
-                  >
-                    <X size={12} strokeWidth={3} />
-                  </button>
-                </div>
-                <div className="event-chip-meta">
-                  <span className="channel-indicator" title={ev.project}>{ev.channel} / {ev.project.split('_')[1]}</span>
-                  <div className="users-indicator">
-                    {ev.users.map(u => (
-                      <div key={u} className="user-dot" title={u}>{u.charAt(0)}</div>
-                    ))}
-                  </div>
-                </div>
-              </div>
+                <img src={CHANNEL_ICONS[ev.channel]} alt={ev.channel} />
+              </button>
             ))}
           </div>
         </div>
@@ -176,6 +162,56 @@ export const Utopia: React.FC = () => {
       </div>
 
       <div className="calendar-card">
+        {selectedEvent && (
+          <div className="event-detail-overlay">
+            <button className="event-detail-close" onClick={() => setSelectedEvent(null)}>
+              <X size={24} />
+            </button>
+            
+            <div className="event-detail-header">
+              <img 
+                src={CHANNEL_ICONS[selectedEvent.channel]} 
+                alt={selectedEvent.channel} 
+                style={{ borderColor: CHANNEL_COLORS[selectedEvent.channel] || '#111' }} 
+              />
+              <h2 className="event-detail-title">{selectedEvent.title}</h2>
+            </div>
+            
+            <div className="event-detail-info">
+              <div className="info-block">
+                <span className="info-label">Fecha</span>
+                <span className="info-value">
+                  {selectedEvent.date.split('-').reverse().join('/')}
+                </span>
+              </div>
+              <div className="info-block">
+                <span className="info-label">Canal</span>
+                <span className="info-value">{selectedEvent.channel}</span>
+              </div>
+              <div className="info-block">
+                <span className="info-label">Proyecto</span>
+                <span className="info-value">{selectedEvent.project}</span>
+              </div>
+              <div className="info-block">
+                <span className="info-label">Equipo Involucrado</span>
+                <div className="pills-container" style={{ marginTop: '0.25rem' }}>
+                  {selectedEvent.users.map(u => (
+                    <span key={u} className="pill-btn active" style={{ cursor: 'default', padding: '0.4rem 1rem' }}>
+                      <User size={14} /> {u}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="event-detail-actions">
+              <button className="delete-btn" onClick={() => handleDeleteEvent(selectedEvent.id)}>
+                <X size={18} strokeWidth={3} /> Eliminar Evento
+              </button>
+            </div>
+          </div>
+        )}
+
         <div className="calendar-header">
           <button className="calendar-nav-btn" onClick={handlePrevMonth}>
             <ChevronLeft size={20} />
