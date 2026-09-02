@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './Utopia.css';
-import { ChevronLeft, ChevronRight, Plus, Calendar as CalendarIcon, User } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Plus, Calendar as CalendarIcon, User, X } from 'lucide-react';
+import { db } from './firebase';
+import { collection, addDoc, onSnapshot, query, deleteDoc, doc } from 'firebase/firestore';
 
 interface EventCard {
   id: string;
@@ -33,11 +35,7 @@ const CHANNEL_COLORS: Record<string, string> = {
 
 export const Utopia: React.FC = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
-  
-  const [events, setEvents] = useState<EventCard[]>(() => {
-    const saved = localStorage.getItem('utopia_events');
-    return saved ? JSON.parse(saved) : [];
-  });
+  const [events, setEvents] = useState<EventCard[]>([]);
   
   const [formData, setFormData] = useState({
     title: '',
@@ -48,8 +46,16 @@ export const Utopia: React.FC = () => {
   });
 
   useEffect(() => {
-    localStorage.setItem('utopia_events', JSON.stringify(events));
-  }, [events]);
+    const q = query(collection(db, 'events'));
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const eventsData: EventCard[] = [];
+      querySnapshot.forEach((doc) => {
+        eventsData.push({ id: doc.id, ...doc.data() } as EventCard);
+      });
+      setEvents(eventsData);
+    });
+    return () => unsubscribe();
+  }, []);
 
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
@@ -78,12 +84,11 @@ export const Utopia: React.FC = () => {
     }));
   };
 
-  const handleAddEvent = (e: React.FormEvent) => {
+  const handleAddEvent = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.title || !formData.date || !formData.channel || !formData.project) return;
 
-    const newEvent: EventCard = {
-      id: Math.random().toString(36).substr(2, 9),
+    const newEvent = {
       title: formData.title,
       date: formData.date,
       users: formData.users,
@@ -91,8 +96,21 @@ export const Utopia: React.FC = () => {
       project: formData.project
     };
 
-    setEvents(prev => [...prev, newEvent]);
-    setFormData(prev => ({ ...prev, title: '' }));
+    try {
+      await addDoc(collection(db, 'events'), newEvent);
+      setFormData(prev => ({ ...prev, title: '' }));
+    } catch (error) {
+      console.error("Error adding document: ", error);
+    }
+  };
+
+  const handleDeleteEvent = async (id: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    try {
+      await deleteDoc(doc(db, 'events', id));
+    } catch (error) {
+      console.error("Error deleting document: ", error);
+    }
   };
 
   const renderCalendarCells = () => {
@@ -119,7 +137,16 @@ export const Utopia: React.FC = () => {
                 className="event-chip"
                 style={{ backgroundColor: CHANNEL_COLORS[ev.channel] || '#111' }}
               >
-                <span className="event-chip-title">{ev.title}</span>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <span className="event-chip-title">{ev.title}</span>
+                  <button 
+                    onClick={(e) => handleDeleteEvent(ev.id, e)}
+                    style={{ background: 'none', border: 'none', color: '#fff', cursor: 'pointer', padding: 0, display: 'flex', alignItems: 'center' }}
+                    title="Eliminar"
+                  >
+                    <X size={12} strokeWidth={3} />
+                  </button>
+                </div>
                 <div className="event-chip-meta">
                   <span className="channel-indicator" title={ev.project}>{ev.channel} / {ev.project.split('_')[1]}</span>
                   <div className="users-indicator">
