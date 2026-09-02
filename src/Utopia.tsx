@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './Utopia.css';
 import { ChevronLeft, ChevronRight, Plus, Calendar as CalendarIcon, User, X, Edit2 } from 'lucide-react';
 import { db } from './firebase';
@@ -10,6 +10,7 @@ interface EventCard {
   title: string;
   description?: string;
   users: string[];
+  creator?: string | null;
   channel: string;
   project: string;
 }
@@ -42,7 +43,7 @@ export const Utopia: React.FC = () => {
   const [selectedEvent, setSelectedEvent] = useState<EventCard | null>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [editData, setEditData] = useState({
-    title: '', date: '', description: '', users: [] as string[], channel: '', project: ''
+    title: '', date: '', description: '', users: [] as string[], creator: null as string | null, channel: '', project: ''
   });
   
   // Add New form states
@@ -51,9 +52,15 @@ export const Utopia: React.FC = () => {
     date: new Date().toISOString().split('T')[0],
     description: '',
     users: [] as string[],
+    creator: null as string | null,
     channel: '',
     project: ''
   });
+
+  // Long-press states
+  const [holdTimer, setHoldTimer] = useState<NodeJS.Timeout | null>(null);
+  const [holdingUser, setHoldingUser] = useState<string | null>(null);
+  const longPressTriggered = useRef(false);
 
   useEffect(() => {
     const q = query(collection(db, 'events'));
@@ -64,11 +71,10 @@ export const Utopia: React.FC = () => {
       });
       setEvents(eventsData);
       
-      // Update selectedEvent if it was modified remotely
       if (selectedEvent) {
         const updated = eventsData.find(e => e.id === selectedEvent.id);
         if (updated) setSelectedEvent(updated);
-        else closeModal(); // It was deleted
+        else closeModal(); 
       }
     }, (error) => {
       console.error("Snapshot error:", error);
@@ -92,10 +98,49 @@ export const Utopia: React.FC = () => {
   const handlePrevMonth = () => setCurrentDate(new Date(year, month - 1, 1));
   const handleNextMonth = () => setCurrentDate(new Date(year, month + 1, 1));
 
+  // Long-press Handlers
+  const handlePointerDown = (u: string, isEditMode: boolean) => {
+    longPressTriggered.current = false;
+    setHoldingUser(u);
+    const timer = setTimeout(() => {
+      longPressTriggered.current = true;
+      if (isEditMode) {
+        setEditData(prev => ({
+          ...prev,
+          creator: u,
+          users: prev.users.includes(u) ? prev.users : [...prev.users, u]
+        }));
+      } else {
+        setFormData(prev => ({
+          ...prev,
+          creator: u,
+          users: prev.users.includes(u) ? prev.users : [...prev.users, u]
+        }));
+      }
+      setHoldingUser(null);
+    }, 2000);
+    setHoldTimer(timer);
+  };
+
+  const handlePointerUp = () => {
+    if (holdTimer) clearTimeout(holdTimer);
+    setHoldTimer(null);
+    setHoldingUser(null);
+  };
+
   // Handlers for Add Form
   const toggleFormUser = (u: string) => {
-    setFormData(prev => ({ ...prev, users: prev.users.includes(u) ? prev.users.filter(user => user !== u) : [...prev.users, u] }));
+    if (longPressTriggered.current) return;
+    setFormData(prev => {
+      const isRemoving = prev.users.includes(u);
+      return { 
+        ...prev, 
+        users: isRemoving ? prev.users.filter(user => user !== u) : [...prev.users, u],
+        creator: isRemoving && prev.creator === u ? null : prev.creator
+      };
+    });
   };
+
   const setFormChannel = (c: string) => {
     setFormData(prev => ({ ...prev, channel: prev.channel === c ? '' : c, project: '' }));
   };
@@ -105,7 +150,7 @@ export const Utopia: React.FC = () => {
     if (!formData.title || !formData.date || !formData.channel || !formData.project) return;
     try {
       await addDoc(collection(db, 'events'), formData);
-      setFormData({ title: '', date: new Date().toISOString().split('T')[0], description: '', users: [], channel: '', project: '' });
+      setFormData({ title: '', date: new Date().toISOString().split('T')[0], description: '', users: [], creator: null, channel: '', project: '' });
     } catch (error) {
       console.error("Error saving document: ", error);
     }
@@ -119,6 +164,7 @@ export const Utopia: React.FC = () => {
       date: selectedEvent.date,
       description: selectedEvent.description || '',
       users: selectedEvent.users,
+      creator: selectedEvent.creator || null,
       channel: selectedEvent.channel,
       project: selectedEvent.project
     });
@@ -138,8 +184,17 @@ export const Utopia: React.FC = () => {
   };
 
   const toggleEditUser = (u: string) => {
-    setEditData(prev => ({ ...prev, users: prev.users.includes(u) ? prev.users.filter(user => user !== u) : [...prev.users, u] }));
+    if (longPressTriggered.current) return;
+    setEditData(prev => {
+      const isRemoving = prev.users.includes(u);
+      return { 
+        ...prev, 
+        users: isRemoving ? prev.users.filter(user => user !== u) : [...prev.users, u],
+        creator: isRemoving && prev.creator === u ? null : prev.creator
+      };
+    });
   };
+
   const setEditChannel = (c: string) => {
     setEditData(prev => ({ ...prev, channel: prev.channel === c ? '' : c, project: '' }));
   };
@@ -192,6 +247,24 @@ export const Utopia: React.FC = () => {
       );
     }
     return cells;
+  };
+
+  const renderUsersList = (users: string[], creator?: string | null, readonly = false) => {
+    const sortedUsers = [...users].sort((a, b) => {
+      if (a === creator) return -1;
+      if (b === creator) return 1;
+      return 0;
+    });
+
+    return sortedUsers.map(u => (
+      <span 
+        key={u} 
+        className={`pill-btn active ${u === creator ? 'pill-creator' : ''}`} 
+        style={{ cursor: readonly ? 'default' : 'inherit', padding: '0.4rem 1rem' }}
+      >
+        <User size={14} /> {u} {u === creator && <span style={{fontSize: '0.7rem', marginLeft: '4px'}}>★</span>}
+      </span>
+    ));
   };
 
   return (
@@ -248,11 +321,20 @@ export const Utopia: React.FC = () => {
                 )}
 
                 <div className="form-group">
-                  <label className="form-label">Equipo Involucrado</label>
+                  <label className="form-label">Equipo Involucrado (Mantén pulsado 2s para asignar creador)</label>
                   <div className="pills-container">
                     {USERS.map(u => (
-                      <button key={u} type="button" className={`pill-btn ${editData.users.includes(u) ? 'active' : ''}`} onClick={() => toggleEditUser(u)}>
-                        <User size={14} /> {u}
+                      <button 
+                        key={u} 
+                        type="button" 
+                        className={`pill-btn ${editData.users.includes(u) ? 'active' : ''} ${editData.creator === u ? 'pill-creator' : ''} ${holdingUser === u ? 'holding' : ''}`}
+                        onPointerDown={() => handlePointerDown(u, true)}
+                        onPointerUp={handlePointerUp}
+                        onPointerLeave={handlePointerUp}
+                        onContextMenu={(e) => e.preventDefault()}
+                        onClick={() => toggleEditUser(u)}
+                      >
+                        <User size={14} /> {u} {editData.creator === u && <span style={{fontSize: '0.7rem', marginLeft: '4px'}}>★</span>}
                       </button>
                     ))}
                   </div>
@@ -301,11 +383,7 @@ export const Utopia: React.FC = () => {
                 <div className="stacked-info">
                   <span className="stacked-label">Equipo Involucrado</span>
                   <div className="pills-container" style={{ marginTop: '0.25rem' }}>
-                    {selectedEvent.users.map(u => (
-                      <span key={u} className="pill-btn active" style={{ cursor: 'default', padding: '0.4rem 1rem' }}>
-                        <User size={14} /> {u}
-                      </span>
-                    ))}
+                    {renderUsersList(selectedEvent.users, selectedEvent.creator, true)}
                   </div>
                 </div>
 
@@ -415,16 +493,20 @@ export const Utopia: React.FC = () => {
           )}
 
           <div className="form-group full-width">
-            <label className="form-label">Equipo Involucrado</label>
+            <label className="form-label">Equipo Involucrado (Mantén pulsado 2s para asignar creador)</label>
             <div className="pills-container">
               {USERS.map(u => (
                 <button 
                   key={u} 
                   type="button"
-                  className={`pill-btn ${formData.users.includes(u) ? 'active' : ''}`}
+                  className={`pill-btn ${formData.users.includes(u) ? 'active' : ''} ${formData.creator === u ? 'pill-creator' : ''} ${holdingUser === u ? 'holding' : ''}`}
+                  onPointerDown={() => handlePointerDown(u, false)}
+                  onPointerUp={handlePointerUp}
+                  onPointerLeave={handlePointerUp}
+                  onContextMenu={(e) => e.preventDefault()}
                   onClick={() => toggleFormUser(u)}
                 >
-                  <User size={16} /> {u}
+                  <User size={16} /> {u} {formData.creator === u && <span style={{fontSize: '0.7rem', marginLeft: '4px'}}>★</span>}
                 </button>
               ))}
             </div>
