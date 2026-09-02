@@ -118,7 +118,7 @@ export const Utopia: React.FC = () => {
         }));
       }
       setHoldingUser(null);
-    }, 2000);
+    }, 1000);
     setHoldTimer(timer);
   };
 
@@ -321,7 +321,7 @@ export const Utopia: React.FC = () => {
                 )}
 
                 <div className="form-group">
-                  <label className="form-label">Equipo Involucrado (Mantén pulsado 2s para asignar creador)</label>
+                  <label className="form-label">Equipo Involucrado</label>
                   <div className="pills-container">
                     {USERS.map(u => (
                       <button 
@@ -493,7 +493,7 @@ export const Utopia: React.FC = () => {
           )}
 
           <div className="form-group full-width">
-            <label className="form-label">Equipo Involucrado (Mantén pulsado 2s para asignar creador)</label>
+            <label className="form-label">Equipo Involucrado</label>
             <div className="pills-container">
               {USERS.map(u => (
                 <button 
