@@ -13,7 +13,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/utopia" element={<Utopia />} />
+        <Route path="/inc" element={<Utopia />} />
         <Route path="/spotify" element={<SpotifyScam />} />
         <Route path="/chat" element={<StreamChatOverlay />} />
         <Route path="/sendchat" element={<StreamChatSender />} />

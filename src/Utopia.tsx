@@ -270,7 +270,7 @@ export const Utopia: React.FC = () => {
   return (
     <div className="utopia-container">
       <div className="utopia-header">
-        <h1 className="utopia-title">UTOPIA</h1>
+        <h1 className="utopia-title">LOS BROCHACHOS INC.</h1>
       </div>
 
       <div className="calendar-card">
