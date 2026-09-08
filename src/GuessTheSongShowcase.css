@@ -88,7 +88,7 @@
   background-color: #050505;
 }
 
-.videos-grid {
+.showcase-videos-grid {
   display: block;
   max-width: 100%;
   margin: 0;
@@ -369,7 +369,7 @@
     scroll-snap-align: start;
     scroll-snap-stop: always;
   }
-  .videos-grid {
+  .showcase-videos-grid {
     display: flex;
     flex-direction: row;
     justify-content: center;

@@ -128,7 +128,7 @@ export const GuessTheSongShowcase: React.FC = () => {
 
       {/* Videos Section */}
       <section className="videos-section">
-        <div className="videos-grid">
+        <div className="showcase-videos-grid">
           {videos.map((video) => (
             <VideoCard key={video.id} video={video} />
           ))}
@@ -393,8 +393,8 @@ const InstagramWidget: React.FC = () => {
             unkedition <CheckCircle2 size={16} color="#38bdf8" fill="#ffffff" style={{marginLeft: '4px'}} />
           </div>
           <div className="ig-stats">
-            <span><strong>205</strong> posts</span>
-            <span><strong>56.6K</strong> followers</span>
+            <span><strong>207</strong> posts</span>
+            <span><strong>56.7K</strong> followers</span>
             <span><strong>17</strong> following</span>
           </div>
           <div className="ig-bio">
