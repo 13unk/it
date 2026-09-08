@@ -385,6 +385,7 @@
     flex: 1;
     padding-top: 0;
     scroll-snap-align: none;
+    min-width: 0;
   }
   .card-header {
     padding: 1rem 0;
@@ -393,8 +394,10 @@
     font-size: 1.1vw;
   }
   .video-wrapper {
-    height: 50vh;
+    height: auto;
     width: 100%;
+    aspect-ratio: 9/16;
+    max-height: 65vh;
   }
   .video-info {
     padding: 1rem 0;
