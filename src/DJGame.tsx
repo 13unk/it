@@ -29,13 +29,13 @@ const TRACKS: Track[] = [
     id: 'track2',
     category: 'HITS DE POP 2000S',
     name: 'TRACK 1',
-    title: 'Don\'t Stop The Music',
+    title: 'Don't Stop The Music',
     artist: 'Rihanna',
     stems: [
-      '/stems/HITS DE POP 2000S/1 Rihanna - Don\'t Stop The Music/1.mp3',
-      '/stems/HITS DE POP 2000S/1 Rihanna - Don\'t Stop The Music/2.mp3',
-      '/stems/HITS DE POP 2000S/1 Rihanna - Don\'t Stop The Music/3.mp3',
-      '/stems/HITS DE POP 2000S/1 Rihanna - Don\'t Stop The Music/4.mp3'
+      '/stems/HITS DE POP 2000S/1 Rihanna - Don't Stop The Music/1.mp3',
+      '/stems/HITS DE POP 2000S/1 Rihanna - Don't Stop The Music/2.mp3',
+      '/stems/HITS DE POP 2000S/1 Rihanna - Don't Stop The Music/3.mp3',
+      '/stems/HITS DE POP 2000S/1 Rihanna - Don't Stop The Music/4.mp3'
     ]
   },
   {
@@ -66,279 +66,6 @@ const TRACKS: Track[] = [
   },
   {
     id: 'track5',
-    category: 'HITS DE REGGAETON',
-    name: 'TRACK 1',
-    title: 'QLOO',
-    artist: 'Young Cister',
-    stems: [
-      '/stems/HITS DE REGGAETON/1 Young Cister - QLOO/1.mp3',
-      '/stems/HITS DE REGGAETON/1 Young Cister - QLOO/2.mp3',
-      '/stems/HITS DE REGGAETON/1 Young Cister - QLOO/3.mp3',
-      '/stems/HITS DE REGGAETON/1 Young Cister - QLOO/4.mp3'
-    ]
-  },
-  {
-    id: 'track6',
-    category: 'HITS DE REGGAETON',
-    name: 'TRACK 2',
-    title: 'La Plena',
-    artist: 'Beéle',
-    stems: [
-      '/stems/HITS DE REGGAETON/2 Beéle - La Plena/1.mp3',
-      '/stems/HITS DE REGGAETON/2 Beéle - La Plena/2.mp3',
-      '/stems/HITS DE REGGAETON/2 Beéle - La Plena/3.mp3',
-      '/stems/HITS DE REGGAETON/2 Beéle - La Plena/4.mp3'
-    ]
-  },
-  {
-    id: 'track7',
-    category: 'HITS DE REGGAETON',
-    name: 'TRACK 3',
-    title: 'De Lejitos',
-    artist: 'Jay Wheeler',
-    stems: [
-      '/stems/HITS DE REGGAETON/3 Jay Wheeler - De Lejitos/1.mp3',
-      '/stems/HITS DE REGGAETON/3 Jay Wheeler - De Lejitos/2.mp3',
-      '/stems/HITS DE REGGAETON/3 Jay Wheeler - De Lejitos/3.mp3',
-      '/stems/HITS DE REGGAETON/3 Jay Wheeler - De Lejitos/4.mp3'
-    ]
-  },
-  {
-    id: 'track8',
-    category: 'HITS DE REGGAETON',
-    name: 'TRACK 4',
-    title: 'Amanece',
-    artist: 'Anuel AA',
-    stems: [
-      '/stems/HITS DE REGGAETON/4 Anuel AA - Amanece/1.mp3',
-      '/stems/HITS DE REGGAETON/4 Anuel AA - Amanece/2.mp3',
-      '/stems/HITS DE REGGAETON/4 Anuel AA - Amanece/3.mp3',
-      '/stems/HITS DE REGGAETON/4 Anuel AA - Amanece/4.mp3'
-    ]
-  },
-  {
-    id: 'track9',
-    category: 'HITS DE REGGAETON',
-    name: 'TRACK 5',
-    title: 'Adivino',
-    artist: 'Myke Towers',
-    stems: [
-      '/stems/HITS DE REGGAETON/5 Myke Towers - Adivino/1.mp3',
-      '/stems/HITS DE REGGAETON/5 Myke Towers - Adivino/2.mp3',
-      '/stems/HITS DE REGGAETON/5 Myke Towers - Adivino/3.mp3',
-      '/stems/HITS DE REGGAETON/5 Myke Towers - Adivino/4.mp3'
-    ]
-  },
-  {
-    id: 'track10',
-    category: 'HITS DE REGGAETON',
-    name: 'TRACK 6',
-    title: 'Ginza',
-    artist: 'J Balvin',
-    stems: [
-      '/stems/HITS DE REGGAETON/6 J Balvin - Ginza/1.mp3',
-      '/stems/HITS DE REGGAETON/6 J Balvin - Ginza/2.mp3',
-      '/stems/HITS DE REGGAETON/6 J Balvin - Ginza/3.mp3',
-      '/stems/HITS DE REGGAETON/6 J Balvin - Ginza/4.mp3'
-    ]
-  },
-  {
-    id: 'track11',
-    category: 'HITS DE REGGAETON',
-    name: 'TRACK 7',
-    title: 'Po\' Encima',
-    artist: 'Arcángel',
-    stems: [
-      '/stems/HITS DE REGGAETON/7 Arcángel - Po\' Encima/1.mp3',
-      '/stems/HITS DE REGGAETON/7 Arcángel - Po\' Encima/2.mp3',
-      '/stems/HITS DE REGGAETON/7 Arcángel - Po\' Encima/3.mp3',
-      '/stems/HITS DE REGGAETON/7 Arcángel - Po\' Encima/4.mp3'
-    ]
-  },
-  {
-    id: 'track12',
-    category: 'HITS DE REGGAETON',
-    name: 'TRACK 8',
-    title: 'Cuando No Era Cantante',
-    artist: 'El Bogueto',
-    stems: [
-      '/stems/HITS DE REGGAETON/8 El Bogueto - Cuando No Era Cantante/1.mp3',
-      '/stems/HITS DE REGGAETON/8 El Bogueto - Cuando No Era Cantante/2.mp3',
-      '/stems/HITS DE REGGAETON/8 El Bogueto - Cuando No Era Cantante/3.mp3',
-      '/stems/HITS DE REGGAETON/8 El Bogueto - Cuando No Era Cantante/4.mp3'
-    ]
-  },
-  {
-    id: 'track13',
-    category: 'HITS DE REGGAETON',
-    name: 'TRACK 9',
-    title: 'Diavla',
-    artist: 'Chris Viz',
-    stems: [
-      '/stems/HITS DE REGGAETON/9 Chris Viz - Diavla/1.mp3',
-      '/stems/HITS DE REGGAETON/9 Chris Viz - Diavla/2.mp3',
-      '/stems/HITS DE REGGAETON/9 Chris Viz - Diavla/3.mp3',
-      '/stems/HITS DE REGGAETON/9 Chris Viz - Diavla/4.mp3'
-    ]
-  },
-  {
-    id: 'track14',
-    category: 'HITS DE REGGAETON',
-    name: 'TRACK 10',
-    title: 'Mirándote',
-    artist: 'Rvfv',
-    stems: [
-      '/stems/HITS DE REGGAETON/10 Rvfv - Mirándote/1.mp3',
-      '/stems/HITS DE REGGAETON/10 Rvfv - Mirándote/2.mp3',
-      '/stems/HITS DE REGGAETON/10 Rvfv - Mirándote/3.mp3',
-      '/stems/HITS DE REGGAETON/10 Rvfv - Mirándote/4.mp3'
-    ]
-  },
-  {
-    id: 'track15',
-    category: 'HITS DE REGGAETON',
-    name: 'TRACK 11',
-    title: 'Afrorue',
-    artist: 'Afrojuice',
-    stems: [
-      '/stems/HITS DE REGGAETON/11 Afrojuice - Afrorue/1.mp3',
-      '/stems/HITS DE REGGAETON/11 Afrojuice - Afrorue/2.mp3',
-      '/stems/HITS DE REGGAETON/11 Afrojuice - Afrorue/3.mp3',
-      '/stems/HITS DE REGGAETON/11 Afrojuice - Afrorue/4.mp3'
-    ]
-  },
-  {
-    id: 'track16',
-    category: 'HITS DE REGGAETON',
-    name: 'TRACK 12',
-    title: 'Virtual Diva',
-    artist: 'Don Omar',
-    stems: [
-      '/stems/HITS DE REGGAETON/12 Don Omar - Virtual Diva/1.mp3',
-      '/stems/HITS DE REGGAETON/12 Don Omar - Virtual Diva/2.mp3',
-      '/stems/HITS DE REGGAETON/12 Don Omar - Virtual Diva/3.mp3',
-      '/stems/HITS DE REGGAETON/12 Don Omar - Virtual Diva/4.mp3'
-    ]
-  },
-  {
-    id: 'track17',
-    category: 'HITS DE REGGAETON',
-    name: 'TRACK 13',
-    title: 'El Señor de la Noche',
-    artist: 'Don Omar',
-    stems: [
-      '/stems/HITS DE REGGAETON/13 Don Omar - El Señor de la Noche/1.mp3',
-      '/stems/HITS DE REGGAETON/13 Don Omar - El Señor de la Noche/2.mp3',
-      '/stems/HITS DE REGGAETON/13 Don Omar - El Señor de la Noche/3.mp3',
-      '/stems/HITS DE REGGAETON/13 Don Omar - El Señor de la Noche/4.mp3'
-    ]
-  },
-  {
-    id: 'track18',
-    category: 'HITS DE REGGAETON',
-    name: 'TRACK 14',
-    title: 'La Rubia Remix',
-    artist: 'La Nueva Escuela',
-    stems: [
-      '/stems/HITS DE REGGAETON/14 La Nueva Escuela - La Rubia Remix/1.mp3',
-      '/stems/HITS DE REGGAETON/14 La Nueva Escuela - La Rubia Remix/2.mp3',
-      '/stems/HITS DE REGGAETON/14 La Nueva Escuela - La Rubia Remix/3.mp3',
-      '/stems/HITS DE REGGAETON/14 La Nueva Escuela - La Rubia Remix/4.mp3'
-    ]
-  },
-  {
-    id: 'track19',
-    category: 'HITS DE REGGAETON',
-    name: 'TRACK 15',
-    title: 'Té De Campana',
-    artist: 'Atomic Otro Way',
-    stems: [
-      '/stems/HITS DE REGGAETON/15 Atomic Otro Way - Té De Campana/1.mp3',
-      '/stems/HITS DE REGGAETON/15 Atomic Otro Way - Té De Campana/2.mp3',
-      '/stems/HITS DE REGGAETON/15 Atomic Otro Way - Té De Campana/3.mp3',
-      '/stems/HITS DE REGGAETON/15 Atomic Otro Way - Té De Campana/4.mp3'
-    ]
-  },
-  {
-    id: 'track20',
-    category: 'HITS DE REGGAETON',
-    name: 'TRACK 16',
-    title: 'Superman Sin Capa',
-    artist: 'El Super Nuevo',
-    stems: [
-      '/stems/HITS DE REGGAETON/16 El Super Nuevo - Superman Sin Capa/1.mp3',
-      '/stems/HITS DE REGGAETON/16 El Super Nuevo - Superman Sin Capa/2.mp3',
-      '/stems/HITS DE REGGAETON/16 El Super Nuevo - Superman Sin Capa/3.mp3',
-      '/stems/HITS DE REGGAETON/16 El Super Nuevo - Superman Sin Capa/4.mp3'
-    ]
-  },
-  {
-    id: 'track21',
-    category: 'HITS DE REGGAETON',
-    name: 'TRACK 17',
-    title: 'Se Va Pal Club',
-    artist: 'Hugo Castejón',
-    stems: [
-      '/stems/HITS DE REGGAETON/17 Hugo Castejón - Se Va Pal Club/1.mp3',
-      '/stems/HITS DE REGGAETON/17 Hugo Castejón - Se Va Pal Club/2.mp3',
-      '/stems/HITS DE REGGAETON/17 Hugo Castejón - Se Va Pal Club/3.mp3',
-      '/stems/HITS DE REGGAETON/17 Hugo Castejón - Se Va Pal Club/4.mp3'
-    ]
-  },
-  {
-    id: 'track22',
-    category: 'HITS DE REGGAETON',
-    name: 'TRACK 18',
-    title: 'EoO',
-    artist: 'Bad Bunny',
-    stems: [
-      '/stems/HITS DE REGGAETON/18 Bad Bunny - EoO/1.mp3',
-      '/stems/HITS DE REGGAETON/18 Bad Bunny - EoO/2.mp3',
-      '/stems/HITS DE REGGAETON/18 Bad Bunny - EoO/3.mp3',
-      '/stems/HITS DE REGGAETON/18 Bad Bunny - EoO/4.mp3'
-    ]
-  },
-  {
-    id: 'track23',
-    category: 'HITS DE REGGAETON',
-    name: 'TRACK 19',
-    title: 'Escándalo',
-    artist: 'Ñengo Flow',
-    stems: [
-      '/stems/HITS DE REGGAETON/19 Ñengo Flow - Escándalo/1.mp3',
-      '/stems/HITS DE REGGAETON/19 Ñengo Flow - Escándalo/2.mp3',
-      '/stems/HITS DE REGGAETON/19 Ñengo Flow - Escándalo/3.mp3',
-      '/stems/HITS DE REGGAETON/19 Ñengo Flow - Escándalo/4.mp3'
-    ]
-  },
-  {
-    id: 'track24',
-    category: 'HITS DE REGGAETON',
-    name: 'TRACK 20',
-    title: 'Me Mareo',
-    artist: 'Kidd Voodoo',
-    stems: [
-      '/stems/HITS DE REGGAETON/20 Kidd Voodoo - Me Mareo/1.mp3',
-      '/stems/HITS DE REGGAETON/20 Kidd Voodoo - Me Mareo/2.mp3',
-      '/stems/HITS DE REGGAETON/20 Kidd Voodoo - Me Mareo/3.mp3',
-      '/stems/HITS DE REGGAETON/20 Kidd Voodoo - Me Mareo/4.mp3'
-    ]
-  },
-  {
-    id: 'track25',
-    category: 'HITS DE REGGAETON',
-    name: 'TRACK 21',
-    title: 'Estrellita De Madrugada',
-    artist: 'Omega El Fuerte',
-    stems: [
-      '/stems/HITS DE REGGAETON/21 Omega El Fuerte - Estrellita De Madrugada/1.mp3',
-      '/stems/HITS DE REGGAETON/21 Omega El Fuerte - Estrellita De Madrugada/2.mp3',
-      '/stems/HITS DE REGGAETON/21 Omega El Fuerte - Estrellita De Madrugada/3.mp3',
-      '/stems/HITS DE REGGAETON/21 Omega El Fuerte - Estrellita De Madrugada/4.mp3'
-    ]
-  },
-  {
-    id: 'track26',
     category: 'HITS DE TRAP',
     name: 'TRACK 1',
     title: 'Fein',
@@ -351,7 +78,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track27',
+    id: 'track6',
     category: 'HITS DE TRAP',
     name: 'TRACK 2',
     title: 'Boss',
@@ -364,7 +91,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track28',
+    id: 'track7',
     category: 'HITS DE TRAP',
     name: 'TRACK 3',
     title: 'Betrayed',
@@ -377,7 +104,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track29',
+    id: 'track8',
     category: 'HITS DE TRAP',
     name: 'TRACK 4',
     title: 'Bank Account',
@@ -390,7 +117,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track30',
+    id: 'track9',
     category: 'HITS DE TRAP',
     name: 'TRACK 5',
     title: 'Freestyle',
@@ -403,7 +130,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track31',
+    id: 'track10',
     category: 'HITS DE TRAP',
     name: 'TRACK 6',
     title: 'WTHELLY',
@@ -416,7 +143,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track32',
+    id: 'track11',
     category: 'HITS DE TRAP',
     name: 'TRACK 7',
     title: 'The Box',
@@ -429,7 +156,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track33',
+    id: 'track12',
     category: 'HITS DE TRAP',
     name: 'TRACK 8',
     title: 'Yes Indeed',
@@ -442,7 +169,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track34',
+    id: 'track13',
     category: 'HITS DE TRAP',
     name: 'TRACK 9',
     title: 'A Lot',
@@ -455,33 +182,33 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track35',
+    id: 'track14',
     category: 'HITS DE TRAP',
     name: 'TRACK 10',
-    title: 'Hate Bein\' Sober',
+    title: 'Hate Bein' Sober',
     artist: 'Chief Keef',
     stems: [
-      '/stems/HITS DE TRAP/10 Chief Keef - Hate Bein\' Sober/1.mp3',
-      '/stems/HITS DE TRAP/10 Chief Keef - Hate Bein\' Sober/2.mp3',
-      '/stems/HITS DE TRAP/10 Chief Keef - Hate Bein\' Sober/3.mp3',
-      '/stems/HITS DE TRAP/10 Chief Keef - Hate Bein\' Sober/4.mp3'
+      '/stems/HITS DE TRAP/10 Chief Keef - Hate Bein' Sober/1.mp3',
+      '/stems/HITS DE TRAP/10 Chief Keef - Hate Bein' Sober/2.mp3',
+      '/stems/HITS DE TRAP/10 Chief Keef - Hate Bein' Sober/3.mp3',
+      '/stems/HITS DE TRAP/10 Chief Keef - Hate Bein' Sober/4.mp3'
     ]
   },
   {
-    id: 'track36',
+    id: 'track15',
     category: 'HITS DE TRAP',
     name: 'TRACK 11',
-    title: 'I Don\'t Like',
+    title: 'I Don't Like',
     artist: 'Chief Keef',
     stems: [
-      '/stems/HITS DE TRAP/11 Chief Keef - I Don\'t Like/1.mp3',
-      '/stems/HITS DE TRAP/11 Chief Keef - I Don\'t Like/2.mp3',
-      '/stems/HITS DE TRAP/11 Chief Keef - I Don\'t Like/3.mp3',
-      '/stems/HITS DE TRAP/11 Chief Keef - I Don\'t Like/4.mp3'
+      '/stems/HITS DE TRAP/11 Chief Keef - I Don't Like/1.mp3',
+      '/stems/HITS DE TRAP/11 Chief Keef - I Don't Like/2.mp3',
+      '/stems/HITS DE TRAP/11 Chief Keef - I Don't Like/3.mp3',
+      '/stems/HITS DE TRAP/11 Chief Keef - I Don't Like/4.mp3'
     ]
   },
   {
-    id: 'track37',
+    id: 'track16',
     category: 'HITS DE TRAP',
     name: 'TRACK 12',
     title: 'Leave Me Alone',
@@ -494,7 +221,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track38',
+    id: 'track17',
     category: 'HITS DE TRAP',
     name: 'TRACK 13',
     title: 'Love Sosa',
@@ -507,7 +234,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track39',
+    id: 'track18',
     category: 'HITS DE TRAP',
     name: 'TRACK 14',
     title: 'Trap Queen',
@@ -520,7 +247,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track40',
+    id: 'track19',
     category: 'HITS DE TRAP',
     name: 'TRACK 15',
     title: 'Japan',
@@ -533,7 +260,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track41',
+    id: 'track20',
     category: 'HITS DE TRAP',
     name: 'TRACK 16',
     title: 'Doja',
@@ -546,7 +273,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track42',
+    id: 'track21',
     category: 'HITS DE TRAP',
     name: 'TRACK 17',
     title: 'Ransom',
@@ -559,7 +286,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track43',
+    id: 'track22',
     category: 'HITS DE TRAP',
     name: 'TRACK 18',
     title: 'Sprinter',
@@ -572,7 +299,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track44',
+    id: 'track23',
     category: 'HITS DE TRAP',
     name: 'TRACK 19',
     title: 'Calling My Phone',
@@ -585,7 +312,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track45',
+    id: 'track24',
     category: 'HITS DE TRAP',
     name: 'TRACK 20',
     title: 'Ultimate',
@@ -598,11 +325,11 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track46',
+    id: 'track25',
     category: 'HITS DE TRAP',
     name: 'TRACK 21',
-    title: 'K - The Race',
-    artist: 'Tay',
+    title: 'The Race',
+    artist: 'Tay-K',
     stems: [
       '/stems/HITS DE TRAP/21 Tay-K - The Race/1.mp3',
       '/stems/HITS DE TRAP/21 Tay-K - The Race/2.mp3',
@@ -611,7 +338,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track47',
+    id: 'track26',
     category: 'HITS DE TRAP',
     name: 'TRACK 22',
     title: 'Opp Stoppa',
@@ -624,7 +351,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track48',
+    id: 'track27',
     category: 'HITS DE TRAP',
     name: 'TRACK 23',
     title: 'Noticed',
@@ -637,7 +364,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track49',
+    id: 'track28',
     category: 'HITS DE TRAP',
     name: 'TRACK 24',
     title: 'New Freezer',
@@ -650,7 +377,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track50',
+    id: 'track29',
     category: 'HITS DE TRAP',
     name: 'TRACK 25',
     title: 'I',
@@ -663,7 +390,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track51',
+    id: 'track30',
     category: 'HITS DE TRAP',
     name: 'TRACK 26',
     title: 'Murder On My Mind',
@@ -676,7 +403,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track52',
+    id: 'track31',
     category: 'HITS DE TRAP',
     name: 'TRACK 27',
     title: 'Goosebumps',
@@ -689,7 +416,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track53',
+    id: 'track32',
     category: 'HITS DE TRAP',
     name: 'TRACK 28',
     title: 'Blueberry Faygo',
@@ -702,7 +429,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track54',
+    id: 'track33',
     category: 'HITS DE TRAP',
     name: 'TRACK 29',
     title: 'Catch Me Outside',
@@ -715,7 +442,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track55',
+    id: 'track34',
     category: 'HITS DE TRAP',
     name: 'TRACK 30',
     title: 'Gut Genug',
@@ -728,7 +455,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track56',
+    id: 'track35',
     category: 'HITS DE TRAP ESPAÑOL',
     name: 'TRACK 1',
     title: 'Dracukeo',
@@ -741,7 +468,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track57',
+    id: 'track36',
     category: 'HITS DE TRAP ESPAÑOL',
     name: 'TRACK 2',
     title: 'Beso Negro',
@@ -754,7 +481,7 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track58',
+    id: 'track37',
     category: 'HITS DE TRAP ESPAÑOL',
     name: 'TRACK 3',
     title: 'La Ley de Eddie Murphy',
@@ -767,81 +494,835 @@ const TRACKS: Track[] = [
     ]
   },
   {
-    id: 'track59',
-    category: 'HITS DE TRAP LATINO',
+    id: 'track38',
+    category: 'HITS LATINOS',
     name: 'TRACK 1',
-    title: 'BnB',
-    artist: 'Young Miko',
+    title: 'QLOO',
+    artist: 'Young Cister',
     stems: [
-      '/stems/HITS DE TRAP LATINO/1 Young Miko - BnB/1.mp3',
-      '/stems/HITS DE TRAP LATINO/1 Young Miko - BnB/2.mp3',
-      '/stems/HITS DE TRAP LATINO/1 Young Miko - BnB/3.mp3',
-      '/stems/HITS DE TRAP LATINO/1 Young Miko - BnB/4.mp3'
+      '/stems/HITS LATINOS/1 Young Cister - QLOO/1.mp3',
+      '/stems/HITS LATINOS/1 Young Cister - QLOO/2.mp3',
+      '/stems/HITS LATINOS/1 Young Cister - QLOO/3.mp3',
+      '/stems/HITS LATINOS/1 Young Cister - QLOO/4.mp3'
+    ]
+  },
+  {
+    id: 'track39',
+    category: 'HITS LATINOS',
+    name: 'TRACK 2',
+    title: 'La Plena',
+    artist: 'Beéle',
+    stems: [
+      '/stems/HITS LATINOS/2 Beéle - La Plena/1.mp3',
+      '/stems/HITS LATINOS/2 Beéle - La Plena/2.mp3',
+      '/stems/HITS LATINOS/2 Beéle - La Plena/3.mp3',
+      '/stems/HITS LATINOS/2 Beéle - La Plena/4.mp3'
+    ]
+  },
+  {
+    id: 'track40',
+    category: 'HITS LATINOS',
+    name: 'TRACK 3',
+    title: 'De Lejitos',
+    artist: 'Jay Wheeler',
+    stems: [
+      '/stems/HITS LATINOS/3 Jay Wheeler - De Lejitos/1.mp3',
+      '/stems/HITS LATINOS/3 Jay Wheeler - De Lejitos/2.mp3',
+      '/stems/HITS LATINOS/3 Jay Wheeler - De Lejitos/3.mp3',
+      '/stems/HITS LATINOS/3 Jay Wheeler - De Lejitos/4.mp3'
+    ]
+  },
+  {
+    id: 'track41',
+    category: 'HITS LATINOS',
+    name: 'TRACK 4',
+    title: 'Amanece',
+    artist: 'Anuel AA',
+    stems: [
+      '/stems/HITS LATINOS/4 Anuel AA - Amanece/1.mp3',
+      '/stems/HITS LATINOS/4 Anuel AA - Amanece/2.mp3',
+      '/stems/HITS LATINOS/4 Anuel AA - Amanece/3.mp3',
+      '/stems/HITS LATINOS/4 Anuel AA - Amanece/4.mp3'
+    ]
+  },
+  {
+    id: 'track42',
+    category: 'HITS LATINOS',
+    name: 'TRACK 5',
+    title: 'Adivino',
+    artist: 'Myke Towers',
+    stems: [
+      '/stems/HITS LATINOS/5 Myke Towers - Adivino/1.mp3',
+      '/stems/HITS LATINOS/5 Myke Towers - Adivino/2.mp3',
+      '/stems/HITS LATINOS/5 Myke Towers - Adivino/3.mp3',
+      '/stems/HITS LATINOS/5 Myke Towers - Adivino/4.mp3'
+    ]
+  },
+  {
+    id: 'track43',
+    category: 'HITS LATINOS',
+    name: 'TRACK 6',
+    title: 'Ginza',
+    artist: 'J Balvin',
+    stems: [
+      '/stems/HITS LATINOS/6 J Balvin - Ginza/1.mp3',
+      '/stems/HITS LATINOS/6 J Balvin - Ginza/2.mp3',
+      '/stems/HITS LATINOS/6 J Balvin - Ginza/3.mp3',
+      '/stems/HITS LATINOS/6 J Balvin - Ginza/4.mp3'
+    ]
+  },
+  {
+    id: 'track44',
+    category: 'HITS LATINOS',
+    name: 'TRACK 7',
+    title: 'Po' Encima',
+    artist: 'Arcángel',
+    stems: [
+      '/stems/HITS LATINOS/7 Arcángel - Po' Encima/1.mp3',
+      '/stems/HITS LATINOS/7 Arcángel - Po' Encima/2.mp3',
+      '/stems/HITS LATINOS/7 Arcángel - Po' Encima/3.mp3',
+      '/stems/HITS LATINOS/7 Arcángel - Po' Encima/4.mp3'
+    ]
+  },
+  {
+    id: 'track45',
+    category: 'HITS LATINOS',
+    name: 'TRACK 8',
+    title: 'Cuando No Era Cantante',
+    artist: 'El Bogueto',
+    stems: [
+      '/stems/HITS LATINOS/8 El Bogueto - Cuando No Era Cantante/1.mp3',
+      '/stems/HITS LATINOS/8 El Bogueto - Cuando No Era Cantante/2.mp3',
+      '/stems/HITS LATINOS/8 El Bogueto - Cuando No Era Cantante/3.mp3',
+      '/stems/HITS LATINOS/8 El Bogueto - Cuando No Era Cantante/4.mp3'
+    ]
+  },
+  {
+    id: 'track46',
+    category: 'HITS LATINOS',
+    name: 'TRACK 9',
+    title: 'Diavla',
+    artist: 'Chris Viz',
+    stems: [
+      '/stems/HITS LATINOS/9 Chris Viz - Diavla/1.mp3',
+      '/stems/HITS LATINOS/9 Chris Viz - Diavla/2.mp3',
+      '/stems/HITS LATINOS/9 Chris Viz - Diavla/3.mp3',
+      '/stems/HITS LATINOS/9 Chris Viz - Diavla/4.mp3'
+    ]
+  },
+  {
+    id: 'track47',
+    category: 'HITS LATINOS',
+    name: 'TRACK 10',
+    title: 'Mirándote',
+    artist: 'Rvfv',
+    stems: [
+      '/stems/HITS LATINOS/10 Rvfv - Mirándote/1.mp3',
+      '/stems/HITS LATINOS/10 Rvfv - Mirándote/2.mp3',
+      '/stems/HITS LATINOS/10 Rvfv - Mirándote/3.mp3',
+      '/stems/HITS LATINOS/10 Rvfv - Mirándote/4.mp3'
+    ]
+  },
+  {
+    id: 'track48',
+    category: 'HITS LATINOS',
+    name: 'TRACK 11',
+    title: 'Afrorue',
+    artist: 'Afrojuice',
+    stems: [
+      '/stems/HITS LATINOS/11 Afrojuice - Afrorue/1.mp3',
+      '/stems/HITS LATINOS/11 Afrojuice - Afrorue/2.mp3',
+      '/stems/HITS LATINOS/11 Afrojuice - Afrorue/3.mp3',
+      '/stems/HITS LATINOS/11 Afrojuice - Afrorue/4.mp3'
+    ]
+  },
+  {
+    id: 'track49',
+    category: 'HITS LATINOS',
+    name: 'TRACK 12',
+    title: 'Virtual Diva',
+    artist: 'Don Omar',
+    stems: [
+      '/stems/HITS LATINOS/12 Don Omar - Virtual Diva/1.mp3',
+      '/stems/HITS LATINOS/12 Don Omar - Virtual Diva/2.mp3',
+      '/stems/HITS LATINOS/12 Don Omar - Virtual Diva/3.mp3',
+      '/stems/HITS LATINOS/12 Don Omar - Virtual Diva/4.mp3'
+    ]
+  },
+  {
+    id: 'track50',
+    category: 'HITS LATINOS',
+    name: 'TRACK 13',
+    title: 'El Señor de la Noche',
+    artist: 'Don Omar',
+    stems: [
+      '/stems/HITS LATINOS/13 Don Omar - El Señor de la Noche/1.mp3',
+      '/stems/HITS LATINOS/13 Don Omar - El Señor de la Noche/2.mp3',
+      '/stems/HITS LATINOS/13 Don Omar - El Señor de la Noche/3.mp3',
+      '/stems/HITS LATINOS/13 Don Omar - El Señor de la Noche/4.mp3'
+    ]
+  },
+  {
+    id: 'track51',
+    category: 'HITS LATINOS',
+    name: 'TRACK 14',
+    title: 'La Rubia Remix',
+    artist: 'La Nueva Escuela',
+    stems: [
+      '/stems/HITS LATINOS/14 La Nueva Escuela - La Rubia Remix/1.mp3',
+      '/stems/HITS LATINOS/14 La Nueva Escuela - La Rubia Remix/2.mp3',
+      '/stems/HITS LATINOS/14 La Nueva Escuela - La Rubia Remix/3.mp3',
+      '/stems/HITS LATINOS/14 La Nueva Escuela - La Rubia Remix/4.mp3'
+    ]
+  },
+  {
+    id: 'track52',
+    category: 'HITS LATINOS',
+    name: 'TRACK 15',
+    title: 'Té De Campana',
+    artist: 'Atomic Otro Way',
+    stems: [
+      '/stems/HITS LATINOS/15 Atomic Otro Way - Té De Campana/1.mp3',
+      '/stems/HITS LATINOS/15 Atomic Otro Way - Té De Campana/2.mp3',
+      '/stems/HITS LATINOS/15 Atomic Otro Way - Té De Campana/3.mp3',
+      '/stems/HITS LATINOS/15 Atomic Otro Way - Té De Campana/4.mp3'
+    ]
+  },
+  {
+    id: 'track53',
+    category: 'HITS LATINOS',
+    name: 'TRACK 16',
+    title: 'Superman Sin Capa',
+    artist: 'El Super Nuevo',
+    stems: [
+      '/stems/HITS LATINOS/16 El Super Nuevo - Superman Sin Capa/1.mp3',
+      '/stems/HITS LATINOS/16 El Super Nuevo - Superman Sin Capa/2.mp3',
+      '/stems/HITS LATINOS/16 El Super Nuevo - Superman Sin Capa/3.mp3',
+      '/stems/HITS LATINOS/16 El Super Nuevo - Superman Sin Capa/4.mp3'
+    ]
+  },
+  {
+    id: 'track54',
+    category: 'HITS LATINOS',
+    name: 'TRACK 17',
+    title: 'Se Va Pal Club',
+    artist: 'Hugo Castejón',
+    stems: [
+      '/stems/HITS LATINOS/17 Hugo Castejón - Se Va Pal Club/1.mp3',
+      '/stems/HITS LATINOS/17 Hugo Castejón - Se Va Pal Club/2.mp3',
+      '/stems/HITS LATINOS/17 Hugo Castejón - Se Va Pal Club/3.mp3',
+      '/stems/HITS LATINOS/17 Hugo Castejón - Se Va Pal Club/4.mp3'
+    ]
+  },
+  {
+    id: 'track55',
+    category: 'HITS LATINOS',
+    name: 'TRACK 18',
+    title: 'EoO',
+    artist: 'Bad Bunny',
+    stems: [
+      '/stems/HITS LATINOS/18 Bad Bunny - EoO/1.mp3',
+      '/stems/HITS LATINOS/18 Bad Bunny - EoO/2.mp3',
+      '/stems/HITS LATINOS/18 Bad Bunny - EoO/3.mp3',
+      '/stems/HITS LATINOS/18 Bad Bunny - EoO/4.mp3'
+    ]
+  },
+  {
+    id: 'track56',
+    category: 'HITS LATINOS',
+    name: 'TRACK 19',
+    title: 'Escándalo',
+    artist: 'Ñengo Flow',
+    stems: [
+      '/stems/HITS LATINOS/19 Ñengo Flow - Escándalo/1.mp3',
+      '/stems/HITS LATINOS/19 Ñengo Flow - Escándalo/2.mp3',
+      '/stems/HITS LATINOS/19 Ñengo Flow - Escándalo/3.mp3',
+      '/stems/HITS LATINOS/19 Ñengo Flow - Escándalo/4.mp3'
+    ]
+  },
+  {
+    id: 'track57',
+    category: 'HITS LATINOS',
+    name: 'TRACK 20',
+    title: 'Me Mareo',
+    artist: 'Kidd Voodoo',
+    stems: [
+      '/stems/HITS LATINOS/20 Kidd Voodoo - Me Mareo/1.mp3',
+      '/stems/HITS LATINOS/20 Kidd Voodoo - Me Mareo/2.mp3',
+      '/stems/HITS LATINOS/20 Kidd Voodoo - Me Mareo/3.mp3',
+      '/stems/HITS LATINOS/20 Kidd Voodoo - Me Mareo/4.mp3'
+    ]
+  },
+  {
+    id: 'track58',
+    category: 'HITS LATINOS',
+    name: 'TRACK 21',
+    title: 'Estrellita De Madrugada',
+    artist: 'Omega El Fuerte',
+    stems: [
+      '/stems/HITS LATINOS/21 Omega El Fuerte - Estrellita De Madrugada/1.mp3',
+      '/stems/HITS LATINOS/21 Omega El Fuerte - Estrellita De Madrugada/2.mp3',
+      '/stems/HITS LATINOS/21 Omega El Fuerte - Estrellita De Madrugada/3.mp3',
+      '/stems/HITS LATINOS/21 Omega El Fuerte - Estrellita De Madrugada/4.mp3'
+    ]
+  },
+  {
+    id: 'track59',
+    category: 'HITS LATINOS',
+    name: 'TRACK 22',
+    title: 'Bby WOW',
+    artist: 'Karol G',
+    stems: [
+      '/stems/HITS LATINOS/22 Karol G - Bby WOW/1.mp3',
+      '/stems/HITS LATINOS/22 Karol G - Bby WOW/2.mp3',
+      '/stems/HITS LATINOS/22 Karol G - Bby WOW/3.mp3',
+      '/stems/HITS LATINOS/22 Karol G - Bby WOW/4.mp3'
     ]
   },
   {
     id: 'track60',
-    category: 'HITS DE TRAP LATINO',
-    name: 'TRACK 2',
-    title: 'Si Me Gano Un Grammy',
-    artist: 'Jon Z',
+    category: 'HITS LATINOS',
+    name: 'TRACK 23',
+    title: 'Lamine',
+    artist: 'Morad',
     stems: [
-      '/stems/HITS DE TRAP LATINO/2 Jon Z - Si Me Gano Un Grammy/1.mp3',
-      '/stems/HITS DE TRAP LATINO/2 Jon Z - Si Me Gano Un Grammy/2.mp3',
-      '/stems/HITS DE TRAP LATINO/2 Jon Z - Si Me Gano Un Grammy/3.mp3',
-      '/stems/HITS DE TRAP LATINO/2 Jon Z - Si Me Gano Un Grammy/4.mp3'
+      '/stems/HITS LATINOS/23 Morad - Lamine/1.mp3',
+      '/stems/HITS LATINOS/23 Morad - Lamine/2.mp3',
+      '/stems/HITS LATINOS/23 Morad - Lamine/3.mp3',
+      '/stems/HITS LATINOS/23 Morad - Lamine/4.mp3'
     ]
   },
   {
     id: 'track61',
-    category: 'HITS DE TRAP LATINO',
-    name: 'TRACK 3',
-    title: 'Little Demon',
-    artist: 'Anuel AA',
+    category: 'HITS LATINOS',
+    name: 'TRACK 24',
+    title: 'Azul',
+    artist: 'J Balvin',
     stems: [
-      '/stems/HITS DE TRAP LATINO/3 Anuel AA - Little Demon/1.mp3',
-      '/stems/HITS DE TRAP LATINO/3 Anuel AA - Little Demon/2.mp3',
-      '/stems/HITS DE TRAP LATINO/3 Anuel AA - Little Demon/3.mp3',
-      '/stems/HITS DE TRAP LATINO/3 Anuel AA - Little Demon/4.mp3'
+      '/stems/HITS LATINOS/24 J Balvin - Azul/1.mp3',
+      '/stems/HITS LATINOS/24 J Balvin - Azul/2.mp3',
+      '/stems/HITS LATINOS/24 J Balvin - Azul/3.mp3',
+      '/stems/HITS LATINOS/24 J Balvin - Azul/4.mp3'
     ]
   },
   {
     id: 'track62',
-    category: 'HITS DE TRAP LATINO',
-    name: 'TRACK 4',
-    title: 'Soldado y Profeta',
-    artist: 'Anuel AA',
+    category: 'HITS LATINOS',
+    name: 'TRACK 25',
+    title: 'Da Me',
+    artist: 'Bad Gyal',
     stems: [
-      '/stems/HITS DE TRAP LATINO/4 Anuel AA - Soldado y Profeta/1.mp3',
-      '/stems/HITS DE TRAP LATINO/4 Anuel AA - Soldado y Profeta/2.mp3',
-      '/stems/HITS DE TRAP LATINO/4 Anuel AA - Soldado y Profeta/3.mp3',
-      '/stems/HITS DE TRAP LATINO/4 Anuel AA - Soldado y Profeta/4.mp3'
+      '/stems/HITS LATINOS/25 Bad Gyal - Da Me/1.mp3',
+      '/stems/HITS LATINOS/25 Bad Gyal - Da Me/2.mp3',
+      '/stems/HITS LATINOS/25 Bad Gyal - Da Me/3.mp3',
+      '/stems/HITS LATINOS/25 Bad Gyal - Da Me/4.mp3'
     ]
   },
   {
     id: 'track63',
-    category: 'HITS DE TRAP LATINO',
-    name: 'TRACK 5',
-    title: 'Las más bonitas son putas',
-    artist: 'Anuel AA',
+    category: 'HITS LATINOS',
+    name: 'TRACK 26',
+    title: 'La Graciosa',
+    artist: 'Quevedo',
     stems: [
-      '/stems/HITS DE TRAP LATINO/5 Anuel AA - Las más bonitas son putas/1.mp3',
-      '/stems/HITS DE TRAP LATINO/5 Anuel AA - Las más bonitas son putas/2.mp3',
-      '/stems/HITS DE TRAP LATINO/5 Anuel AA - Las más bonitas son putas/3.mp3',
-      '/stems/HITS DE TRAP LATINO/5 Anuel AA - Las más bonitas son putas/4.mp3'
+      '/stems/HITS LATINOS/26 Quevedo - La Graciosa/1.mp3',
+      '/stems/HITS LATINOS/26 Quevedo - La Graciosa/2.mp3',
+      '/stems/HITS LATINOS/26 Quevedo - La Graciosa/3.mp3',
+      '/stems/HITS LATINOS/26 Quevedo - La Graciosa/4.mp3'
     ]
   },
   {
     id: 'track64',
-    category: 'HITS DE TRAP LATINO',
-    name: 'TRACK 6',
+    category: 'HITS LATINOS',
+    name: 'TRACK 27',
+    title: 'VeLDÁ',
+    artist: 'Bad Bunny',
+    stems: [
+      '/stems/HITS LATINOS/27 Bad Bunny - VeLDÁ/1.mp3',
+      '/stems/HITS LATINOS/27 Bad Bunny - VeLDÁ/2.mp3',
+      '/stems/HITS LATINOS/27 Bad Bunny - VeLDÁ/3.mp3',
+      '/stems/HITS LATINOS/27 Bad Bunny - VeLDÁ/4.mp3'
+    ]
+  },
+  {
+    id: 'track65',
+    category: 'HITS LATINOS',
+    name: 'TRACK 28',
+    title: 'Provenza',
+    artist: 'Karol G',
+    stems: [
+      '/stems/HITS LATINOS/28 Karol G - Provenza/1.mp3',
+      '/stems/HITS LATINOS/28 Karol G - Provenza/2.mp3',
+      '/stems/HITS LATINOS/28 Karol G - Provenza/3.mp3',
+      '/stems/HITS LATINOS/28 Karol G - Provenza/4.mp3'
+    ]
+  },
+  {
+    id: 'track66',
+    category: 'HITS LATINOS',
+    name: 'TRACK 29',
+    title: 'Feliz Cumpleaños Ferxxo',
+    artist: 'Feid',
+    stems: [
+      '/stems/HITS LATINOS/29 Feid - Feliz Cumpleaños Ferxxo/1.mp3',
+      '/stems/HITS LATINOS/29 Feid - Feliz Cumpleaños Ferxxo/2.mp3',
+      '/stems/HITS LATINOS/29 Feid - Feliz Cumpleaños Ferxxo/3.mp3',
+      '/stems/HITS LATINOS/29 Feid - Feliz Cumpleaños Ferxxo/4.mp3'
+    ]
+  },
+  {
+    id: 'track67',
+    category: 'HITS LATINOS',
+    name: 'TRACK 30',
+    title: 'Yandel 150',
+    artist: 'Feid',
+    stems: [
+      '/stems/HITS LATINOS/30 Feid - Yandel 150/1.mp3',
+      '/stems/HITS LATINOS/30 Feid - Yandel 150/2.mp3',
+      '/stems/HITS LATINOS/30 Feid - Yandel 150/3.mp3',
+      '/stems/HITS LATINOS/30 Feid - Yandel 150/4.mp3'
+    ]
+  },
+  {
+    id: 'track68',
+    category: 'HITS LATINOS',
+    name: 'TRACK 31',
+    title: 'Las más bonitas son putas',
+    artist: 'Anuel AA',
+    stems: [
+      '/stems/HITS LATINOS/31 Anuel AA - Las más bonitas son putas/1.mp3',
+      '/stems/HITS LATINOS/31 Anuel AA - Las más bonitas son putas/2.mp3',
+      '/stems/HITS LATINOS/31 Anuel AA - Las más bonitas son putas/3.mp3',
+      '/stems/HITS LATINOS/31 Anuel AA - Las más bonitas son putas/4.mp3'
+    ]
+  },
+  {
+    id: 'track69',
+    category: 'HITS LATINOS',
+    name: 'TRACK 32',
+    title: 'Muchacha',
+    artist: 'Aissa',
+    stems: [
+      '/stems/HITS LATINOS/32 Aissa - Muchacha/1.mp3',
+      '/stems/HITS LATINOS/32 Aissa - Muchacha/2.mp3',
+      '/stems/HITS LATINOS/32 Aissa - Muchacha/3.mp3',
+      '/stems/HITS LATINOS/32 Aissa - Muchacha/4.mp3'
+    ]
+  },
+  {
+    id: 'track70',
+    category: 'HITS LATINOS',
+    name: 'TRACK 33',
+    title: 'Sigues Con Él',
+    artist: 'Arcángel',
+    stems: [
+      '/stems/HITS LATINOS/33 Arcángel - Sigues Con Él/1.mp3',
+      '/stems/HITS LATINOS/33 Arcángel - Sigues Con Él/2.mp3',
+      '/stems/HITS LATINOS/33 Arcángel - Sigues Con Él/3.mp3',
+      '/stems/HITS LATINOS/33 Arcángel - Sigues Con Él/4.mp3'
+    ]
+  },
+  {
+    id: 'track71',
+    category: 'HITS LATINOS',
+    name: 'TRACK 34',
+    title: 'Se Me Olvida',
+    artist: 'Feid',
+    stems: [
+      '/stems/HITS LATINOS/34 Feid - Se Me Olvida/1.mp3',
+      '/stems/HITS LATINOS/34 Feid - Se Me Olvida/2.mp3',
+      '/stems/HITS LATINOS/34 Feid - Se Me Olvida/3.mp3',
+      '/stems/HITS LATINOS/34 Feid - Se Me Olvida/4.mp3'
+    ]
+  },
+  {
+    id: 'track72',
+    category: 'HITS LATINOS',
+    name: 'TRACK 35',
+    title: 'Ba Ba Bad Remix',
+    artist: 'Kybba',
+    stems: [
+      '/stems/HITS LATINOS/35 Kybba - Ba Ba Bad Remix/1.mp3',
+      '/stems/HITS LATINOS/35 Kybba - Ba Ba Bad Remix/2.mp3',
+      '/stems/HITS LATINOS/35 Kybba - Ba Ba Bad Remix/3.mp3',
+      '/stems/HITS LATINOS/35 Kybba - Ba Ba Bad Remix/4.mp3'
+    ]
+  },
+  {
+    id: 'track73',
+    category: 'HITS LATINOS',
+    name: 'TRACK 36',
+    title: 'Goteras',
+    artist: 'Omar Montes',
+    stems: [
+      '/stems/HITS LATINOS/36 Omar Montes - Goteras/1.mp3',
+      '/stems/HITS LATINOS/36 Omar Montes - Goteras/2.mp3',
+      '/stems/HITS LATINOS/36 Omar Montes - Goteras/3.mp3',
+      '/stems/HITS LATINOS/36 Omar Montes - Goteras/4.mp3'
+    ]
+  },
+  {
+    id: 'track74',
+    category: 'HITS LATINOS',
+    name: 'TRACK 37',
+    title: 'Satisfacción',
+    artist: 'Arcángel',
+    stems: [
+      '/stems/HITS LATINOS/37 Arcángel - Satisfacción/1.mp3',
+      '/stems/HITS LATINOS/37 Arcángel - Satisfacción/2.mp3',
+      '/stems/HITS LATINOS/37 Arcángel - Satisfacción/3.mp3',
+      '/stems/HITS LATINOS/37 Arcángel - Satisfacción/4.mp3'
+    ]
+  },
+  {
+    id: 'track75',
+    category: 'HITS LATINOS',
+    name: 'TRACK 38',
+    title: 'Shiny',
+    artist: 'Easykid',
+    stems: [
+      '/stems/HITS LATINOS/38 Easykid - Shiny/1.mp3',
+      '/stems/HITS LATINOS/38 Easykid - Shiny/2.mp3',
+      '/stems/HITS LATINOS/38 Easykid - Shiny/3.mp3',
+      '/stems/HITS LATINOS/38 Easykid - Shiny/4.mp3'
+    ]
+  },
+  {
+    id: 'track76',
+    category: 'HITS LATINOS',
+    name: 'TRACK 39',
+    title: 'Me Mareo',
+    artist: 'Kidd Voodoo',
+    stems: [
+      '/stems/HITS LATINOS/39 Kidd Voodoo - Me Mareo/1.mp3',
+      '/stems/HITS LATINOS/39 Kidd Voodoo - Me Mareo/2.mp3',
+      '/stems/HITS LATINOS/39 Kidd Voodoo - Me Mareo/3.mp3',
+      '/stems/HITS LATINOS/39 Kidd Voodoo - Me Mareo/4.mp3'
+    ]
+  },
+  {
+    id: 'track77',
+    category: 'HITS LATINOS',
+    name: 'TRACK 40',
+    title: 'After',
+    artist: 'Conep',
+    stems: [
+      '/stems/HITS LATINOS/40 Conep - After/1.mp3',
+      '/stems/HITS LATINOS/40 Conep - After/2.mp3',
+      '/stems/HITS LATINOS/40 Conep - After/3.mp3',
+      '/stems/HITS LATINOS/40 Conep - After/4.mp3'
+    ]
+  },
+  {
+    id: 'track78',
+    category: 'HITS LATINOS',
+    name: 'TRACK 41',
+    title: 'Nena Sad',
+    artist: 'Pablo Chill-E',
+    stems: [
+      '/stems/HITS LATINOS/41 Pablo Chill-E - Nena Sad/1.mp3',
+      '/stems/HITS LATINOS/41 Pablo Chill-E - Nena Sad/2.mp3',
+      '/stems/HITS LATINOS/41 Pablo Chill-E - Nena Sad/3.mp3',
+      '/stems/HITS LATINOS/41 Pablo Chill-E - Nena Sad/4.mp3'
+    ]
+  },
+  {
+    id: 'track79',
+    category: 'HITS LATINOS',
+    name: 'TRACK 42',
+    title: 'Goteo',
+    artist: 'Duki',
+    stems: [
+      '/stems/HITS LATINOS/42 Duki - Goteo/1.mp3',
+      '/stems/HITS LATINOS/42 Duki - Goteo/2.mp3',
+      '/stems/HITS LATINOS/42 Duki - Goteo/3.mp3',
+      '/stems/HITS LATINOS/42 Duki - Goteo/4.mp3'
+    ]
+  },
+  {
+    id: 'track80',
+    category: 'HITS LATINOS',
+    name: 'TRACK 43',
+    title: 'Vitamina',
+    artist: 'Jombriel',
+    stems: [
+      '/stems/HITS LATINOS/43 Jombriel - Vitamina/1.mp3',
+      '/stems/HITS LATINOS/43 Jombriel - Vitamina/2.mp3',
+      '/stems/HITS LATINOS/43 Jombriel - Vitamina/3.mp3',
+      '/stems/HITS LATINOS/43 Jombriel - Vitamina/4.mp3'
+    ]
+  },
+  {
+    id: 'track81',
+    category: 'HITS LATINOS',
+    name: 'TRACK 44',
+    title: 'Jordan',
+    artist: 'Ryan Castro',
+    stems: [
+      '/stems/HITS LATINOS/44 Ryan Castro - Jordan/1.mp3',
+      '/stems/HITS LATINOS/44 Ryan Castro - Jordan/2.mp3',
+      '/stems/HITS LATINOS/44 Ryan Castro - Jordan/3.mp3',
+      '/stems/HITS LATINOS/44 Ryan Castro - Jordan/4.mp3'
+    ]
+  },
+  {
+    id: 'track82',
+    category: 'HITS LATINOS',
+    name: 'TRACK 45',
+    title: 'Normal',
+    artist: 'Feid',
+    stems: [
+      '/stems/HITS LATINOS/45 Feid - Normal/1.mp3',
+      '/stems/HITS LATINOS/45 Feid - Normal/2.mp3',
+      '/stems/HITS LATINOS/45 Feid - Normal/3.mp3',
+      '/stems/HITS LATINOS/45 Feid - Normal/4.mp3'
+    ]
+  },
+  {
+    id: 'track83',
+    category: 'HITS LATINOS',
+    name: 'TRACK 46',
+    title: 'Rápido',
+    artist: 'Dei V',
+    stems: [
+      '/stems/HITS LATINOS/46 Dei V - Rápido/1.mp3',
+      '/stems/HITS LATINOS/46 Dei V - Rápido/2.mp3',
+      '/stems/HITS LATINOS/46 Dei V - Rápido/3.mp3',
+      '/stems/HITS LATINOS/46 Dei V - Rápido/4.mp3'
+    ]
+  },
+  {
+    id: 'track84',
+    category: 'HITS LATINOS',
+    name: 'TRACK 47',
+    title: 'Una Noche En Medellín',
+    artist: 'Cris MJ',
+    stems: [
+      '/stems/HITS LATINOS/47 Cris MJ - Una Noche En Medellín/1.mp3',
+      '/stems/HITS LATINOS/47 Cris MJ - Una Noche En Medellín/2.mp3',
+      '/stems/HITS LATINOS/47 Cris MJ - Una Noche En Medellín/3.mp3',
+      '/stems/HITS LATINOS/47 Cris MJ - Una Noche En Medellín/4.mp3'
+    ]
+  },
+  {
+    id: 'track85',
+    category: 'HITS LATINOS',
+    name: 'TRACK 48',
+    title: 'Gata Only',
+    artist: 'FloyyMenor',
+    stems: [
+      '/stems/HITS LATINOS/48 FloyyMenor - Gata Only/1.mp3',
+      '/stems/HITS LATINOS/48 FloyyMenor - Gata Only/2.mp3',
+      '/stems/HITS LATINOS/48 FloyyMenor - Gata Only/3.mp3',
+      '/stems/HITS LATINOS/48 FloyyMenor - Gata Only/4.mp3'
+    ]
+  },
+  {
+    id: 'track86',
+    category: 'HITS LATINOS',
+    name: 'TRACK 49',
+    title: 'Gatita Gangster',
+    artist: 'Karol G',
+    stems: [
+      '/stems/HITS LATINOS/49 Karol G - Gatita Gangster/1.mp3',
+      '/stems/HITS LATINOS/49 Karol G - Gatita Gangster/2.mp3',
+      '/stems/HITS LATINOS/49 Karol G - Gatita Gangster/3.mp3',
+      '/stems/HITS LATINOS/49 Karol G - Gatita Gangster/4.mp3'
+    ]
+  },
+  {
+    id: 'track87',
+    category: 'HITS LATINOS',
+    name: 'TRACK 50',
+    title: 'Ley Seca',
+    artist: 'Jhayco',
+    stems: [
+      '/stems/HITS LATINOS/50 Jhayco - Ley Seca/1.mp3',
+      '/stems/HITS LATINOS/50 Jhayco - Ley Seca/2.mp3',
+      '/stems/HITS LATINOS/50 Jhayco - Ley Seca/3.mp3',
+      '/stems/HITS LATINOS/50 Jhayco - Ley Seca/4.mp3'
+    ]
+  },
+  {
+    id: 'track88',
+    category: 'HITS LATINOS',
+    name: 'TRACK 51',
+    title: 'Loca Remix',
+    artist: 'Khea',
+    stems: [
+      '/stems/HITS LATINOS/51 Khea - Loca Remix/1.mp3',
+      '/stems/HITS LATINOS/51 Khea - Loca Remix/2.mp3',
+      '/stems/HITS LATINOS/51 Khea - Loca Remix/3.mp3',
+      '/stems/HITS LATINOS/51 Khea - Loca Remix/4.mp3'
+    ]
+  },
+  {
+    id: 'track89',
+    category: 'HITS LATINOS',
+    name: 'TRACK 52',
+    title: 'Remedio',
+    artist: 'JC Reyes',
+    stems: [
+      '/stems/HITS LATINOS/52 JC Reyes - Remedio/1.mp3',
+      '/stems/HITS LATINOS/52 JC Reyes - Remedio/2.mp3',
+      '/stems/HITS LATINOS/52 JC Reyes - Remedio/3.mp3',
+      '/stems/HITS LATINOS/52 JC Reyes - Remedio/4.mp3'
+    ]
+  },
+  {
+    id: 'track90',
+    category: 'HITS LATINOS',
+    name: 'TRACK 53',
+    title: 'Real Gangsta Love',
+    artist: 'Trueno',
+    stems: [
+      '/stems/HITS LATINOS/53 Trueno - Real Gangsta Love/1.mp3',
+      '/stems/HITS LATINOS/53 Trueno - Real Gangsta Love/2.mp3',
+      '/stems/HITS LATINOS/53 Trueno - Real Gangsta Love/3.mp3',
+      '/stems/HITS LATINOS/53 Trueno - Real Gangsta Love/4.mp3'
+    ]
+  },
+  {
+    id: 'track91',
+    category: 'HITS LATINOS',
+    name: 'TRACK 54',
+    title: 'Besos',
+    artist: 'Bando Boyz',
+    stems: [
+      '/stems/HITS LATINOS/54 Bando Boyz - Besos/1.mp3',
+      '/stems/HITS LATINOS/54 Bando Boyz - Besos/2.mp3',
+      '/stems/HITS LATINOS/54 Bando Boyz - Besos/3.mp3',
+      '/stems/HITS LATINOS/54 Bando Boyz - Besos/4.mp3'
+    ]
+  },
+  {
+    id: 'track92',
+    category: 'HITS LATINOS',
+    name: 'TRACK 55',
+    title: 'Nueva York (Toto)',
+    artist: 'Bad Gyal',
+    stems: [
+      '/stems/HITS LATINOS/55 Bad Gyal - Nueva York (Toto)/1.mp3',
+      '/stems/HITS LATINOS/55 Bad Gyal - Nueva York (Toto)/2.mp3',
+      '/stems/HITS LATINOS/55 Bad Gyal - Nueva York (Toto)/3.mp3',
+      '/stems/HITS LATINOS/55 Bad Gyal - Nueva York (Toto)/4.mp3'
+    ]
+  },
+  {
+    id: 'track93',
+    category: 'HITS LATINOS',
+    name: 'TRACK 56',
+    title: 'Mbappé',
+    artist: 'Eladio Carrión',
+    stems: [
+      '/stems/HITS LATINOS/56 Eladio Carrión - Mbappé/1.mp3',
+      '/stems/HITS LATINOS/56 Eladio Carrión - Mbappé/2.mp3',
+      '/stems/HITS LATINOS/56 Eladio Carrión - Mbappé/3.mp3',
+      '/stems/HITS LATINOS/56 Eladio Carrión - Mbappé/4.mp3'
+    ]
+  },
+  {
+    id: 'track94',
+    category: 'HITS LATINOS',
+    name: 'TRACK 57',
+    title: 'BnB',
+    artist: 'Young Miko',
+    stems: [
+      '/stems/HITS LATINOS/57 Young Miko - BnB/1.mp3',
+      '/stems/HITS LATINOS/57 Young Miko - BnB/2.mp3',
+      '/stems/HITS LATINOS/57 Young Miko - BnB/3.mp3',
+      '/stems/HITS LATINOS/57 Young Miko - BnB/4.mp3'
+    ]
+  },
+  {
+    id: 'track95',
+    category: 'HITS LATINOS',
+    name: 'TRACK 58',
+    title: 'Si Me Gano Un Grammy',
+    artist: 'Jon Z',
+    stems: [
+      '/stems/HITS LATINOS/58 Jon Z - Si Me Gano Un Grammy/1.mp3',
+      '/stems/HITS LATINOS/58 Jon Z - Si Me Gano Un Grammy/2.mp3',
+      '/stems/HITS LATINOS/58 Jon Z - Si Me Gano Un Grammy/3.mp3',
+      '/stems/HITS LATINOS/58 Jon Z - Si Me Gano Un Grammy/4.mp3'
+    ]
+  },
+  {
+    id: 'track96',
+    category: 'HITS LATINOS',
+    name: 'TRACK 59',
+    title: 'Little Demon',
+    artist: 'Anuel AA',
+    stems: [
+      '/stems/HITS LATINOS/59  Anuel AA - Little Demon/1.mp3',
+      '/stems/HITS LATINOS/59  Anuel AA - Little Demon/2.mp3',
+      '/stems/HITS LATINOS/59  Anuel AA - Little Demon/3.mp3',
+      '/stems/HITS LATINOS/59  Anuel AA - Little Demon/4.mp3'
+    ]
+  },
+  {
+    id: 'track97',
+    category: 'HITS LATINOS',
+    name: 'TRACK 60',
+    title: 'Soldado y Profeta',
+    artist: 'Anuel AA',
+    stems: [
+      '/stems/HITS LATINOS/60 Anuel AA - Soldado y Profeta/1.mp3',
+      '/stems/HITS LATINOS/60 Anuel AA - Soldado y Profeta/2.mp3',
+      '/stems/HITS LATINOS/60 Anuel AA - Soldado y Profeta/3.mp3',
+      '/stems/HITS LATINOS/60 Anuel AA - Soldado y Profeta/4.mp3'
+    ]
+  },
+  {
+    id: 'track98',
+    category: 'HITS LATINOS',
+    name: 'TRACK 61',
     title: 'Si me hiciera el de la lengua',
     artist: 'Fanta Rosario',
     stems: [
-      '/stems/HITS DE TRAP LATINO/6 Fanta Rosario - Si me hiciera el de la lengua/1.mp3',
-      '/stems/HITS DE TRAP LATINO/6 Fanta Rosario - Si me hiciera el de la lengua/2.mp3',
-      '/stems/HITS DE TRAP LATINO/6 Fanta Rosario - Si me hiciera el de la lengua/3.mp3',
-      '/stems/HITS DE TRAP LATINO/6 Fanta Rosario - Si me hiciera el de la lengua/4.mp3'
+      '/stems/HITS LATINOS/61 Fanta Rosario - Si me hiciera el de la lengua/1.mp3',
+      '/stems/HITS LATINOS/61 Fanta Rosario - Si me hiciera el de la lengua/2.mp3',
+      '/stems/HITS LATINOS/61 Fanta Rosario - Si me hiciera el de la lengua/3.mp3',
+      '/stems/HITS LATINOS/61 Fanta Rosario - Si me hiciera el de la lengua/4.mp3'
+    ]
+  },
+  {
+    id: 'track99',
+    category: 'HITS LATINOS',
+    name: 'TRACK 62',
+    title: 'Soldado y Profeta',
+    artist: 'Anuel AA',
+    stems: [
+      '/stems/HITS LATINOS/62 Anuel AA - Soldado y Profeta/1.mp3',
+      '/stems/HITS LATINOS/62 Anuel AA - Soldado y Profeta/2.mp3',
+      '/stems/HITS LATINOS/62 Anuel AA - Soldado y Profeta/3.mp3',
+      '/stems/HITS LATINOS/62 Anuel AA - Soldado y Profeta/4.mp3'
+    ]
+  },
+  {
+    id: 'track100',
+    category: 'HITS LATINOS',
+    name: 'TRACK 63',
+    title: 'Callaita',
+    artist: 'Bad Bunny',
+    stems: [
+      '/stems/HITS LATINOS/63 Bad Bunny - Callaita/1.mp3',
+      '/stems/HITS LATINOS/63 Bad Bunny - Callaita/2.mp3',
+      '/stems/HITS LATINOS/63 Bad Bunny - Callaita/3.mp3',
+      '/stems/HITS LATINOS/63 Bad Bunny - Callaita/4.mp3'
+    ]
+  },
+  {
+    id: 'track101',
+    category: 'HITS LATINOS',
+    name: 'TRACK 64',
+    title: 'Pacto',
+    artist: 'Jay Wheeler',
+    stems: [
+      '/stems/HITS LATINOS/64 Jay Wheeler - Pacto/1.mp3',
+      '/stems/HITS LATINOS/64 Jay Wheeler - Pacto/2.mp3',
+      '/stems/HITS LATINOS/64 Jay Wheeler - Pacto/3.mp3',
+      '/stems/HITS LATINOS/64 Jay Wheeler - Pacto/4.mp3'
     ]
   }
 ];
