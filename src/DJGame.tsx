@@ -1327,6 +1327,34 @@ const TRACKS: Track[] = [
   }
 ];
 
+const PISTAS_TEXT: Record<number, string> = {
+  5: 'Pista misteriosa',
+  9: 'Frase de la canción',
+  42: 'Artista'
+};
+
+const PISTAS_IMAGES: Record<number, string> = {
+  10: '/pistas/10.png',
+  20: '/pistas/20.jpg',
+  22: '/pistas/22.jpg',
+  23: '/pistas/23.jpg',
+  25: '/pistas/25.jpg',
+  26: '/pistas/26.jpg',
+  31: '/pistas/31.png',
+  35: '/pistas/35.jpg',
+  36: '/pistas/36.jpg',
+  40: '/pistas/40.avif',
+  46: '/pistas/46.avif',
+  47: '/pistas/47.jpg',
+  48: '/pistas/48.jpg',
+  51: '/pistas/51.jpg',
+  52: '/pistas/52.avif',
+  53: '/pistas/53.jpg',
+  55: '/pistas/55.jpg',
+  56: '/pistas/56.avif',
+  63: '/pistas/63.png'
+};
+
 export const DJGame: React.FC = () => {
   const [selectedTrackId, setSelectedTrackId] = useState<string | null>(null);
   const activeTrack = TRACKS.find(t => t.id === selectedTrackId);
@@ -1339,6 +1367,7 @@ export const DJGame: React.FC = () => {
   const [isResolved, setIsResolved] = useState(false);
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [showPista, setShowPista] = useState(false);
 
   // Web Audio API refs
   const audioCtxRef = useRef<AudioContext | null>(null);
@@ -1550,6 +1579,7 @@ export const DJGame: React.FC = () => {
                       setFinishedLevels([]);
                       setProgress(0);
                       setIsLoaded(false);
+                      setShowPista(false);
                       setSelectedTrackId(track.id);
                     }}
                   >
@@ -1573,12 +1603,26 @@ export const DJGame: React.FC = () => {
   // Active track must be defined if selectedTrackId is not null
   const currentActiveTrack = activeTrack!;
 
+  const pistaInfo = (() => {
+    if (currentActiveTrack.category !== 'HITS LATINOS') return null;
+    const match = currentActiveTrack.name.match(/^TRACK\s+(\d+)$/);
+    if (!match) return null;
+    const num = parseInt(match[1]);
+    if (PISTAS_TEXT[num]) return { type: 'text', content: PISTAS_TEXT[num] };
+    if (PISTAS_IMAGES[num]) return { type: 'image', content: PISTAS_IMAGES[num] };
+    return null;
+  })();
+  const canShowPista = pistaInfo && finishedLevels.includes(2);
+
   return (
     <div className="dj-game-container glass-brutalist">
       {/* Back Button to Selection Screen */}
       <button 
         className="back-to-menu-btn glass" 
-        onClick={() => setSelectedTrackId(null)}
+        onClick={() => {
+          setSelectedTrackId(null);
+          setShowPista(false);
+        }}
         title="Volver a la selección de canciones"
       >
         <ArrowLeft size={24} color="#fff" />
@@ -1686,8 +1730,25 @@ export const DJGame: React.FC = () => {
                     </div>
                   </div>
                 </button>
-
               </div>
+              
+              {canShowPista && (
+                <div className="pista-container" style={{ marginTop: '1rem', width: '100%', display: 'flex', justifyContent: 'center' }}>
+                  {!showPista ? (
+                    <button className="glass-level-btn" style={{ width: '100%' }} onClick={() => setShowPista(true)}>
+                      <span className="btn-text">Ver Pista</span>
+                    </button>
+                  ) : (
+                    <div className="pista-content glass" style={{ width: '100%', padding: '1rem', borderRadius: '16px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                      {pistaInfo.type === 'text' ? (
+                        <p className="pista-text" style={{ fontSize: '1.2rem', fontWeight: 'bold', margin: 0 }}>{pistaInfo.content}</p>
+                      ) : (
+                        <img src={pistaInfo.content} alt="Pista" className="pista-img" style={{ maxWidth: '100%', borderRadius: '8px' }} />
+                      )}
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </div>
