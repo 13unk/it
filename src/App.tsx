@@ -1,9 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Folder, Play, FileText, Plus, Youtube } from 'lucide-react';
+import { Folder, Play, FileText, Plus, Youtube, ShoppingBag } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { RhymeGame } from './RhymeGame';
 import { DJGame } from './DJGame';
-
+import { Shop } from './Shop';
+import { Faq } from './Faq';
+import { Tracking } from './Tracking';
+import { Cart } from './Cart';
+import { Contact } from './Contact';
+import { ShopProvider } from './ShopContext';
+import { ShopLayout } from './ShopLayout';
 
 interface Project {
   name: string;
@@ -405,7 +411,7 @@ export default function App() {
     const parts = pathStr.split('/').map(decodeURIComponent).filter(Boolean);
     if (parts.length > 0) {
       const cat = parts[0].toUpperCase();
-      if (cat === 'PROYECTOS' || cat === 'FORMATOS' || cat === 'VÍDEOS' || cat === 'RHYME' || cat === 'DJ') {
+      if (['PROYECTOS', 'FORMATOS', 'VÍDEOS', 'RHYME', 'DJ', 'SHOP', 'FAQ', 'TRACKING', 'CART', 'CONTACT'].includes(cat)) {
         return cat;
       } else if (cat === 'ROOT') {
         return '';
@@ -477,7 +483,7 @@ export default function App() {
 
       if (parts.length === 1) {
         const cat = parts[0].toUpperCase();
-        if (cat === 'PROYECTOS' || cat === 'FORMATOS' || cat === 'VÍDEOS' || cat === 'RHYME' || cat === 'DJ') {
+        if (['PROYECTOS', 'FORMATOS', 'VÍDEOS', 'RHYME', 'DJ', 'SHOP', 'FAQ', 'TRACKING', 'CART', 'CONTACT'].includes(cat)) {
           setActiveCategory(cat);
           setActiveItem(null);
           setActiveSubPage(null);
@@ -496,7 +502,7 @@ export default function App() {
         const type = parts[0].toUpperCase();
         const itemName = parts[1];
 
-        if (type === 'PROYECTOS' || type === 'FORMATOS' || type === 'VÍDEOS') {
+        if (type === 'PROYECTOS' || type === 'FORMATOS' || type === 'VÍDEOS' || type === 'SHOP') {
           setActiveCategory(type);
         }
 
@@ -2279,7 +2285,7 @@ export default function App() {
       content = (
         <div className="app-container">
           <section className="section" style={{ marginTop: '2rem' }}>
-            <div className="folders-grid" style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
+            <div className="folders-grid" style={{ gridTemplateColumns: 'repeat(4, 1fr)' }}>
               <div
                 className="folder-card"
                 onClick={() => { navigate('/PROYECTOS'); }}
@@ -2308,6 +2314,16 @@ export default function App() {
                   <Folder size={64} strokeWidth={1.5} />
                 </div>
                 <span className="folder-name">VÍDEOS</span>
+              </div>
+
+              <div
+                className="folder-card"
+                onClick={() => { navigate('/SHOP'); }}
+              >
+                <div className="folder-icon-wrapper">
+                  <ShoppingBag size={64} strokeWidth={1.5} />
+                </div>
+                <span className="folder-name">SHOP</span>
               </div>
             </div>
           </section>
@@ -2339,6 +2355,18 @@ export default function App() {
 
   if (activeCategory === 'DJ') {
     return <DJGame />;
+  }
+
+  if (['SHOP', 'FAQ', 'TRACKING', 'CART', 'CONTACT'].includes(activeCategory)) {
+    return (
+      <ShopProvider>
+        {activeCategory === 'SHOP' && <Shop />}
+        {activeCategory === 'FAQ' && <Faq />}
+        {activeCategory === 'TRACKING' && <ShopLayout><Tracking /></ShopLayout>}
+        {activeCategory === 'CART' && <ShopLayout><Cart /></ShopLayout>}
+        {activeCategory === 'CONTACT' && <Contact />}
+      </ShopProvider>
+    );
   }
 
   if (activeCategory === 'SPLASH') {

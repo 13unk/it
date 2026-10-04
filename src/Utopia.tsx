@@ -38,7 +38,32 @@ const CHANNEL_COLORS: Record<string, string> = {
 export const Utopia: React.FC = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [events, setEvents] = useState<EventCard[]>([]);
+  const [activeTab, setActiveTab] = useState('Calendario');
   
+  // Login states
+  const [loggedInUser, setLoggedInUser] = useState<string | null>(null);
+  const [loginStep, setLoginStep] = useState<'NAME' | 'PIN'>('NAME');
+  const [loginName, setLoginName] = useState('');
+  const [loginInput, setLoginInput] = useState('');
+  const [pin, setPin] = useState('');
+  const [loginError, setLoginError] = useState('');
+  
+  // Loading states
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isAnimatingOut, setIsAnimatingOut] = useState(false);
+  const [showLoading, setShowLoading] = useState(true);
+
+  useEffect(() => {
+    const t = setTimeout(() => {
+      setIsAnimatingOut(true);
+      setIsLoaded(true); // Animate calendar in simultaneously
+      setTimeout(() => {
+        setShowLoading(false); // Unmount after animation finishes
+      }, 600); 
+    }, 8000);
+    return () => clearTimeout(t);
+  }, []);
+
   // Modal states
   const [selectedEvent, setSelectedEvent] = useState<EventCard | null>(null);
   const [isEditing, setIsEditing] = useState(false);
@@ -51,11 +76,19 @@ export const Utopia: React.FC = () => {
     title: '',
     date: new Date().toISOString().split('T')[0],
     description: '',
-    users: [] as string[],
-    creator: null as string | null,
+    users: loggedInUser ? [loggedInUser] : [],
+    creator: loggedInUser,
     channel: '',
     project: ''
   });
+
+  useEffect(() => {
+    setFormData(prev => ({
+      ...prev,
+      creator: loggedInUser,
+      users: loggedInUser ? [loggedInUser] : []
+    }));
+  }, [loggedInUser]);
 
   // Long-press states
   const [holdTimer, setHoldTimer] = useState<NodeJS.Timeout | null>(null);
@@ -150,7 +183,7 @@ export const Utopia: React.FC = () => {
     if (!formData.title || !formData.date || !formData.channel || !formData.project) return;
     try {
       await addDoc(collection(db, 'events'), formData);
-      setFormData({ title: '', date: new Date().toISOString().split('T')[0], description: '', users: [], creator: null, channel: '', project: '' });
+      setFormData({ title: '', date: new Date().toISOString().split('T')[0], description: '', users: loggedInUser ? [loggedInUser] : [], creator: loggedInUser, channel: '', project: '' });
     } catch (error) {
       console.error("Error saving document: ", error);
     }
@@ -267,13 +300,156 @@ export const Utopia: React.FC = () => {
     ));
   };
 
-  return (
-    <div className="utopia-container">
-      <div className="utopia-header">
-        <h1 className="utopia-title">LOS BROCHACHOS INC.</h1>
-      </div>
+  const handleNameSubmit = (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    const nameStr = loginInput.trim().toLowerCase();
+    const foundUser = USERS.find(u => u.toLowerCase() === nameStr);
+    if (foundUser) {
+      setLoginName(foundUser);
+      setLoginStep('PIN');
+      setPin('');
+      setLoginError('');
+    } else {
+      setLoginError('Usuario no encontrado');
+    }
+  };
 
-      <div className="calendar-card">
+  const handlePinPress = (digit: string) => {
+    if (pin.length < 4) {
+      const newPin = pin + digit;
+      setPin(newPin);
+      if (newPin.length === 4) {
+        validatePin(newPin);
+      }
+    }
+  };
+
+  const handlePinDelete = () => {
+    setPin(pin.slice(0, -1));
+    setLoginError('');
+  };
+
+  const validatePin = (currentPin: string) => {
+    const isTresillo = loginName.toLowerCase() === 'tresillo';
+    if (isTresillo && currentPin === '1990') {
+      setLoggedInUser(loginName);
+      setLoginStep('NAME');
+      setLoginInput('');
+      setPin('');
+    } else if (!isTresillo && currentPin === '0000') {
+      setLoggedInUser(loginName);
+      setLoginStep('NAME');
+      setLoginInput('');
+      setPin('');
+    } else {
+      setLoginError('PIN incorrecto');
+      setTimeout(() => setPin(''), 1000);
+    }
+  };
+
+  return (
+    <div className="utopia-wrapper">
+      {showLoading && (
+        <div className={`utopia-loading-screen ${isAnimatingOut ? 'animating-out' : ''}`}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2rem' }}>
+            <div className="loading-text-inc">inc. <sup className="beta-sup">BETA</sup></div>
+            <div className="loading-bubble">Herramienta para gestionar proyectos conjuntos.</div>
+          </div>
+        </div>
+      )}
+      <div className={`utopia-content-wrapper ${isLoaded ? 'loaded' : ''}`}>
+        <div className="dashboard-layout">
+          {/* Sidebar */}
+          <div className="sidebar">
+            <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+              <h2 className="sidebar-logo" style={{ display: 'inline-block', position: 'relative', margin: 0 }}>
+                inc.
+                <span className="beta-sup" style={{ fontSize: '0.8rem', top: '0px', right: '-35px' }}>BETA</span>
+              </h2>
+            </div>
+            <div className="sidebar-menu">
+              {['Proyectos', 'Calendario', 'Usuarios'].map(tab => (
+                <button
+                  key={tab}
+                  className={`sidebar-menu-item ${activeTab === tab ? 'active' : ''}`}
+                  onClick={() => setActiveTab(tab)}
+                >
+                  {tab}
+                </button>
+              ))}
+            </div>
+
+            {/* Login Section */}
+            <div className="sidebar-login-container">
+              {loggedInUser ? (
+                <div className="logged-in-box">
+                  <div className="logged-in-user">
+                    <User size={18} />
+                    <span>{loggedInUser}</span>
+                  </div>
+                  <button className="logout-btn" onClick={() => { setLoggedInUser(null); setLoginInput(''); setPin(''); setLoginStep('NAME'); }}>Cerrar sesión</button>
+                </div>
+              ) : (
+                <div className="login-box">
+                  {loginStep === 'NAME' ? (
+                    <form onSubmit={handleNameSubmit} className="login-form">
+                      <label className="login-label">Iniciar sesión</label>
+                      <div className="login-input-row">
+                        <input
+                          type="text"
+                          placeholder="Tu nombre..."
+                          value={loginInput}
+                          onChange={(e) => { setLoginInput(e.target.value); setLoginError(''); }}
+                          className="login-input"
+                        />
+                        <button type="submit" className="login-submit-btn">
+                          <ChevronRight size={18} />
+                        </button>
+                      </div>
+                      {loginError && <div className="login-error">{loginError}</div>}
+                    </form>
+                  ) : (
+                    <div className="pin-pad-container">
+                      <div className="pin-pad-header">
+                        <span className="pin-user">{loginName}</span>
+                        <div className="pin-dots">
+                          {[0,1,2,3].map(i => (
+                            <div key={i} className={`pin-dot ${i < pin.length ? 'filled' : ''}`} />
+                          ))}
+                        </div>
+                      </div>
+                      <div className="lockpad-grid">
+                        {[1,2,3,4,5,6,7,8,9].map(num => (
+                          <button key={num} type="button" className="lockpad-btn" onClick={() => handlePinPress(num.toString())}>{num}</button>
+                        ))}
+                        <button type="button" className="lockpad-btn action" onClick={() => { setLoginStep('NAME'); setPin(''); setLoginError(''); }}>
+                          <ChevronLeft size={18} />
+                        </button>
+                        <button type="button" className="lockpad-btn" onClick={() => handlePinPress('0')}>0</button>
+                        <button type="button" className="lockpad-btn action" onClick={handlePinDelete}>
+                          <X size={18} />
+                        </button>
+                      </div>
+                      {loginError && <div className="login-error pin-error">{loginError}</div>}
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+          
+          {/* Main Content */}
+          <div className="main-content">
+            <div className="utopia-container" style={{ overflowX: 'hidden' }}>
+              {activeTab !== 'Calendario' && (
+                <div className="empty-state">
+                  <h3>{activeTab}</h3>
+                  <p>Esta secciÃ³n estÃ¡ vacÃ­a por el momento.</p>
+                </div>
+              )}
+              {activeTab === 'Calendario' && (
+                <>
+                  <div className="calendar-card">
         {selectedEvent && (
           <div className="event-detail-overlay">
             <button className="event-detail-close" onClick={closeModal}>
@@ -411,7 +587,7 @@ export const Utopia: React.FC = () => {
         </div>
 
         <div className="calendar-grid">
-          {['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'].map(d => (
+          {['Lun', 'Mar', 'MiÃ©', 'Jue', 'Vie', 'SÃ¡b', 'Dom'].map(d => (
             <div key={d} className="calendar-day-header">{d}</div>
           ))}
           {renderCalendarCells()}
@@ -421,7 +597,7 @@ export const Utopia: React.FC = () => {
       <div className="tool-card">
         <div className="tool-header">
           <CalendarIcon size={24} />
-          <span>Añadir Nuevo Proyecto</span>
+          <span>Añadir evento</span>
         </div>
         
         <form onSubmit={handleAddEvent} className="form-grid">
@@ -517,6 +693,12 @@ export const Utopia: React.FC = () => {
           </button>
         </form>
       </div>
+      </>
+      )}
+    </div>
+    </div>
+    </div>
+    </div>
     </div>
   );
 };
