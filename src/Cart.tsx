@@ -70,7 +70,7 @@ export function Cart() {
                     style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                     title="Eliminar del carrito"
                   >
-                    <Trash2 size={20} color="#ff8800" />
+                    <Trash2 size={18} color="#ff8800" />
                   </button>
                 </div>
               );

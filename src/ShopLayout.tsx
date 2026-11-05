@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, ReactNode } from 'react';
+import { useState, useEffect, useLayoutEffect, useRef, ReactNode } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Search, ShoppingBag, Truck } from 'lucide-react';
 import { useShop } from './ShopContext';
@@ -12,6 +12,19 @@ export function ShopLayout({ children }: { children: ReactNode }) {
   const totalItemCount = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
   const [showPlusOne, setShowPlusOne] = useState(false);
   const prevCartCount = useRef(totalItemCount);
+
+  // Siempre abrir desde arriba del todo al cambiar de ruta
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    const timer = setTimeout(() => {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    }, 10);
+    return () => clearTimeout(timer);
+  }, [location.pathname]);
 
   useEffect(() => {
     const handleScroll = () => {

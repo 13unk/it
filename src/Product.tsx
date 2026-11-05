@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useLayoutEffect } from 'react';
 import { productsData } from './Shop';
 import { useShop } from './ShopContext';
 
@@ -7,6 +7,18 @@ export function Product({ id }: { id: number }) {
   const { addToCart } = useShop();
   const [selectedSize, setSelectedSize] = useState<string>('M');
   const [activeImage, setActiveImage] = useState<string>(product?.image || '');
+
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    const timer = setTimeout(() => {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    }, 10);
+    return () => clearTimeout(timer);
+  }, [id]);
 
   useEffect(() => {
     if (product) {
