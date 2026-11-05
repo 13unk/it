@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { productsData } from './Shop';
 import { useShop } from './ShopContext';
 
@@ -6,10 +6,19 @@ export function Product({ id }: { id: number }) {
   const product = productsData.find(p => p.id === id);
   const { addToCart } = useShop();
   const [selectedSize, setSelectedSize] = useState<string>('M');
+  const [activeImage, setActiveImage] = useState<string>(product?.image || '');
+
+  useEffect(() => {
+    if (product) {
+      setActiveImage(product.image);
+    }
+  }, [product]);
 
   if (!product) {
     return <div style={{ padding: '4rem', textAlign: 'center' }}>Product not found.</div>;
   }
+
+  const images = product.images && product.images.length > 0 ? product.images : [product.image];
 
   const handleAddToCart = () => {
     addToCart({
@@ -23,12 +32,31 @@ export function Product({ id }: { id: number }) {
 
   return (
     <div className="product-page">
-      <div className="product-image-container">
-        <img src={product.image} alt={product.name} />
+      <div className="product-gallery">
+        <div className="product-image-container">
+          <img src={activeImage || product.image} alt={product.name} />
+        </div>
+        {images.length > 1 && (
+          <div className="product-thumbnails">
+            {images.map((img, index) => (
+              <button
+                key={index}
+                type="button"
+                className={`product-thumb-btn ${activeImage === img ? 'active' : ''}`}
+                onClick={() => setActiveImage(img)}
+                onMouseEnter={() => setActiveImage(img)}
+              >
+                <img src={img} alt={`${product.name} vista ${index + 1}`} />
+              </button>
+            ))}
+          </div>
+        )}
       </div>
       <div className="product-details">
-        <h1 className="product-title">{product.name}</h1>
-        <p className="product-price">{product.price}</p>
+        <div className="product-header">
+          <h1 className="product-title">{product.name}</h1>
+          <p className="product-price">{product.price}</p>
+        </div>
         <p className="product-description">{product.description}</p>
         
         <div className="product-options">

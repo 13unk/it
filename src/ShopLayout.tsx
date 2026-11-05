@@ -9,8 +9,9 @@ export function ShopLayout({ children }: { children: ReactNode }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const { cart } = useShop();
 
+  const totalItemCount = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
   const [showPlusOne, setShowPlusOne] = useState(false);
-  const prevCartLength = useRef(cart.length);
+  const prevCartCount = useRef(totalItemCount);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,39 +22,64 @@ export function ShopLayout({ children }: { children: ReactNode }) {
   }, []);
 
   useEffect(() => {
-    if (cart.length > prevCartLength.current) {
+    if (totalItemCount > prevCartCount.current) {
       setShowPlusOne(true);
       const t = setTimeout(() => setShowPlusOne(false), 1000);
-      prevCartLength.current = cart.length;
+      prevCartCount.current = totalItemCount;
       return () => clearTimeout(t);
     } else {
-      prevCartLength.current = cart.length;
+      prevCartCount.current = totalItemCount;
     }
-  }, [cart.length]);
+  }, [totalItemCount]);
 
   return (
     <div className="shop-container">
       {/* Header */}
       <nav className={`shop-nav ${isScrolled ? 'scrolled' : ''}`}>
-        <div className="shop-nav-left">
-          <div className="shop-logo" onClick={() => navigate('/SHOP')} style={{ cursor: 'pointer' }}>
-            "MOODBREAKER"
+        <div className="shop-nav-main">
+          <div className="shop-nav-left">
+            <div className="shop-logo" onClick={() => navigate('/SHOP')} style={{ cursor: 'pointer' }}>
+              BESTFITS
+            </div>
+            <div className="shop-nav-links desktop-nav-links">
+              <span 
+                onClick={() => navigate('/SHOP')}
+                className={location.pathname === '/SHOP' || location.pathname === '/shop' ? 'active-link' : ''}
+              >
+                Home
+              </span>
+              <span 
+                onClick={() => navigate('/SHOP/ALL')}
+                className={location.pathname.toUpperCase().includes('/ALL') ? 'active-link' : ''}
+              >
+                TODOS LOS ARTÍCULOS
+              </span>
+            </div>
           </div>
-          <div className="shop-nav-links">
-            <span onClick={() => navigate('/SHOP')}>Home</span>
-            <span onClick={() => navigate('/SHOP/ALL')}>ALL ARTICLES</span>
-            <span onClick={() => navigate('/SHOP')}>For Sale</span>
-            <span onClick={() => navigate('/SHOP')}>Bundles</span>
+          <div className="shop-nav-right">
+            <Search size={20} style={{ cursor: 'pointer' }} />
+            <Truck size={20} style={{ cursor: 'pointer' }} onClick={() => navigate('/TRACKING')} />
+            <div className="shop-cart-btn" onClick={() => navigate('/CART')} style={{ position: 'relative' }}>
+              <ShoppingBag size={20} />
+              {totalItemCount > 0 && <span className="cart-badge">{totalItemCount}</span>}
+              {showPlusOne && <span className="cart-plus-one">+1</span>}
+            </div>
           </div>
         </div>
-        <div className="shop-nav-right">
-          <Search size={20} style={{ cursor: 'pointer' }} />
-          <Truck size={20} style={{ cursor: 'pointer' }} onClick={() => navigate('/TRACKING')} />
-          <div className="shop-cart-btn" onClick={() => navigate('/CART')} style={{ position: 'relative' }}>
-            <ShoppingBag size={20} />
-            {cart.length > 0 && <span className="cart-badge">{cart.length}</span>}
-            {showPlusOne && <span className="cart-plus-one">+1</span>}
-          </div>
+        {/* Mobile secondary links row */}
+        <div className="shop-nav-links mobile-nav-links">
+          <span 
+            onClick={() => navigate('/SHOP')}
+            className={location.pathname === '/SHOP' || location.pathname === '/shop' ? 'active-link' : ''}
+          >
+            Home
+          </span>
+          <span 
+            onClick={() => navigate('/SHOP/ALL')}
+            className={location.pathname.toUpperCase().includes('/ALL') ? 'active-link' : ''}
+          >
+            TODOS LOS ARTÍCULOS
+          </span>
         </div>
       </nav>
 

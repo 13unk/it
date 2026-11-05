@@ -10,6 +10,7 @@ import { Cart } from './Cart';
 import { Contact } from './Contact';
 import { ShopProvider } from './ShopContext';
 import { ShopLayout } from './ShopLayout';
+import { Shop2 } from './Shop2';
 
 interface Project {
   name: string;
@@ -411,7 +412,7 @@ export default function App() {
     const parts = pathStr.split('/').map(decodeURIComponent).filter(Boolean);
     if (parts.length > 0) {
       const cat = parts[0].toUpperCase();
-      if (['PROYECTOS', 'FORMATOS', 'VÍDEOS', 'RHYME', 'DJ', 'SHOP', 'FAQ', 'TRACKING', 'CART', 'CONTACT'].includes(cat)) {
+      if (['PROYECTOS', 'FORMATOS', 'VÍDEOS', 'RHYME', 'DJ', 'SHOP', 'SHOP2', 'FAQ', 'TRACKING', 'CART', 'CONTACT'].includes(cat)) {
         return cat;
       } else if (cat === 'ROOT') {
         return '';
@@ -483,7 +484,7 @@ export default function App() {
 
       if (parts.length === 1) {
         const cat = parts[0].toUpperCase();
-        if (['PROYECTOS', 'FORMATOS', 'VÍDEOS', 'RHYME', 'DJ', 'SHOP', 'FAQ', 'TRACKING', 'CART', 'CONTACT'].includes(cat)) {
+        if (['PROYECTOS', 'FORMATOS', 'VÍDEOS', 'RHYME', 'DJ', 'SHOP', 'SHOP2', 'FAQ', 'TRACKING', 'CART', 'CONTACT'].includes(cat)) {
           setActiveCategory(cat);
           setActiveItem(null);
           setActiveSubPage(null);
@@ -2355,6 +2356,10 @@ export default function App() {
 
   if (activeCategory === 'DJ') {
     return <DJGame />;
+  }
+
+  if (activeCategory === 'SHOP2') {
+    return <Shop2 />;
   }
 
   if (['SHOP', 'FAQ', 'TRACKING', 'CART', 'CONTACT'].includes(activeCategory)) {

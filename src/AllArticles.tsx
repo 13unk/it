@@ -5,16 +5,17 @@ import './Shop.css';
 
 export function AllArticles() {
   const navigate = useNavigate();
-  // Generate 16 items by repeating productsData
-  let all16 = [...productsData];
-  while (all16.length < 16) {
-    all16 = all16.concat(productsData);
-  }
-  all16 = all16.slice(0, 16);
-
   const [selectedSize, setSelectedSize] = useState<string>('');
   const [selectedColor, setSelectedColor] = useState<string>('');
   const [selectedBrand, setSelectedBrand] = useState<string>('');
+
+  const filtered = productsData.filter(product => {
+    if (selectedBrand && product.brand !== selectedBrand) return false;
+    if (selectedColor && product.color !== selectedColor) return false;
+    return true;
+  });
+
+  const displayItems = filtered;
 
   const filters = [
     { label: 'Talla', options: ['S', 'M', 'L', 'XL'], state: selectedSize, setter: setSelectedSize },
@@ -47,23 +48,29 @@ export function AllArticles() {
         ))}
       </div>
 
-      <div className="all-articles-grid">
-        {all16.map((product, i) => (
-          <div 
-            key={`all-${i}`} 
-            className="bento-item all-articles-item"
-            onClick={() => navigate(`/SHOP/PRODUCT/${product.id}`)}
-          >
-            <div className="bento-image-wrapper">
-              <img src={product.image} alt={product.name} className="bento-image" />
+      {displayItems.length === 0 ? (
+        <div style={{ textAlign: 'center', padding: '4rem 1rem', color: '#666', fontSize: '1.1rem' }}>
+          No hay artículos que coincidan con los filtros seleccionados.
+        </div>
+      ) : (
+        <div className="all-articles-grid">
+          {displayItems.map((product, i) => (
+            <div 
+              key={`all-${i}`} 
+              className="bento-item all-articles-item"
+              onClick={() => navigate(`/SHOP/PRODUCT/${product.id}`)}
+            >
+              <div className="bento-image-wrapper">
+                <img src={product.image} alt={product.name} className="bento-image" />
+              </div>
+              <div className="bento-info">
+                <h3 className="bento-name">{product.name}</h3>
+                <p className="bento-price">{product.price}</p>
+              </div>
             </div>
-            <div className="bento-info">
-              <h3 className="bento-name">{product.name}</h3>
-              <p className="bento-price">{product.price}</p>
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

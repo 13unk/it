@@ -19,7 +19,7 @@ export function Tracking() {
         <input 
           type="text" 
           className="tracking-input" 
-          placeholder="Ej: UNK12345678"
+          placeholder="Ej: 00000000"
           value={code}
           onChange={(e) => setCode(e.target.value)}
         />
