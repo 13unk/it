@@ -11,6 +11,7 @@ import { Contact } from './Contact';
 import { ShopProvider } from './ShopContext';
 import { ShopLayout } from './ShopLayout';
 import { Shop2 } from './Shop2';
+import './Shop.css';
 
 interface Project {
   name: string;
@@ -467,6 +468,15 @@ export default function App() {
     setSelectedAlphabetLetter(null);
     setHoveredTimelinePart(null);
   }, [activeSubSubPage, activeSubPage, activeItem]);
+
+  useEffect(() => {
+    if (activeCategory === 'SPLASH') {
+      const timer = setTimeout(() => {
+        navigate('/SHOP', { replace: true });
+      }, 800);
+      return () => clearTimeout(timer);
+    }
+  }, [activeCategory, navigate]);
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -2376,8 +2386,8 @@ export default function App() {
 
   if (activeCategory === 'SPLASH') {
     return (
-      <div style={{ display: 'flex', width: '100vw', height: '100vh', justifyContent: 'center', alignItems: 'center' }}>
-        <span style={{ fontSize: '0.9rem', color: '#555', letterSpacing: '1px' }}>© UNK</span>
+      <div className="shop-loader-screen">
+        <h1 className="shop-loader-title">BESTFITS</h1>
       </div>
     );
   }

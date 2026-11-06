@@ -13,6 +13,22 @@ export function ShopLayout({ children }: { children: ReactNode }) {
   const [showPlusOne, setShowPlusOne] = useState(false);
   const prevCartCount = useRef(totalItemCount);
 
+  // Pantalla de carga inicial
+  const [isLoading, setIsLoading] = useState(true);
+  const [isFadingOut, setIsFadingOut] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsFadingOut(true);
+      const removeTimer = setTimeout(() => {
+        setIsLoading(false);
+      }, 500);
+      return () => clearTimeout(removeTimer);
+    }, 850);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   // Siempre abrir desde arriba del todo al cambiar de ruta
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
@@ -47,6 +63,13 @@ export function ShopLayout({ children }: { children: ReactNode }) {
 
   return (
     <div className="shop-container">
+      {/* Pantalla de carga BESTFITS */}
+      {isLoading && (
+        <div className={`shop-loader-screen ${isFadingOut ? 'fade-out' : ''}`}>
+          <h1 className="shop-loader-title">BESTFITS</h1>
+        </div>
+      )}
+
       {/* Header */}
       <nav className={`shop-nav ${isScrolled ? 'scrolled' : ''}`}>
         <div className="shop-nav-main">
